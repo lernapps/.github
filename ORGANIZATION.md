@@ -1,10 +1,10 @@
-# lernapps – Target structure of the GitHub organisation
+# lernapps.net – Target structure of the GitHub organisation
 
 Status: **Agreed in principle** by the org owners Oliver and Ralf; open points are `decision` issues · Date: 2026-09-27
 
 ## TL;DR
 
-- **One brand: lernapps.** The name "edugo" is dropped.
+- **One brand: lernapps.net.** The name "edugo" is dropped. `lernapps` stays the technical name (GitHub org, npm scope `@lernapps`); lernapps.net is what people read, and the domain once DNS is set up ([#35](https://github.com/lernapps/.github/issues/35)).
 - **One repo per concern, one repo per app. No monorepo of apps, no submodules.**
 - **Ralf's repo becomes `mathe-karte`.** It is one app, a curriculum map for maths with trainers and a tutor. It stays largely as it is and becomes the **reference app**. Its infrastructure is the **blueprint** for the common tooling.
 - **Common infrastructure lives in separate English-named repos:**
