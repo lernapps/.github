@@ -205,7 +205,7 @@ This applies to the **common sites** (`lernapps.github.io`, `map`, `docs`), not 
 | 1 | **Template** | Starting state | `app-template`, driven by [Copier](https://copier.readthedocs.io). `copier update` merges later template changes into existing apps as a three-way merge. A GitHub template is copied only once and then drifts |
 | 2 | **Reusable workflows + composite actions** | Pipeline logic | Apps contain only thin callers (`uses: lernapps/tooling/.github/workflows/<x>.yml@<SHA>`) |
 | 3 | **Shared packages** | Check logic and configs inside the build | `@lernapps/checks`, `@lernapps/eslint-config`, `@lernapps/site-chrome`, SemVer, on npmjs.org |
-| 4 | **Org enforcement** | That the checks run and branch rules hold | Custom properties (`type`, `curated`, `stack`) that only admins can set, plus org rulesets that target by property (required workflows, PRs, no force push). **Check whether the free plan allows this** (§7). Fallback: per-repo rulesets set by a script in `tooling` |
+| 4 | **Org enforcement** | That the checks run and branch rules hold | Custom properties (`type`, `curated`, `stack`) that only admins can set, plus org rulesets that target by property (required workflows, PRs, no force push). **Org rulesets need the GitHub Team plan** ([#26](https://github.com/lernapps/.github/issues/26)); custom properties and org-wide SHA pinning work on the free plan. So: per-repo rulesets, set by a script in `tooling` by custom property |
 | 5 | **Fleet audit** | That it is all really true | A nightly job in `tooling` walks every `type=app` repo and every registered external app (§4.5) |
 
 ### 4.1 Reusable workflows in `tooling`
@@ -384,14 +384,14 @@ Open decisions, each an issue labelled `decision`:
 - [#23](https://github.com/lernapps/.github/issues/23) Review rules for common repos
 - [#24](https://github.com/lernapps/.github/issues/24) Stack for `lernapps.github.io` and `map`
 - [#25](https://github.com/lernapps/.github/issues/25) Where Physik and Chemie apps go
-- [#26](https://github.com/lernapps/.github/issues/26) Whether org rulesets are available on the free plan
+- ~~[#26](https://github.com/lernapps/.github/issues/26) Whether org rulesets are available on the free plan~~ No: they need the Team plan; per-repo rulesets instead
 
 ### Phase 1 – Foundation (non-breaking)
 - [x] Create `.github` with this document
 - [x] [#27](https://github.com/lernapps/.github/issues/27) Org profile README (the why)
 - [x] [#28](https://github.com/lernapps/.github/issues/28) Community health files (open: contact address in the Code of Conduct)
 - [x] [#3](https://github.com/lernapps/.github/issues/3) Issue forms and PR template
-- [ ] [#29](https://github.com/lernapps/.github/issues/29) Org settings
+- [ ] [#29](https://github.com/lernapps/.github/issues/29) Org settings (mostly done: name, no repo creation by members, team `maintainers`, custom properties, SHA pinning, rulesets and security features on the common repos)
 - [ ] [#30](https://github.com/lernapps/.github/issues/30) Reserve the npm scope `@lernapps`
 - [ ] [#4](https://github.com/lernapps/.github/issues/4) LICENSE and REUSE in all repos (after #19)
 
