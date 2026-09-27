@@ -1,0 +1,43 @@
+name: App eintragen
+description: Deine App soll auf der Karte von lernapps erscheinen.
+title: "App eintragen: "
+labels: [app-registration]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Der Weg über ein Manifest (`lernapps.json`) ist im Aufbau ([ORGANIZATION.md §3.2](https://github.com/lernapps/.github/blob/main/ORGANIZATION.md#32-map-and-registry-the-manifest-protocol)). Bis dahin tragen wir Apps über dieses Formular ein.
+  - type: input
+    id: url
+    attributes:
+      label: Adresse der App
+    validations:
+      required: true
+  - type: input
+    id: quellcode
+    attributes:
+      label: Quellcode
+      placeholder: https://github.com/…
+    validations:
+      required: true
+  - type: input
+    id: lizenz
+    attributes:
+      label: Lizenz
+      placeholder: z. B. MIT
+    validations:
+      required: true
+  - type: textarea
+    id: beschreibung
+    attributes:
+      label: Was können Lernende damit üben?
+    validations:
+      required: true
+  - type: checkboxes
+    id: regeln
+    attributes:
+      label: Die App …
+      options:
+        - label: läuft ohne Anmeldung
+        - label: speichert keine Daten auf einem Server
+        - label: lädt nichts von fremden Servern, bevor jemand klickt (keine Tracker, Schriften oder CDNs)

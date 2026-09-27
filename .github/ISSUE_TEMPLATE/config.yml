@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Sicherheits- oder Datenschutzproblem
+    url: https://github.com/lernapps/.github/blob/main/SECURITY.md
+    about: Bitte nicht öffentlich melden, sondern privat über „Report a vulnerability“.
+  - name: Wie lernapps aufgebaut ist
+    url: https://github.com/lernapps/.github/blob/main/ORGANIZATION.md
+    about: Repositories, Regeln und Fahrplan der Organisation.
