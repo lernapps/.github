@@ -100,7 +100,7 @@ Two kinds of connection exist, and only two:
 | `.github` | – | `maintainers` | Org profile with the *why* (`profile/README.md`). Default CONTRIBUTING, CODE_OF_CONDUCT, GOVERNANCE, SECURITY, SUPPORT. Issue forms, PR template, `workflow-templates/` | new |
 | `lernapps.github.io` | `/` | `maintainers` | Home page and navigation between the **common sites** (`map`, `docs`, "Mitmachen"). Does **not** list apps; it points to `map` for that. Publishes `nav.json`. Cross-site link check. `404.html` with redirects from the old paths | new; landing texts from edugo |
 | `map` | `/map/` | `map-editors` | **Capability map and app registry.** Capability nodes, entry schema `entry.v1`, aggregation of app manifests, computed trust signals, gap view. Publishes `/map/data.json` and `/map/schemas/` | edugo `data/` + `schemas/` + catalog views (history kept via `git filter-repo`); external-entry hook and edugo fields from `mathe-karte` |
-| `docs` | `/docs/` | `maintainers` | Vision, biz42, platform arc42, **cross-repo ADRs** (manifest protocol, license, reserved paths, language convention), platform patterns (e.g. "tutor without backend"), governance background | `mrsimpson/edugo` **transferred** (keeps history, stars, redirect); code parts removed |
+| `docs` | `/docs/` | `maintainers` | Vision, biz42, **cross-repo ADRs** (manifest protocol, license, reserved paths, language convention), platform patterns (e.g. "tutor without backend"), governance background | `mrsimpson/edugo` **transferred** (keeps history, stars, redirect); code parts removed |
 | `tooling` | – | `maintainers` | Reusable workflows, composite actions, `@lernapps/*` packages, AI-review prompt and gate, harness-wheel generator, agent skills, fleet audit, downstream tests | extracted from Ralf's repo (history kept via `git filter-repo`) |
 | `app-template` | – | `maintainers` | Minimal static, frontend-only app: manifest, LICENSE/REUSE, `AGENTS.md`, thin workflow callers | new |
 | `mathe-karte` | `/mathe-karte/` | Ralf | The Mathe-Karte app, largely unchanged; **reference app** and first consumer of `tooling` | today's `lernapps/lernapps.github.io`, **renamed** |
@@ -399,7 +399,7 @@ Open decisions, each an issue labelled `decision`:
 - [x] Rename `lernapps/lernapps.github.io` → `lernapps/mathe-karte` (2026-09-27). Git remotes redirect; Pages does not.
 - [x] [#17](https://github.com/lernapps/.github/issues/17) New `lernapps/lernapps.github.io`: home page, `404.html` forwarding old paths (`/binom/`, `/prozent/`, `/zufall/`, `/karte/`, `/kern/`, `/docs/`) to `/mathe-karte/…` with query and hash, "moved" notes at the old `tutor.md`/`llms.txt` paths for AI tutors that don't run JS. Verified in a browser on 2026-09-27.
 - [ ] [#18](https://github.com/lernapps/.github/issues/18) → lernapps/mathe-karte#69: `BASIS_URL` → `/mathe-karte/`. Minimal draft PR lernapps/mathe-karte#70; ADR, arc42 and docs are left to the app's author.
-- [ ] [#1](https://github.com/lernapps/.github/issues/1) Transfer `mrsimpson/edugo` → `lernapps/docs`, rebrand, remove the Vue code
+- [x] [#1](https://github.com/lernapps/.github/issues/1) `mrsimpson/edugo` transferred to `lernapps/docs`: vision and biz42 only, edugo renamed to lernapps.net, no VitePress; its `404.html` forwards old Mathe-Karte doc links (`/docs/…`) to `/mathe-karte/docs/…`
 - [ ] [#2](https://github.com/lernapps/.github/issues/2) Smoke-test the tutor flow end to end with claude.ai
 
 ### Phase 3 – Tooling from the blueprint
@@ -410,7 +410,7 @@ Open decisions, each an issue labelled `decision`:
 - [ ] [#31](https://github.com/lernapps/.github/issues/31) Grouped dependency updates
 
 ### Phase 4 – Map
-- [ ] [#9](https://github.com/lernapps/.github/issues/9) Create `map` from edugo `data/` + `schemas/` (history kept)
+- [x] [#9](https://github.com/lernapps/.github/issues/9) `map` created from edugo with history: Vue app, data, schemas and the edugo arc42 (validated in CI, published at `/map/architecture/`, still to be narrowed: lernapps/map#5)
 - [ ] [#10](https://github.com/lernapps/.github/issues/10) `entry.v1` schema and manifest protocol
 - [ ] [#11](https://github.com/lernapps/.github/issues/11) `mathe-karte` publishes `lernapps.json` (needs #20)
 - [ ] [#32](https://github.com/lernapps/.github/issues/32) Design session: capability nodes vs. curriculum competencies
