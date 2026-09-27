@@ -1,0 +1,28 @@
+name: App-Idee
+description: Eine Idee für eine App, gern mit Skizze.
+title: "App-Idee: "
+labels: [app-idea]
+body:
+  - type: textarea
+    id: idee
+    attributes:
+      label: Was tun Lernende in der App?
+      description: Beschreibe, was sie aktiv tun – ausprobieren, entscheiden, bauen, vergleichen …
+    validations:
+      required: true
+  - type: textarea
+    id: ziel
+    attributes:
+      label: Was sollen sie danach können?
+  - type: input
+    id: stufe
+    attributes:
+      label: Fach und Klassenstufe
+  - type: dropdown
+    id: bauen
+    attributes:
+      label: Willst du die App selbst bauen?
+      options:
+        - Ja
+        - Vielleicht, mit Hilfe
+        - Nein, ich habe nur die Idee
