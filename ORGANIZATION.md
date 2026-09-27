@@ -1,6 +1,6 @@
 # lernapps – Target structure of the GitHub organisation
 
-Status: **Proposal**, agreed in principle by the org owners Oliver and Ralf · Date: 2026-09-27
+Status: **Agreed in principle** by the org owners Oliver and Ralf; open points are `decision` issues · Date: 2026-09-27
 
 ## TL;DR
 
@@ -156,7 +156,7 @@ It's like a website's RSS feed and a feed reader: the site decides what's in its
 - **Map data:** the capability nodes (what learners should be able to do, and the gaps) live in `map/data/capabilities/`. Manifests only *reference* their IDs. An unknown ID fails the app's CI.
 - **Discovery:** the `map` build can find candidates through the topic `lernapps-app` and *suggest* them as PRs. A topic never leads to an automatic listing.
 - **Fallback for apps without a manifest** (e.g. existing external tools): the entry is kept as a data file directly in `map/data/entries/`. It is maintained by hand and marked as such.
-- **Granularity:** one entry per app, or one per trainer or feature inside an app? This is open (§8). The schema should allow both, e.g. through an optional `parent`.
+- **Granularity:** one entry per app, or one per trainer or feature inside an app? This is open ([#21](https://github.com/lernapps/.github/issues/21)). The schema should allow both, e.g. through an optional `parent`.
 
 Open modelling question for a design session: how do edugo's cross-subject capability nodes (e.g. structured peer feedback) relate to curriculum-based competencies such as those of the Mathe-Karte? One idea: `map` holds only cross-subject capabilities plus a link to domain maps like the Mathe-Karte, which are published by the apps themselves.
 
@@ -373,76 +373,62 @@ There are two scopes: the org's **common repos**, and the **apps**.
 
 ## 7. Migration plan
 
-The order keeps the root URL down for **minutes**. The URLs move before more tutor links spread.
+The work is tracked as [issues and milestones](https://github.com/lernapps/.github/milestones) in this repo. This section gives the order and links the issues; the issues carry the details and the status.
 
-### Phase 0 – Agreement (this week)
-- [ ] Discuss this proposal with Ralf and decide the open questions (§8).
-- [ ] Agree on the license (§6).
-- [ ] Clarify rights: `gh auth refresh -s admin:org`, then check whether org rulesets are available on the free plan. The custom properties API already responds.
+### Phase 0 – Agreement
+Open decisions, each an issue labelled `decision`:
+- [#19](https://github.com/lernapps/.github/issues/19) License for common repos and apps (§6)
+- [#20](https://github.com/lernapps/.github/issues/20) Scope of `map` vs. Mathe-Karte, narrowing ADR-018
+- [#21](https://github.com/lernapps/.github/issues/21) Granularity of map entries
+- [#22](https://github.com/lernapps/.github/issues/22) English contract at the boundary
+- [#23](https://github.com/lernapps/.github/issues/23) Review rules for common repos
+- [#24](https://github.com/lernapps/.github/issues/24) Stack for `lernapps.github.io` and `map`
+- [#25](https://github.com/lernapps/.github/issues/25) Where Physik and Chemie apps go
+- [#26](https://github.com/lernapps/.github/issues/26) Whether org rulesets are available on the free plan
 
 ### Phase 1 – Foundation (non-breaking)
-- [ ] Create `.github`: profile README, community health files, issue forms, PR template.
-- [ ] Add LICENSE and REUSE to `mrsimpson/edugo` and to Ralf's repo.
-- [ ] Org settings:
-  - name, description and URL (all empty today)
-  - no repo creation by members
-  - teams (§5.1)
-  - custom properties (`type`, `curated`, `stack`)
-  - private vulnerability reporting
-  - Dependabot and CodeQL defaults
-  - Actions policy
-- [ ] Reserve the npm scope `@lernapps`.
+- [x] Create `.github` with this document
+- [x] [#27](https://github.com/lernapps/.github/issues/27) Org profile README (the why)
+- [x] [#28](https://github.com/lernapps/.github/issues/28) Community health files (open: contact address in the Code of Conduct)
+- [x] [#3](https://github.com/lernapps/.github/issues/3) Issue forms and PR template
+- [ ] [#29](https://github.com/lernapps/.github/issues/29) Org settings
+- [ ] [#30](https://github.com/lernapps/.github/issues/30) Reserve the npm scope `@lernapps`
+- [ ] [#4](https://github.com/lernapps/.github/issues/4) LICENSE and REUSE in all repos (after #19)
 
-### Phase 2 – URL move (started 2026-09-27)
-
-> **Status 2026-09-27:** the repo was renamed first (step 2). The site is served at `/mathe-karte/`, and relative links work. But `BASIS_URL` is still `https://lernapps.github.io/`, so `tutor.md`, `llms.txt`, canonicals and source links point to paths that return 404. **The tutor flow is broken until steps 1 and 3 are done.**
-
-1. **[urgent]** In `mathe-karte`, open an ADR PR amending ADR-015:
-   - `BASIS_URL` → `https://lernapps.github.io/mathe-karte/`
-   - repo name in `lib/adressen.js` (source and issue links still say `lernapps.github.io`)
-   - tutor allowlist
-   - update README, CLAUDE.md and the repo description: one app, Physik/Chemie as a goal only
-2. ~~Rename `lernapps/lernapps.github.io` → `lernapps/mathe-karte`.~~ Done. Git remotes redirect; **Pages does not**.
-3. **[urgent]** Create a new `lernapps/lernapps.github.io` with a minimal home page and `404.html`.
-   - The 404 page redirects old paths (`/binom/`, `/prozent/`, `/zufall/`, `/karte/`, `/kern/`, `/llms.txt`, `/docs/`) → `/mathe-karte/…`, keeping query and hash. It shows a link when JS is off.
-4. Transfer `mrsimpson/edugo` → `lernapps/docs`, set Pages to `build_type=workflow`, and remove the Vue code from the default branch (`map` takes it over in phase 3).
-5. Smoke-test the tutor flow end to end with claude.ai.
+### Phase 2 – URL move
+- [x] Rename `lernapps/lernapps.github.io` → `lernapps/mathe-karte` (2026-09-27). Git remotes redirect; Pages does not.
+- [x] [#17](https://github.com/lernapps/.github/issues/17) New `lernapps/lernapps.github.io`: home page, `404.html` forwarding old paths (`/binom/`, `/prozent/`, `/zufall/`, `/karte/`, `/kern/`, `/docs/`) to `/mathe-karte/…` with query and hash, "moved" notes at the old `tutor.md`/`llms.txt` paths for AI tutors that don't run JS. Verified in a browser on 2026-09-27.
+- [ ] [#18](https://github.com/lernapps/.github/issues/18) → lernapps/mathe-karte#69: `BASIS_URL` → `/mathe-karte/`. Minimal draft PR lernapps/mathe-karte#70; ADR, arc42 and docs are left to the app's author.
+- [ ] [#1](https://github.com/lernapps/.github/issues/1) Transfer `mrsimpson/edugo` → `lernapps/docs`, rebrand, remove the Vue code
+- [ ] [#2](https://github.com/lernapps/.github/issues/2) Smoke-test the tutor flow end to end with claude.ai
 
 ### Phase 3 – Tooling from the blueprint
-- [ ] Extract `tooling` from `mathe-karte` (`git filter-repo` on `.github/workflows`, `lib/pruefe-*`, `scripts/ki-review-*`, `scripts/harness-*`, `scripts/doku-lint.js`, `werkzeuge/`).
-- [ ] Rename to English identifiers and parameterise (accounts, allowlist, page list).
-- [ ] Write the downstream tests (the matrix over app repos).
-- [ ] In `mathe-karte`, replace the workflows with callers **one at a time**. Each step is an ADR in `mathe-karte` (CLAUDE.md requires one for new dependencies).
-- [ ] Set up Renovate or Dependabot with grouping.
+- [ ] [#5](https://github.com/lernapps/.github/issues/5) Create `tooling` from `mathe-karte` (history kept)
+- [ ] [#6](https://github.com/lernapps/.github/issues/6) Parameterise and rename to English
+- [ ] [#7](https://github.com/lernapps/.github/issues/7) Downstream tests
+- [ ] [#8](https://github.com/lernapps/.github/issues/8) `mathe-karte` switches to the `tooling` workflows step by step, one ADR per step
+- [ ] [#31](https://github.com/lernapps/.github/issues/31) Grouped dependency updates
 
 ### Phase 4 – Map
-- [ ] Create `map` from edugo `data/` + `schemas/` (keeping history).
-- [ ] Define `entry.v1` (English, merged from both schemas).
-- [ ] Decide the stack (§3.5) and port if needed.
-- [ ] `mathe-karte` publishes `lernapps.json`. Its `externe-eintraege.js` and edugo fields move to `map`. This needs an ADR in `mathe-karte` that narrows ADR-018: the Mathe-Karte stays as the app's curriculum map, and the cross-app registry moves out.
-- [ ] Design session: how capability nodes relate to curriculum competencies.
+- [ ] [#9](https://github.com/lernapps/.github/issues/9) Create `map` from edugo `data/` + `schemas/` (history kept)
+- [ ] [#10](https://github.com/lernapps/.github/issues/10) `entry.v1` schema and manifest protocol
+- [ ] [#11](https://github.com/lernapps/.github/issues/11) `mathe-karte` publishes `lernapps.json` (needs #20)
+- [ ] [#32](https://github.com/lernapps/.github/issues/32) Design session: capability nodes vs. curriculum competencies
 
 ### Phase 5 – Enabling producers
-- [ ] `app-template` with Copier, plus a sample app.
-- [ ] Generalise the `lern-app` skill into the English `lernapp` skill in `tooling`.
-- [ ] "Mitmachen" guide on the site, with details in `docs`.
-- [ ] `@lernapps/site-chrome` and `nav.json`, used by every site.
+- [ ] [#12](https://github.com/lernapps/.github/issues/12) `app-template` with Copier and a sample app
+- [ ] [#13](https://github.com/lernapps/.github/issues/13) `lernapp` skill in `tooling`
+- [ ] [#33](https://github.com/lernapps/.github/issues/33) "Mitmachen" guide
+- [ ] [#14](https://github.com/lernapps/.github/issues/14) `@lernapps/site-chrome` and `nav.json`
 
 ### Phase 6 – Growth
-- [ ] Fleet audit with trust signals in `map`.
-- [ ] Discussions, `good first issue`s, first external producers.
+- [ ] [#15](https://github.com/lernapps/.github/issues/15) Fleet audit with trust signals in `map`
+- [ ] [#16](https://github.com/lernapps/.github/issues/16) Open for contributors
 - [ ] Only when needed: extract the maths `kern` or the tutor pattern as packages, the lernapps-bot GitHub App, a custom domain.
 
-## 8. Open questions for Ralf
+## 8. Open questions
 
-1. **URL move:** is `/mathe-karte/` acceptable now, before more tutor links spread?
-2. **Tooling extraction:** do you want to co-own `tooling`? Is the step-by-step switch in `mathe-karte` (one ADR per step) acceptable?
-3. **ADR-018:** the Mathe-Karte stays in your app, and only the cross-app registry (`externe-eintraege.js`, edugo fields) moves to `map`. Agreed?
-4. **Granularity in `map`:** one entry for the Mathe-Karte, or one per trainer?
-5. **English contract at the boundary:** manifest and schema fields in English, mapped from your German config. Agreed?
-6. **License:** common repos MIT (code), CC BY 4.0 (our texts), CC0 (map data). Apps choose their own, MIT by default. Which license do you want for the Mathe-Karte, and should its explanation texts get a separate CC license?
-7. **Review:** 1 human approval on shared repos. May the `ai-review` gate accept other accounts (the `reviewers` team)?
-8. **Physik/Chemie:** inside `mathe-karte`? That hardly fits the name. Or as separate apps (`physik-…`, `chemie-…`), which would later need a shared domain `kern`?
+The open questions are the `decision` issues of Phase 0 (§7).
 
 ## 9. Maintenance items independent of the restructuring
 
