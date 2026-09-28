@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Lücke melden, App vorschlagen oder eintragen
+    url: https://github.com/lernapps/map/issues/new/choose
+    about: Alles, was die Karte betrifft, gehört ins Repository map.
   - name: Sicherheits- oder Datenschutzproblem
     url: https://github.com/lernapps/.github/blob/main/SECURITY.md
     about: Bitte nicht öffentlich melden, sondern privat über „Report a vulnerability“.

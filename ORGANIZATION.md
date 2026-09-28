@@ -310,13 +310,10 @@ The org is run by two people who trust each other, Oliver and Ralf. Governance s
 ### 5.3 Ways in
 
 - **`.github/profile/README.md`**, the first thing anyone sees in the org: the *why* in German, openly stated. The problem in three sentences, what lernapps is and is not, and links to the site, "Mitmachen" and `map`. Adapted from edugo's `vision.md`.
-- **Issue forms** (defaults for all repos):
-  - `gap-report` – report a gap in the map
-  - `app-idea`
-  - `content-error`
-  - `app-registration`
+- **Issue forms live where the issues are handled.** `map` has the intake forms: report a gap, suggest an app, register an app. Apps bring their own forms, e.g. for content errors (from `app-template`). The org-wide default is a plain issue plus links to the `map` forms and to SECURITY.
+- **Issue types, not type labels:** the org-wide types Task, Bug and Feature say what kind of issue it is.
+- **Labels only where they carry meaning of their own:** `decision` in `.github`; `gap`, `app-idea`, `app-registration` in `map`; the labels Dependabot sets. Nothing else, until there is a need.
 - **GitHub Discussions** only on `lernapps.github.io`.
-- **Labels** defined centrally and synced by `tooling`: `gap`, `app-idea`, `security`, `good first issue`.
 
 ### 5.4 Producer journey (goal: first registered app within a day)
 
