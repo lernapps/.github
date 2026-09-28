@@ -365,7 +365,7 @@ Open decisions, each an issue labelled `decision`:
 ### Phase 1 – Foundation (non-breaking)
 - [x] Create `.github` with this document
 - [x] [#27](https://github.com/lernapps/.github/issues/27) Org profile README (the why)
-- [x] [#28](https://github.com/lernapps/.github/issues/28) Community health files (open: contact address in the Code of Conduct)
+- [x] [#28](https://github.com/lernapps/.github/issues/28) Community health files
 - [x] [#3](https://github.com/lernapps/.github/issues/3) Issue forms and PR template
 - [ ] [#29](https://github.com/lernapps/.github/issues/29) Org settings (mostly done: name, no repo creation by members, team `maintainers`, custom properties, SHA pinning, rulesets and security features on the common repos)
 - [x] [#30](https://github.com/lernapps/.github/issues/30) Reserve the npm scope `@lernapps`
