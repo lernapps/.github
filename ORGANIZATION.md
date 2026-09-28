@@ -1,10 +1,10 @@
 # lernapps.net – Target structure of the GitHub organisation
 
-Status: **Agreed in principle** by the org owners Oliver and Ralf; open points are `decision` issues · Date: 2026-09-27
+Status: **Agreed in principle** by the org owners Oliver and Ralf; open points are `decision` issues · Date: 2026-09-28
 
 ## TL;DR
 
-- **One brand: lernapps.net.** The name "edugo" is dropped. `lernapps` stays the technical name (GitHub org, npm scope `@lernapps`); lernapps.net is what people read, and the domain once DNS is set up ([#35](https://github.com/lernapps/.github/issues/35)).
+- **One brand: lernapps.net.** The name "edugo" is dropped. `lernapps` stays the technical name (GitHub org, npm scope `@lernapps`); lernapps.net is what people read and the domain the sites are served from ([#35](https://github.com/lernapps/.github/issues/35)).
 - **One repo per concern, one repo per app. No monorepo of apps, no submodules.**
 - **Ralf's repo becomes `mathe-karte`.** It is one app, a curriculum map for maths with trainers and a tutor. It stays largely as it is and becomes the **reference app**. Its infrastructure is the **blueprint** for the common tooling.
 - **Common infrastructure lives in separate English-named repos:**
@@ -19,7 +19,8 @@ Status: **Agreed in principle** by the org owners Oliver and Ralf; open points a
   | `app-template` | Starting point for new apps |
 
 - **Five layers keep the apps consistent without a monorepo:** template, reusable workflows, shared packages, org-level enforcement, and a nightly fleet audit.
-- **License:** common repos use MIT for code, CC BY 4.0 for our own texts and CC0 for map data. Apps choose their own (the template defaults to MIT) and handle the licenses of third-party content they bundle, such as Wikipedia. Everything is declared per path using REUSE.
+- **License: one per repo.** MIT for code and app repos, including the texts in them; CC BY-SA 4.0 for the text repos `.github` and `docs`. Third-party content an app bundles, such as Wikipedia, keeps its own license.
+- **Governance: minimal.** Two owners who trust each other; no CODEOWNERS, no required reviews. Roles are added when contributors join.
 - **Move the URLs now.** Tutor links in children's chats point at `lernapps.github.io/<trainer>/`. Every day of waiting makes the move more expensive.
 
 ---
@@ -52,15 +53,15 @@ Observations:
 
 | Scope | Language | Examples |
 |---|---|---|
-| **Common infrastructure:** repo names, identifiers, schemas, workflow and job names, package names, labels, teams, custom properties, developer docs, community health files, ADRs in common repos | **English** | `map`, `tooling`, `app-template`, `ai-review.yml`, `@lernapps/checks`, `entry.v1.schema.json`, `map-editors` |
+| **Common infrastructure:** repo names, identifiers, schemas, workflow and job names, package names, labels, teams, custom properties, developer docs, community health files, ADRs in common repos | **English** | `map`, `tooling`, `app-template`, `ai-review.yml`, `@lernapps/checks`, `entry.v1.schema.json`, `maintainers` |
 | **User-facing text** on the site and in `map` (teachers, parents, learners) | **German**, kept in one strings file per repo so it can be translated later | "Lücke melden", "Mitmachen" |
 | **Inside an app repo** | The app's own choice. `mathe-karte` keeps Ralf's German domain language (ubiquitous language) | `kern`, `kompetenzen`, `aufgaben/` |
 
-**Boundary rule:** wherever an app meets common infrastructure, the English contract applies. This covers the manifest, workflow inputs and the schema. So `mathe-karte` maps `titel → title`, `kompetenzen → capabilities`, `jahrgaenge → grades`, `lizenz → license` when it generates its manifest.
+**Boundary rule** (decided, [#22](https://github.com/lernapps/.github/issues/22)): wherever an app meets common infrastructure, the English contract applies. This covers the manifest, workflow inputs and the schema. So `mathe-karte` maps `titel → title`, `kompetenzen → capabilities`, `jahrgaenge → grades`, `lizenz → license` when it generates its manifest.
 
 **Naming:**
 - Lowercase kebab-case.
-- **Repo names are GitHub Pages paths** (`lernapps.github.io/<repo>/`).
+- **Repo names are GitHub Pages paths** (`lernapps.net/<repo>/`).
 - The site repo must not contain top-level folders named like a repo.
 - New repos are created by maintainers only, so names are checked against the reserved list in `docs`.
 
@@ -95,14 +96,14 @@ Two kinds of connection exist, and only two:
 
 ### 3.1 Repositories
 
-| Repo | URL | Owners (CODEOWNERS) | Responsibility | Origin |
+| Repo | URL | Owners | Responsibility | Origin |
 |---|---|---|---|---|
 | `.github` | – | `maintainers` | Org profile with the *why* (`profile/README.md`). Default CONTRIBUTING, CODE_OF_CONDUCT, GOVERNANCE, SECURITY, SUPPORT. Issue forms, PR template, `workflow-templates/` | new |
 | `lernapps.github.io` | `/` | `maintainers` | Home page and navigation between the **common sites** (`map`, `docs`, "Mitmachen"). Does **not** list apps; it points to `map` for that. Publishes `nav.json`. Cross-site link check. `404.html` with redirects from the old paths | new; landing texts from edugo |
-| `map` | `/map/` | `map-editors` | **Capability map and app registry.** Capability nodes, entry schema `entry.v1`, aggregation of app manifests, computed trust signals, gap view. Publishes `/map/data.json` and `/map/schemas/` | edugo `data/` + `schemas/` + catalog views (history kept via `git filter-repo`); external-entry hook and edugo fields from `mathe-karte` |
+| `map` | `/map/` | `maintainers` | **Capability map and app registry.** Capability nodes, entry schema `entry.v1`, aggregation of app manifests, computed trust signals, gap view. Publishes `/map/data.json` and `/map/schemas/` | edugo `data/` + `schemas/` + catalog views (history kept via `git filter-repo`); external-entry hook and edugo fields from `mathe-karte` |
 | `docs` | `/docs/` | `maintainers` | Vision, biz42, **cross-repo ADRs** (manifest protocol, license, reserved paths, language convention), platform patterns (e.g. "tutor without backend"), governance background | `mrsimpson/edugo` **transferred** (keeps history, stars, redirect); code parts removed |
-| `tooling` | – | `maintainers` | Reusable workflows, composite actions, `@lernapps/*` packages, AI-review prompt and gate, harness-wheel generator, agent skills, fleet audit, downstream tests | extracted from Ralf's repo (history kept via `git filter-repo`) |
-| `app-template` | – | `maintainers` | Minimal static, frontend-only app: manifest, LICENSE/REUSE, `AGENTS.md`, thin workflow callers | new |
+| `tooling` | – | `maintainers` | Reusable workflows, composite actions, `@lernapps/*` packages, AI-review prompt and gate, harness-wheel generator, agent skills, fleet audit, downstream tests | extracted from Ralf's repo (history kept via `git filter-repo`); empty repo since 2026-09-28 |
+| `app-template` | – | `maintainers` | Minimal static, frontend-only app: manifest, MIT license, `AGENTS.md`, thin workflow callers | new (empty repo since 2026-09-28) |
 | `mathe-karte` | `/mathe-karte/` | Ralf | The Mathe-Karte app, largely unchanged; **reference app** and first consumer of `tooling` | today's `lernapps/lernapps.github.io`, **renamed** |
 | `<app>` | `/<app>/` | the author | Further curated apps | from `app-template` |
 
@@ -116,7 +117,6 @@ This keeps `docs` from turning into a graveyard of docs that have drifted from t
 - A shared maths `kern` package: only once a second app wants it.
 - A tutor-pattern package: documented in `docs` first, extracted once a second app wants a tutor.
 - A separate skills repo.
-- A custom domain.
 
 ### 3.2 Map and registry: the manifest protocol
 
@@ -126,39 +126,40 @@ This keeps `docs` from turning into a graveyard of docs that have drifted from t
 |---|---|---|
 | Answers | **What is this app?** | **Which apps does the map include?** |
 | Lives in | the app repo, published with the app | the `map` repo |
-| Owned by | the app author | `map-editors` |
+| Owned by | the app author | the org owners |
 | Changes when | the app changes (new capability, title, grades …) | an app is added to or removed from the map |
 | Created by | the app's build, generated from its config | a reviewed PR, once per app |
 
 It's like a website's RSS feed and a feed reader: the site decides what's in its feed, and the reader decides which feeds to subscribe to.
 
 ```json
-// https://lernapps.github.io/mathe-karte/lernapps.json   ← written by the app's build
+// https://lernapps.net/mathe-karte/lernapps.json   ← written by the app's build
 [{ "id": "mathe-karte", "title": "Mathe-Karte", "capabilities": ["angewandte-mathematik"],
    "grades": [7, 8], "license": "MIT", "source": "https://github.com/lernapps/mathe-karte" }]
 ```
 
 ```yaml
 # map/data/sources.yaml   ← edited by a reviewed PR
-- https://lernapps.github.io/mathe-karte/lernapps.json
+- https://lernapps.net/mathe-karte/lernapps.json
 - https://someone.github.io/bruchrechnen/lernapps.json
 ```
 
 **Why both, rather than one:**
 - *Only manifests, found automatically* (e.g. by the topic `lernapps-app`): anyone would end up on the map without review, and the map could not remove an app without changing that app's repo.
 - *Only `sources.yaml` with the full metadata copied in:* the metadata would drift. Every change of title or capability would need a second PR in `map`. That is the drift ADR-018 in `mathe-karte` exists to prevent.
-- *Both:* the app author decides **what is said** about the app. The map editors decide **whether it is listed**. Registering is a one-line PR done once; after that the map follows the app automatically.
+- *Both:* the app author decides **what is said** about the app. The org owners decide **whether it is listed**. Registering is a one-line PR done once; after that the map follows the app automatically.
 
 **Parts of the protocol:**
-- **Schema:** `entry.v1.schema.json`, merged from edugo's `registry-entry` and the Karte's `eintrag.schema.json`, with English field names. It is published at `https://lernapps.github.io/map/schemas/`. App builds validate their manifest against it, so errors show up in the app's CI, not in `map`.
+- **Schema:** `entry.v1.schema.json`, merged from edugo's `registry-entry` and the Karte's `eintrag.schema.json`, with English field names. It is published at `https://lernapps.net/map/schemas/`. App builds validate their manifest against it, so errors show up in the app's CI, not in `map`.
 - **Generation:** `mathe-karte` builds its manifest from `APP.kartenEintrag` and `kartenKnoten`, the same data that feeds its own map today. It maps the German field names to the English schema.
 - **Aggregation:** the nightly `map` build reads `sources.yaml`, fetches every manifest and validates it. It then adds trust signals from the fleet audit (§4.5). Trust signals are **computed, never self-declared**, following the Karte's principle "green only after an audit". If a manifest is unreachable or invalid, the last good version is kept and marked stale, and an issue is opened.
 - **Map data:** the capability nodes (what learners should be able to do, and the gaps) live in `map/data/capabilities/`. Manifests only *reference* their IDs. An unknown ID fails the app's CI.
 - **Discovery:** the `map` build can find candidates through the topic `lernapps-app` and *suggest* them as PRs. A topic never leads to an automatic listing.
 - **Fallback for apps without a manifest** (e.g. existing external tools): the entry is kept as a data file directly in `map/data/entries/`. It is maintained by hand and marked as such.
-- **Granularity:** one entry per app, or one per trainer or feature inside an app? This is open ([#21](https://github.com/lernapps/.github/issues/21)). The schema should allow both, e.g. through an optional `parent`.
+- **Granularity:** one entry per app ([#21](https://github.com/lernapps/.github/issues/21), decided). What an app contains, such as the Mathe-Karte's trainers, is the app's own business; the Mathe-Karte is one entry.
+- **Classifications are labels.** Subject (e.g. maths), curriculum competency (e.g. KMK), grade and cross-subject capability are all labels on an entry. None of them is the backbone of the map, and the map is being revamped to be much less KMK-oriented.
 
-Open modelling question for a design session: how do edugo's cross-subject capability nodes (e.g. structured peer feedback) relate to curriculum-based competencies such as those of the Mathe-Karte? One idea: `map` holds only cross-subject capabilities plus a link to domain maps like the Mathe-Karte, which are published by the apps themselves.
+Open modelling question for a design session ([#32](https://github.com/lernapps/.github/issues/32)): how do edugo's cross-subject capability nodes (e.g. structured peer feedback) relate to curriculum-based competencies such as those of the Mathe-Karte? One idea: `map` holds only cross-subject capabilities plus a link to domain maps like the Mathe-Karte, which are published by the apps themselves.
 
 ### 3.3 How apps are connected: by link from the map, nothing else
 
@@ -222,7 +223,7 @@ Each one is taken from Ralf's working version and turned into a parameterised wo
 | `ai-review.yml` | AI-review gate: head SHA, verdict, architecture trigger paths. **Accounts and trigger paths are inputs** | `ki-review.yml`, `scripts/ki-review-pruefen.js` |
 | `docs-asciidoc.yml` | docToolchain + asciidoc-linter | `doku.yml`, `scripts/dtc-v4.sh`, `scripts/doku-lint.js` |
 | `pages.yml` | Build, upload the artifact, deploy | `pages.yml` |
-| `reuse.yml` | `reuse lint`: every file carries a license | new |
+| `license.yml` | The repo has a `LICENSE` matching its type (§6) | new |
 
 **Packages:**
 
@@ -251,12 +252,12 @@ Ralf's M-27 applies org-wide: every action, including `lernapps/tooling`, is pin
 
 | Repo | On PR | On `main` | Scheduled |
 |---|---|---|---|
-| `lernapps.github.io` | check, privacy, links, reuse, ai-review | build, deploy, smoke test | nightly: cross-site link check across all lernapps sites |
-| `map` | Validate data and schemas, check, privacy, reuse, ai-review | build (with aggregation), deploy | nightly: fetch manifests, pull in fleet-audit results, rebuild |
-| `docs` | Docs build, lint, links, reuse | build, deploy | – |
+| `lernapps.github.io` | check, privacy, links, license, ai-review | build, deploy, smoke test | nightly: cross-site link check across all lernapps sites |
+| `map` | Validate data and schemas, check, privacy, license, ai-review | build (with aggregation), deploy | nightly: fetch manifests, pull in fleet-audit results, rebuild |
+| `docs` | Docs build, lint, links, license | build, deploy | – |
 | `tooling` | Unit tests, a `workflow_call` against a fixture repo, **downstream tests** | Release: tag, npm publish with provenance | nightly: **fleet audit** |
 | `app-template` | CI of the generated sample app | – | monthly: sample app against the latest `tooling` |
-| `mathe-karte` / `<app>` | Callers to check, browser, dependencies, privacy, links, reuse, ai-review | Callers to pages; publish `lernapps.json` | – |
+| `mathe-karte` / `<app>` | Callers to check, browser, dependencies, privacy, links, license, ai-review | Callers to pages; publish `lernapps.json` | – |
 
 **Cross-repo triggers:** start with **none**. Nightly runs plus `workflow_dispatch` are enough, and they need no secrets. Add a GitHub App ("lernapps-bot") only when latency starts to hurt. The bot would handle `repository_dispatch`, file syncs across repos and automatic PRs.
 
@@ -264,7 +265,7 @@ Ralf's M-27 applies org-wide: every action, including `lernapps/tooling`, is pin
 
 **For each app repo:**
 - Uses current `tooling` workflows, no more than N versions behind
-- LICENSE and REUSE are valid
+- `LICENSE` matches the org rule (§6)
 - Rulesets are active
 - Required checks are set
 - Dependabot and CodeQL are on
@@ -289,30 +290,22 @@ Carried over from Ralf's Risk Radar Tier 2:
 
 ## 5. Governance and community
 
-### 5.1 Ownership, teams and rights
+### 5.1 Ownership and rights
 
-**Oliver and Ralf are both org owners and co-own every common repo equally:** `.github`, `lernapps.github.io`, `map`, `docs`, `tooling`, `app-template`. Neither is the "lead" of a common repo. In CODEOWNERS, common repos name only the team (`* @lernapps/maintainers`), never a person. **App repos** are the exception: the app's author owns them. `mathe-karte` is Ralf's app.
+The org is run by two people who trust each other, Oliver and Ralf. Governance stays minimal until more people join ([#23](https://github.com/lernapps/.github/issues/23), decided):
 
-| Team | Start | Rights | Purpose |
-|---|---|---|---|
-| `maintainers` | Oliver, Ralf | Admin on all common repos | Co-owners of all common repos: org settings, releases, cross-repo decisions |
-| `map-editors` | Oliver, Ralf (teachers later) | Write on `map` | Decides on map nodes. **Addresses edugo's top risk, "who defines the nodes?"** |
-| `app-authors` | Ralf (more later) | Write on their own app repo | Curated apps |
-| `reviewers` | both + AI-review account(s) | Triage | Reviews across repos; the `ai-review` gate accepts team members |
-
-**Settings:**
-- Members may **not** create repos themselves. Today `members_can_create_repositories` is `true`.
-- Every repo has `CODEOWNERS`.
-- Common repos need **1 human approval**, which in practice means the other owner reviews. This mitigates R-026 (one person reviews everything).
-- Cross-repo decisions (ADRs in `docs`) need **both owners** to agree.
-- App repos follow their author's rules. Ralf's are 0 approvals + AI review.
-- **Path to write access:** 3 merged PRs → invitation to `app-authors` or `map-editors`.
+- Both are org owners and co-own every common repo equally: `.github`, `lernapps.github.io`, `map`, `docs`, `tooling`, `app-template`. One team, `maintainers`, holds both.
+- **No CODEOWNERS, no required approvals.** Every change to a default branch goes through a pull request with the required checks. A review by the other owner is welcome, not required.
+- **App repos** belong to their author and follow the author's rules. `mathe-karte` is Ralf's app.
+- Members may not create repos; the owners do.
+- Cross-repo decisions need **both owners** to agree.
+- Further roles (map editors, app authors, reviewers, required reviews) are added when contributors join ([#16](https://github.com/lernapps/.github/issues/16)), not before.
 
 ### 5.2 Decisions
 
 - **Repo-local:** ADRs in the repo, as practised in `mathe-karte`.
 - **Cross-repo:** ADRs in `docs`, in English. Examples: manifest protocol, license, language convention, reserved paths, tooling policy.
-- **Map model changes:** an RFC as an issue labelled `rfc` in `map`, open for 7 days, decided by `map-editors`.
+- **Map model changes:** an issue in `map`, decided by both owners.
 
 ### 5.3 Ways in
 
@@ -323,7 +316,7 @@ Carried over from Ralf's Risk Radar Tier 2:
   - `content-error`
   - `app-registration`
 - **GitHub Discussions** only on `lernapps.github.io`.
-- **Labels** defined centrally and synced by `tooling`: `gap`, `app-idea`, `rfc`, `security`, `good first issue`.
+- **Labels** defined centrally and synced by `tooling`: `gap`, `app-idea`, `security`, `good first issue`.
 
 ### 5.4 Producer journey (goal: first registered app within a day)
 
@@ -337,39 +330,22 @@ The template **does not require the maths `kern`**. It is domain code belonging 
 
 ## 6. License
 
-There are two scopes: the org's **common repos**, and the **apps**.
+**One license per repo**, named in its `LICENSE` file. No per-path licensing, no REUSE, no dual licenses ([#19](https://github.com/lernapps/.github/issues/19), decided by Oliver on 2026-09-28, assuming Ralf agrees).
 
-### 6.1 Common repos (`.github`, `lernapps.github.io`, `map`, `docs`, `tooling`, `app-template`)
+| Repos | License |
+|---|---|
+| Code repos: `lernapps.github.io`, `map`, `tooling`, `app-template` | **MIT**, for everything in the repo, including texts and map data |
+| App repos: `mathe-karte` and every other app | **MIT**, for everything in the repo, including explanations and tutor prompts |
+| Text repos: `.github`, `docs` | **CC BY-SA 4.0**, for everything in the repo, including the few scripts |
 
-| What | License | Why |
-|---|---|---|
-| Code (site, map build, tooling, template) | **MIT** | Simple and permissive; the usual choice for tooling others build on |
-| **Our own texts**: vision, docs, biz42, site texts, capability descriptions in `map` | **CC BY 4.0** | Written for content: practical attribution rules (title, author, source, license), and the recognised OER standard. Anyone, including authorities, publishers and other platforms, may reuse and adapt them with attribution |
-| Map data (IDs, structure, aggregated `data.json`) | **CC0** (recommended) | Data is meant to be reused by researchers and authorities without attribution overhead |
+- **Why one license per repo:** separate licenses for texts, code and data inside one repo need a license decision for every file and REUSE tooling to check them. That cost is higher than the benefit.
+- **Why CC BY-SA for the text repos:** they hold prose (vision, business model, governance). Share-alike keeps adapted versions open.
+- **Inbound = outbound:** contributions come under the repo's license, stated in CONTRIBUTING. No CLA or DCO.
+- **Third-party content** an app bundles (Wikipedia, Serlo, images, curriculum quotes) keeps **its own license**; the repo license cannot change that. The app names source and license next to the content. Share-alike content, e.g. from Wikipedia, stays under CC BY-SA.
+- **Bundle at build time, don't fetch at runtime:** fetching Wikipedia in the browser is an external request and breaks the privacy rule (§3.5).
+- **To be listed in `map`:** the manifest names an SPDX license (`license`). Curated apps (`curated=true`) need an OSI-approved license.
 
-- **Why not MIT for the texts too:** MIT is written for "the Software". For prose it is unclear what counts as "a substantial portion" and how to attribute it. CC licenses are designed for exactly that. Creative Commons advises against using CC for code, hence the split.
-- **Why BY, not BY-SA:** share-alike would only pay off if we adapted share-alike content such as Wikipedia or Serlo in *our* texts, and we don't; the apps do (§6.2). For our texts, the goal is maximum reuse.
-- Declared per path using the [REUSE spec](https://reuse.software) (`REUSE.toml`, `LICENSES/`) and checked in CI with `reuse lint`.
-- **Inbound = outbound:** contributions come under the repo's license, stated in CONTRIBUTING. No CLA or DCO at first.
-
-### 6.2 Apps
-
-- **The app author chooses the license.** `app-template` defaults to **MIT**.
-- **To be listed in `map`:** the manifest must name an SPDX license expression (`license`), and the repo must pass `reuse lint`. Curated apps (`curated=true`) additionally need an OSI-approved code license.
-- **Third-party content the app uses** (Wikipedia, Serlo, images, curriculum quotes) remains under **its own license**. The app is responsible for:
-  - declaring it per path via REUSE (e.g. `CC-BY-SA-4.0` for an adapted Wikipedia excerpt), which is checked by the fleet audit;
-  - showing attribution in the app;
-  - respecting share-alike for **that content**. The app's own code stays MIT.
-- **Bundle at build time, don't fetch at runtime:** fetching Wikipedia in the browser is an external request and breaks the privacy rule (§3.5). Apps that use such content bundle it at build time, which counts as redistribution, so the attribution duties above apply.
-- **Apps with a lot of their own text** (e.g. the Mathe-Karte's explanations and tutor prompts) *may* license those texts separately, e.g. `MIT AND CC-BY-4.0`. That is the author's choice. It is recommended but not required.
-
-### 6.3 Before publishing
-
-- Check third-party material in the existing repos:
-  - KMK and curriculum quotes in the Mathe-Karte (R-018: "nicht systematisch geprüft")
-  - the docToolchain theme copies
-  - `talkitover.js` is MIT, so it is fine
-- **Precondition:** Ralf and Oliver, as rights holders, agree. Recorded as an ADR in `docs`, and R-018 closed in `mathe-karte`.
+Status: all common repos carry their license. `mathe-karte` has a draft PR (lernapps/mathe-karte#71) waiting for Ralf; before merging it, he checks the third-party material there (KMK and curriculum quotes, docToolchain theme copies), which closes R-018.
 
 ## 7. Migration plan
 
@@ -377,11 +353,11 @@ The work is tracked as [issues and milestones](https://github.com/lernapps/.gith
 
 ### Phase 0 – Agreement
 Open decisions, each an issue labelled `decision`:
-- [#19](https://github.com/lernapps/.github/issues/19) License for common repos and apps (§6)
+- ~~[#19](https://github.com/lernapps/.github/issues/19) License for common repos and apps~~ One license per repo: MIT, CC BY-SA 4.0 for text repos (§6)
 - [#20](https://github.com/lernapps/.github/issues/20) Scope of `map` vs. Mathe-Karte, narrowing ADR-018
-- [#21](https://github.com/lernapps/.github/issues/21) Granularity of map entries
-- [#22](https://github.com/lernapps/.github/issues/22) English contract at the boundary
-- [#23](https://github.com/lernapps/.github/issues/23) Review rules for common repos
+- ~~[#21](https://github.com/lernapps/.github/issues/21) Granularity of map entries~~ One entry per app (§3.2)
+- ~~[#22](https://github.com/lernapps/.github/issues/22) English contract at the boundary~~ English manifest (§2)
+- ~~[#23](https://github.com/lernapps/.github/issues/23) Review rules for common repos~~ No required reviews, no CODEOWNERS (§5.1)
 - [#24](https://github.com/lernapps/.github/issues/24) Stack for `lernapps.github.io` and `map`
 - [#25](https://github.com/lernapps/.github/issues/25) Where Physik and Chemie apps go
 - ~~[#26](https://github.com/lernapps/.github/issues/26) Whether org rulesets are available on the free plan~~ No: they need the Team plan; per-repo rulesets instead
@@ -392,18 +368,18 @@ Open decisions, each an issue labelled `decision`:
 - [x] [#28](https://github.com/lernapps/.github/issues/28) Community health files (open: contact address in the Code of Conduct)
 - [x] [#3](https://github.com/lernapps/.github/issues/3) Issue forms and PR template
 - [ ] [#29](https://github.com/lernapps/.github/issues/29) Org settings (mostly done: name, no repo creation by members, team `maintainers`, custom properties, SHA pinning, rulesets and security features on the common repos)
-- [ ] [#30](https://github.com/lernapps/.github/issues/30) Reserve the npm scope `@lernapps`
-- [ ] [#4](https://github.com/lernapps/.github/issues/4) LICENSE and REUSE in all repos (after #19)
+- [x] [#30](https://github.com/lernapps/.github/issues/30) Reserve the npm scope `@lernapps`
+- [ ] [#4](https://github.com/lernapps/.github/issues/4) LICENSE in all repos (done except `mathe-karte`, lernapps/mathe-karte#71)
 
 ### Phase 2 – URL move
 - [x] Rename `lernapps/lernapps.github.io` → `lernapps/mathe-karte` (2026-09-27). Git remotes redirect; Pages does not.
 - [x] [#17](https://github.com/lernapps/.github/issues/17) New `lernapps/lernapps.github.io`: home page, `404.html` forwarding old paths (`/binom/`, `/prozent/`, `/zufall/`, `/karte/`, `/kern/`, `/docs/`) to `/mathe-karte/…` with query and hash, "moved" notes at the old `tutor.md`/`llms.txt` paths for AI tutors that don't run JS. Verified in a browser on 2026-09-27.
-- [ ] [#18](https://github.com/lernapps/.github/issues/18) → lernapps/mathe-karte#69: `BASIS_URL` → `/mathe-karte/`. Minimal draft PR lernapps/mathe-karte#70; ADR, arc42 and docs are left to the app's author.
+- [x] [#18](https://github.com/lernapps/.github/issues/18) → lernapps/mathe-karte#69: `BASIS_URL` → `/mathe-karte/`. Merged as lernapps/mathe-karte#70; ADR, arc42 and docs are left to the app's author.
 - [x] [#1](https://github.com/lernapps/.github/issues/1) `mrsimpson/edugo` transferred to `lernapps/docs`: vision and biz42 only, edugo renamed to lernapps.net, no VitePress; its `404.html` forwards old Mathe-Karte doc links (`/docs/…`) to `/mathe-karte/docs/…`
 - [ ] [#2](https://github.com/lernapps/.github/issues/2) Smoke-test the tutor flow end to end with claude.ai
 
 ### Phase 3 – Tooling from the blueprint
-- [ ] [#5](https://github.com/lernapps/.github/issues/5) Create `tooling` from `mathe-karte` (history kept)
+- [ ] [#5](https://github.com/lernapps/.github/issues/5) Fill `tooling` from `mathe-karte` (history kept; the empty repo exists)
 - [ ] [#6](https://github.com/lernapps/.github/issues/6) Parameterise and rename to English
 - [ ] [#7](https://github.com/lernapps/.github/issues/7) Downstream tests
 - [ ] [#8](https://github.com/lernapps/.github/issues/8) `mathe-karte` switches to the `tooling` workflows step by step, one ADR per step
@@ -412,11 +388,11 @@ Open decisions, each an issue labelled `decision`:
 ### Phase 4 – Map
 - [x] [#9](https://github.com/lernapps/.github/issues/9) `map` created from edugo with history: Vue app, data, schemas and the edugo arc42 (validated in CI, published at `/map/architecture/`, still to be narrowed: lernapps/map#5)
 - [ ] [#10](https://github.com/lernapps/.github/issues/10) `entry.v1` schema and manifest protocol
-- [ ] [#11](https://github.com/lernapps/.github/issues/11) `mathe-karte` publishes `lernapps.json` (needs #20)
+- [ ] [#11](https://github.com/lernapps/.github/issues/11) `mathe-karte` publishes `lernapps.json`
 - [ ] [#32](https://github.com/lernapps/.github/issues/32) Design session: capability nodes vs. curriculum competencies
 
 ### Phase 5 – Enabling producers
-- [ ] [#12](https://github.com/lernapps/.github/issues/12) `app-template` with Copier and a sample app
+- [ ] [#12](https://github.com/lernapps/.github/issues/12) `app-template` with Copier and a sample app (the empty repo exists)
 - [ ] [#13](https://github.com/lernapps/.github/issues/13) `lernapp` skill in `tooling`
 - [ ] [#33](https://github.com/lernapps/.github/issues/33) "Mitmachen" guide
 - [ ] [#14](https://github.com/lernapps/.github/issues/14) `@lernapps/site-chrome` and `nav.json`
@@ -424,7 +400,7 @@ Open decisions, each an issue labelled `decision`:
 ### Phase 6 – Growth
 - [ ] [#15](https://github.com/lernapps/.github/issues/15) Fleet audit with trust signals in `map`
 - [ ] [#16](https://github.com/lernapps/.github/issues/16) Open for contributors
-- [ ] Only when needed: extract the maths `kern` or the tutor pattern as packages, the lernapps-bot GitHub App, a custom domain.
+- [ ] Only when needed: extract the maths `kern` or the tutor pattern as packages, the lernapps-bot GitHub App.
 
 ## 8. Open questions
 
