@@ -1,6 +1,6 @@
 # Governance
 
-How decisions are made in the lernapps organisation. Background: [ORGANIZATION.md §5](ORGANIZATION.md#5-governance-and-community).
+How decisions are made in the lernapps organisation. Overview of the org: [ORGANIZATION.md](ORGANIZATION.md).
 
 The org is run by two people who trust each other, so the rules are kept to a minimum. More roles and required reviews are added when more people join, not before.
 
