@@ -24,8 +24,8 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 
 ## Ausprobieren
 
-- **[Mathe-Karte](https://lernapps.github.io/mathe-karte/)** – Mathematik der Sekundarstufe I mit Trainern und KI-Tutor.
-- **[lernapps.github.io](https://lernapps.github.io/)** – die Startseite.
+- **[Mathe-Karte](https://lernapps.net/mathe-karte/)** – Mathematik der Sekundarstufe I mit Trainern und KI-Tutor.
+- **[lernapps.net](https://lernapps.net/)** – die Startseite.
 
 ## Mitmachen
 

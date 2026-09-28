@@ -9,3 +9,7 @@ This repository holds everything that applies to the **lernapps** organisation a
 Work on the org structure is tracked as [issues and milestones](https://github.com/lernapps/.github/milestones) in this repository.
 
 Owners: `@lernapps/maintainers`.
+
+## License
+
+[CC BY-SA 4.0](LICENSE) (Creative Commons Attribution-ShareAlike 4.0 International) for everything in this repo, including the issue forms.

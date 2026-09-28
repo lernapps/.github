@@ -32,7 +32,7 @@ This file applies to every repository in the lernapps organisation that has no `
 
 ## License of contributions
 
-Contributions are made under the license of the repository they go into ("inbound = outbound"). The license decision for the common repos is still open ([#19](https://github.com/lernapps/.github/issues/19)); the proposal is MIT for code and CC BY 4.0 for texts.
+Contributions are made under the license of the repository they go into ("inbound = outbound"). Each repo has one license, named in its `LICENSE` file: MIT for code and app repos, CC BY-SA 4.0 for the text repos `.github` and `docs`. There is no CLA. Third-party content (quotes, images, texts from Wikipedia) keeps its own license: name the source and the license where you use it.
 
 ## Code of conduct
 
