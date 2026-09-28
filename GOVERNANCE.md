@@ -1,37 +1,31 @@
 # Governance
 
-How decisions are made in the lernapps organisation. Background and reasoning: [ORGANIZATION.md §5](ORGANIZATION.md#5-governance-and-community).
+How decisions are made in the lernapps organisation. Background: [ORGANIZATION.md §5](ORGANIZATION.md#5-governance-and-community).
+
+The org is run by two people who trust each other, so the rules are kept to a minimum. More roles and required reviews are added when more people join, not before.
 
 ## Owners
 
-The organisation has two owners with equal rights: **Oliver Jägle** ([@mrsimpson](https://github.com/mrsimpson)) and **Ralf D. Müller** ([@raifdmueller](https://github.com/raifdmueller)).
+The organisation has two owners with equal rights: **Oliver Jägle** ([@mrsimpson](https://github.com/mrsimpson)) and **Ralf D. Müller** ([@raifdmueller](https://github.com/raifdmueller)). Both are in the team `maintainers`.
 
-- Both co-own every **common repo**: `.github`, `lernapps.github.io`, `map`, `docs`, `tooling`, `app-template`. Neither leads a common repo alone; CODEOWNERS names the team, not a person.
-- **App repos** belong to their authors. `mathe-karte` is Ralf's app. The org owners keep admin rights on every repo for security and emergencies, but do not decide about an app's content.
+- Both co-own every **common repo**: `.github`, `lernapps.github.io`, `map`, `docs`, `tooling`, `app-template`.
+- **App repos** belong to their authors and follow their authors' rules. `mathe-karte` is Ralf's app. The owners keep admin rights on every repo for security and emergencies, but don't decide about an app's content.
+- Only the owners create repos.
 
-## Roles
+## How changes are made
 
-| Role | Who | Can |
+| Kind of change | How | Who decides |
 |---|---|---|
-| Maintainer (team `maintainers`) | the owners | everything in the common repos; org settings; releases |
-| Map editor (team `map-editors`) | the owners, later teachers | decide which capabilities are on the map |
-| App author (team `app-authors`) | authors of curated apps | write to their own app repo |
-| Reviewer (team `reviewers`) | the owners and AI-review accounts | review across repos |
-| Contributor | anyone | issues, pull requests, discussions |
+| Everyday change to a common repo | A pull request that passes the required checks. A review by the other owner is welcome, not required | whoever makes the change |
+| Change affecting several repos (protocols, license, naming, reserved paths, tooling policy) | An issue labelled `decision` in `.github`, later an ADR in `docs` | **both owners** |
+| Change inside an app | The app's own process | the app's author |
 
-**Path to more rights:** after three merged pull requests, a contributor can be invited as app author or map editor. Both owners must agree.
+If the owners disagree on a decision, the current state stays until they agree.
 
-## How decisions are made
+## Contributors
 
-| Kind of decision | Where | Who decides |
-|---|---|---|
-| Inside one repo | an ADR or the PR in that repo | the repo's owners (for apps: the author) |
-| Affecting several repos (protocols, license, naming, reserved paths, tooling policy) | an ADR in `docs` (until it exists: an issue labelled `decision` in `.github`) | **both owners** |
-| Changes to the map model (new top-level areas, new fields) | an issue labelled `rfc` in `map`, open for at least 7 days | the map editors |
-| Everyday changes to common repos | a pull request | one approving review by the other owner |
-
-If the owners disagree, the current state stays until they agree. Nobody merges their own change to a common repo without the other's review, except to fix something that is broken for learners right now; such a change is reviewed afterwards.
+Anyone can open issues and pull requests. Contributors who stay get write access by invitation, when both owners agree.
 
 ## Changing this document
 
-Changes to this file need both owners to approve.
+Changes to this file need both owners to agree.
