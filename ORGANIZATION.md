@@ -373,7 +373,7 @@ Open decisions, each an issue labelled `decision`:
 - [x] [#17](https://github.com/lernapps/.github/issues/17) New `lernapps/lernapps.github.io`: home page, `404.html` forwarding old paths (`/binom/`, `/prozent/`, `/zufall/`, `/karte/`, `/kern/`, `/docs/`) to `/mathe-karte/…` with query and hash, "moved" notes at the old `tutor.md`/`llms.txt` paths for AI tutors that don't run JS. Verified in a browser on 2026-09-27.
 - [x] [#18](https://github.com/lernapps/.github/issues/18) → lernapps/mathe-karte#69: `BASIS_URL` → `/mathe-karte/`. Merged as lernapps/mathe-karte#70; ADR, arc42 and docs are left to the app's author.
 - [x] [#1](https://github.com/lernapps/.github/issues/1) `mrsimpson/edugo` transferred to `lernapps/docs`: vision and biz42 only, edugo renamed to lernapps.net, no VitePress; its `404.html` forwards old Mathe-Karte doc links (`/docs/…`) to `/mathe-karte/docs/…`
-- [ ] [#2](https://github.com/lernapps/.github/issues/2) Smoke-test the tutor flow end to end with claude.ai
+- [x] [#2](https://github.com/lernapps/.github/issues/2) Smoke-test the tutor flow end to end with claude.ai (passed 2026-09-28 under lernapps.net)
 
 ### Phase 3 – Tooling from the blueprint
 - [ ] [#5](https://github.com/lernapps/.github/issues/5) Fill `tooling` from `mathe-karte` (history kept; the empty repo exists)
