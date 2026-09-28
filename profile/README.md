@@ -31,6 +31,6 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 
 - **Eine Lücke gefunden?** Etwas, das Lernende können sollen, wofür es keine gute App gibt: [Issue anlegen](https://github.com/lernapps/.github/issues/new/choose).
 - **Eine App gebaut?** Vorlage und Anleitung sind im Aufbau.
-- **Wie die Organisation aufgebaut ist** und wohin sie sich entwickelt: [ORGANIZATION.md](https://github.com/lernapps/.github/blob/main/ORGANIZATION.md) und der [Fahrplan](https://github.com/lernapps/.github/milestones).
+- **Wie die Organisation aufgebaut ist**, wen man wie erreicht und woran gerade gearbeitet wird: [ORGANIZATION.md](https://github.com/lernapps/.github/blob/main/ORGANIZATION.md) und der [Fahrplan](https://github.com/lernapps/.github/milestones).
 
 lernapps.net ist im Aufbau. Wer mitdenken oder mitbauen will, ist willkommen.
