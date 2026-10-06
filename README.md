@@ -10,6 +10,14 @@ Work on the org structure is tracked as [issues and milestones](https://github.c
 
 Owners: `@lernapps/maintainers`.
 
+## Platform design
+
+How lernapps.net is meant to work as a platform — roles, what they exchange, its principles
+(free, thanks as what keeps it alive, no hidden data collection) and the MVP — is designed with the
+Platform Design Toolkit in [lernapps/docs](https://github.com/lernapps/docs/tree/main/docs/pdt42),
+rendered at <https://lernapps.net/docs/platform-design/>. Agents read it with the skill
+[`skills/pdt`](https://github.com/lernapps/docs/tree/main/skills/pdt).
+
 ## License
 
 [CC BY-SA 4.0](LICENSE) (Creative Commons Attribution-ShareAlike 4.0 International) for everything in this repo, including the issue templates.
