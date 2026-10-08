@@ -10,7 +10,7 @@ This page says which repo does what for that story, who to reach and which rules
 
 | Repo | Served at | What it does for the platform (platform design) | Owner |
 |---|---|---|---|
-| [`lernapps.github.io`](https://github.com/lernapps/lernapps.github.io) | [lernapps.net](https://lernapps.net/) | The home page: the story for teachers, parents, creators and learners (D1); [privacy notice](https://lernapps.net/privacy/), [imprint](https://lernapps.net/imprint/), the brand. Also the **shared chrome** of all sites (design tokens, header, footer, deploy check) | Oliver |
+| [`lernapps.github.io`](https://github.com/lernapps/lernapps.github.io) | [lernapps.net](https://lernapps.net/) | The home page: the story for teachers, parents, creators and learners (D1); [privacy notice](https://lernapps.net/privacy/), [imprint](https://lernapps.net/imprint/), the brand. Also the **shared site frame** of all sites (design tokens, header, footer, deploy check) | Oliver |
 | [`apps`](https://github.com/lernapps/apps) | [lernapps.net/apps/](https://lernapps.net/apps/) | The app overview, the core of the MVP (D8): find an app, see that it may be used, bring it to class, say thanks (`x-app-in-minutes`, `x-practice-tonight`); list an app and hear back (`x-list-and-hear-back`). One entry per app in `entries/` | Oliver |
 | [`docs`](https://github.com/lernapps/docs) | [lernapps.net/docs/](https://lernapps.net/docs/) | The design itself: vision, the organisation (biz42), the platform design (pdt42), the `pdt` skill for agents; later cross-repo ADRs | Oliver |
 | [`tooling`](https://github.com/lernapps/tooling) | – | GitHub as the means of production (D1): the site actions every site builds, checks and deploys with, the Renovate preset of all repos; later the guidance for building apps (D6 `s-building-guidance`) | Oliver |
@@ -24,9 +24,9 @@ Oliver Jägle ([@mrsimpson](https://github.com/mrsimpson)) is the owner of the o
 
 All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look and behave the same:
 
-- **Look:** design tokens, header with the common navigation, and footer come from [`chrome/`](https://github.com/lernapps/lernapps.github.io/tree/main/chrome) in `lernapps.github.io`, used as the npm package `@lernapps/site` straight from git (not published).
+- **Look:** design tokens, header with the common navigation, and footer come from [`site-frame/`](https://github.com/lernapps/lernapps.github.io/tree/main/site-frame) in `lernapps.github.io`, used as the npm package `@lernapps/site` straight from git (not published).
 - **Build and deploy:** `npm ci`, `npm run build` into `_site/`, `npm run check` (`lernapps-check`); `main` is published to the repo's `gh-pages` branch, each pull request gets a preview under `pr-preview/pr-<n>/`. The steps are the site actions in [`tooling`](https://github.com/lernapps/tooling); the repos only call them.
-- **Updates:** every repo's `renovate.json` extends `github>lernapps/tooling`. Renovate bumps the chrome and the actions to the latest commit of their `main` and merges when green, so a change there reaches every site.
+- **Updates:** every repo's `renovate.json` extends `github>lernapps/tooling`. Renovate bumps the site frame and the actions to the latest commit of their `main` and merges when green, so a change there reaches every site.
 
 ## How to reach us
 
