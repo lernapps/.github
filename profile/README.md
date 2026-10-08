@@ -10,7 +10,7 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 
 **Das ist kein Einzelproblem, sondern ein Problem des Ökosystems.** lernapps.net will die Verbindung schaffen:
 
-- **Eine Karte**, die zeigt, was Lernende können sollen, welche Apps dabei helfen und wo noch welche fehlen.
+- **[Eine App-Übersicht](https://lernapps.net/apps/)**, in der Lehrkräfte und Eltern in wenigen Minuten eine passende App finden.
 - **Vertrauen, das geprüft wird, nicht behauptet.** Ob eine App ohne Server, ohne Tracking und ohne Anfragen an fremde Server läuft, messen wir nach, statt es uns versichern zu lassen.
 - **Werkzeuge und Vorlagen**, mit denen jede und jeder eine App in eine echte Lücke bauen kann, die von Anfang an diese Regeln einhält.
 
@@ -30,7 +30,7 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 ## Mitmachen
 
 - **Eine Lücke gefunden?** Etwas, das Lernende können sollen, wofür es keine gute App gibt: [Issue anlegen](https://github.com/lernapps/.github/issues/new/choose).
-- **Eine App gebaut?** Vorlage und Anleitung sind im Aufbau.
+- **Eine App gebaut?** [Trag sie ein](https://lernapps.net/apps/eintragen/).
 - **Wie die Organisation aufgebaut ist**, wen man wie erreicht und woran gerade gearbeitet wird: [ORGANIZATION.md](https://github.com/lernapps/.github/blob/main/ORGANIZATION.md) und der [Fahrplan](https://github.com/lernapps/.github/milestones).
 
 lernapps.net ist im Aufbau. Wer mitdenken oder mitbauen will, ist willkommen.
