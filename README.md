@@ -2,7 +2,7 @@
 
 This repository holds everything that applies to the **lernapps** organisation as a whole:
 
-- [`ORGANIZATION.md`](ORGANIZATION.md) – overview of the org: where to find what, how to reach us, rules across repos, license, what's being worked on.
+- [`ORGANIZATION.md`](ORGANIZATION.md) – start here (also agents): the story of lernapps.net, which repo does what for it, what all sites share, how to reach us, rules across repos, license, what's being worked on.
 - [`profile/README.md`](profile/README.md) – the org profile shown on <https://github.com/lernapps> (German: why lernapps exists).
 - Default community health files: [CONTRIBUTING](CONTRIBUTING.md), [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md), [GOVERNANCE](GOVERNANCE.md), [SECURITY](SECURITY.md), [SUPPORT](SUPPORT.md), the issue chooser and the PR template in `.github/`. They apply to every repo in the org that has none of its own.
 

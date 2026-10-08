@@ -12,7 +12,8 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 
 - **[Eine App-Übersicht](https://lernapps.net/apps/)**, in der Lehrkräfte und Eltern in wenigen Minuten eine passende App finden.
 - **Vertrauen, das geprüft wird, nicht behauptet.** Ob eine App ohne Server, ohne Tracking und ohne Anfragen an fremde Server läuft, messen wir nach, statt es uns versichern zu lassen.
-- **Werkzeuge und Vorlagen**, mit denen jede und jeder eine App in eine echte Lücke bauen kann, die von Anfang an diese Regeln einhält.
+- **Werkzeuge und Vorlagen**, mit denen jede und jeder eine App bauen kann, die von Anfang an diese Regeln einhält.
+- **Ein Danke, das ankommt.** lernapps.net ist kostenlos und lebt von Danke: ein Klick, anonym, und wer die App gebaut hat, erfährt, dass sie geholfen hat.
 
 ## Was lernapps.net ist – und was nicht
 
@@ -24,12 +25,14 @@ Dabei entstehen gute Apps ständig. Lehrkräfte, Eltern und Entwickler:innen bau
 
 ## Ausprobieren
 
-- **[Mathe-Karte](https://lernapps.net/mathe-karte/)** – Mathematik der Sekundarstufe I mit Trainern und KI-Tutor.
+- **[Apps finden](https://lernapps.net/apps/)** – die App-Übersicht: eine passende App für die nächste Stunde oder für heute Abend.
+- **[Mathe-Karte](https://lernapps.net/mathe-karte/)** – die erste App: Mathematik der Sekundarstufe I mit Trainern und KI-Tutor.
 - **[lernapps.net](https://lernapps.net/)** – die Startseite.
+- **[So ist es gedacht](https://lernapps.net/docs/)** – Vision, Organisation und Plattform-Design.
 
 ## Mitmachen
 
-- **Eine Lücke gefunden?** Etwas, das Lernende können sollen, wofür es keine gute App gibt: [Issue anlegen](https://github.com/lernapps/.github/issues/new/choose).
+- **Eine Idee oder ein Fehler?** [Issue anlegen](https://github.com/lernapps/.github/issues/new/choose).
 - **Eine App gebaut?** [Trag sie ein](https://lernapps.net/apps/eintragen/).
 - **Wie die Organisation aufgebaut ist**, wen man wie erreicht und woran gerade gearbeitet wird: [ORGANIZATION.md](https://github.com/lernapps/.github/blob/main/ORGANIZATION.md) und der [Fahrplan](https://github.com/lernapps/.github/milestones).
 
