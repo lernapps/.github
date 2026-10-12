@@ -8,7 +8,7 @@ The org is run by one person, so the rules are kept to a minimum. More roles and
 
 **Oliver Jägle** ([@mrsimpson](https://github.com/mrsimpson)) is the sole owner of the organisation and accountable for the platform. He is in the team `maintainers`.
 
-- He owns every **common repo**: `.github`, `lernapps.github.io`, `apps`, `docs`, `tooling`, `app-template`.
+- He owns every **common repo**: `.github`, `lernapps.github.io`, `apps`, `docs`, `tooling`, `app-templates`.
 - **App repos** belong to their authors and follow their authors' rules. `mathe-karte` is the app of **Ralf D. Müller** ([@raifdmueller](https://github.com/raifdmueller)), who focuses on the apps and does not take part in the platform. The owner keeps admin rights on every repo for security and emergencies, but doesn't decide about an app's content.
 - Only the owner creates repos.
 
