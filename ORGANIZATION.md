@@ -11,9 +11,9 @@ This page says which repo does what for that story, who to reach and which rules
 | Repo | Served at | What it does for the platform (platform design) | Owner |
 |---|---|---|---|
 | [`lernapps.github.io`](https://github.com/lernapps/lernapps.github.io) | [lernapps.net](https://lernapps.net/) | The home page: the story for teachers, parents, creators and learners (D1); [privacy notice](https://lernapps.net/privacy/), [imprint](https://lernapps.net/imprint/), the brand. Also the **shared site frame** of all sites (design tokens, header, footer, deploy check) | Oliver |
-| [`apps`](https://github.com/lernapps/apps) | [lernapps.net/apps/](https://lernapps.net/apps/) | The app overview, the core of the MVP (D8): find an app, see that it may be used, bring it to class, say thanks (`x-app-in-minutes`, `x-practice-tonight`); build an app with an AI assistant, list it and hear back (`x-list-and-hear-back`). One entry per app in `entries/` | Oliver |
+| [`apps`](https://github.com/lernapps/apps) | [lernapps.net/apps/](https://lernapps.net/apps/) | The app overview, the core of the MVP (D8). Explains building and listing an app, and provides the apps themselves: the catalog. Find an app, see that it may be used, bring it to class, say thanks (`x-app-in-minutes`, `x-practice-tonight`); list it and hear back (`x-list-and-hear-back`). One entry per app in `entries/` | Oliver |
 | [`docs`](https://github.com/lernapps/docs) | [lernapps.net/docs/](https://lernapps.net/docs/) | The design itself: vision, the organisation (biz42), the platform design (pdt42), the `pdt` skill for agents; later cross-repo ADRs | Oliver |
-| [`tooling`](https://github.com/lernapps/tooling) | [lernapps.net/tooling/](https://lernapps.net/tooling/) | GitHub as the means of production (D1). The guidance for building apps (D6 `s-building-guidance`): skills, plan template, the CLI `lernapps` that creates and checks an app, the review before listing. The actions every app and site builds, checks and deploys with, the Renovate preset of all repos | Oliver |
+| [`tooling`](https://github.com/lernapps/tooling) | [lernapps.net/tooling/](https://lernapps.net/tooling/) | GitHub as the means of production (D1). Helps builders get their apps out (D6 `s-building-guidance`): skills, plan template, the CLI `lernapps` that creates and checks an app, the review before listing. The actions every app and site builds, checks and deploys with, the Renovate preset of all repos | Oliver |
 | [`app-templates`](https://github.com/lernapps/app-templates) | – | The archetypes of apps (D6 `s-building-guidance`): one template per archetype, copied into a new app by the CLI in `tooling`, and the runtime apps depend on | Oliver |
 | [`mathe-karte`](https://github.com/lernapps/mathe-karte) | [lernapps.net/mathe-karte/](https://lernapps.net/mathe-karte/) | The first app (D8 `mvp-first-draft`): maths for Sek I with trainers and an AI tutor | Ralf |
 | [`.github`](https://github.com/lernapps/.github) | – | This page, org profile, [CONTRIBUTING](CONTRIBUTING.md), [GOVERNANCE](GOVERNANCE.md), [SECURITY](SECURITY.md), [SUPPORT](SUPPORT.md), [Code of Conduct](CODE_OF_CONDUCT.md), the issue chooser; cross-repo work and decisions as issues | Oliver |
@@ -32,7 +32,8 @@ All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look
 
 | You want to … | Go to |
 |---|---|
-| build an app, suggest one or get yours listed | [lernapps.net/apps/eintragen/](https://lernapps.net/apps/eintragen/), or an issue in [`apps`](https://github.com/lernapps/apps/issues/new/choose) |
+| build an app with your AI assistant | [lernapps.net/apps/build/](https://lernapps.net/apps/build/) |
+| suggest an app or get yours listed | [lernapps.net/apps/enter/](https://lernapps.net/apps/enter/), or an issue in [`apps`](https://github.com/lernapps/apps/issues/new/choose) |
 | report an error in an app | an issue in that app's repo |
 | report a security or privacy problem | privately, as described in [SECURITY.md](SECURITY.md) |
 | discuss the organisation, its rules or plans | an issue in [`.github`](https://github.com/lernapps/.github/issues) |
@@ -53,7 +54,8 @@ All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look
 
 **Every page, in every repo**
 - No cookies, no tracking, no requests to other servers before a click. The [privacy notice](https://lernapps.net/privacy/) states these rules for all of lernapps.net; anything beyond them needs the notice changed first.
-- Readable without JavaScript, WCAG 2.1 AA, usable at 360 px.
+- WCAG 2.1 AA, usable at 360 px.
+- Pages of lernapps.net's own site (the site frame and the catalog) are readable without JavaScript. Apps are not bound by this.
 - Links to the [imprint](https://lernapps.net/imprint/) and the [privacy notice](https://lernapps.net/privacy/).
 
 **Language**
