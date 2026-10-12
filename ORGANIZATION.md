@@ -11,10 +11,10 @@ This page says which repo does what for that story, who to reach and which rules
 | Repo | Served at | What it does for the platform (platform design) | Owner |
 |---|---|---|---|
 | [`lernapps.github.io`](https://github.com/lernapps/lernapps.github.io) | [lernapps.net](https://lernapps.net/) | The home page: the story for teachers, parents, creators and learners (D1); [privacy notice](https://lernapps.net/privacy/), [imprint](https://lernapps.net/imprint/), the brand. Also the **shared site frame** of all sites (design tokens, header, footer, deploy check) | Oliver |
-| [`apps`](https://github.com/lernapps/apps) | [lernapps.net/apps/](https://lernapps.net/apps/) | The app overview, the core of the MVP (D8): find an app, see that it may be used, bring it to class, say thanks (`x-app-in-minutes`, `x-practice-tonight`); list an app and hear back (`x-list-and-hear-back`). One entry per app in `entries/` | Oliver |
+| [`apps`](https://github.com/lernapps/apps) | [lernapps.net/apps/](https://lernapps.net/apps/) | The app overview, the core of the MVP (D8): find an app, see that it may be used, bring it to class, say thanks (`x-app-in-minutes`, `x-practice-tonight`); build an app with an AI assistant, list it and hear back (`x-list-and-hear-back`). One entry per app in `entries/` | Oliver |
 | [`docs`](https://github.com/lernapps/docs) | [lernapps.net/docs/](https://lernapps.net/docs/) | The design itself: vision, the organisation (biz42), the platform design (pdt42), the `pdt` skill for agents; later cross-repo ADRs | Oliver |
-| [`tooling`](https://github.com/lernapps/tooling) | – | GitHub as the means of production (D1): the site actions every site builds, checks and deploys with, the Renovate preset of all repos; later the guidance for building apps (D6 `s-building-guidance`) | Oliver |
-| [`app-template`](https://github.com/lernapps/app-template) | – | Starting point for a new app (D6 `s-building-guidance`; being built) | Oliver |
+| [`tooling`](https://github.com/lernapps/tooling) | [lernapps.net/tooling/](https://lernapps.net/tooling/) | GitHub as the means of production (D1). The guidance for building apps (D6 `s-building-guidance`): skills, plan template, the CLI `lernapps` that creates and checks an app, the review before listing. The actions every app and site builds, checks and deploys with, the Renovate preset of all repos | Oliver |
+| [`app-templates`](https://github.com/lernapps/app-templates) | – | The archetypes of apps (D6 `s-building-guidance`): one template per archetype, copied into a new app by the CLI in `tooling`, and the runtime apps depend on | Oliver |
 | [`mathe-karte`](https://github.com/lernapps/mathe-karte) | [lernapps.net/mathe-karte/](https://lernapps.net/mathe-karte/) | The first app (D8 `mvp-first-draft`): maths for Sek I with trainers and an AI tutor | Ralf |
 | [`.github`](https://github.com/lernapps/.github) | – | This page, org profile, [CONTRIBUTING](CONTRIBUTING.md), [GOVERNANCE](GOVERNANCE.md), [SECURITY](SECURITY.md), [SUPPORT](SUPPORT.md), [Code of Conduct](CODE_OF_CONDUCT.md), the issue chooser; cross-repo work and decisions as issues | Oliver |
 
@@ -32,7 +32,7 @@ All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look
 
 | You want to … | Go to |
 |---|---|
-| suggest an app or get your app listed | [lernapps.net/apps/eintragen/](https://lernapps.net/apps/eintragen/), or an issue in [`apps`](https://github.com/lernapps/apps/issues/new/choose) |
+| build an app, suggest one or get yours listed | [lernapps.net/apps/eintragen/](https://lernapps.net/apps/eintragen/), or an issue in [`apps`](https://github.com/lernapps/apps/issues/new/choose) |
 | report an error in an app | an issue in that app's repo |
 | report a security or privacy problem | privately, as described in [SECURITY.md](SECURITY.md) |
 | discuss the organisation, its rules or plans | an issue in [`.github`](https://github.com/lernapps/.github/issues) |
@@ -71,7 +71,7 @@ One license per repo, in its `LICENSE` file:
 
 | Repos | License |
 |---|---|
-| Code and app repos: `lernapps.github.io`, `apps`, `tooling`, `app-template`, `mathe-karte`, every app | MIT, including the texts in them |
+| Code and app repos: `lernapps.github.io`, `apps`, `tooling`, `app-templates`, `mathe-karte`, every app | MIT, including the texts in them |
 | Text repos: `.github`, `docs` | CC BY-SA 4.0 |
 
 Contributions come under the repo's license. Third-party content an app uses (quotes, images, texts from Wikipedia) keeps its own license; the app names source and license next to it.
@@ -88,7 +88,7 @@ The plan lives in the [issues](https://github.com/lernapps/.github/issues) of th
 
 - **The first draft of the MVP** (D8 `mvp-first-draft`): the app overview in [`apps`](https://github.com/lernapps/apps), the first creators, the anonymous thanks.
 - **Checking listed apps** before the real MVP: an agent clicks through each app, records the network and reviews the source ([docs#1](https://github.com/lernapps/docs/issues/1)).
-- **Guidance for building apps** (D6 `s-building-guidance`): agent skill and app template ([#12](https://github.com/lernapps/.github/issues/12)).
+- **Guidance for building apps** (D6 `s-building-guidance`): archetypes, generator, check and listing validation ([#12](https://github.com/lernapps/.github/issues/12)).
 - **Open decisions:** [label `decision`](https://github.com/lernapps/.github/issues?q=is%3Aopen+label%3Adecision).
 
 ## History
