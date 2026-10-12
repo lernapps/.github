@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: App vorschlagen oder eintragen
-    url: https://lernapps.net/apps/eintragen/
+    url: https://lernapps.net/apps/enter/
     about: So kommt eine Lern-App in die App-Übersicht auf lernapps.net/apps.
   - name: Sicherheits- oder Datenschutzproblem
     url: https://github.com/lernapps/.github/blob/main/SECURITY.md
