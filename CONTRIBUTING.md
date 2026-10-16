@@ -25,7 +25,7 @@ This file applies to every repository in the lernapps organisation that has no `
 ## Rules every contribution follows
 
 - **Privacy by design.** No tracking, no cookies, no analytics, no requests to third-party servers before a user clicks. Learners are children.
-- **Accessible** (WCAG 2.1 AA), usable on a phone (360 px). Pages of lernapps.net's own site (the site frame and the catalog) are also readable without JavaScript; apps are not bound by this.
+- **Accessible.** Pages of the platform (the site frame, the catalog and the overview pages) meet WCAG 2.1 AA, are usable on a phone (360 px) and are readable without JavaScript. Apps meet WCAG 2.1 AA and 360 px by default; an app may deviate where its idea needs it and says so in its entry.
 - **Language.** Common infrastructure (repo names, identifiers, schemas, workflows, developer docs) is in English. Text that learners, teachers and parents read is in German. Inside an app repo, the app's authors decide. See [ORGANIZATION.md](ORGANIZATION.md#rules-across-repos).
 - **Decisions** that affect more than one repo are made in an issue labelled `decision` and are decided by the owner. See [GOVERNANCE.md](GOVERNANCE.md).
 
