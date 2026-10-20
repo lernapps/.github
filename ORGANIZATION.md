@@ -54,6 +54,7 @@ All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look
 
 **Every page, in every repo**
 - No cookies, no tracking, no requests to other servers before a click. The [privacy notice](https://lernapps.net/privacy/) states these rules for all of lernapps.net; anything beyond them needs the notice changed first.
+- The one exception: the platform's own sites (home, catalog, docs, tooling) count their visits as totals with the [usage counter](https://github.com/lernapps/lernapps.github.io#usage-counter), only to see whether the apps are used at all. It is not part of the site frame, so an app never carries it, and nothing is counted inside an app.
 - Pages of the platform (the site frame, the catalog and the overview pages) meet WCAG 2.1 AA, are usable at 360 px and are readable without JavaScript.
 - Apps meet WCAG 2.1 AA and are usable at 360 px by default. An app may deviate where its idea needs it, for example a typing game against the clock, and says so in its entry. Apps need not be readable without JavaScript.
 - Links to the [imprint](https://lernapps.net/imprint/) and the [privacy notice](https://lernapps.net/privacy/).
