@@ -1,0 +1,40 @@
+{
+ "id": "i212",
+ "conventionalCommit": "docs(pdt42): entities back home in E2, acute experiences, thanks as currency",
+ "intent": "Every model element should have exactly one home chapter, the step that creates it, and an element found later is still written there; pdt42 0.6.2 works this way, so the entities return to the ecosystem scan (E2). Adults look for apps in an acute moment, minutes before a lesson or the evening before a test. The free platform should live on thanks, and every user should understand that without being pushed.",
+ "keyDecisions": [
+  "one home chapter per block type, entities in E2, over allowing several chapters per type (a first pdt42 fix that was reverted)",
+  "the acute moment over planning ahead: \"An app in class within minutes\" for teachers and a new experience for parents the evening before a test",
+  "trust built in, one app over a collection, and thanks after use as a step of its own",
+  "no tracking at all: anonymous structured clicks only, optionally inside the app, stepping aside when unreachable; no free text and no mailto, over cookies or Matomo",
+  "thanks as the currency of the free platform, in the narrative, channel, service and business model, clear without being pushy",
+  "channels stay generic; concrete means such as a subdomain for the counter go to D8"
+ ],
+ "trigger": "\"Ich bin nicht sicher, dass die Verschiebung sinnvoll ist … Das ist der Schritt, in dem sie entstehen, nicht der, in dem sie referenziert werden!\" … \"Ich unterstelle den Erwachsenen mehr kurzfristigkeit …\" … \"Wir müssen komplett ohne Tracking bleiben, damit da gar keine Bedenken aufkommen.\" … \"es sollte jedem Nutzer klar sein, dass der Dank das ist, mit dem er die Plattform am Leben hält. Kostenlos.\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i211",
+   "note": "the entities return from D1 to E2"
+  },
+  {
+   "type": "revises",
+   "intent": "i209",
+   "note": "rewrites the D7 experiences"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "148ded1e5c58d6664a26fccbdd6b28c6da8bd1e2"
+    ],
+    "reason": "One commit for the move back and the reviewed experiences.",
+    "message": "docs(pdt42): entities back home in E2, acute experiences, thanks as currency\n\n## Intent\n\nEvery model element should have exactly one home chapter, the step that creates it; pdt42 0.6.2 works this way, so the entities return to the ecosystem scan (E2). Adults look for apps in an acute moment, minutes before a lesson or the evening before a test. The free platform should live on thanks, and every user should understand that without being pushed.\n\n## Key changes\n\n- The entities, the paragraph on the six peer roles with its ignore and the platform owner move unchanged from D1 back to E2. The introductions of E2 and D1 say where roles (D1) and portraits (D2) are added. The build pins pdt42 0.6.2.\n- The platform narrative (D1): free to use, kept alive by thanks.\n- D7 has three experiences: \"An app in class within minutes\" for teachers before a lesson, the new \"Practice tonight, before the test\" for parents, and the creators' experience that hears of every thank-you. Trust is built in, one app counts more than a collection, and the thank-you after use is a step of its own.\n- The thanks and feedback channel (D5) and the service for giving back (D6): no tracking, only anonymous structured clicks, optionally inside the app, stepping aside when the service is unreachable.\n- The development plan marks D7 done and adds KD-17 and KD-18.\n\n## Dependencies and side effects\n\n- Relies on pdt42 0.6.2, which gives every block type one home chapter (mrsimpson/pdt42#38).\n- Three hints remain: no MVP tests the experiences yet (D8)."
+   }
+  ]
+ },
+ "moved": []
+}

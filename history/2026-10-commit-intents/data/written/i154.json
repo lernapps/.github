@@ -1,0 +1,47 @@
+{
+ "id": "i154",
+ "conventionalCommit": "docs(plan): bring the increment's plan and issues up to date before closing it",
+ "intent": "The plan of the agentic app creation increment had not been updated since 18 October, and open issues were missing from it. Before the first end-to-end version of the tooling is closed, the plan, the issues and the small leftovers must reflect what was built and what remains.",
+ "keyDecisions": [
+  "record one skill per phase and the workshop page rendered from the architecture as KD-24, with a mapping file and x-kind as rejected alternatives",
+  "add the open issues to the plan, and mark later work as outside this increment",
+  "#117 and the content error form become issues for later, over fixing them now",
+  "close #20, #115, .github#12 and apps#60, and rename #18 to all three archetypes",
+  "lift app-templates to arc42 0.38.0, as the tooling pins it",
+  "no retrospective in this session; the eval comparison is the last step before closing"
+ ],
+ "trigger": "\"Aktualisiere noch mal unseren euren Plan dieses inkrements\" … \"Guck dir auch die issues an. Fehlt da noch etwas?\" … \"1. Leg ein issue an. 2. ist durch 3. wurde ich gerne jetzt gleich machen 4. sofort jetzt aufräumen 5. auch separat. Issue 6. … konnten wir für die Session auch vergessen.\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "78e1fbc27cfc541b64efb8e9dcb96d5de85f60a5",
+     "cabff15d802e9e3ddbbfdf0a6fe9e83473c51fed",
+     "9bed4021405e1e5eed595917e818e1ba2d82f48c"
+    ],
+    "reason": "Three plan commits of tooling#124 that follow each other directly; the later two join the first by rule plan-pr.",
+    "message": "docs(plan): guidance by phase, the workshop page and the start pages; open issues and clean-up\n\n## Intent\n\nThe plan of the increment had not been updated since 18 October, and open issues were missing. Before the first end-to-end version of the tooling is closed, the plan must say what was built, what was cleaned up and what remains.\n\n## Key changes\n\n- KD-24 records one skill per phase, guidance that only describes the process, and the workshop page rendered from the x-* attributes of the architecture. Rejected: a mapping file beside the architecture, and x-kind.\n- Completed lists the work of 19 and 20 October across the repos; Code lists its follow-ups.\n- The open issues are in the plan: #117 (update cannot be committed), the rest of #115, and later work outside this increment.\n- The interactive pilot is done; #20, #115, .github#12 and apps#60 are closed. The comparison of old and new guidance in the evals is the last step before closing.\n\n## Dependencies and side effects\n\n- app-templates moves to arc42 0.38.0 in 938b582."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "938b5821c2398dc24f925c77980958d26fb41d54"
+    ],
+    "reason": "The only app-templates commit of this clean-up.",
+    "message": "chore(deps): @doctc/arc42 0.38.0, as the tooling pins it\n\n## Intent\n\nThe templates should use the same arc42 version as the tooling, which now reports custom x-* attributes.\n\n## Key changes\n\n- @doctc/arc42 moves to 0.38.0. It reports the x-* attributes of an element in arc42 get and no longer cuts its JSON at 64 KiB on a pipe.\n- All three architectures pass arc42 validate --strict unchanged.\n\n## Dependencies and side effects\n\n- The plan of the increment (tooling, 78e1fbc and following) lists this as part of the clean-up."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "938b5821c2398dc24f925c77980958d26fb41d54",
+   "from": "i155",
+   "kind": "dropped",
+   "why": "The arc42 bump is one item of the clean-up asked for in the same exchange about the plan and the issues; i155 is merged into this intent and has no commits left."
+  }
+ ]
+}

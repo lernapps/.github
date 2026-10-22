@@ -1,0 +1,26 @@
+{
+ "id": "i109",
+ "conventionalCommit": "docs(interactive): the architecture rebuilt with the arc42 guide, before review",
+ "intent": "The architecture should follow the method of the arc42 CLI and its guide, not a free-hand draft. It should name every generic component, also the optional ones that an app may never use, so that the frame is complete before review.",
+ "keyDecisions": [
+  "follow the arc42 guide: evidence file, chapter briefs, waves of parallel agents, a review gate before validating",
+  "list every generic component, also optional and not yet built ones, each marked as such",
+  "discard the first draft instead of patching it"
+ ],
+ "trigger": "\"Nutze das arc42 cli und den guide. Notiere einfach alle auch optionalen generischen Komponenten, auch wenn diese dann evtl. nicht ausgeprägt werden\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "revises", "intent": "i108", "note": "rebuilds the first draft with the arc42 guide"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["b63f3fc5a1da157c915a41ef6e39ad7721d77c34"],
+    "reason": "The only commit of this request.",
+    "message": "docs(interactive): the architecture rebuilt with the arc42 guide, before review\n\n## Intent\n\nThe architecture should follow the method of the arc42 CLI and its guide, and name every generic component, also the optional ones an app may never use. Open points go to review before validation.\n\n## Key changes\n\n- All twelve chapters rebuilt from the guide's chapter briefs, with an evidence file that lists the sources and marks open questions.\n- Building blocks for runtime, tooling helpers and the app, with interfaces. Optional or not yet built components are included and marked: tutor handoff, tutor model in the browser, task numbers, exercise contract, settings, large storage.\n- Constraints, runtime scenarios, deployment, concepts, decisions, risks and a glossary.\n- Not validated yet: the guide asks for review first.\n\n## Dependencies and side effects\n\n- Revised after review in the next commit of app-templates#34 (i110)."
+   }
+  ]
+ },
+ "moved": []
+}

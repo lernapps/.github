@@ -1,0 +1,26 @@
+{
+ "id": "i165",
+ "conventionalCommit": "docs(evals): an eval run step by step and its session prompt; a run without conclusions shows as not evaluated",
+ "intent": "A long session closes the increment on the eval setup. Each open aspect should continue in a short session of its own, so the setup must not depend on what this session knows: an eval run must be repeatable from the docs, the plan must record what was done, and every follow-up needs its own issue. The last eval session also could not push its results, because the build failed without conclusions.",
+ "keyDecisions": [
+  "a run without conclusions shows as not evaluated, so eval sessions push only their results and people write the conclusions in the pull request, over requiring conclusions before a push",
+  "the prompt of an eval session as a file with its hard rules, over a prompt that lives only in this session",
+  "one issue per follow-up, each pointing to the plan of this session"
+ ],
+ "trigger": "\"Ist für das generelle Setup des Tool Li ihre Dokumentation und vor allem dafür, dass wir mit jedem einzelnen Aspekt separat weitermachen, noch etwas zu tun.\" … \"Ja. Alles. Verweise in den issues auf den Plan dieser Session.\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i164", "note": "documents the eval runs of 2026-10-20/21 and closes the increment"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["1881653edd3446978c2e2c79a0e379b7ee37eb6c"],
+    "reason": "The one commit of this request.",
+    "message": "docs(evals): an eval run step by step and its session prompt; a run without conclusions shows as not evaluated\n\n## Intent\n\nEach open aspect of the eval setup should continue in a short session of its own, so a run must be repeatable from the docs and every follow-up needs its own issue. The last eval session could not push its results, because the build failed without conclusions.\n\n## Key changes\n\n- A run without conclusions shows as not evaluated yet. Eval sessions push only their results; people write the conclusions in the pull request.\n- The prompt of an eval session, with its hard rules, is a file of its own.\n- The eval README describes a run step by step, scoring again from transcripts, the creator's end marker and the phase announced.\n- The plan records the eval runs of 2026-10-20/21, closes step 10 and names an issue for each follow-up (#138–#142, lernapps/docs#44)."
+   }
+  ]
+ },
+ "moved": []
+}

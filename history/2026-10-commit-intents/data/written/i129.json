@@ -1,0 +1,40 @@
+{
+ "id": "i129",
+ "conventionalCommit": "feat(evals): the lernapps evals as Harbor tasks",
+ "intent": "With Harbor accepted, build the evals and run them: one fresh scenario per archetype, scored per expectation, so a matrix of Haiku, Sonnet and Opus shows how well agents follow the guidance. A score must measure the agent, not the scenario or the scoring script.",
+ "keyDecisions": [
+  "single-step tasks that stop at the publish checkpoint, with a German teacher persona per archetype",
+  "a separate verifier on the collected app plus a transcript score, over Harbor's own numbers",
+  "the agent's own tokens from its session log, since Harbor's numbers for an ACP target are not the target's",
+  "the simulated creator is Haiku in every run, so runs stay comparable",
+  "the summary never mixes configurations",
+  "stop every run once the usage limit is reached",
+  "the retrospective counts as n/a when a run stops before the listing checkpoint"
+ ],
+ "trigger": "\"Wir kümmern uns nur noch um Evals\" … \"wie weit ist der Eval-Agent?\" … \"sind wir sicher, dass es keine auth-probleme gibt?\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i128",
+   "note": "builds the eval tasks on the accepted Harbor ADR"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "24c33a6fff128603ac340577ca6c73726864e5de",
+     "7638597150d3cf17af2de13e14b8c2ecbb51fefa",
+     "596220b052aa0b9282d4de5d822c4efa51f365f3",
+     "3647e0ee5615c95d803fedb26dcd587231afccc0",
+     "47765c85dd05cfdee9001577f9b5ea0b90c8f0c2"
+    ],
+    "reason": "The eval tasks and the fixes the first matrix showed follow each other directly on feat/evals-harbor before its pull request was merged; one feature.",
+    "message": "feat(evals): the lernapps evals as Harbor tasks\n\n## Intent\n\nRun the evals with Harbor: one fresh scenario per archetype, scored per expectation, so runs of Haiku, Sonnet and Opus show how well an agent follows the guidance. A score must measure the agent, not the scenario or the scoring script.\n\n## Key changes\n\n- Three single-step tasks with a fresh start (quiz-fresh, explainer-fresh, interactive-fresh). The creator's first message is the build prompt exactly as lernapps.net/apps/build/ renders it. A simulated creator plays a German teacher persona per archetype and stops only at the real publish question.\n- The image is the creator's machine: Node 22, git and Chromium for `lernapps check`, an empty /app.\n- A separate verifier scores the collected app: plan and front matter against the schema, archetype, phase, ticked boxes, retrospective (n/a when the run stops before the listing checkpoint), \"Ich kann\", content guide, app created, `lernapps check` after `npm ci`, committed and clean, prePushFailures.\n- A transcript score counts creator turns after the plan, questions per turn, approvals after a question, how the guidance was read, reads outside the guidance, installs before the plan, hook bypasses and the agent's own tokens. Only real bypasses count: --no-verify, HUSKY=0, SKIP_HOOKS and setting or unsetting core.hooksPath.\n- A summary aggregates jobs per task and configuration, never mixes configurations, and skips jobs marked excluded.txt. expectations.json maps each dimension to its expectation.\n- evals/harbor/: setup.sh installs Harbor 0.24.0 outside the repo and applies two patches (the subscription token for the ACP adapter; the acpx config outside the workspace, which made `lernapps create` refuse /app). harbor.sh runs Harbor with a scrubbed environment; run.sh runs one job per task and model.\n- Tests cover the transcript score, the verifier's plan parsing and the summary.\n\n## Dependencies and side effects\n\n- The proxy's CA certificate and the generated task files are gitignored."
+   }
+  ]
+ },
+ "moved": []
+}

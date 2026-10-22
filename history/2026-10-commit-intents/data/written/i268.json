@@ -1,0 +1,25 @@
+{
+ "id": "i268",
+ "conventionalCommit": "feat(quiz, explainer): dark mode that follows the system",
+ "intent": "Quiz and explainer apps showed only light colours. Learners who use a dark system setting should get a dark page in both archetypes.",
+ "keyDecisions": [
+  "follow the system setting with prefers-color-scheme, over a manual light/dark switch",
+  "SVG figures get CSS classes and keep their colour attributes as a fallback, over replacing the attributes",
+  "only quiz and explainer, not the interactive archetype",
+  "dark colours chosen by eye, contrast not measured yet"
+ ],
+ "trigger": "\"Dark Mode für quiz und explainer\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["ca43aedd055a3b9bcf21fe8509359e72d6b5f86b"],
+    "reason": "The only commit of this request.",
+    "message": "feat(quiz, explainer): dark mode that follows the system\n\n## Intent\n\nQuiz and explainer apps showed only light colours. Learners who use a dark system setting should get a dark page in both archetypes.\n\n## Key changes\n\n- Both stylesheets switch to dark values when the system asks for it (prefers-color-scheme: dark): text, background, borders, accent, and the colours for right and wrong. The colour scheme is \"light dark\", so form controls switch too.\n- In the explainer, example and note boxes, the syntax colours of code and the white-on-accent texts also use the colour variables.\n- The explainer's SVG figures carry CSS classes, so they change colour in dark mode; their colour attributes stay as a fallback.\n\n## Dependencies and side effects\n\n- The dark colours were chosen by eye; the 4.5:1 contrast is not measured yet.\n- The interactive archetype has no dark mode yet."
+   }
+  ]
+ },
+ "moved": []
+}

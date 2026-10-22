@@ -1,0 +1,42 @@
+{
+ "id": "i058",
+ "conventionalCommit": "docs: apps live at their developer's hosting; Platform upkeep holds what creators never use",
+ "intent": "The architecture still said that Pages is served below lernapps.net, which is not the default for an app. GitHub was modelled as one actor although it only acts through Actions and is also a hosting target. And \"site\" was unclear: blocks named site looked creator-facing although they only serve lernapps.net's own websites, so what creators never use must be marked as such.",
+ "keyDecisions": [
+  "an app's default address is its developer's own GitHub Pages; only repos of the lernapps organisation are served below lernapps.net",
+  "a top-level block \"Platform upkeep\", marked as not used by creators, for the tooling's build and docs, the platform site actions and the Renovate preset",
+  "a site is one of lernapps.net's own websites and never an app",
+  "GitHub Actions, GitHub Pages and Renovate as three actors of type system, called external systems in the text, over removing GitHub from the context or keeping one actor (the tool has no external-system type)",
+  "rename the app's artifact and job from site to app on the creator's path; the platform site actions keep site"
+ ],
+ "trigger": "\"Chapter 1 still reads \"Pages is served below lernapps.net\". This is not the default for the tooling! I am not sure about the actor GitHub … I think the term site needs clarification … we should create a building block that builds the tooling + documentation and rules themselves to make clear it's not creator facing\" … \"A is fine, rename the app artifact to app.\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "revises", "intent": "i055", "note": "corrects where apps are hosted and how GitHub and the site actions are modelled"},
+  {"type": "continues", "intent": "i057", "note": "same architecture rework on tooling#44"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["36ef10c886d919b5c218336b3e383d6936b3346e"],
+    "reason": "The hosting correction and Platform upkeep came as one commit; the commits after it serve the pre-push request first.",
+    "message": "docs: apps live at their developer's hosting; Platform upkeep holds what creators never use\n\n## Intent\n\nThe architecture still said that Pages is served below lernapps.net, which is not the default for an app. And blocks named \"site\" looked creator-facing, although they only serve lernapps.net's own websites.\n\n## Key changes\n\n- An app lives at its developer's hosting, by default the GitHub Pages of the developer's own repo; only a repo of the lernapps organisation is served below lernapps.net. The architecture, the decision, the skill, the plan template, llms.txt and the app publish action say so.\n- The deployment view has GitHub Pages and any other hosting as nodes of the app's hosting.\n- A new top-level block, Platform upkeep, marked as not used by creators, holds the tooling's build and docs, the platform site actions and the Renovate preset.\n- The glossary defines a site as one of lernapps.net's own websites, never an app."
+   },
+   {
+    "commits": ["037a68b800feec191f2365048ec35aa1337cfc45"],
+    "reason": "The modelling of GitHub, decided after the hosting commit; the rename after it is a separate change.",
+    "message": "docs(arc42): GitHub Actions, GitHub Pages and Renovate are external systems, not one actor\n\n## Intent\n\nAn actor should be a party with intentions. GitHub only acts through its Actions and is also a hosting target, so a single actor GitHub misled.\n\n## Key changes\n\n- The actor GitHub becomes three actors of type system: GitHub Actions (app check, app publish and check CLI), GitHub Pages (app publish) and Renovate (update policy and preset). The architecture tool has no type for external systems.\n- The system context calls them external systems, apart from the parties with intentions; the scenario of a rule change ends with Renovate."
+   },
+   {
+    "commits": ["5dd34b8719b36c99dd53a752085589321acfebe0"],
+    "reason": "The rename on the creator's path; one change of its own.",
+    "message": "refactor(app): the app's artifact and job are named app, not site\n\n## Intent\n\nOn the creator's path a site must never mean an app, but the checked bundle was still uploaded as \"site\" and the generated job was named \"site\".\n\n## Key changes\n\n- The app check action uploads the checked bundle as the artifact \"app\", the app publish action downloads it, and the generated workflow names its job \"app\".\n- The actions for lernapps.net's websites keep \"site\"."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "037a68b800feec191f2365048ec35aa1337cfc45", "from": "i059", "kind": "moved", "why": "Settles how to model GitHub, the open point of this request; the answer came with the next message."},
+  {"commit": "5dd34b8719b36c99dd53a752085589321acfebe0", "from": "i059", "kind": "moved", "why": "Applies the site-is-never-an-app rule of this request to the code; the go-ahead came with the next message."}
+ ]
+}

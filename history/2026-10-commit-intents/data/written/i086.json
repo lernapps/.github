@@ -1,0 +1,33 @@
+{
+ "id": "i086",
+ "conventionalCommit": "fix(renovate): move every pin of the tooling commit in one pull request",
+ "intent": "Let Renovate move every pin of the tooling commit, the plain strings in hooks and workflows included, in one pull request, so a partial bump never turns CI red. Do it in the org's shared preset, not in a personal one.",
+ "keyDecisions": [
+  "regex custom managers for tooling-ref in workflows and TOOLING_REF in hooks",
+  "the group lernapps building blocks covers all @lernapps/* packages, so everything moves in one pull request; this supersedes tooling#39",
+  "the personal preset stays untouched",
+  "a fast test runs the patterns against snippets of the real files"
+ ],
+ "trigger": "\"59 is merged. The other scope PRs are still conflicted\" … \"Teach renovate that trick, in our shared config (not be the mrsimpson one)\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i085",
+   "note": "the hooks pin the tooling commit as a plain string"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "7d546980f009d4e89e2f21dd94cde176d766cdd4"
+    ],
+    "reason": "The only commit of tooling#62.",
+    "message": "fix(renovate): move every pin of the tooling commit in one pull request\n\n## Intent\n\nRepos pin the tooling commit not only in action refs and the npm dependency, which Renovate moves, but also as plain strings: tooling-ref in workflows and TOOLING_REF in the hooks. Tests require all of them to be the same commit, so a partial bump turns CI red, and the change-scope pull requests kept falling into conflict. Teach Renovate to move all of them at once, in the org's shared preset, not in a personal one.\n\n## Key changes\n\n- Two regex custom managers read tooling-ref and TOOLING_REF as the git reference lernapps/tooling at main.\n- The group lernapps building blocks now matches all @lernapps/* packages, so the tooling and app-templates move in the same pull request as the actions, the scope workflow and the plain strings. This supersedes tooling#39.\n- A test runs the match patterns as Renovate does against snippets of the real workflows and hooks, and checks the group."
+   }
+  ]
+ },
+ "moved": []
+}

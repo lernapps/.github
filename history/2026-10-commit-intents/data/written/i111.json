@@ -1,0 +1,34 @@
+{
+ "id": "i111",
+ "conventionalCommit": "docs: one architecture for every archetype, generic at the repo root with an extension per archetype",
+ "intent": "The quiz and the explainer have the same quality goals as interactive apps, so they should follow the same architecture. They stay archetypes of their own, each extending the generic architecture, as interactive apps do. The quiz and the explainer are text-heavy, so being readable without JavaScript is one of their own goals.",
+ "keyDecisions": [
+  "one generic architecture with an extension per archetype, over a separate architecture per archetype",
+  "quiz and explainer stay archetypes of their own, over generic variants of interactive",
+  "only interactive apps write their own part; quiz and explainer are fixed by their notation",
+  "readable without JavaScript as a quality goal of the quiz and the explainer only",
+  "the root README points to both parts, as the templates have no README of their own"
+ ],
+ "trigger": "\"Tatsächlich sollen die anderen beiden Typen auch der Architektur folgen.\" … \"Nein, da bleiben trotzdem eigene archetypen. Sie folgen einfach nur der gleichen Architektur, weil sie ja auch die gleichen Qualitäts-Ziele haben. Daher sollte das auch die Quiz und explainer so in der Architektur hinterlegt werden (extends genetic architecture)\" … \"Bei den beiden anderen Typen ist Lesbarkeit bei nojs ein Ziel, da sie sehr textlastig sind\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i110",
+   "note": "moves the interactive architecture to a generic one with extensions"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "61e411fb55178572bf8e239374212c6f0bd5872a"
+    ],
+    "reason": "The only commit of this request.",
+    "message": "docs: one architecture for every archetype, generic at the repo root with an extension per archetype\n\n## Intent\n\nThe quiz and the explainer have the same quality goals as interactive apps, so they follow the same architecture. They stay archetypes of their own and extend the generic architecture, as interactive apps do. Being text-heavy, they must also be readable without JavaScript.\n\n## Key changes\n\n- The generic architecture of every lernapps app lives in docs/arc42/: the frame (static description, page trees, 404 page, build checks, shell, end-to-end tests, tooling helpers) with its optional parts (tutor handoff, task numbers, exercise contract, settings, loading indicator) and an abstract archetype part.\n- quiz/, explainer/ and interactive/ each get an extension with only the blocks, interfaces, decisions, risks and terms their archetype adds.\n- Readable without JavaScript is a quality goal of the quiz and the explainer.\n- Each combination of the generic part and one extension validates without errors or warnings.\n- The root README points to both parts and says which sub-block does what in each archetype; docs/ is on the pre-push hook's root-only list."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,41 @@
+{
+ "id": "i211",
+ "conventionalCommit": "chore(pdt42): migrate to pdt42 0.6.1 and comment the design diff on pull requests",
+ "intent": "pdt42 0.6.1 brings the diff rendering the pull request review needs, but the model written with 0.4.0 no longer validates: entities in E2 are errors, and each ignore now accepts only one finding. Fix the build of the pull request before the content work continues, without changing what the model says.",
+ "keyDecisions": [
+  "delegate to a background agent and pause the content work, so nobody edits the same files",
+  "move the entity-roles unchanged from E2 to D1, because the chapter error cannot be ignored, over changing content",
+  "one ignore per accepted finding, right before its block, over stacking the directives at the top of the file",
+  "diff of base...HEAD like pdt42's own review workflow, with findings reported but not fatal",
+  "a separate comment job, the only one allowed to write to pull requests, posting one comment per pull request and updating it in place, modelled on biz42"
+ ],
+ "trigger": "\"Es gibt nun eine neue Version von PDT42. Bevor wir inhaltlich weiter machen, beauftrage einen Agenten, den PR und insbesondere den Build der Docs im PR zu korrigieren\"",
+ "kind": "chore",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i210",
+   "note": "makes the diff rendering work"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "62e1117b2c56f990108652fa56223f551a426a4d"
+    ],
+    "reason": "The model migration stays apart from the CI change that follows it: different parts of the repo, each its own concern.",
+    "message": "docs(pdt42): migrate the platform design to pdt42 0.6.1\n\n## Intent\n\npdt42 0.6.1 brings the diff rendering the pull request review needs, but the model written with 0.4.0 no longer validates: the entities in E2 are errors, and each ignore now accepts only one finding. Migrate the model without changing what it says.\n\n## Key changes\n\n- The entity-roles move unchanged, with portraits, prose and canvases, from E2 to D1, the chapter 0.6.1 assigns to entities. E2 keeps its jobs and points to D1.\n- Each accepted deviation has its own ignore directly before its block: the three assets, GitHub without a role, the six peer roles, and the three transactions without a channel.\n- The build pins pdt42 0.6.1.\n- The development plan notes the pinned version and the new meaning of ignores.\n\n## Dependencies and side effects\n\n- The published site shows the entity-roles under D1 instead of E2, so links to E2 entity anchors change.\n- Builds on the next commit of this intent for the review comment (0296432)."
+   },
+   {
+    "commits": [
+     "0296432bb7365d4aa13b7cd5285d149c38c0bc6c"
+    ],
+    "reason": "The CI change stays apart from the model migration before it.",
+    "message": "ci: render the platform design diff and comment it on pull requests\n\n## Intent\n\nReviewers should see what a pull request changes in the platform design, inside its chapters, without building it themselves. pdt42 0.6.1 can render that diff.\n\n## Key changes\n\n- With a diff base, the build renders the changes since the merge base into platform-design-diff/ and writes the change list as JSON. Diff findings are reported, not fatal. The skip for versions without --diff is gone.\n- The workflow passes the pull request's base branch and also uploads the diff page unzipped, so it opens in the browser.\n- A separate comment job, the only one allowed to write to pull requests, posts one comment per pull request and updates it on every push, modelled on biz42's review workflow. Forks get a job summary only.\n- New actions are pinned to commit SHAs. The README describes the review artifacts and the comment.\n\n## Dependencies and side effects\n\n- Needs the migration to pdt42 0.6.1 in the commit before (62e1117)."
+   }
+  ]
+ },
+ "moved": []
+}

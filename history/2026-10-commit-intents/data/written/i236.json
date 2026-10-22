@@ -1,0 +1,36 @@
+{
+ "id": "i236",
+ "conventionalCommit": "feat(nav): a header for people: find an app, build one, tooling, features, take part",
+ "intent": "The shared header followed the platform's structure, not the people who come to lernapps.net. It should lead to finding an app, building one, the tooling, what makes lernapps different, and how to take part. Listing an app is a step of building one, not a goal of its own. The listing check now exists, so app pages should no longer say it is being built.",
+ "keyDecisions": [
+  "\"App eintragen\" leaves the header and becomes a section of \"App bauen\" in the apps repo; /apps/enter/ stays",
+  "\"So ist es gedacht\" becomes \"Features\" with three parts: for users, for developers, and what makes the platform unique (GitHub as a free backbone)",
+  "\"Mitmachen\" leads to a page with one block per persona and the prompts for their AI assistants, over CONTRIBUTING.md",
+  "keep \"Tooling\" in the header",
+  "attach the apps repo and change it in the same step"
+ ],
+ "trigger": "\"ja, binde das an. Zur Navigation: App finden, App bauen (App eintragen weg, das als Abschnitt in App bauen …), So ist es gedacht => in 'Features' umgebennen. … Mitmachen => Mehrere Personas, inkl. der Prompts für deren Agenten, die wir heute schon haben\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i234", "note": "builds on the new home page and features page"},
+  {"type": "continues", "intent": "i244", "note": "the role prompts move to the new page \"Mitmachen\""}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["c84266e179fe6ce767f9fd5b64e4b295e6d1a27a", "ea2ed8fba0333bc9d6ec58387e62099b8a2deb52"],
+    "reason": "Follow each other directly on one branch: the new header and the pages it links to (/features/ in three parts, /join/).",
+    "message": "feat(nav): a header for people: find an app, build one, tooling, features, take part\n\n## Intent\n\nThe shared header followed the platform's structure, not the people who come to lernapps.net. It should lead to finding an app, building one, the tooling, what makes lernapps different, and how to take part.\n\n## Key changes\n\n- The header reads: Apps finden, App bauen, Tooling, Features, Mitmachen.\n- \"App eintragen\" leaves the header: listing is a section of \"App bauen\" (/apps/build/#eintragen). /apps/enter/ stays and is linked from there.\n- \"So ist es gedacht\" (/docs/) becomes \"Features\" (/features/). The docs move to the footer and are linked from the features page.\n- /features/ has three parts: for users (what the apps can do), for developers (foundations or your own stack, made for your AI assistant, how an app gets into the catalogue, ownership and licence), and the platform (GitHub as a free backbone, no server and no data, readable for AI assistants, planned in the open, the principles). The home page links the new anchors.\n- \"Mitmachen\" leads to /join/: teachers, parents, learners, makers and contributors, each with what they can do, where to go and a prompt for their AI assistant to copy. The prompts come from the old home page, plus a new one for contributors, which links CONTRIBUTING.md.\n- README and llms.txt name the pages.\n\n## Dependencies and side effects\n\n- Other sites get the new header when their pin of @lernapps/site moves (Renovate).\n- The anchor #eintragen comes with the change in the apps repo (e58bbf3)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["e58bbf365fdacc45bc069b1a7eff58454958856c"],
+    "reason": "The apps side of the new header; the first commit of its branch.",
+    "message": "feat(build): listing is a section of \"App bauen\"; app pages name the listing check\n\n## Intent\n\nThe shared header drops \"App eintragen\": listing becomes a step of building an app. And the listing check exists now, so the app pages should no longer say it is being built.\n\n## Key changes\n\n- /apps/build/ has a line under its lead, \"Du hast schon eine App? Direkt zum Eintragen\", that jumps to its last section, now \"Wie es weitergeht: die App eintragen\" with the anchor #eintragen. /apps/enter/ stays and is linked from there.\n- An app page whose entry is not marked as checked says that an automatic check compares it with the app at listing, instead of \"Eine automatische Prüfung bauen wir gerade\".\n\n## Dependencies and side effects\n\n- The new header comes with the next update of @lernapps/site (lernapps.github.io c84266e, ea2ed8f); /join/ links /apps/build/#eintragen."
+   }
+  ]
+ },
+ "moved": []
+}

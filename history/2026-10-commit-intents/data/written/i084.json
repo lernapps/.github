@@ -1,0 +1,67 @@
+{
+ "id": "i084",
+ "conventionalCommit": "ci: the change scope gates hooks and CI in the catalog, the docs, the main site and app-templates",
+ "intent": "Roll the change scope out to every repo, so a plan-only change runs nothing and a docs-only change only the site, with required checks that never stay pending. Give app-templates git hooks that check only what a push touches.",
+ "keyDecisions": [
+  "the final jobs keep the names branch protection already requires; require only the final jobs",
+  "app-templates' hook fetches the classifier at a pinned tooling commit, not as a devDependency (every app install would fetch and build the tooling again) and not through npx (fails on npm 10, slow)",
+  "app-templates' pre-push checks only the templates a push affects, by an explicit path list; the fixtures run only in CI"
+ ],
+ "trigger": "\"which required checks need adjustment? Send me a quick instruction for my local agent that has gh cli access\" … \"done. continue\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i079",
+   "note": "rolls the change scope out to the other repos"
+  },
+  {
+   "type": "continues",
+   "intent": "i082",
+   "note": "app-templates' root hooks, proposed when asked which hooks"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "85f1f9980031f6e80cc15705173b9e0e3d61a038"
+    ],
+    "reason": "The first commit of apps#16; its later commits are in i085 (hooks) and i087 (test fixes).",
+    "message": "ci: the change scope gates the catalog's site jobs\n\n## Intent\n\nEvery change to the catalog ran all tests, the build and the deploy. With the change scope in the tooling, a plan-only change should run nothing and a docs-only change only the site.\n\n## Key changes\n\n- Pages and preview ask the tooling's reusable scope workflow first: only the plan runs nothing, only docs runs the site's build, check and deployment, anything else runs everything.\n- The jobs site and preview always run and report, so the required checks keep their names and never stay pending; the listing workflow keeps its own paths filter.\n- The pin of the tooling moves to the commit whose classifier the workflows run.\n\n## Dependencies and side effects\n\n- Same intent: lernapps/docs and lernapps.github.io gate their site jobs the same way; app-templates gets root hooks and gated CI."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "889f7fac383acd22c83e26a8bf2a24a7f17100cc"
+    ],
+    "reason": "The only commit of docs#18.",
+    "message": "ci: the change scope gates the docs site's jobs\n\n## Intent\n\nEvery change to the docs repo built and deployed the site, plan-only changes included. The change scope lets a plan-only change skip it.\n\n## Key changes\n\n- Pages and preview ask the tooling's reusable scope workflow first; a change of only the plan builds and deploys nothing; docs and anything else run the site as before.\n- The jobs site and preview always run and report, so the required checks keep their names and never stay pending.\n\n## Dependencies and side effects\n\n- Same intent: lernapps/apps and lernapps.github.io gate their site jobs the same way; app-templates gets root hooks and gated CI."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "852466f4cc643b3be375ce0305c9178cef2c9c72"
+    ],
+    "reason": "The first commit of lernapps.github.io#32; its hooks commit is in i085.",
+    "message": "ci: the change scope gates the main site's jobs\n\n## Intent\n\nEvery change to the main site built and deployed it, plan-only changes included. The change scope lets a plan-only change skip it.\n\n## Key changes\n\n- Pages and preview ask the tooling's reusable scope workflow first; a change of only the plan builds and deploys nothing; docs and anything else run the site as before.\n- The jobs site and preview always run and report, so the required checks keep their names and never stay pending.\n\n## Dependencies and side effects\n\n- Same intent: lernapps/apps and lernapps/docs gate their site jobs the same way; app-templates gets root hooks and gated CI."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "a39cc0372c6904a16ea7daf6bb5deefe8526cecc",
+     "9e377a35c4200814d620a01bf41d8a7d8d616e25",
+     "b9da258397d4ea30379a15cf1a1df7e84e4510f9",
+     "0a6e65f087136aac838d02f6737842df0d00d55b"
+    ],
+    "reason": "All commits of app-templates#19 serve one thought, hooks and CI gated by the change scope; the later ones fix the CI order and replace the devDependency the first one added.",
+    "message": "feat(hooks): root git hooks and CI, gated by the change scope\n\n## Intent\n\napp-templates had no git hooks, so a formatting error of step 3 was first caught in CI, and every push ran every check. A plan-only or docs-only push should check nothing, and a push should check only the templates it touches.\n\n## Key changes\n\n- npm ci installs the repo's own hooks. Pre-commit formats and lints the staged files, quietly.\n- Pre-push asks the tooling's classifier first, so a plan-only or docs-only push checks nothing; otherwise it runs the root checks and lernapps check only in the template folders the push affects, by an explicit path list. The fixture jobs stay in CI.\n- The hook fetches only the classifier from the tooling at a pinned commit into .git/lernapps/ and runs it with Node: 1.7 s the first time, 0.3 s after. A devDependency made every app's install fetch and build the tooling once more; npx fails on npm 10 and is slow.\n- A test checks that the hook's tooling commit is the one CI uses.\n- CI gates every job on the scope, keeps the job names, adds actionlint, and has one final job check, the one to require.\n\n## Dependencies and side effects\n\n- Same intent: lernapps/apps, lernapps/docs and lernapps.github.io gate their site jobs with the same classifier."
+   }
+  ]
+ },
+ "moved": []
+}

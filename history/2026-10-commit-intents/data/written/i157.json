@@ -1,0 +1,50 @@
+{
+ "id": "i157",
+ "conventionalCommit": "feat(evals): a results file per eval run and the runs on the Prompt engineering page",
+ "intent": "The site should show which eval runs were made, how they went and what was concluded from them. Today one hand-made data file holds one run, and the conclusions are prose in the page. The results need a machine-readable format, cleaned of runs that broke off, with the conclusions beside them, and the page should be generated from it.",
+ "keyDecisions": [
+  "two files per run: results.json generated from the jobs, never by hand, and conclusions.yaml written in review",
+  "fixed cleaning rules in the generator: leave out usage-limit and infrastructure breaks, keep a crashed verifier as partial, never merge a re-run with the job it replaces, keep other guidance commits apart",
+  "a skill counts as loaded when loaded by the end of its phase; early loading counts once, as out of place",
+  "the eval session may push its export to its own branch",
+  "the page keeps the method at its top and shows the runs below in an interactive part, readable without JavaScript",
+  "the build fails when a conclusion names a cell, row, metric or finding its run does not have",
+  "one table per guidance commit, so a harness update during a run does not split it"
+ ],
+ "trigger": "\"ich möchte, dass du Die Ergebnisse und die aus der Session … (der erste eval-lauf) in ein maschinenlesbares Format bringst und wir die Webseite der docs zu evals daraus generieren.\" … \"Baue die Korrektur der skill-Bewertung vorher ein, bereinige die Grundlage um die kaputten 429er sessions\"",
+ "kind": "eval",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i156",
+   "note": "corrects the double penalty of the skill score"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "3f298cd5c1916100d2073496869dfc545775b218"
+    ],
+    "reason": "Kept apart: the format and the score correction, which the eval session uses from this commit.",
+    "message": "feat(evals): one results file per eval run, cleaned of trials that are no results; skills loaded by their phase's end\n\n## Intent\n\nThe results of each eval run should be machine-readable and reproducible, without the trials that are no results. The skill score counted an early load twice.\n\n## Key changes\n\n- evals/results.ts writes evals/runs/<run>/results.json (schema results.v1) from the jobs of one run: its configurations (never mixed), a cell per task, model and configuration with n, mean, min and max, every trial with its status, and the jobs left out with their reason and replacement.\n- Left out: a job with excluded.txt, a trial that hit the usage limit, or one that broke off before its agent started. A trial whose verifier crashed stays, without the verifier's numbers (partial). No transcripts, paths or credentials.\n- The run of 18 October is the first such file; its cells equal the page's data.\n- A skill counts as loaded when it was loaded by the end of its phase; loading it early counts once, as out of place."
+   },
+   {
+    "commits": [
+     "073d065cd48c52c6749895c0b2f0d18c42b0b8ba"
+    ],
+    "reason": "Kept apart: the page generator is its own step.",
+    "message": "feat(site): the eval runs on Prompt engineering, built from each run's results and conclusions\n\n## Intent\n\nThe page mixed the method with one run's results written by hand. Readers should see every run, how it went and what was concluded.\n\n## Key changes\n\n- The page keeps the method at its top (how we work, how an eval works, limits, how to run it) and renders the runs below from each run's results.json and conclusions.yaml: the question, the bottom line, the findings with the cells they rest on, and what became of them.\n- Every run is on the page without JavaScript. With it, one run shows at a time, and its heatmap can show the difference to another run cell by cell.\n- The build fails when a conclusion names a cell, row, metric or finding its run does not have.\n- The first run's findings move into its conclusions.yaml. The old report script and data.json go; rows and metrics live in evals/rows.ts."
+   },
+   {
+    "commits": [
+     "08f81167b5fe236cab6c7773247bd3d39b67edc8"
+    ],
+    "reason": "Kept apart: the data and conclusions of the second run.",
+    "message": "feat(evals): the run of 2026-10-21 with its conclusions; one table per guidance commit\n\n## Intent\n\nPublish the second eval run, at the guidance by phase, with what it showed and what follows from it.\n\n## Key changes\n\n- The results at guidance b20b514, with the quiz re-run at 1e4ba59, exported by the eval session from the re-scored jobs: 30 trials, the two jobs that hit the usage limit left out, one trial without the verifier's numbers.\n- Its conclusions: Sonnet and Opus keep the process; Haiku falls behind; skills are mostly loaded by their phase but often early; lernapps-commit and lernapps-listing are missing in Commit; more apps are created before the plan. Each finding has open actions.\n- The page shows one table per guidance commit, so a harness update during a run does not split it."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,30 @@
+{
+ "id": "i149",
+ "conventionalCommit": "docs(site): in Code the person has nothing to do on the workshop page",
+ "intent": "In the Code phase the agent works largely on its own; the person need not interact. The page should say so plainly.",
+ "keyDecisions": [
+  "\"Nothing. Time for a coffee\" with a note that the agent may come back with a question, over \"at most three questions\""
+ ],
+ "trigger": "\"In code brauchen wir allerdings gar keine human interaction: da ist Kaffee-Trinken angesagt. Es kann sein, dass der Agent Rückfragen hat, aber er schafft das weitgehend alleine\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i146",
+   "note": "changes one phase text of the page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "46085dadbda1df1bd30c44366c9be1d0184589c4"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(site): in Code the person has nothing to do on the workshop page\n\n## Intent\n\nIn the Code phase the agent builds largely on its own, so the person has nothing to do. The page should say so plainly.\n\n## Key changes\n\n- \"You decide\" in Code reads: \"Nothing. Time for a coffee: the agent builds on its own and may come back with a question only you can answer.\""
+   }
+  ]
+ },
+ "moved": []
+}

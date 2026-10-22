@@ -1,0 +1,33 @@
+{
+ "id": "i146",
+ "conventionalCommit": "docs(site): what an element does for agent and person is in the architecture",
+ "intent": "What a building block does belongs in its description in the architecture, not in a page-specific file. With that, the mapping file can shrink to the phases, and interfaces can be placed on the page too.",
+ "keyDecisions": [
+  "x-agent and x-person on the elements, over texts in workshop.yaml",
+  "interfaces join where they are what the person meets: AGENTS.md and the plan file across all phases, the template READMEs in Explore, the runtime in Code",
+  "the boxes use the element's title and are ordered by kind and chapter 5; labels and per-phase texts go",
+  "one card per design and code skill, over a combined lernapps-<archetype>-design line"
+ ],
+ "trigger": "\"Eigentlich sollten wir damit Workshop.yaml signifikant reduzieren können. Das, was der Baustein leistet, gehört in die Bausteinbeschreibung. Dann können wir auch die anderen Elemente zuordnen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i145",
+   "note": "moves the remaining texts into the model"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "d6d15e26d873926880fb1a7b0dbb7749323ade16"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(site): what an element does for agent and person is in the architecture\n\n## Intent\n\nWhat a building block does belongs in its description in the architecture, not in a file of the page. Then the page's own file shrinks to the phases, and interfaces can be placed too.\n\n## Key changes\n\n- Each building block and interface the workshop page shows carries, next to x-phase and x-kind, what it does for the agent and the person (x-agent, x-person).\n- workshop.yaml keeps only the phases: their question, what the person decides and the checkpoint.\n- The boxes come from the model with the element's title, ordered by kind and by chapter 5. Labels and per-phase texts are gone.\n- Interfaces join where the person meets them: AGENTS.md and the plan file across all phases, the templates' READMEs in Explore, the runtime in Code.\n- The build fails on an unknown phase or kind, an element that says nothing for agent or person, or a skill without x-phase."
+   }
+  ]
+ },
+ "moved": []
+}

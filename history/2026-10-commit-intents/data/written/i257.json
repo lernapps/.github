@@ -1,0 +1,51 @@
+{
+ "id": "i257",
+ "conventionalCommit": "feat: serve the copies of listed apps at lernapps.net/apps/start/<id>/",
+ "intent": "The first rollout put the copies of listed apps into the root site at lernapps.net/<id>/. A repo of the organisation with the same name keeps that path even with its own Pages switched off, so the copy answered 404. Those repos also need their own Pages for the previews of their pull requests. The copies need an address that cannot collide with any repo.",
+ "keyDecisions": [
+  "a reserved sub-path lernapps.net/apps/start/<id>/, over renaming the organisation's app repos to app-<id>",
+  "the same path for every app, over an exception that skips the copy for apps of the organisation",
+  "previews stay in each app repo's own Pages, over moving them into the root site with credentials in every app repo",
+  "the copies live in the app overview's own gh-pages and are pushed with its own token, over the GitHub App writing into the root site",
+  "site-deploy takes a list of paths to keep, over reading copies.txt of the root site"
+ ],
+ "trigger": "\"ich würde lieber einen reservierten Sub-Pfad für das deployte artefakt nutzen, also bspw. lernapps.net/apps/start/<id>\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i256",
+   "note": "moves the copies of the first rollout from lernapps.net/<id>/ to lernapps.net/apps/start/<id>/"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "bcceae6de98a47ad607186cedc7682bdef98a586"
+    ],
+    "reason": "The one tooling commit of this change.",
+    "message": "feat: copies of listed apps at lernapps.net/apps/start/<id>/; site-deploy input keep\n\n## Intent\n\nThe copies of listed apps sat in the root site at lernapps.net/<id>/. A repo of the organisation keeps that path even with its own Pages switched off, so the copy answered 404, and those repos need their Pages for the previews of their pull requests. The copies need an address that no repo can take.\n\n## Key changes\n\n- site-deploy takes an input keep: the paths a deploy leaves alone besides pr-preview/. It no longer reads copies.txt of the root site.\n- The architecture decision on served copies names the new address lernapps.net/apps/start/<id>/ and records why the root-site address was turned down.\n- System context, deployment view, skills, README and the GitHub page use the new address.\n\n## Dependencies and side effects\n\n- lernapps/apps 5631bbd publishes the copies to the new address."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "5631bbd5cde9a598e621848c280e4afcfb21e045",
+     "d0bf51e805a6b630d2b9b30da2a71d2d43657b14"
+    ],
+    "reason": "The move of the copies and the tooling pin that lets the catalog's deploy keep start/ follow each other directly on the branch of apps#67.",
+    "message": "feat: copies of listed apps at lernapps.net/apps/start/<id>/\n\n## Intent\n\nA repo of the organisation keeps its path lernapps.net/<id>/ even with its Pages off, so the copies in the root site were not served. Those repos also need their own Pages for previews. The copies need a path of their own that no repo can collide with.\n\n## Key changes\n\n- The publish workflow pushes each copy into start/<id>/ of this repo's own gh-pages with its own token, and retries when gh-pages moved. It no longer needs a GitHub App.\n- Run by hand without an id, it rebuilds every copy.\n- The catalog reads start/copies.txt and links lernapps.net/apps/start/<id>/.\n- The reserved ids are now the catalog's own top-level paths (start, en, build and so on).\n- The plan records the decision (KD-13); the texts name the new address.\n- The tooling is pinned to the commit with site-deploy's input keep, and the catalog's deploy keeps start/, so it no longer deletes the copies. The same tooling brings the listing rule own-data-only, so the listing comment counts 9 rules.\n\n## Dependencies and side effects\n\n- lernapps/tooling bcceae6 lets site-deploy keep the start/ path.\n- The copies already written to the root site are removed by hand."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "d0bf51e805a6b630d2b9b30da2a71d2d43657b14",
+   "from": "i258",
+   "kind": "dropped",
+   "why": "The tooling pin with keep: start/ completes the move of the copies; the outage of the organisation's apps in i258 was fixed without a commit, so i258 has no commits left."
+  }
+ ]
+}

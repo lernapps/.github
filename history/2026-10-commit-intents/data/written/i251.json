@@ -1,0 +1,42 @@
+{
+ "id": "i251",
+ "conventionalCommit": "feat(entries): list the Kniffel-Trainer",
+ "intent": "Test the compact guidance in a first interactive spike: a separate session, served the unpublished guidance by the orchestrating session, builds a small app with the creator from the build prompt to the listing, so we can see which instructions it follows and which it ignores. List the resulting app, a Yahtzee trainer for chances, in the catalog.",
+ "keyDecisions": [
+  "a game in three modes: explain mode with coach and tree, game with joker, plain game with high scores",
+  "the probability tree teaches how the values come about",
+  "in German and English",
+  "in the creator's repo on his GitHub Pages",
+  "the creator named Oliver"
+ ],
+ "trigger": "In the parent session: \"Mein Vorschlag: Wir könnten das einmal radikal umformulieren und dann hier erst mal interaktiv eine einzelne kleine App bauen. dann observieren wir, ob das in der Session mit mir als Creator gut funktioniert hat oder welche Instruktionen ignoriert wurden\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i132",
+   "note": "the first spike of the compact guidance"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "3e62061dabbf644c695cf3838e9188125b11dd57",
+     "606fd679748e3e8699cf70bcdddeca588f6d3440"
+    ],
+    "reason": "The listing commit and the fix of its creator name follow each other directly on the listing branch; one entry, one commit.",
+    "message": "feat(entries): list the Kniffel-Trainer\n\n## Intent\n\nList the Kniffel-Trainer in the catalog, as the last step of the first interactive spike of the compact guidance, in which a separate session builds an app with the creator from the build prompt to the listing.\n\n## Key changes\n\n- A catalog entry for the Kniffel-Trainer (Yahtzee Trainer): Mathematik for grades 7 and 8, at https://mrsimpson.github.io/kniffel-trainer/, in German and English.\n- Learners play Yahtzee and work out chances as fractions and percentages.\n- Three topics: explain mode with coach and tree, game with joker, plain game with high scores.\n- Fitness: no account, no install, storage on the device, no third parties.\n- The creator is Oliver, linked to his GitHub profile."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "606fd679748e3e8699cf70bcdddeca588f6d3440",
+   "from": "i252",
+   "kind": "moved",
+   "why": "Corrects the creator name of the same entry; i252 has no commits left."
+  }
+ ]
+}

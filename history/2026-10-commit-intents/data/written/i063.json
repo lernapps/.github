@@ -1,0 +1,67 @@
+{
+ "id": "i063",
+ "conventionalCommit": "feat: listing validation on current tooling, a listing skill, and the creator's entry point (plan steps 9 and 13)",
+ "intent": "Move on with the plan now that the review follow-ups are merged, in the order that closes the circle with the quiz archetype. Bring the listing validation (step 9) up to date with the current tooling and give the creator's assistant the listing skill the plan template already names. Then give creators an entry point (step 13): a creator should get from lernapps.net to a generated app without reading a repo, and the repos should say where to start.",
+ "keyDecisions": [
+  "order: listing validation, creator entry point, a first full run in naturwunder-quiz, evals; explainer and interactive afterwards",
+  "the tooling stays a development dependency from git at a commit of main, never a global install",
+  "the listing skill only points to the listing guide and the entry schema, names no entry field and adds no rule",
+  "the entry point shows the plan template's command without a folder argument, so the app lands where the plan is",
+  "the entry point is tested end to end: every link resolves, and the command taken from the built page creates an app that passes the check",
+  "READMEs of tooling and app-templates only orient and link to where details live",
+  "the guidance folder stays off the pre-push path list"
+ ],
+ "trigger": "\"I merged it. Guidance is not really needed in the test paths. I think we can now move on with the next part of our plan.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i053", "note": "step 9, and the order agreed there for closing the circle"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["dee10c64db0c941b2073b79cbcc1580846a44d8f"],
+    "reason": "The step 9 update in apps; the entry point comes on another branch.",
+    "message": "chore(listing): check with the current tooling main; README only orients\n\n## Intent\n\nThe listing validation runs `lernapps check --entry` of the tooling, whose main has moved on. The README repeated how the validation works, which lives in the scripts and workflows.\n\n## Key changes\n\n- The tooling pin follows main; it stays a development dependency from git, run from node_modules, never installed globally. The commands, rule ids and report schema the validation relies on are unchanged.\n- The README points to the scripts and workflows; the listing workflow notes that the review agent does not run there.\n\n## Dependencies and side effects\n\n- The listing skill for the creator's assistant comes with e57bda0 in tooling."
+   },
+   {
+    "commits": ["dfa6b29fc1d6607ac4326139b613d620d459521e", "77c5740ea73138e173c044d0a6e6a1f5c2c81ef8"],
+    "reason": "The entry point and its fix for narrow screens follow each other directly on the branch of apps#10.",
+    "message": "feat(eintragen): the creator's entry point to building an app\n\n## Intent\n\nStep 13 of the plan (tooling#21): a creator should get from lernapps.net to a generated app without reading a repo. The listing page only listed apps that already exist.\n\n## Key changes\n\n- The page starts with building: a prompt to give the assistant, the command that creates the app, the skill lernapps-app as the quick path, and a link on to listing. llms.txt has the same section before the one on listing.\n- The prompt asks the assistant to read the tooling's llms.txt, follow the quick path, and create the app only after the plan is confirmed.\n- The command is the plan template's: `npx --yes github:lernapps/tooling#main create --archetype <archetype>`, without a folder. Command and links are one setting for the page and llms.txt.\n- End-to-end tests build the site, check that every link resolves, and run the command from the built page in an empty folder for every archetype; the app must pass `lernapps check`.\n- The command scrolls inside its own box, so it no longer widens the page at 360 px.\n\n## Dependencies and side effects\n\n- The tests now need the network and take about a minute longer.\n- The READMEs of tooling (9014fdc) and app-templates (e5bdf7b) and the organisation overview (3d4f3a4 in .github) point creators here."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["e57bda0b470a30c416dd091a08a2613b16760948", "d0c9a9258a0692930b2441ae27d9866c9df1db91"],
+    "reason": "The skill and the plan commit follow each other directly; the plan commit joins it by rule.",
+    "message": "feat(skills): lernapps-listing points the assistant to the listing and its results comment\n\n## Intent\n\nThe plan template's last task names a skill lernapps-listing that did not exist. The creator's assistant needs to know how to open the listing pull request and act on the validation's comment. The plan must also record the order that closes the circle with the quiz.\n\n## Key changes\n\n- The skill points to the listing guide of the app overview for the steps and the check command, and to the entry schema for every field; it names no field itself.\n- It says how to read the comment: one finding per rule with its fix, a fix in the app counts once published, repeat until it passes, then the owner decides. It adds no rule.\n- A test holds that every skill named by the plan template, AGENTS.md and the skills exists and is exported; llms.txt lists the new skill.\n- The plan records the order: listing validation, creator entry point, a first full run in lernapps/naturwunder-quiz, evals; explainer and interactive afterwards. It records #44 as completed.\n\n## Dependencies and side effects\n\n- The listing validation in apps moves to the current tooling (dee10c6)."
+   },
+   {
+    "commits": ["9014fdce033562cb2a7414310c10bcfaeca030c5"],
+    "reason": "The tooling side of step 13, on its own branch.",
+    "message": "docs(readme): where creators start, and what is in the repo\n\n## Intent\n\nStep 13 (#21): make the tooling findable. A reader should know where creators start and what the repo holds, without the README repeating details.\n\n## Key changes\n\n- The README sends creators to the entry point on lernapps.net and calls the skill lernapps-app the quick path.\n- It names the package, the CLI, the actions, the documentation site, the review and the Renovate preset, each with one line and a link to where its details live.\n\n## Dependencies and side effects\n\n- The entry point itself is in apps (dfa6b29, 77c5740)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": ["e5bdf7bfd225de34731329c2bec6fa1cd446ce3b"],
+    "reason": "The app-templates side of step 13; one commit.",
+    "message": "docs(readme): orientation only, details where they live\n\n## Intent\n\nStep 13 (tooling#21): the README repeated what the code already says and showed an outdated way to run the generator. Creators never need this repo; it should send them to where they start.\n\n## Key changes\n\n- The README says who the repo is for, sends creators to the entry point on lernapps.net and the tooling's llms.txt, lists the archetype folders, and links to where details live: package.json for the exports, `create --help` for the generator, the CI workflow for the development steps.\n\n## Dependencies and side effects\n\n- The entry point itself is in apps (dfa6b29, 77c5740)."
+   }
+  ],
+  ".github": [
+   {
+    "commits": ["3d4f3a4bcc81fa4a6d7e2b895deceb11096ddf1c"],
+    "reason": "The organisation overview's part of step 13; one commit.",
+    "message": "docs(organization): tooling and app-templates in \"Where to find what\"\n\n## Intent\n\nStep 13 of the plan (tooling#21): a reader of the organisation overview should find the guidance for building apps.\n\n## Key changes\n\n- tooling is named with the guidance for building apps (skills, plan template, the CLI that creates and checks an app, the review) besides the actions and the Renovate preset.\n- app-template is renamed app-templates: one template per archetype plus the runtime.\n- The apps row and \"How to reach us\" say that the entry point now covers building an app.\n- \"What's being worked on\" names the agreed scope: archetypes, generator, check and listing validation.\n\n## Dependencies and side effects\n\n- The entry point itself is in apps (dfa6b29, 77c5740)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "dfa6b29fc1d6607ac4326139b613d620d459521e", "from": "i064", "kind": "dropped", "why": "Step 13 of the plan, started as the next part of the plan; i064 only answered on site rules, a test listing and hooks in the catalog, and has no commits left."},
+  {"commit": "e5bdf7bfd225de34731329c2bec6fa1cd446ce3b", "from": "i064", "kind": "dropped", "why": "Step 13 of the plan; i064 has no commits left."},
+  {"commit": "9014fdce033562cb2a7414310c10bcfaeca030c5", "from": "i064", "kind": "dropped", "why": "Step 13 of the plan; i064 has no commits left."},
+  {"commit": "3d4f3a4bcc81fa4a6d7e2b895deceb11096ddf1c", "from": "i064", "kind": "dropped", "why": "Step 13 of the plan; i064 has no commits left."},
+  {"commit": "77c5740ea73138e173c044d0a6e6a1f5c2c81ef8", "from": "i064", "kind": "dropped", "why": "A fix of the step 13 entry point; i064 has no commits left."}
+ ]
+}

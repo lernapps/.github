@@ -1,0 +1,56 @@
+{
+ "id": "i114",
+ "conventionalCommit": "feat(skills): lernapps-interactive, the principles of an interactive app",
+ "intent": "Provide the skill with the development principles of an interactive app, including low stimulation, before the archetype exists in the tooling. The skills are the interface the creator's agent uses, so the architecture should name them as one building block: the parent folder of every skill. Concrete recipes for kinds of apps are too specific for the skill. The tooling's arc42 cannot express paths into installed dependencies, which should be reported upstream.",
+ "keyDecisions": [
+  "general principles only, over recipes for real-time games, round-based games and text work with three examples",
+  "low stimulation as advice with reasons, not a rule",
+  "an honest list of what is not built yet, so no agent relies on it",
+  "the skills folder as one building block with the interface if-skills, over one block per skill",
+  "readable without JavaScript gets high priority in the quiz and the explainer",
+  "report the path limit of arc42 upstream (docToolchain/arc42-language#128)"
+ ],
+ "trigger": "\"Das ist für den mehr der Pfade kannst du aufmachen\" … \"Den soll für Prinzipien der Entwicklung kannst (inkl. Reizarmut) kannst du schon mal bereit stellen und skills als übergeordneten Ordner für das building skills interface aufnehmen\" … \"Passt\" … \"Rezepte für Echtzeitspiel, Rundenspiel und Textarbeit, mit deinen drei Beispielen. Das ist zu konkret. Das kann weg\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i106",
+   "note": "low stimulation as advice in the skill, as decided"
+  },
+  {
+   "type": "continues",
+   "intent": "i112",
+   "note": "the skills block in the strict architecture"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "7a900534ea885b17d4a650718129923bebefbf24"
+    ],
+    "reason": "The skill of tooling#90; the next commit on its branch answers a later message (i115).",
+    "message": "feat(skills): lernapps-interactive, the principles of an interactive app\n\n## Intent\n\nProvide the development principles of an interactive app, including low stimulation, before the archetype exists in the tooling. The skill stays general: concrete recipes for kinds of apps are too specific.\n\n## Key changes\n\n- A new skill lernapps-interactive: when to choose an interactive app over an explainer or a quiz.\n- The principles of its code: a pure deterministic core under a runtime that owns state and clock, typed inputs, components that only show the state, data apart, playthroughs as proof, small storage, no request before a click, accessibility by default with declared limits, and the app's arc42 part kept current.\n- Low stimulation as advice with reasons: no flashing, calm motion, sound off by default.\n- A list of what is not built yet.\n- Three rule ids for what the runtime's build already checks and names in its messages: interactive-app-valid, interactive-core-contract, interactive-playthroughs-pass.\n- llms.txt lists the skill.\n\n## Dependencies and side effects\n\n- The generic architecture of app-templates names the skills as a building block (9bcda8e, same intent)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "9bcda8e65fb3ef746dd3cec728ee5d36c8c76397"
+    ],
+    "reason": "The last commit of app-templates#34; it follows 29c9b65 of another intent.",
+    "message": "docs(arc42): the skills as a building block, low stimulation as their advice\n\n## Intent\n\nThe skills are the interface the creator's agent uses. The architecture should name them as one building block, the parent folder of every skill, and say which concept they carry. Readable without JavaScript matters most in the text-heavy quiz and explainer.\n\n## Key changes\n\n- The skills are the block bb-skills, provider of if-skills: committed in each app under .agents/skills, installed and replaced by lernapps update, sourced from the tooling's skills folder.\n- The concept of low stimulation is back, implemented by the skills. The risk of a missing interactive skill points to tooling#90 and ends with its merge. No recipes in the skill.\n- Readable without JavaScript is a high-priority goal of the quiz and the explainer.\n- The validation script moves an extension's marked ignore directives to the top of the combined chapter.\n\n## Dependencies and side effects\n\n- The skill itself comes with tooling#90 (7a90053, same intent)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "9bcda8e65fb3ef746dd3cec728ee5d36c8c76397",
+   "from": "i115",
+   "kind": "moved",
+   "why": "Adds the skills building block and the high priority of no-JS readability asked for in i114 (\"skills als übergeordneten Ordner … aufnehmen\", \"Passt\")."
+  }
+ ]
+}

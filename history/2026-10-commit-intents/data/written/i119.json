@@ -1,0 +1,49 @@
+{
+ "id": "i119",
+ "conventionalCommit": "feat(rules): rules of the plan workflow and the tooling apply only to apps built with the tooling",
+ "intent": "The catalog takes apps however they are built, but ten rules presuppose the lernapps plan or tooling and applied at listing to every app. A freely built app would fail for a missing plan file. Hold such an app to the platform rules alone, and judge the plan and tooling rules only for apps built with the tooling.",
+ "keyDecisions": [
+  "a new scope tooling for the ten rules, over keeping them in scope listing",
+  "the marker is @lernapps/tooling in the app's package.json, which every generated app already has, over a new marker",
+  "the review agent gets only the rules in scope for the app",
+  "ids, texts and severities stay as they were"
+ ],
+ "trigger": "\"Ja. sonnet 5.5\" (yes to an own scope for the ten rules that presuppose the plan or the tooling)",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i118",
+   "note": "separates the platform rules from the rules of the workflow and tooling"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "c6e40d222e407031d65aa51a342f3d905f4ba5f7"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "feat(rules): give the rules of the plan workflow and the tooling the scope tooling\n\n## Intent\n\nThe catalog takes apps however they are built. Ten rules presuppose the plan workflow or the tooling's checks, yet had scope listing and applied to every app, so a freely built app would fail for a missing plan file. Hold such an app to the listing rules alone.\n\n## Key changes\n\n- plan-file, explore-before-code, stop-at-checkpoints, few-turns-after-plan, retrospective-filled, app-content-guide, app-content-matches, checks-pass, fix-from-message and suppression-reason move from scope listing to the new scope tooling.\n- They apply to an app built with the tooling, at listing too. The marker is the one every generated app already has: @lernapps/tooling in the package.json's dependencies or devDependencies.\n- `npm run rules -- --app <dir>` lists the rules in scope for one app. The review judges those alone; the rubric judges plan-file for an app built with the tooling that has no plan.\n- Ids, texts and severities stay as they were.\n\n## Dependencies and side effects\n\n- lernapps/apps c48de7a (same intent) gives the review agent only the rules in scope."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "c48de7a51365d61d2089c504a2447a3391a26a09"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "feat(review): give the review agent only the rules in scope for the app\n\n## Intent\n\nA freely built app should not be judged by plan-file, retrospective-filled or the other rules of the plan workflow.\n\n## Key changes\n\n- The review's rules.yaml comes from `npm run --silent rules -- --app <app>` of lernapps/tooling: the listing rules, the rules of scope tooling only when the app's package.json lists @lernapps/tooling, and the rules of its plan's archetype.\n\n## Dependencies and side effects\n\n- Needs lernapps/tooling c6e40d2 (same intent) on main."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "c48de7a51365d61d2089c504a2447a3391a26a09",
+   "from": "i120",
+   "kind": "moved",
+   "why": "The apps half of the scope tooling: the review agent judges only the rules in scope. It landed after the next message, which started the pilot run."
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "id": "i033",
+ "conventionalCommit": "feat(renovate): own building blocks update at any time, not only on Saturdays",
+ "intent": "A change to the site frame or the site actions on main should reach every site at once, not wait for the Saturday window of the owner's defaults.",
+ "keyDecisions": [
+  "schedule \"at any time\" only for our own building blocks; everything else keeps the Saturday window",
+  "a new branch from main, since tooling#3 was already merged"
+ ],
+ "trigger": "\"Ja, die eigenen gut basierten Referenzen sollen sofort aktualisiert werden, wenn sie in Main neue Updates bekommen\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i031",
+   "note": "the org preset's rule for own building blocks"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "3f2104c1a384e77f61c4bbba19202c123685dfeb"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat(renovate): own building blocks update at any time, not only on Saturdays\n\n## Intent\n\nA change to the site frame or the site actions on main should reach every site at once, not wait for the Saturday window of the owner's defaults.\n\n## Key changes\n\n- The rule for @lernapps/site and the site actions in the org preset gets schedule \"at any time\"; the README says so.\n\n## Dependencies and side effects\n\n- Renovate must run in interactive mode, not silent, for the updates to arrive as pull requests."
+   }
+  ]
+ },
+ "moved": []
+}

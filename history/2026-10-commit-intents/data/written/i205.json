@@ -1,0 +1,41 @@
+{
+ "id": "i205",
+ "conventionalCommit": "docs(pdt42): transactions and generic channels (D5)",
+ "intent": "Map the transactions of the three core relationships and the channels the platform needs. Channels already belong to the solution space, so they say what they make easier, not how they are built.",
+ "keyDecisions": [
+  "13 transactions derived from the motivations (D3), marked where they happen today",
+  "five channels described by purpose and lower transaction cost, with concrete means (issue template, workflow, local storage, QR code) removed entirely, over keeping them as examples",
+  "no platform channel on purpose for learning with an app, working with it, and students thanking adults in class (H108 ignored)",
+  "nothing that identifies students as a requirement of the thanks channel, not as a solution"
+ ],
+ "trigger": "\"Weiter mit D5\" … \"Die Channels sind schon ein Lösungsraum, richtig?\" … \"nimm die konkreten Mittel ganz raus, belasse es auf der generischen Ebene\" … \"Ja, passt so, weiter mit D6\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i201",
+   "note": "transactions of the core relationships"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "762fe9bf820f19d15800b2ce85e44c8878a1c358",
+     "2f39a367a772050ad3e5eee91c96ab695b8532b9"
+    ],
+    "reason": "The D5 chapter and its completion after review, one after the other on feat/platform-design.",
+    "message": "docs(pdt42): transactions and generic channels (D5)\n\n## Intent\n\nMap the transactions of the three core relationships and the channels the platform needs. Channels already belong to the solution space, so they say what they make easier, not how they are built.\n\n## Key changes\n\n- A new D5 chapter holds 13 transactions from the motivations (D3), each with a unit of value and marked where it happens today, drawn as three Transactions Boards.\n- Five channels say what they make easier: effortless listing, one place to find apps, visible fitness for use, passing apps on to a class, and returning use and praise to creators. The means are decided in the MVP (D8).\n- Learning with an app and working with it happen inside the app, and students thank adults in class: these have no platform channel on purpose, and their hints are ignored.\n- The development plan marks D5 done and adds KD-15."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "2f39a367a772050ad3e5eee91c96ab695b8532b9",
+   "from": "i206",
+   "kind": "moved",
+   "why": "Closes D5 (reason for the transactions without a channel, ignore, draft note removed) before D6 starts."
+  }
+ ]
+}

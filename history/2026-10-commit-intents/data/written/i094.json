@@ -1,0 +1,31 @@
+{
+ "id": "i094",
+ "conventionalCommit": "fix(explainer): a labelled figure of an SVG with only a viewBox has a size",
+ "intent": "Find out whether the template or the session was at fault when labelled figures of the session's own SVG diagrams failed the template's test without JavaScript, and fix it where it belongs.",
+ "keyDecisions": [
+  "reproduce first, then fix in the template if it is a template bug, or else fail the build early or add a skill hint",
+  "the build marks an SVG without width and height, and its wrapper fills the width as a plain figure does"
+ ],
+ "trigger": "\"Gucke dir den Fortgang der Session an. Gibt es da neue Erkenntnisse?\" … \"Lass mal prüfen\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i076",
+   "note": "labelled-figure came with step 2 of the runtime"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "0f9a0091935668157640f9ba89a787ade2e6c449"
+    ],
+    "reason": "The only commit of app-templates#21.",
+    "message": "fix(explainer): a labelled figure of an SVG with only a viewBox has a size\n\n## Intent\n\nIn the second explainer run, the session's own SVG circuit diagrams in labelled figures failed the template's test without JavaScript on every page, and the session worked around it with numbers drawn into the image. Check whether the template or the session is at fault; it was the template.\n\n## Key changes\n\n- The image of a labelled figure sits in an inline-block wrapper as wide as its content, so the markers' percentages match. An SVG without width and height has no width of its own, and Chromium drew it at zero width, invisible.\n- The build now marks such an SVG, and its wrapper fills the width as a plain figure's image does.\n- The fixture with every block has such an SVG in a labelled figure."
+   }
+  ]
+ },
+ "moved": []
+}

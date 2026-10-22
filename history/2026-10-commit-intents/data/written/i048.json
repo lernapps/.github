@@ -1,0 +1,28 @@
+{
+ "id": "i048",
+ "conventionalCommit": "refactor(rules): unique ids per artifact kind, a rule list by id, an agent review instead of cross-checks",
+ "intent": "One rule may stand in a skill to prevent a problem and in a lint rule or check to catch it, under the same id. The id test from step 2 forbade that and cross-checked skills, checks, lint rules and rubric, which needs extra metadata in every artifact. Ids only need to be unique within one deployment unit; whether the artifacts of one id agree is a question for an agent's review, not for a program. The rendered rule page must also be all English.",
+ "keyDecisions": [
+  "ids unique per artifact kind (skills, checks, lint rules, rubric), over one central register that cross-checks them",
+  "drop `enforcement` from the rule block; where a rule acts follows from which artifacts carry its id",
+  "an agent reads all rules grouped by id and only reports drift, gaps and overlaps, instead of a test that blocks",
+  "the CLI decides nothing from rule metadata",
+  "navigation and footer stay German, since they come from the shared site frame of lernapps.net"
+ ],
+ "trigger": "\"The id uniqueness and some tooling to list the rules is fine, but I think we don't need additional decision logic about how to run it.\" … \"the same rule may be intentionally included preventive in a skill and validated via linter or cli\" … \"It needs to be unique only in the same deployment unit (e. G. Skills, cli) … have an agent review it.\" … \"Make the small adjustments\" … \"The rendered view has partial German texts (“steht in”). Make sure it's all English.\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i047", "note": "reworks the rule ids and id test of step 2 (#28)"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["51e4c5fc1e68d08e539fb0f6de606d9ed3a2bd66"],
+    "reason": "The squash merge of #30 is one commit on main: the rules rework, the English rule page and the prose fix the architecture review asked for. The commit after it serves another request.",
+    "message": "refactor(rules): unique ids per artifact kind, a rule list by id, an agent review instead of cross-checks\n\n## Intent\n\nLet one rule stand in a skill to prevent a problem and in a lint rule or check to catch it, under the same id. The id test forbade this and cross-checked the artifacts, which needs metadata in every artifact. Ids only need to be unique within one deployment unit; whether the artifacts of one id agree is left to an agent's review. The rendered rule page must be all English.\n\n## Key changes\n\n- Ids are unique within each kind of artifact: skills, checks, lint rules and rubric. The checks that every check is declared in a skill, that a declared rule is implemented, and that a rule has only one enforcement are gone. Every message of a check or lint rule still links to its rule.\n- The rule block keeps only `id`, `scope` and `severity`; `enforcement` is gone.\n- `npm run rules` prints every rule grouped by id as YAML, with what each artifact says about it. The rule page shows the same grouping instead of an enforcement column.\n- A new skill, rules-review, has an agent read that list and report wording that drifted, missing skills or checks, rules that could move to a linter, and duplicate ids. It changes nothing.\n- The start page and the rule page of the tooling site are English, labels included.\n- The architecture (rule catalog, the decision on rules in artifacts, glossary, the drift risk, runtime view) and the plan (KD-22) say the same."
+   }
+  ]
+ },
+ "moved": []
+}

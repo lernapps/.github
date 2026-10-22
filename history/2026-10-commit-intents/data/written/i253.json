@@ -1,0 +1,30 @@
+{
+ "id": "i253",
+ "conventionalCommit": "docs: lernapps.net serves a copy of every listed app (KD-21)",
+ "intent": "\"The app stays with its creator, at their own address\" does not work together with data protection (apps#58): a teacher or parent who hosts the app becomes the provider schools must answer to. lernapps.net should serve a copy of every listed app under one privacy notice, already in the first version, while the creator stays the author. The platform model must show what this changes and why it helps creators.",
+ "keyDecisions": [
+  "separate authorship (creator: licence, repo, address) from delivery (lernapps.net: copy, privacy notice, checks)",
+  "a licence that allows the copy is a condition for listing",
+  "the copies come in the first draft, before the first referral wave, over later",
+  "record it as KD-21 and a new riskiest assumption a-creators-accept-copy",
+  "the creators' value proposition: list in minutes without answering to schools for data protection yourself",
+  "a fitness signal: the app accesses only its own data",
+  "E5 stays unchanged, since it describes the world without lernapps.net"
+ ],
+ "trigger": "\"Wir haben festgestellt, dass die Idee mit „der Autor bleibt Owner und hustet die App da, wo er sie Husten will zusammen mit Datenaxhutz nicht funktioniert.\" … \"Wir würden das jetzt in einer ersten Version auch. Auen will, nicht erst later. Ein Check accessed only own data wäre sinnvoll\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "5c447b4dacd5542d5db6545f5f423c8b135377c5"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs: lernapps.net serves a copy of every listed app (KD-21)\n\n## Intent\n\n\"The app stays its creator's, at their own address\" does not hold together with data protection (lernapps/apps#58): whoever hosts the app is the provider schools must answer to. lernapps.net serves a copy of every listed app instead, already in the first draft. The creator stays the author and keeps licence, repository and address.\n\n## Key changes\n\n- pdt42: the infrastructure (D1), the frontend-only asset and the data protection moat (E3), \"List an app\" and its channels (D5), with \"accesses only its own data\" in the fitness signal, all three experiences (D7), and the first draft (D8) with the new riskiest assumption a-creators-accept-copy.\n- The creators' value proposition: list in minutes without answering to schools for data protection yourself.\n- biz42: hosting moves into scope, the risks name lernapps.net as provider, and a new capability cap-hosting is required by obj-first-apps.\n- vision.md: \"The creator stays the author\".\n- The plan records KD-21.\n\n## Dependencies and side effects\n\n- The check own-data-only follows in tooling (8356d57); the copies themselves in apps (880b129) and tooling (7dbcb8a)."
+   }
+  ]
+ },
+ "moved": []
+}

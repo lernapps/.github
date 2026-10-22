@@ -1,0 +1,35 @@
+{
+ "id": "i234",
+ "conventionalCommit": "feat(home): a solution-first story; new pages for features and about",
+ "intent": "The home page speaks to neither parents nor teachers. It opens with a problem that is the platform's, not theirs, and reaches the solution only in its third section. It should start with the promise and tell one short story, with the passion of parents and teachers who build apps as its thread. Features and the founder's view belong on pages of their own, so the home page stays short.",
+ "keyDecisions": [
+  "\"Lern-Apps ohne Haken.\" as the promise, over \"Digitale Bildung. Ohne Hürden.\", which says neither what nor which hurdles",
+  "apps are neither a school book nor wild growth: a solid foundation (the archetypes) for makers' own ideas",
+  "the platform brings the frame, method and tools; makers bring the content with passion; AI is not the only focus",
+  "\"Ein solides Fundament für Macher\" over \"Leidenschaft trifft auf festen Rahmen\", which sounds like a conflict",
+  "answer \"Why another platform?\" with \"diese gehört keiner Firma\", over \"gehört niemandem allein\", which is not yet true",
+  "the teacher card speaks of a covering lesson, over \"the lesson starts soon\", which implies teachers do not plan",
+  "the parents' card teases the AI tutor of the explainer apps, the only archetype that has one",
+  "no \"Gebaut von\" on the app cards and the founder named once, so it does not read as a one-man show; the early stage said in small print",
+  "\"Kein Abo, keine Werbung. Auch später nicht.\" with a link to why it works, over \"Wenn die Plattform trägt …\", which read as a business model to come",
+  "the founder's long text on the ecosystem problem moves to /about/; the home page keeps two short paragraphs",
+  "technical transparency is a feature for developers, a part of the features page, over a page of its own",
+  "test each draft with simulated personas (teacher, parent, developer)"
+ ],
+ "trigger": "\"Ich bekanntes Feedback, dass die Startseite weder Eltern noch Lehrer anspricht. Sie adressiert … zwar ein Problem, … Ist aber nicht lösungsorientiert. Das möchte ich gerne ändern und damit auch die story beziehungsweise die Elemente und den Aufbau der Landing Page\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i244", "note": "the role prompts and the problem quotes leave the home page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["ec471f2c5723259c913b4360db066dd9db5d5acc"],
+    "reason": "The first commit of the branch, the result of this conversation; the licence line after it answers the next message.",
+    "message": "feat(home): a solution-first story; new pages for features and about\n\n## Intent\n\nThe home page spoke to neither parents nor teachers. It opened with a problem that is the platform's, not theirs, and reached the solution only in its third section. It should start with the promise and tell one short story, with the passion of parents and teachers who build apps as its thread. Features and the founder's view belong on pages of their own.\n\n## Key changes\n\n- Home page: \"Lern-Apps ohne Haken.\" with four badges; four apps from the catalogue; what teachers (a covering lesson) and parents (practise tonight, with the AI tutor of the explainer apps) get; \"Ein solides Fundament für Macher\"; \"Noch eine Plattform?\" answered with \"diese gehört keiner Firma\"; how to join; a short word from the founder.\n- The persona tabs, the problem quotes and the box \"Frag deinen KI-Assistenten\" leave the home page, and with them its script and stylesheet.\n- /features/: the principles, what the apps can do (the three foundations, curriculum, feedback, deep links, AI tutor, accessibility), and technical transparency for developers: why it works without money, how an app gets into the catalogue, stack, ownership and licence.\n- /about/: the founder's long text (digital education has an ecosystem problem, not a device problem) and the answer for sceptics, moved from the home page.\n- All three pages in English too; README and llms.txt name the new pages.\n\n## Dependencies and side effects\n\n- The home page has no script any more.\n- The app cards no longer say who built them, so the home page names the founder once."
+   }
+  ]
+ },
+ "moved": []
+}

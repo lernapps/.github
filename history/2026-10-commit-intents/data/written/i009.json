@@ -1,0 +1,30 @@
+{
+ "id": "i009",
+ "conventionalCommit": "feat: prepare a usage counter for the platform sites, never for the apps",
+ "intent": "Find out whether the apps are used at all. The platform's own pages (home, catalog, docs, tooling) should count their visits with GoatCounter, while the apps stay entirely free of tracking. Prepare everything now, so the counter only needs its account code to go live.",
+ "keyDecisions": [
+  "a small own counter script served from lernapps.net, over GoatCounter's count.js from its server",
+  "keep the counter out of the shared site frame, because apps use the frame too; each platform site adds it in its own layout",
+  "lernapps-check fails any site outside the platform sites that carries the counter",
+  "send only the page's path and marked link clicks: no query, title, referrer or screen size, no cookies or localStorage",
+  "count nothing with Global Privacy Control or Do Not Track, or in a preview",
+  "off until the endpoint is filled in; the privacy notice shows its section only then"
+ ],
+ "trigger": "\"Ich möchte goatcounter.com einbauen. Spricht da irgendetwas dagegen?\" … \"Das betrifft auch nur die Plattform Seiten, nicht die einzelnen Apps!\" … \"unbedingt den generellen Fame ausklammern, so dass die Apps ausgenommen bleiben\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "6a6204438d77b3dd205dd7c46bee57ee915afeb8",
+     "d6f84ac675c5fcbfead938ad2b9a8ae31d073b1f"
+    ],
+    "reason": "The second commit moves the counter of the first out of the site frame, as asked before the first was made; they follow each other directly on feat/usage-counter.",
+    "message": "feat: prepare a usage counter for the platform sites, never for the apps\n\n## Intent\n\nFind out whether the apps are used at all. The platform's own pages count their visits; the apps stay entirely free of tracking. Everything is prepared, so the counter only needs its GoatCounter code to go live.\n\n## Key changes\n\n- The home site serves a small own counter script as /lernapps-count.js. It sends the path of the page, and clicks on links marked data-la-count as events, to GoatCounter. It sends no query, title, referrer or screen size, and uses no cookies or localStorage.\n- It counts nothing with Global Privacy Control or Do Not Track, in a pull request preview, or while the endpoint is empty. The endpoint is set in one place.\n- The counter is not part of the shared site frame, because apps use the frame too. The home site adds it to all its own pages; /apps/, /docs/ and /tooling/ add the same tag in their own layouts.\n- lernapps-check fails any site outside the four platform sites that carries the counter.\n- The privacy notice has a section on the counter in German and English. It appears once the counter is on. \"Nichts wird gesammelt\" now reads \"Die Apps sammeln nichts\".\n\n## Dependencies and side effects\n\n- The catalog, tooling and docs add the counter in their own repos (apps ee5555a, tooling e2a59eb, docs 8ccaaa4)."
+   }
+  ]
+ },
+ "moved": []
+}

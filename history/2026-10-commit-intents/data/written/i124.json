@@ -1,0 +1,34 @@
+{
+ "id": "i124",
+ "conventionalCommit": "fix(rules): tooling rules never block a listing",
+ "intent": "The catalog takes apps built in completely different ways, so only the platform rules should block a listing. In the first creator run the review failed the app with an error for one unticked plan box, although the work of the phase was done. Rules of the workflow and the tooling should be advice at listing, while the app's own repo still enforces them.",
+ "keyDecisions": [
+  "only listing rules block a listing; tooling rules are warnings there, also for apps built with the tooling",
+  "hooks and checks in the app's repo enforce as before",
+  "an unticked plan box is no finding of retrospective-filled; a really skipped phase stays a finding, as a warning",
+  "drop the restriction that a listing or tooling rule is never a warning",
+  "restart the stopped work fresh on the current main"
+ ],
+ "trigger": "\"Dass der Plan nicht eingehalten wurde liegt wohl an einem fehlenden Kästchen. Sollte behandelt werden, aber ein verhindernder Error ist es auch wieder nicht\" … \"Die bisherige Regel zu Scope und Regeln ist blödsin. Wir würden ja auch komplett anders gebaute Apps akzeptieren.\" … \"1 und 2\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i119",
+   "note": "the rules of scope tooling no longer block at listing"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "126e186f071883ab06a71e2fca29b4f127ffb7b2"
+    ],
+    "reason": "One commit for one request.",
+    "message": "fix(rules): tooling rules never block a listing\n\n## Intent\n\nThe catalog takes apps built in completely different ways, so only the listing rules may block a listing. One unticked plan box should not stop an entry whose phases were done.\n\n## Key changes\n\n- A rule of scope tooling (plan-file, retrospective-filled, checks-pass, …) is advice at listing: the rule list gives `atListing: warning` for each one declared an error.\n- The review reports its findings as warnings, and the verdict check refuses a tooling finding of severity error, so the outcome never fails on tooling findings alone.\n- An unticked plan box is no finding of retrospective-filled; a really skipped phase stays a finding of explore-before-code or stop-at-checkpoints, as a warning.\n- The declared severity still holds in the app's repo: skills, hooks and checks enforce as before. The listing validation checks the bundle or URL without the repo and runs no tooling check.\n- The restriction that a listing or tooling rule is never a warning is gone from the rule tooling, chapter 8 and the rule page."
+   }
+  ]
+ },
+ "moved": []
+}

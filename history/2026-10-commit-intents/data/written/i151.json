@@ -1,0 +1,32 @@
+{
+ "id": "i151",
+ "conventionalCommit": "feat(site): the docs start page shows the concepts behind lernapps.net",
+ "intent": "The docs start page should invite readers into the concepts behind lernapps.net in the same look as the tooling's start page: the vision, the platform in the sense of platform engineering, the non-profit organisation, and how agents can explore it.",
+ "keyDecisions": [
+  "the vision as the one big card, then three cards for platform (pdt42), organisation (biz42) and agents (llms.txt)",
+  "the parts of lernapps.net as tiles instead of a table, with Tooling linked",
+  "one stylesheet for both languages"
+ ],
+ "trigger": "\"Das sieht super aus. Geht das auch dir die docs Seite in der Art? Vision, Plattform im Sinne von Platform Engineering (pdt42), Unternehmung non Profit (biz42), explorable for agents (llms.txt)\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i150",
+   "note": "the same look for the docs start page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "3892abbb6c5a549f67a7bcfb447bcaacc40c4695"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat(site): the docs start page shows the concepts behind lernapps.net\n\n## Intent\n\nThe docs start page should invite readers into the concepts behind lernapps.net, in the same look as the tooling's start page.\n\n## Key changes\n\n- /docs/ and /docs/en/ become \"Die Konzepte hinter lernapps.net\": a dark hero and the vision as the one big card with its three promises.\n- Three cards: the platform (pdt42, in the sense of platform engineering), the non-profit organisation (biz42), and the way in for agents (llms.txt and the CLIs).\n- The parts of lernapps.net are tiles, with Tooling linked.\n- One stylesheet serves both languages.\n- The site frame moves to the current main of lernapps.github.io, whose header has Tooling."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,32 @@
+{
+ "id": "i030",
+ "conventionalCommit": "docs: app overview instead of map, Oliver as sole owner",
+ "intent": "lernapps/.github still names the map and two owners, because the earlier session could not reach this repo. It should match the docs: the app overview replaces the map, and Oliver Jägle is the sole owner.",
+ "keyDecisions": [
+  "take the content from the docs branch and the apps repo, over reapplying the old patch",
+  "also fix CONTRIBUTING.md, the issue chooser and the org profile, so no link points to the map once it is archived",
+  "work on a branch and merge together with apps#1 and docs#12"
+ ],
+ "trigger": "\"In einen der Session https://claude.ai/code/session_01EyV1HdhPctE65bCEgVHtuE wolltest Du ein paar Änderungen an diesem Repo machen und das klappte nicht. Kannst Du sie in dieser session patchen?\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i220",
+   "note": "the governance change that could not be made from the other session"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  ".github": [
+   {
+    "commits": [
+     "01f2aefcf7d1b2627a6dc9145144a68754eb3ec6"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs: app overview instead of map, Oliver as sole owner\n\n## Intent\n\nlernapps/.github still names the map and two owners, because the earlier session could not reach this repo. It should match the docs: the app overview replaces the map, and Oliver Jägle is the sole owner.\n\n## Key changes\n\n- ORGANIZATION.md: apps (lernapps.net/apps/) replaces map in the repo table, in how to reach us, in the rules across repos and in the license table; map is being retired; docs holds biz42 and pdt42.\n- GOVERNANCE.md: one owner, accountable for the platform; Ralf is the author of the Mathe-Karte and does not take part in the platform, as in biz42 chapter 8.\n- CONTRIBUTING.md, the issue chooser and the org profile send people who list an app to lernapps.net/apps/eintragen/ instead of issues in map."
+   }
+  ]
+ },
+ "moved": []
+}

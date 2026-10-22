@@ -1,0 +1,34 @@
+{
+ "id": "i112",
+ "conventionalCommit": "docs(arc42): strict architecture for every archetype, gated in pre-commit and CI",
+ "intent": "Take the validator's findings seriously: every combination of the generic architecture and an extension must pass without errors, warnings or hints, and a commit must fail when it does not. Input to an app is more than keys and mouse. Paths should be maintained statically and relative; template blocks belong to the app and have no path here.",
+ "keyDecisions": [
+  "a typed, extensible input for step(state, input), over keys as input",
+  "strict: 0 errors, 0 warnings, 0 hints, fixing the model over silencing findings",
+  "static relative paths from the repo root, over paths with placeholders",
+  "template blocks without a path, each with an ignore and its reason",
+  "arc42 validate --strict in the pre-commit hook and a CI job, with @doctc/arc42 pinned"
+ ],
+ "trigger": "\"Es wird auch interaktiver als mit Maus geben. Die Pfade sollten wir dich aber pflegen können (Platzhalter). Bin dir hinter Ernst! Pre commit —strict!\" … \"Wieso brauchen wir Pfade mit Platzhaltern? Die Ketten Ordner haben statisch Platz, mit relativen Pfaden.\" … \"Wir können die Template Pfade weg lassen und mit ignore begründen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i111",
+   "note": "makes the generic architecture and its extensions strict"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "77e9789f46426c3eb0870024426163882e9a3856"
+    ],
+    "reason": "The only commit of this request.",
+    "message": "docs(arc42): strict architecture for every archetype, gated in pre-commit and CI\n\n## Intent\n\nEvery combination of the generic architecture and an extension must pass the validator without errors, warnings or hints, and a commit must fail when it does not. Input to an app is more than keys and mouse. Paths should be static and relative; template blocks belong to the app.\n\n## Key changes\n\n- The core's step(state, input) takes a typed, extensible input, which replaces keys as input. That the runtime still passes only keys is recorded as a risk.\n- The model is restructured for 0 errors, 0 warnings and 0 hints per combination: generic roots for runtime and tooling, and each extension defines its own archetype runtime with its parts and the creator's parts.\n- Runtime blocks carry static paths from the repo root. Template blocks and the untracked tooling carry no path, each with a documented ignore.\n- A script validates the generic part plus one extension per archetype with arc42 validate --strict. The pre-commit hook runs it for staged arc42 files, and a CI job architecture runs it on every change.\n- @doctc/arc42 0.36.1 is pinned as a devDependency.\n\n## Dependencies and side effects\n\n- arc42 cannot resolve paths into node_modules or extend a workspace; the script merges an extension's chapters into the generic ones to work around this."
+   }
+  ]
+ },
+ "moved": []
+}

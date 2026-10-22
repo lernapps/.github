@@ -1,0 +1,29 @@
+{
+ "id": "i066b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-12T11:28:28.441Z",
+ "conventionalCommit": "docs(guidance): the plan loads the skill lernapps-listing when the listing starts",
+ "intent": "The assistant should meet the listing skill in the last phase of the plan, when it starts listing the published app, instead of from the entry point.",
+ "keyDecisions": [
+  "one task to load the skill right after the published app is confirmed",
+  "move the existing mention instead of adding a second one; repeat no step of the skill"
+ ],
+ "trigger": "\"For the listing skill, we could refer to it in the last phase of the plan\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i063", "note": "places the listing skill added there in the plan template"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["ee285e38a4835366cd76d9c7c53319cf0ad17772"],
+    "reason": "One commit on the branch of #45.",
+    "message": "docs(guidance): the plan loads the skill lernapps-listing when the listing starts\n\n## Intent\n\nThe assistant should load the listing skill at the point in the last phase where it starts listing the published app, not only when it opens the listing pull request.\n\n## Key changes\n\n- A task \"Load the skill lernapps-listing\" follows right after the published app is confirmed.\n- The task that opens the pull request only refers to the skill and names the end; the mention moved and no step of the skill is repeated."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "ee285e38a4835366cd76d9c7c53319cf0ad17772", "from": "i066", "kind": "split", "why": "The time cut held two unrelated requests: the hooks fix and the guidance; this commit serves the second."}
+ ]
+}

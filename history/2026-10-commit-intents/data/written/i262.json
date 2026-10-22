@@ -1,0 +1,35 @@
+{
+ "id": "i262",
+ "conventionalCommit": "docs: explain how an app is listed and how a new version reaches its copy",
+ "intent": "Listing and updating had changed so much that even the maintainer could no longer follow who triggers what. The architecture, the tooling's docs and the creators' pages must explain it clearly: the app overview as a system of its own, the way a new version reaches the copy, and a simple picture of the listing for creators. The build page should stay about building and only point creators on to publishing.",
+ "keyDecisions": [
+  "the app overview (lernapps/apps) as an external system in the system context, for a consistent architecture",
+  "a runtime scenario for a new version of a listed app and a decision record for the replay rule",
+  "the creators' page shows only the initial listing, as five schematic steps coloured by who acts, over the full sequence diagram",
+  "plain HTML and CSS for the steps, without an extra script",
+  "the build page is only about building and ends with a call to publish, with a rocket; why lernapps.net serves a copy moves to the enter page"
+ ],
+ "trigger": "\"actually, we'd want the architecture, building blocks and a runtime scenario in the architecture docs to explain this clearly + an update of the tooling dows and a section on listing.\" … \"It may be that we need to add the apps repo as external system (actor in the system context)\" … \"Ah, der Abschnitt zum veröffentlichen auf Bauen gehört da nicht hin. Beschränke dich da aufs Bauen …\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i261", "note": "documents the update flow and the copies"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["4c13e5b3eb95b5a6edfc5f2db26e32ce5a27ed23"],
+    "reason": "The squash merge of tooling#136.",
+    "message": "docs: the app overview as an external system; how a new version reaches the copy\n\n## Intent\n\nListing and updating had changed so much that the process was hard to follow. The architecture and the tooling's docs must explain who triggers what, from the listing to a new version of a listed app.\n\n## Key changes\n\n- The system context shows the app overview (lernapps/apps) as an external system.\n- The runtime view gains a scenario for a new version of a listed app; the listing scenario includes publishing the copy.\n- A decision records the replay rule for update pull requests; the glossary explains copy and update pull request.\n- The deployment view no longer names the listing validation in the prose about the app's hosting.\n- The listing skill and the page \"GitHub, explained\" say what happens after the merge.\n\n## Dependencies and side effects\n\n- lernapps/apps 4f721e0 explains the listing on the creators' pages."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["4f721e0c8f155f451505afe38b3d7bbdf6144b57"],
+    "reason": "The squash merge of apps#81.",
+    "message": "docs: the build page ends with a call to publish; the enter page shows the listing and why there is a copy\n\n## Intent\n\nCreators should see at a glance how listing works and why lernapps.net serves a copy of their app. The build page should stay about building and send creators on to publishing.\n\n## Key changes\n\n- The enter page shows the listing as five schematic steps, coloured by who acts, readable on a phone and on a desktop.\n- Below the steps, \"Deine App bleibt deine\" explains that the app stays the creator's, and that lernapps.net serves a copy and carries the regulatory part.\n- The build page ends with a call to action and a rocket: the app can be good software for you, but for the world to hear of it, publish it.\n\n## Dependencies and side effects\n\n- lernapps/tooling 4c13e5b explains the same process in the architecture."
+   }
+  ]
+ },
+ "moved": []
+}

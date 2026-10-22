@@ -1,0 +1,28 @@
+{
+ "id": "i053",
+ "conventionalCommit": "feat(listing): validate listing pull requests and comment the report",
+ "intent": "Go on with the next step of the plan, the listing validation of the catalog (step 9, apps#3), as part of closing the full circle with the quiz archetype before validating and tuning it. A listing pull request must be checked against the deployed app, and the creator's assistant must get one comment it can act on.",
+ "keyDecisions": [
+  "close the circle with the quiz first (listing validation, creator entry point, a first full run, evals) and only then build the other archetypes",
+  "a real repo lernapps/naturwunder-quiz for the first full run, left empty so the run starts from nothing",
+  "the listing command is the same locally and in CI, run against a fixture app served on 127.0.0.1",
+  "the comment workflow runs from main and renders the report as data, so a pull request's code never posts it",
+  "fitness.checked may be true only while the check passes"
+ ],
+ "trigger": "\"Continue. When done, check the plan for the next task.\" … \"We want to provide a full circle and then validate and tune\" … \"I created empty lernapps/naturwunder-quiz\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i048b", "note": "step 9 of the plan, built on the check CLI and its --entry option"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["8f1cd1cc33fb8f162f2afd7843205ae0f4ce5b3c", "c8dab997943a615d5e391f74c6a69f4258fd5309"],
+    "reason": "The test-first commit and the feature it tests follow each other directly on the branch of apps#3; together one feature.",
+    "message": "feat(listing): validate listing pull requests and comment the report\n\n## Intent\n\nStep 9 of the plan (apps#3): a pull request that adds or changes a catalog entry is checked against the deployed app. The creator's assistant gets one comment per pull request that names each finding and its fix, and can run the same check locally.\n\n## Key changes\n\n- `npm run listing -- entries/<id>.yaml` runs `lernapps check --entry` of @lernapps/tooling for each entry, adds the catalog's rule that fitness.checked may be true only while the check passes, writes the reports and prints the results comment.\n- CI runs the same command read-only and without secrets. A second workflow runs from main, renders the comment from the reports as data and keeps one comment per pull request up to date, also once the check passes.\n- llms.txt points assistants to the command and the comment; the tests run in the Pages workflow.\n- End-to-end tests run the command on fixture entries against a fixture app on 127.0.0.1: a broken topic link fails with the fix, the fixed entry passes, a wrong storage value and checked: true on a failing check fail, an unreachable app fails, and a hostile report renders as plain text.\n\n## Dependencies and side effects\n\n- @lernapps/tooling becomes a development dependency, pinned to a commit of its main."
+   }
+  ]
+ },
+ "moved": []
+}

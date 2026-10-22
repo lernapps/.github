@@ -1,0 +1,33 @@
+{
+ "id": "i126",
+ "conventionalCommit": "docs(arc42): eval method: assistant configurations, scenarios with start states, attribution",
+ "intent": "We do not test models but models inside assistants, and the prompts work as a chain, so the effect of one prompt alone can hardly be measured. The eval method should say what one configuration is, how scenarios run prompts in sequence in one session, and how a result is traced back to a part of the guidance.",
+ "keyDecisions": [
+  "the assistant, its version, the model and settings count as one configuration, compared only with itself; no attempt to factor out the model",
+  "scenarios run the creator's turns in sequence in one session, from a fresh start or from a prepared state",
+  "the creator's answers come from a persona, not a fixed script",
+  "attribution through traces in the transcript; counter-tests that change one part of the guidance only on suspicion"
+ ],
+ "trigger": "\"Ich frage mich vor allem, wie wir damit konzeptionell umgehen, dass wir nicht llms sondern llms in harnesses testen müssen. … Würden wir daher besser Szenarien aufbauen und die Promis in Sequenz validieren (in einer Session, aufeinander aufbauend)?\" … \"Klingt für mich nachvollziehbar\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i125",
+   "note": "adds the method to the proposed eval infrastructure"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "e0d14c865daa40660f50df7cf44ea379447ec1d4"
+    ],
+    "reason": "One commit for one request; the ADR that follows it is a separate request.",
+    "message": "docs(arc42): eval method: assistant configurations, scenarios with start states, attribution\n\n## Intent\n\nWe test models inside assistants, not models alone, and the guidance works as a chain, so a single prompt's effect cannot be measured on its own. The eval method should say what is compared, how a scenario runs, and how a result points to a part of the guidance.\n\n## Key changes\n\n- What is tested is an assistant configuration: the harness, its version, the model and its settings. Comparisons are between guidance commits within one configuration, never across, like browsers in a test matrix.\n- Scenarios run the creator's turns in sequence in one session. Each has a start state: fresh from the real first prompt, or a prepared state (plan confirmed; app built with a failing check; app published, not yet listed; a first version for an increment), kept as a git bundle.\n- A persona answers by topic and checkpoint instead of a fixed sequence, since the agent's questions vary between runs.\n- A failed expectation names its inventory item and how it failed, read from the transcript: not read, misread, or read and not followed.\n- Later, only for a suspected item: a counterfactual run with that item changed or removed.\n- The plan's step 10 records the method."
+   }
+  ]
+ },
+ "moved": []
+}

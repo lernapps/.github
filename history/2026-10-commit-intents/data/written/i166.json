@@ -1,0 +1,86 @@
+{
+ "id": "i166",
+ "conventionalCommit": "chore(skills): install the commit skill from mrsimpson/skills-coding",
+ "intent": "The commits of the agentic app-creation increment mostly say what changed, not why; the intent stayed in the sessions and was lost. Agents working in the platform repos should load a commit skill that asks for the why in every message, before the history is rewritten in that format.",
+ "keyDecisions": [
+  "the commit skill from mrsimpson/skills-coding in every platform repo, over a rule written into each repo by hand",
+  "rewrite the whole history with new messages, accepting lost signatures and a local reset, over adding the why only in pull request descriptions or git notes",
+  "in the docs, replace the commit skill from mrsimpson/pdt42 with the same one as everywhere",
+  "fix the pre-commit hook and the e2e repo copy, over working around them"
+ ],
+ "trigger": "\"Normalerweise nutze ich diesen Skill: https://github.com/mrsimpson/skills-coding/blob/main/commit/SKILL.md … Das zu rekonstruieren ist mir total wichtig.\" … \"Wir haben diesen leider nicht installiert. Das kannst Du jetzt nachholen, gerne für alle repos\"",
+ "kind": "chore",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "3a8e184dc1dff94f6d1dd68a6542bb817cb56092"
+    ],
+    "reason": "The one commit of this request in this repo; the next commit belongs to the AGENTS.md request.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n- The pre-push hook counts .agents/, .claude/ and skills-lock.json as root-only paths, since no template's check needs them.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: apps 30e7c66, lernapps.github.io ce3c87f, docs 55b3bf5, .github 2ef3256, tooling 65863ee."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "30e7c6632125faeea4d390a11741701b9a02e705"
+    ],
+    "reason": "The one commit of this request in this repo; the next commit belongs to the AGENTS.md request.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: app-templates 3a8e184, lernapps.github.io ce3c87f, docs 55b3bf5, .github 2ef3256, tooling 65863ee."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "ce3c87f64358f9e4c6c3826810ab91442ab1372d"
+    ],
+    "reason": "The one commit of this request in this repo; the next commit belongs to the AGENTS.md request.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: app-templates 3a8e184, apps 30e7c66, docs 55b3bf5, .github 2ef3256, tooling 65863ee."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "55b3bf50718a59bbc44008709637a4aa6931683a"
+    ],
+    "reason": "The one commit of this request in this repo; the next commit belongs to the AGENTS.md request.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n- It replaces the commit skill from mrsimpson/pdt42 that the docs had so far.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: app-templates 3a8e184, apps 30e7c66, lernapps.github.io ce3c87f, .github 2ef3256, tooling 65863ee."
+   }
+  ],
+  ".github": [
+   {
+    "commits": [
+     "2ef3256b7a853ad401c9fa63af0d7970574b1a09"
+    ],
+    "reason": "The one commit of this request in this repo; the next commit belongs to the AGENTS.md request.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: app-templates 3a8e184, apps 30e7c66, lernapps.github.io ce3c87f, docs 55b3bf5, tooling 65863ee."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "2c2c8d7e6bbe71e632a21daa5a7dad1455b29611"
+    ],
+    "reason": "A fix of the pre-commit hook that the skill install needed; a change of its own, so it stays apart.",
+    "message": "fix(hooks): a commit of only files the formatter ignores passes the pre-commit hook\n\n## Intent\n\nCommitting only skills-lock.json and a skill failed the pre-commit hook: the formatter ignores both, so it got no file and exited with an error.\n\n## Key changes\n\n- The hook's formatter step no longer counts an empty set of files as an error; staged code is formatted as before.\n\n## Dependencies and side effects\n\n- Lets tooling 65863ee commit the commit skill."
+   },
+   {
+    "commits": [
+     "5f7941b9c3082dcc288447c73651022e83019111"
+    ],
+    "reason": "A fix of the e2e tests that the skill install needed; a change of its own, so it stays apart.",
+    "message": "test: the repo copy of the e2e tests keeps symlinks\n\n## Intent\n\nThe e2e tests copy the repo file by file into a fresh repository. A tracked symlink to a folder, such as the .claude/skills/commit link that the skill install writes for Claude Code, made the copy fail, and nine test files failed.\n\n## Key changes\n\n- A symlink is copied as a symlink with the same target, as git clone would check it out; every other file is copied as before.\n\n## Dependencies and side effects\n\n- Lets the tests pass with tooling 65863ee."
+   },
+   {
+    "commits": [
+     "65863ee212861ae805142993c2dd84c48c7480a2"
+    ],
+    "reason": "The skill install itself; it follows the two fixes, which stay commits of their own.",
+    "message": "chore(skills): install the commit skill from mrsimpson/skills-coding\n\n## Intent\n\nMost commits of the agentic app-creation increment say what changed but not why; the intent stayed in the sessions and was lost. Agents working in this repo should load a commit skill that asks for the why in every message.\n\n## Key changes\n\n- Every commit message gets a conventional subject and a body with \"Intent\", \"Key changes\" and, where it applies, \"Dependencies and side effects\".\n- The skill is installed with npx skills add and pinned in skills-lock.json; .claude/skills/commit links it for Claude Code.\n\n## Dependencies and side effects\n\n- The same skill is installed in every platform repository of lernapps: app-templates 3a8e184, apps 30e7c66, lernapps.github.io ce3c87f, docs 55b3bf5, .github 2ef3256.\n- Needs tooling 2c2c8d7 and 5f7941b, which let the hook and the tests accept the skill files."
+   }
+  ]
+ },
+ "moved": []
+}

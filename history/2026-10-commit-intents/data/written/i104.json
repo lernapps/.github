@@ -1,0 +1,49 @@
+{
+ "id": "i104",
+ "conventionalCommit": "feat(explainer): a KI tutor the learner brings can guide through every page",
+ "intent": "A KI assistant should be able to guide a learner through an explainer's topic with the exercises of its pages, including the custom components. The tutor is one the learner brings, as with the Mathe-Karte, so the app still sends nothing anywhere. A chat assistant that fetches a page runs no JavaScript, so it must find the very task the learner sees in static files, named by a task number that both can say.",
+ "keyDecisions": [
+  "a tutor the learner brings (A), as the Mathe-Karte does, over a tutor built into the app that would read the learner's input",
+  "static tutor files per page, computed at build, over a JavaScript &tutor view that a fetching chat assistant cannot run",
+  "the task number is the seed, visible and in the address, also for exercise components",
+  "exercise components describe their tasks (describe and about), and the no-JS text comes from describe, over a hand-written nojs text that can drift from the component",
+  "provider-neutral and extensible, with Claude preset: copy the prompt plus one link per assistant",
+  "three stacked pull requests, over one large one"
+ ],
+ "trigger": "\"ein Feature des explainer soll werden, dass ein KI-Assistent den Schüler anhand der Beispiele in der Seite durch das Thema führen kann. Dafür muss er auch die custom components verstehen kann.\" … \"Definitiv A. So macht es auch die Mathe-Karte.\" … \"Anbieterneutral + Claude, erweiterbar.\" … \"Das war der Inhalt. Leg los\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i103",
+   "note": "uses the mistakes, hints and solutions as tutor material; examples stay out"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "6fd3f2e28ac4c8ff5ad320bf4b64ae2cf2e6ffec"
+    ],
+    "reason": "app-templates#26 on its own; #27 and #28 are separate pull requests, and the follow-up 46b6b1d branches from this commit.",
+    "message": "feat(explainer): task numbers for seeded exercises; exercise components describe their tasks\n\n## Intent\n\nA learner should be able to name a task to a tutor, and the tutor should open the very same task. A tutor can only explain an exercise component if the component says in words what its task is.\n\n## Key changes\n\n- Every seeded exercise shows \"Aufgabe Nr. <n>\", its seed, also in the worked tasks without JavaScript. \"Neue Aufgabe\" moves to the next number and writes it into the address; ?seed=<n>#<id> opens task n.\n- Exercise components get their task number from the explainer as the prop seed. The number and \"Neue Aufgabe\" sit above the component, which mounts afresh for a new task. A block may name its anchor with a new optional id.\n- An exercise component's logic exports describe, the task and its solution as a learner reads them, and about: what the learner does, the answer's format, what counts as right and the typical mistakes.\n- The build requires both, checks describe for every task number in every language, and writes the no-JS text from the task of number 1 with its solution folded. An exercise component no longer needs its own nojs text.\n\n## Dependencies and side effects\n\n- Apps with exercise components break until they add seed, describe and about.\n- The tutor files and the tutor prompt build on this in the next two commits; the numbering is changed to distinct tasks in i105."
+   },
+   {
+    "commits": [
+     "3f29931ca979bede5978b798e36c32fbd7da32f9"
+    ],
+    "reason": "app-templates#27 on its own.",
+    "message": "feat(explainer): tutor files per page, a tutor part in llms.txt, and \"Zurück zum Tutor\"\n\n## Intent\n\nA chat assistant that fetches an address runs no JavaScript, so it can only work from static files. It must see each exercise with its solution and typical mistakes, and the very task behind each number, so that it can guide without giving the answer away.\n\n## Key changes\n\n- Next to every page the build writes a tutor file: the page's sections and every exercise with its id, type, task, answer format, solution, explanation, hint and typical mistakes. For a seeded exercise it lists the tasks by number, each with its solution, mistakes and link; for an exercise component its about and describe. Examples stay out.\n- llms.txt gets \"Hinweise für einen KI-Tutor\": generic rules from the runtime (link concrete tasks with von=tutor, ask for the task number, never reveal a solution before the learner answers, the app reports nothing back), the app's own rules from tutor.rules in app.yaml, and a link to each page's tutor file.\n- The build checks every link and anchor of llms.txt and the tutor files.\n- A page opened with von=tutor shows \"Zurück zum Tutor\". It closes the tab; where the browser keeps it open, a line says to go back to the chat."
+   },
+   {
+    "commits": [
+     "ccfd34893496683c102b3b2fce6195097f984b32"
+    ],
+    "reason": "app-templates#28 on its own.",
+    "message": "feat(explainer): a tutor prompt, and \"Mit einem KI-Tutor lernen\" on the start page\n\n## Intent\n\nA learner should start a tutor with one click, with the assistant of their choice. Nothing should load before that click.\n\n## Key changes\n\n- The build writes a ready tutor prompt at the root of each language tree, adapted from the Mathe-Karte and generic: the tutor's role and approach, the app's pages as a checklist with links to each page and its tutor file, the rules for the app's links, the app's own rules and how to start. llms.txt links it.\n- The start page gets \"Mit einem KI-Tutor lernen\": a button copies the prompt, and one plain link per assistant opens it. Claude is preset; tutor.providers in app.yaml adds others or none.\n- When the prompt would make the address longer than 8000 characters, the link carries a short prompt that points to the tutor file, and the page copies the whole prompt as well.\n- Without JavaScript the links still open the assistant, and the tutor file is there to copy from."
+   }
+  ]
+ },
+ "moved": []
+}

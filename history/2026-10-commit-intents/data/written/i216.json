@@ -1,0 +1,30 @@
+{
+ "id": "i216",
+ "conventionalCommit": "docs(pdt42): finish the MVP (D8)",
+ "intent": "Whether one person can run the platform alone changes a lot over time, from the initial investment to operation. So it is no decision criterion for the MVP, but an aspect for building the solution, and D8 is complete.",
+ "keyDecisions": [
+  "remove the assumption from the first draft and record it in the plan as an aspect for the solution, over guessing a weekly-hours limit"
+ ],
+ "trigger": "\"Weil „von mir allein betreibbar“ sich stark über den Zeitverlauf verändern wird (initialer Invest vs. Betrieb), ist das erst einmal kein Entscheidungskriterium, sondern eher Aspekt bei der späteren Lösungserstellung.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i215",
+   "note": "closes the last open point of D8"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "fe5b10b83024af43fe3c494489ff0fa5044ce500"
+    ],
+    "reason": "Closes D8 on its own; the next commit (3654d5e) serves another request (i216b).",
+    "message": "docs(pdt42): finish the MVP (D8)\n\n## Intent\n\nWhether one person can run the platform alone changes a lot over time, from the initial investment to operation. So it is no decision criterion for the MVP, but an aspect for building the solution.\n\n## Key changes\n\n- The first draft no longer has the assumption about running the platform alone.\n- The development plan records it as an aspect for building the solution and marks D8 done.\n- D8 validates without findings."
+   }
+  ]
+ },
+ "moved": []
+}

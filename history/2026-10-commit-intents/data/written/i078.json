@@ -1,0 +1,57 @@
+{
+ "id": "i078",
+ "conventionalCommit": "test(explainer): two of each instead of 60 pages; lernapps check visits every page of a bundle",
+ "intent": "A 60-page fixture took 4:43 in CI: too slow for CI and far too slow for a pre-push hook, although a much smaller one covers the same cases. And lernapps check stopped silently at 100 pages, so a large explainer bundle would go partly unchecked.",
+ "keyDecisions": [
+  "two of each (chapters, pages, section levels, languages), with every block type on every page, rather than a large fixture",
+  "the history fixture and all broken fixtures stay",
+  "the quiz's 64-question test stays, because it guards a real bug where test time grew with the number of questions",
+  "the page cap: no cap on a built bundle, a cap with an explicit hint on a live address",
+  "the cap's test on a five-page app with a lowered limit, in the fast set, instead of a 120-page app"
+ ],
+ "trigger": "\"a 60-page fixture across four chapters in two languages, which takes 4:43 in CI … This sounds unnecessary huge for a test running in CI (let alone pre-push). We should validate 2 of each should be sufficient. What about the cap?\" … \"yes, do the cap change now\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i076",
+   "note": "replaces the 60-page fixture of step 2 (app-templates#14)"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "66ec97599a1ef6d59099747d0530f08d44b72171"
+    ],
+    "reason": "The last commit of app-templates#14; the commits before it are step 2, in i076.",
+    "message": "test(explainer): two of each instead of 60 pages\n\n## Intent\n\nA 60-page fixture took 4:43 in CI: too long for CI and far too long for pre-push. Tests must stay fast enough for both and still cover every structure and block type.\n\n## Key changes\n\n- The fixture explainer-all-blocks has two chapters of two pages, in German and English, with two section levels and every block type on every page, so each block type appears four times, with previous and next across chapters.\n- It replaces the 60-page fixture; the longest CI job goes from 4:43 to 1:23.\n\n## Dependencies and side effects\n\n- Same intent: tooling#56 lets lernapps check visit every page of a bundle."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "9cbaf9540aeef739a86f822bccf5e5f66c02c585",
+     "ba0f7e095c2d72cbf8bc1662338c08704919d568"
+    ],
+    "reason": "Both commits of tooling#56, one after the other: the change to the visit, and a smaller, faster test of it.",
+    "message": "feat(check): visit every page of a bundle; on a URL, say when the limit stops the visit\n\n## Intent\n\nlernapps check stopped at 100 pages and skipped the rest silently, against the rule of no silent cutoff, so a large explainer bundle would have gone partly unchecked. The test of the page limit should also stay small, so hooks stay fast.\n\n## Key changes\n\n- A bundle has a finite list of pages, so its check visits all of them: first those reachable by links from the start page, then every other .html file.\n- A page no link reaches is an error of the new rule pages-reachable; a page marked noindex is checked but need not be reached; the 404 page and files without a doctype are not pages.\n- On a URL the limit of 100 pages stays, and reaching it gives a hint of the same rule instead of stopping silently.\n- Pages are visited four at a time, in the order a single visit would take, so reports stay deterministic.\n- The tooling's own tests can lower the limit on a URL through an environment variable, not a flag and not in the help. A five-page app with a limit of 3 proves the same as a 120-page app did, in about 5 s instead of 35 s, so the test moves to the fast set.\n\n## Dependencies and side effects\n\n- Same intent: app-templates#14 shrinks the explainer fixture to two of each."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "9cbaf9540aeef739a86f822bccf5e5f66c02c585",
+   "from": "i079",
+   "kind": "moved",
+   "why": "The page-cap change the owner approved in i078 (\"yes, do the cap change now\")."
+  },
+  {
+   "commit": "ba0f7e095c2d72cbf8bc1662338c08704919d568",
+   "from": "i080",
+   "kind": "moved",
+   "why": "Shrinks the test of the page-cap change (tooling#56) the owner approved in i078; prompted by wish here to keep tests minimal."
+  }
+ ]
+}

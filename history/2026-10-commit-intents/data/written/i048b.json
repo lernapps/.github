@@ -1,0 +1,83 @@
+{
+ "id": "i048b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-09T08:40:12.099Z",
+ "conventionalCommit": "feat: check CLI, shared preset, review procedure and the quiz archetype (plan steps 3, 4, 6, 8)",
+ "intent": "Work through the open issues of the plan for agentic app creation, each by its own agent and branch: the check command, the shared preset with its lint rules and hooks, the review procedure, and the generator with the first archetype. The rule catalog is expected to grow with them: every new check or lint rule gets a rule id, and the same id goes into a skill where an assistant can prevent the problem.",
+ "keyDecisions": [
+  "the check CLI runs whatever exists and decides nothing from rule metadata, over choosing checks by scope or severity",
+  "pages of the built app are visited once without a click, with requests to other hosts recorded and blocked, so the same input gives the same report",
+  "the preset is one line in vite.config.ts that apps never edit, over configuration in each app",
+  "git hooks are scripts in the package installed by the vite-plus dispatcher, so a changed hook reaches every app with a version bump",
+  "the review runs as a prompt for a fresh agent outside CI; CI tests a recorded verdict and calls no model",
+  "the quiz as a deep scaffold: the app holds only its question bank, the engine lives in a package",
+  "the generator copies templates at a commit pinned in the tooling, over following main, so one tooling version always makes the same app",
+  "merge the app-templates pull request first, then move the pin in tooling",
+  "the tests clean up their temporary folders after the disk filled up"
+ ],
+ "trigger": "\"Now continue with the other open issues. I'd expect we get more entries in the rules as we create the cli or linter config\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i045", "note": "implements the plan steps that were created as issues there"},
+  {"type": "continues", "intent": "i048", "note": "new checks and lint rules follow the per-kind rule ids"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["b70552b56f6d9a671a998342f13028ebaceeb316", "3872c21e827fd0d209a7e650f029715b5ff7dc67"],
+    "reason": "The squash merge of #31 (check CLI) and the plan commit #32 that marks step 3 done follow each other directly on main; the plan commit joins it by rule.",
+    "message": "feat(check): lernapps check runs the checks of the built app and reports in YAML\n\n## Intent\n\nStep 3 of the plan (#12): one check command for hooks, CI and the listing validation. It runs the toolchain steps of a repo and the checks of the built app, also on a built folder or a URL without the repo, checks a catalog entry against its app, and gives one report that people and assistants can act on.\n\n## Key changes\n\n- `lernapps check --pre-commit` runs format, lint and types; `--pre-push` runs unit tests, build, the checks of the built app, a licence check of the dependencies and the Playwright tests. The CLI runs every check whose input exists and decides nothing from rule metadata.\n- Each page reachable from the start page is visited once in Chromium without a click. Requests to other hosts are recorded and blocked, so no check depends on another server.\n- New checks, each with its rule id: no-request-before-click, no-tracking, readable-without-javascript, usable-at-360px, accessible (axe-core), links-resolve, dependency-licence, site-check, entry-links-resolve and entry-fitness-matches. Failed toolchain steps are findings of checks-pass. Skill sections carry the ids where an assistant can prevent the problem; the catalog grows from 20 to 26 rules.\n- A passing run prints one line; otherwise a YAML report with a published JSON Schema. A failed pre-push adds one to prePushFailures in the plan file.\n- The Playwright fixture is served on 127.0.0.1, since localhost resolves to ::1 on the CI runner.\n- The plan marks step 3 done and lists the gaps it left: no in-place suppressions, fitness only before a click, no fetching of external links, licences only in the repo, `--site` given by hand.\n\n## Dependencies and side effects\n\n- yaml and @lernapps/site become dependencies; playwright and axe-core are new."
+   },
+   {
+    "commits": ["fc46436476ecc2730376cceb25b22b7136f07983"],
+    "reason": "The squash merge of #34 (step 4) is one feature of its own; the review procedure after it is a different step, so they stay apart.",
+    "message": "feat(preset): the shared preset, its lint plugin and the git hooks every app extends\n\n## Intent\n\nStep 4 of the plan (#13): what every app imports and never edits. An app that only extends the preset gets every lint rule and both git hooks without configuration of its own, so a rule or hook changed in the package reaches every app with the next version.\n\n## Key changes\n\n- `lernapps()` from @lernapps/tooling/preset is the whole vite-plus configuration: lint with the plugin and each rule's severity, no `any`, type-aware checks, format, unit tests, staged files. An app needs one line in vite.config.ts, a tsconfig.json that extends the package's, and a prepare script.\n- The package brings a Playwright setup (desktop and 360 px), a storage wrapper under the app's prefix, a translator for message files and helpers for assistive technology.\n- The hooks are scripts in the package, installed by the vite-plus dispatcher: pre-commit runs `lernapps check --pre-commit`, pre-push `lernapps check --pre-push`.\n- An Oxlint plugin with one file per rule; every message links to its rule. New rules: storage-through-wrapper, suppression-reason, keep-the-preset and strict-typescript; no-request-before-click and learner-text-german also get lint rules. `any` uses Oxlint's own rule.\n- A fixture app installed from git proves it end to end: a lint error stops the commit, a request to another host stops the push and counts a failure, a clean commit and push pass.\n- The architecture names how the hooks and lint rules are built.\n\n## Dependencies and side effects\n\n- New package exports (preset, tsconfig, playwright, storage, i18n, a11y, lint); vite-plus becomes a peer dependency."
+   },
+   {
+    "commits": ["5451782d5c2895598f19a358efcb4efe647733b7"],
+    "reason": "The squash merge of #33 (step 8) is one feature; it stays apart from the preset before it and the test cleanup after it.",
+    "message": "feat(review): review procedure with prompt, rubric per archetype and verdict schema\n\n## Intent\n\nStep 8 of the plan (#17), the judgment part of the listing validation: an agent in a fresh context reviews an app that asks to be listed, starting from the check report, and writes a verdict bound to the reviewed commit. Every finding names a rule id or proposes a new rule.\n\n## Key changes\n\n- review/prompt.md is the prompt for a fresh agent: clone the app at the commit, build it, run lernapps check, read the report, rules, plan, rubric, bundle and history, judge, write and check verdict.yaml.\n- The rubric has one file for all apps and one per archetype; every item needs its rubric block.\n- New rules with rubric item and skill section: no-learner-data-in-texts, correct-content-support (hint) and one per archetype: topic-has-exercises, start-page-explains, quiz-feedback-explains.\n- The verdict is YAML with a published JSON Schema; it fails exactly when a finding is an error. `npm run verdict` checks a verdict against the schema and the rule catalog.\n- CI calls no model: a verdict recorded by a fresh agent for a fixture app with a planted ad must fail it on no-ads.\n- The architecture gets the review block, the verdict interface, the listing scenario, a decision and a glossary term."
+   },
+   {
+    "commits": ["daf656921931aca09490732dfab92d9d7de51d1d", "db0d98e9b52d7839cc300ecd1d304fb764a8b4c0"],
+    "reason": "The first two commits of the #36 branch follow each other directly: the generator with the quiz archetype, and the pin that points it at the template it was written for.",
+    "message": "feat(quiz): lernapps create and the quiz archetype\n\n## Intent\n\nStep 6 of the plan (#15), the first archetype as a deep scaffold: `lernapps create --archetype quiz` plus a question bank gives an app that passes `lernapps check` without further code. The creator's assistant writes only questions and options.\n\n## Key changes\n\n- `lernapps create` copies the archetype's folder from lernapps/app-templates at a commit pinned in package.json, or from a local clone for the tests. It writes AGENTS.md, the plan, a Pages workflow that runs the check, an issue form for content errors, LICENSE and renovate.json. It refuses an unknown archetype and a folder that is not empty.\n- The quiz engine lives in the package: a build step validates src/quiz.json and renders every question into the page, so it reads as a worksheet with an answer key without JavaScript. In the browser it shows one question at a time in a seeded order, with deep links, feedback, score and solutions.\n- The question bank has a published JSON Schema plus checks the schema cannot express; every problem names the question.\n- Generic Playwright tests for any bank give every quiz app tests of its own content.\n- The skill lernapps-quiz has eight rules for the archetype.\n- The pin points at the head of the app-templates branch with the quiz template, until that pull request is merged.\n\n## Dependencies and side effects\n\n- Needs the quiz template in app-templates (78cea92, app-templates#2).\n- CI checks out app-templates at the pinned commit for the generator's tests."
+   },
+   {
+    "commits": ["be03169b327fbc866b5f905bd1bf7c5d6eb41c36"],
+    "reason": "The squash merge of #35 is one commit on main: the test cleanup that the full disk made necessary, and the plan ticks for steps 4 and 8.",
+    "message": "test: remove temporary test folders; mark plan steps 4 and 8 done\n\n## Intent\n\nEvery end-to-end run left fresh clones with node_modules in /tmp. With several agents testing at once, they filled the disk and blocked pushes. The plan must also show steps 4 and 8 as merged.\n\n## Key changes\n\n- Temporary folders live under one root per test file, created on first use and removed after its tests. A full check now leaves no folder behind.\n- The plan marks the shared preset (step 4) and the review procedure (step 8) as done."
+   },
+   {
+    "commits": ["d6a364be891afa0d0375bc041521c69f765cc62b"],
+    "reason": "Follows a merge of main on the #36 branch, so it cannot join the commits before it; the arc42 commit after it is a separate change.",
+    "message": "test(quiz): the generator test uses the shared temporary folders\n\n## Intent\n\nThe test support now removes every temporary folder of a test file. The generator test should use it instead of keeping its own list.\n\n## Key changes\n\n- Every folder of the generator test, the fresh clone included, comes from tempDir; only the browser and server are closed by the test itself."
+   },
+   {
+    "commits": ["df68f422f7b40b03280af507ee8426a392ca0942"],
+    "reason": "A doc fix the architecture review asked for; unrelated to the test change before it.",
+    "message": "docs(arc42): the preset interface says what an archetype adds\n\n## Intent\n\nThe architecture review asks a block and its prose to change together. The interface of the archetype presets changed without saying what an archetype adds.\n\n## Key changes\n\n- One sentence: each archetype adds a preset, a runtime and end-to-end tests, with the quiz as the example."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": ["78cea924ff8e09b946f12f925ec8ac11f35a2621"],
+    "reason": "The squash merge of app-templates#2 is one commit, the template side of step 6.",
+    "message": "feat(quiz): the template of the quiz archetype\n\n## Intent\n\nStep 6 of the plan needs a folder for `lernapps create --archetype quiz` to copy: a working quiz that passes `lernapps check`, in which the app supplies only its question bank.\n\n## Key changes\n\n- Only thin files: vite.config.ts uses the quiz preset of @lernapps/tooling, main.ts starts the engine, the end-to-end test runs the package's generic tests on the app's bank, and index.html holds the marker where the build renders the questions.\n- An example bank in German with one question of each of the six types, so the creator's assistant sees every type.\n- @lernapps/tooling is pinned to a commit with a lockfile, so `npm ci` works in the folder and in a generated app.\n- A workflow checks every template folder with `lernapps check`; the README describes the repo as the templates of the archetypes.\n\n## Dependencies and side effects\n\n- The generator and engine are in tooling (daf6569, db0d98e on the branch of tooling#36)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "b70552b56f6d9a671a998342f13028ebaceeb316", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests: the rules rework and continuing the open issues; this commit serves the second."},
+  {"commit": "3872c21e827fd0d209a7e650f029715b5ff7dc67", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this plan commit serves continuing the open issues."},
+  {"commit": "fc46436476ecc2730376cceb25b22b7136f07983", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "5451782d5c2895598f19a358efcb4efe647733b7", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "daf656921931aca09490732dfab92d9d7de51d1d", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "db0d98e9b52d7839cc300ecd1d304fb764a8b4c0", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "be03169b327fbc866b5f905bd1bf7c5d6eb41c36", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "d6a364be891afa0d0375bc041521c69f765cc62b", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "df68f422f7b40b03280af507ee8426a392ca0942", "from": "i048", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves continuing the open issues."},
+  {"commit": "78cea924ff8e09b946f12f925ec8ac11f35a2621", "from": "i050", "kind": "dropped", "why": "The quiz template of step 6, merged in the order agreed earlier; i050 only asked how archetypes work and has no commits left."}
+ ]
+}

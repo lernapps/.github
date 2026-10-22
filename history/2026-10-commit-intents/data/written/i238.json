@@ -1,0 +1,29 @@
+{
+ "id": "i238",
+ "conventionalCommit": "feat(home): privacy as a feature; clearer words for teachers and parents",
+ "intent": "Simulated teachers wanted something to pass on to their head or data protection officer and did not find the privacy notice, since the new home page linked it only in the footer. Privacy is not a duty here but a feature, and the home page should say so and link the notice. The words for teachers and parents should state plainly that no data about their pupils or child is collected.",
+ "keyDecisions": [
+  "a short paragraph that links the existing privacy notice, over a separate page for schools",
+  "present privacy as a feature, not as an obligation",
+  "keep the makers and their passion as prominent as they are",
+  "\"keinerlei Daten … gesammelt\" and \"Niemand weiß, wer die App gerade nutzt\", lightly smoothed and with lower-case du"
+ ],
+ "trigger": "\"Für Schulen: … Wir haben doch https://lernapps.net/privacy/ . Hat sie das nicht gefunden? Vielleicht ein kleiner Absatz, der darauf verweist. Datenschutz ist keine Pflicht, sondern ein Feature …\" and \"Formulierungen: …und es entstehen keine Daten deiner Schülerinnen und Schüler. => …und es werden keinerlei Daten Deiner Schülerinnen und Schüler gesammelt …\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i237", "note": "answers the rest of the second persona round"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["e72138e03f592727d947d69a3878adb58d237a83"],
+    "reason": "The only commit of this request; it holds both the privacy paragraph and the new wording.",
+    "message": "feat(home): privacy as a feature; clearer words for teachers and parents\n\n## Intent\n\nTeachers want something to pass on to their head or data protection officer, but the new home page linked the privacy notice only in the footer. Privacy is a feature here, and the home page should say so. The words for teachers and parents should state plainly that no data about their pupils or child is collected.\n\n## Key changes\n\n- Under \"Was du davon hast\", a box \"Datenschutz ist bei uns ein Feature\" links the privacy notice to pass on to the school. On /features/ the platform point is \"Datenschutz als Feature\" and links it too.\n- Teachers: \"es werden keinerlei Daten deiner Schülerinnen und Schüler gesammelt\".\n- Parents: \"Niemand weiß, wer die App gerade nutzt. Die Privatsphäre deines Kindes bleibt geschützt.\""
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "e72138e03f592727d947d69a3878adb58d237a83", "from": "i239", "kind": "dropped", "why": "The commit serves the privacy paragraph asked for here and the wording asked for a minute later in i239; i239 has no other commit."}
+ ]
+}

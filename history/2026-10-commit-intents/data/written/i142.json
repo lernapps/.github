@@ -1,0 +1,64 @@
+{
+ "id": "i142",
+ "conventionalCommit": "docs(site): render the workshop page from the building blocks, and finish the pull requests",
+ "intent": "The workshop page was hand-written HTML, so it could drift from the architecture it describes. It should be generated from the modelled building blocks. arc42 cannot yet carry a phase on a block, so an explicit mapping in the docs build is the first step, while the tool gets an issue for custom attributes. At the same time, the open pull requests of the compact guidance (tooling#118 and apps#62) should be brought to a clean merge.",
+ "keyDecisions": [
+  "an explicit mapping in the docs build for now, over x- attributes that arc42 0.37 rejects (WG01) and does not return",
+  "the build fails when the mapping names a block the model lacks or a phase's skills differ from the skill blocks under bb-skills-<phase>",
+  "an issue at docToolchain/arc42-language for x-* attributes, and a separate session to build the fix where it belongs",
+  "silence the two architecture warnings by stating in the model that the process guidance implements the rule catalog",
+  "apps#62 merges only after tooling#118, since its link tests need the new skill paths on main"
+ ],
+ "trigger": "\"diese Visualisierung möchte ich gerne ausschließlich aufgrund der Building Blocks, die modelliert sind, generieren\" … \"Mach für den ersten Schritt mal eine explizite Zuordnung innerhalb des Buildprozesses der Docs. Dann eröffne ein Issue bei Ark 42 … wir müssen unseren PR mal irgendwann zum Abschluss bringen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i141",
+   "note": "the hand-written workshop page becomes generated"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "68c510931312d280c8bf1e38af686e93ff204a0e"
+    ],
+    "reason": "Kept apart from the arc42 fix after it: a different concern.",
+    "message": "docs(site): render the workshop page from the building blocks\n\n## Intent\n\nThe workshop page was hand-written, so it could drift from the architecture it shows. Render it from the modelled building blocks instead. arc42 cannot yet carry a block's phase as a custom attribute, so an explicit mapping comes first.\n\n## Key changes\n\n- The page is rendered at build time from an explicit mapping: per phase the blocks of docs/arc42 that support it, with a short text each, and their titles from arc42 get.\n- The build fails when the mapping names a block the model lacks, or when the skills of a phase differ from the skill blocks under bb-skills-<phase>. Tests cover both.\n- The page looks as before.\n- Once arc42 carries custom attributes, the mapping can shrink to the page's texts."
+   },
+   {
+    "commits": [
+     "aca4fe88038a90ddec76dbf795011834ab35ac98"
+    ],
+    "reason": "A separate concern: clearing the architecture warnings before the merge.",
+    "message": "docs(arc42): the process guidance implements the rule catalog\n\n## Intent\n\nThe architecture review of the pull request warned that two blocks changed their text but not their model. The process guidance holds the workflow rules with their ids, as chapter 8 says, so the model should say it too.\n\n## Key changes\n\n- bb-process-guidance implements concept-rule-catalog. arc42 diff against main reports nothing."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "f774b8ce2ac89070ec1eb424b36ef19d31aaa2e0",
+     "b99e1ece8a03a5ba00b4929f4ad93392bbeee708"
+    ],
+    "reason": "Two test fixes on the branch of apps#62 that follow each other directly.",
+    "message": "test(entry-point): follow the tooling's grouped skill folders and compact plan template\n\n## Intent\n\nThe tests of the platform's entry point failed against the reworked tooling: they expected the old skill paths and the old wording of the plan template. They must follow the new layout so apps#62 can merge.\n\n## Key changes\n\n- The tests expect the tooling's skills in their grouped folders.\n- The test that reads where the plan is kept also understands the compact template (\"Path: .vibe/plans/01-<short name>.md\").\n\n## Dependencies and side effects\n\n- The link tests pass only once tooling#118 is on main."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "f774b8ce2ac89070ec1eb424b36ef19d31aaa2e0",
+   "from": "i143",
+   "kind": "moved",
+   "why": "Fixes the CI of apps#62, part of bringing the pull requests to a merge as asked here; it does not serve the question about links."
+  },
+  {
+   "commit": "b99e1ece8a03a5ba00b4929f4ad93392bbeee708",
+   "from": "i143",
+   "kind": "moved",
+   "why": "The second CI fix of apps#62, same reason."
+  }
+ ]
+}

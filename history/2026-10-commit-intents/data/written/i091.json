@@ -1,0 +1,32 @@
+{
+ "id": "i091",
+ "conventionalCommit": "feat(guidance): the creator confirms the research and the content method",
+ "intent": "Let the creator see and confirm the research and the content method before anything is built, in every archetype: process rules in AGENTS.md, the skill-related steps in the plan template.",
+ "keyDecisions": [
+  "process rules for every archetype in AGENTS.md: one or two questions per turn, stop at every checkpoint, explain the method before building",
+  "the skill-related steps in the plan template: a research checkpoint closes Explore, Plan writes a content method the creator confirms, Code fills the guide from it",
+  "the default-branch rule in AGENTS.md shortened to stay within 350 words"
+ ],
+ "trigger": "\"Guck dir mal das Session-Transkript an. Was fällt dir auf?\" … \"Wieso hat sie nicht nach explore abgehangen, mich gefragt und auch die Methodik erklärt? Das hatte ich erwartet. … Beim Quiz zuvor hatte das geklappt\" … \"Process guidance gehört in die agents.md. In der plan-Datei konnten wir aber die Skill-bezogenen Interaktionen zusätzlich hinterlegen\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i090",
+   "note": "the content guide was filled only in Code, with no checkpoint for the creator"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "3e2197f6eddae2218a0416f9e74b90f9607f55f7"
+    ],
+    "reason": "The only commit of tooling#67.",
+    "message": "feat(guidance): the creator confirms the research and the content method\n\n## Intent\n\nThe first explainer run asked its questions in bundled forms, showed the plan without its content method and built everything once the plan was confirmed. The creator never saw how the content was researched or how exercises and figures would be made. Make this a general rule: process rules in AGENTS.md, the skill-related interactions in the plan template.\n\n## Key changes\n\n- AGENTS.md has a section \"With the creator\" for every archetype: one or two questions per turn, stop at every checkpoint, explain the method before building.\n- The plan template ends Explore with a research checkpoint: Lehrplan with its citation, competencies per chapter, sources and how they were checked, what could not be checked, the archetype.\n- Plan writes a content method with the archetype's skill and lernapps-exercise-patterns, and the creator confirms it with the plan; Code fills the content guide from it.\n- The app skill, the research skill, the architecture and the guidance test follow; the test expects four checkpoints in order."
+   }
+  ]
+ },
+ "moved": []
+}

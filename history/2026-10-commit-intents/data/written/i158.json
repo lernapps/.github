@@ -1,0 +1,26 @@
+{
+ "id": "i158",
+ "conventionalCommit": "fix(site): eval runs as tabs with their panel, compare inside the run, actions grouped by status",
+ "intent": "The eval runs on the Prompt engineering page were right in content but hard to read: it was not clear what belonged to the chosen run, what the comparison included, or what the status of findings and actions meant.",
+ "keyDecisions": [
+  "runs as real tabs joined to one framed panel, over cards above the content",
+  "the comparison inside each run, directly above its heatmap and against the run before by default, over one selector for the whole page",
+  "only actions have a status, grouped as Open, Done and Dropped with a count, over small status badges; findings say what they are instead"
+ ],
+ "trigger": "\"quite good content wise, but visually I don't understand * what's part of the \"tab\" that refers to the eval run * the compare option: what does it include * the \"status\" of the findings / actions\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i157", "note": "changes the layout of the eval runs on the Prompt engineering page (tooling#132)"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["d2a09b68f9382b583406a3768dc1baa2ea4c32a7"],
+    "reason": "The one commit of this request; the commit before it belongs to the request that built the page.",
+    "message": "fix(site): eval runs as tabs with their panel, compare inside the run, actions grouped by status\n\n## Intent\n\nThe eval runs on the Prompt engineering page did not show clearly what belongs to the chosen run, what the comparison includes, or what the status of findings and actions means.\n\n## Key changes\n\n- The runs are a row of tabs. The chosen tab joins a framed panel, and everything that belongs to the run sits inside that frame.\n- The comparison sits inside each run, above its heatmap. It names the run it compares with, explains ▲ and ▼, and compares with the run before by default.\n- Each finding has a line on what it is. Only the actions have a status; they are grouped as Open, Done and Dropped, with a count each, and name the finding they come from.\n- Without JavaScript, all runs still appear one after another."
+   }
+  ]
+ },
+ "moved": []
+}

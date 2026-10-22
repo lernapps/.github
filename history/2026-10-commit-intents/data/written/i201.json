@@ -1,0 +1,40 @@
+{
+ "id": "i201",
+ "conventionalCommit": "docs(pdt42): core triangle with adopting adults as core entity (D4)",
+ "intent": "Decide which relationships and which role the platform design starts from. Creators build personal software for their own class or child anyway. Adults depend on finding apps they can use without doubt, so that is where the platform makes the difference.",
+ "keyDecisions": [
+  "three core relationships as a triangle (creators and adults, adults and students, creators and students) over one relationship, widening the brief where students were ancillary",
+  "adopting adults as core entity over creators, because creators build without the platform anyway",
+  "reach noted in the creators' portrait as a nice-to-have, not their driver"
+ ],
+ "trigger": "\"Weiter mit d4\" … \"Ich habe die Erwachsenen gewählt, weil die Entwickler auch ohne die Plattform Software entwickeln, aber eben als reine Personal Software. Dass diese auch von anderen als ihren Kindern genutzt wird, ist eher ein nice-to-have\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i198",
+   "note": "core relationships chosen from the motivations"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "b36b18f532f40c084ca6a497d44f872fac2a8cdc",
+     "504eb4651145c2648213a5574254c74901c7dc55"
+    ],
+    "reason": "The D4 chapter and the reason for its core entity, one after the other on feat/platform-design.",
+    "message": "docs(pdt42): core triangle with adopting adults as core entity (D4)\n\n## Intent\n\nDecide which relationships and which role the platform design starts from. Creators build personal software for their own class or child anyway. Adults depend on finding apps they can use without doubt, so that is where the platform makes the difference.\n\n## Key changes\n\n- A new D4 chapter sets three core relationships as a triangle: creators and adults, adults and students, creators and students. It explains why students are now in the core, unlike in the brief.\n- The core entity is the adopting adults. The chapter and the platform block in D1 say why creators are not: they build without the platform, and use by others is a nice-to-have for them.\n- The creators' portrait says the same about reach.\n- The development plan marks D4 done and adds KD-13."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "504eb4651145c2648213a5574254c74901c7dc55",
+   "from": "i202",
+   "kind": "dropped",
+   "why": "The reason for the D4 core entity; i202 has no commits left."
+  }
+ ]
+}

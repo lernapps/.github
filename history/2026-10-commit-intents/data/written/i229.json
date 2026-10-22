@@ -1,0 +1,65 @@
+{
+ "id": "i229",
+ "conventionalCommit": "ci: deploy the docs from gh-pages, with a preview per pull request",
+ "intent": "Pull requests in docs should get a browsable review environment like apps and the home page, with a comment that links it. While the deploys move to the gh-pages branch, Pages must not run Jekyll over it.",
+ "keyDecisions": [
+  "the same gh-pages pattern as apps and the home page, over a downloadable artifact",
+  "one review comment for every pull request, not only for changes to the platform design",
+  "relative links between biz42 and pdt42, so they stay inside a preview",
+  "push the infrastructure to main; the content stays in docs#12"
+ ],
+ "trigger": "\"Sollte nicht auch eine docs Page pro PR als Review-Environment gebaut werden? Ich sehe da keinen Kommentar im PR\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i222",
+   "note": "same review environments for docs"
+  },
+  {
+   "type": "continues",
+   "intent": "i223",
+   "note": "same review environments for docs"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "01168f619a15b795a06944073fde7ead18dcc431"
+    ],
+    "reason": "The deploy and preview setup on main.",
+    "message": "ci: deploy the docs from gh-pages, with a preview per pull request\n\n## Intent\n\nPull requests in docs should get a browsable review environment like apps and the home page, with a comment that links it. While the deploys move to the gh-pages branch, Pages must not run Jekyll over it.\n\n## Key changes\n\n- main is published to the root of gh-pages; each pull request gets a preview under /docs/pr-preview/pr-<number>/ with the platform design's change page in it.\n- The review comment links the preview and the change page instead of downloadable artifacts, and is posted for every pull request.\n- The build takes the path prefix for the biz42 app and marks preview pages (banner, noindex).\n\n## Dependencies and side effects\n\n- The same .nojekyll fix in apps (8eb0fe0, 85df8cc) and lernapps.github.io (c478fd7, 1d77661); the docs deploy (01168f6) and the relative cross-references in docs (966b45e)."
+   },
+   {
+    "commits": [
+     "966b45e34abc9ff49453aac25a1b12c5c952f2a9"
+    ],
+    "reason": "The content side on the branch of docs#12, separate from the setup on main.",
+    "message": "docs: relative cross-references between organisation and product\n\n## Intent\n\nCross-references between biz42 and the platform design should work on the published site and inside a preview alike.\n\n## Key changes\n\n- Links use ../about/ and ../platform-design/ instead of absolute paths.\n\n## Dependencies and side effects\n\n- The same .nojekyll fix in apps (8eb0fe0, 85df8cc) and lernapps.github.io (c478fd7, 1d77661); the docs deploy (01168f6) and the relative cross-references in docs (966b45e)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "8eb0fe0e1ff77f3bc946eaf0232ba4b81d19edb4",
+     "85df8ccc96ceb4caaaf02ae9e6a2cfba50efbbf0"
+    ],
+    "reason": "The .nojekyll fix and its correction, directly one after the other.",
+    "message": "ci: keep .nojekyll in the published site\n\n## Intent\n\nupload-artifact drops hidden files by default. Without .nojekyll on the gh-pages branch, Pages runs Jekyll over the published site.\n\n## Key changes\n\n- The upload step of the Pages workflow includes hidden files, so .nojekyll is published.\n- The download step keeps its defaults; the option exists only on upload.\n\n## Dependencies and side effects\n\n- The same .nojekyll fix in apps (8eb0fe0, 85df8cc) and lernapps.github.io (c478fd7, 1d77661); the docs deploy (01168f6) and the relative cross-references in docs (966b45e)."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "c478fd710423a7deb8996fc1416f999005373d73",
+     "1d77661bda025f63cf7d9c5fcf137d5dfeb2fb52"
+    ],
+    "reason": "The .nojekyll fix and its correction, directly one after the other.",
+    "message": "ci: keep .nojekyll in the published site\n\n## Intent\n\nupload-artifact drops hidden files by default. Without .nojekyll on the gh-pages branch, Pages runs Jekyll over the published site.\n\n## Key changes\n\n- The upload step of the Pages workflow includes hidden files, so .nojekyll is published.\n- The download step keeps its defaults; the option exists only on upload.\n\n## Dependencies and side effects\n\n- The same .nojekyll fix in apps (8eb0fe0, 85df8cc) and lernapps.github.io (c478fd7, 1d77661); the docs deploy (01168f6) and the relative cross-references in docs (966b45e)."
+   }
+  ]
+ },
+ "moved": []
+}

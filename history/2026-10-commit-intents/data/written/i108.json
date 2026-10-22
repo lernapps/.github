@@ -1,0 +1,26 @@
+{
+ "id": "i108",
+ "conventionalCommit": "docs(interactive): the architecture of every interactive app, in arc42",
+ "intent": "Interactive apps need a real architecture, not only a template to copy: frontend-only apps with a static description and an optional client-side tutor. The architecture should guide the very free agent early and stay checkable with arc42.",
+ "keyDecisions": [
+  "a real architecture that every interactive app has, over a template to fill in",
+  "written in the arc42 DSL, in English and minimal",
+  "the tutor's working left as proposed until decided"
+ ],
+ "trigger": "\"Mergen darfst Du selbst. Hast Du denn schon eine Architektur geschrieben?\" … \"Wir wollen da keine reine Vorlage! Wir wollen eine echte Architektur für frontend only apps, mit der statischen Beschreibung und einem optionalen Client side ai Tutor\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i107", "note": "the architecture of the runtime built in step 1"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["46f41f64123dfdada8f2ba195b03e905dde1856e"],
+    "reason": "The only commit of this request; the later revisions of app-templates#34 answer other messages.",
+    "message": "docs(interactive): the architecture of every interactive app, in arc42\n\n## Intent\n\nInteractive apps need a real architecture, not only a template to copy: frontend-only apps with a static description and an optional client-side tutor. It should guide a very free agent early.\n\n## Key changes\n\n- A first arc42 architecture in the interactive template, in English and minimal, in all twelve chapters.\n- It describes apps that run only in the browser, with a start page readable without JavaScript, an app page and an optional tutor.\n- Quality goals: nothing leaves the device without a click, everything replays from seed and inputs, accessible by default with declared limits.\n- Building blocks for the runtime (start page, shell, build checks, tutor bridge) and the app (core, view, data, playthroughs), with interfaces; an app hangs its own blocks below core and view.\n- How the tutor works is marked as proposed, not decided.\n\n## Dependencies and side effects\n\n- Rebuilt with the arc42 guide in the next commit of app-templates#34 (i109)."
+   }
+  ]
+ },
+ "moved": []
+}

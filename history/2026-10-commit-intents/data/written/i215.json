@@ -1,0 +1,48 @@
+{
+ "id": "i215",
+ "conventionalCommit": "docs(pdt42): open counting instead of no tracking, platform as its own pitch (D8)",
+ "intent": "Test trust already in the first draft, at the moment of decision: does the platform convince teachers on its own? That needs referral links and an explicit first click. Tracking means collecting data without the user's knowledge; counting single explicit interactions openly is something else, and it shows whether valuable use happens.",
+ "keyDecisions": [
+  "trust tested at the moment of decision, over tying it to use by teachers in operation",
+  "contacts forward a referral link to colleagues outside the initiator's network, over warm contacts",
+  "\"I'll take a look\" as an explicit click, over counting page views",
+  "one referral code per wave, never per person, not stored in the browser",
+  "open counting of explicit clicks, totals only, explained at the button, over \"no tracking of any kind\"; the apps still collect nothing",
+  "parents tested only after the riskiest assumptions hold, with the missing test accepted"
+ ],
+ "trigger": "\"Ich würde gerne Vertrauen auch schon vorher testen, und zwar in der Form, dass Lehrer durch die Ansprache der Plattform selbst davon überzeugt werden, sie einzusetzen.\" … \"so etwas wie Empfehlungslinks … „Ich gucke mir das an“ … natürlich nur auf der Plattform\" … \"tracken sehe ich nur, wenn wirklich ohne Wissen Nutzers, Daten gesammelt werden.\" … \"Das Prinzip ist wichtig\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i213",
+   "note": "refines the first draft of the MVP"
+  },
+  {
+   "type": "revises",
+   "intent": "i212",
+   "note": "replaces \"no tracking\" with open counting"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "2fc4c73140f010a9847f56e9ff0bc444f1ae2091"
+    ],
+    "reason": "The new counting principle stays its own commit: it changes the channels and a key decision, not only the MVP.",
+    "message": "docs(pdt42): open counting instead of no tracking, platform as its own pitch\n\n## Intent\n\nTest trust already in the first draft, at the moment of decision: does the platform convince teachers on its own? Tracking means collecting data without the user's knowledge; counting single explicit interactions openly is something else, and it shows whether valuable use happens.\n\n## Key changes\n\n- The channels (D5) and KD-18: no hidden data collection. The platform counts explicit clicks openly (\"I'll take a look\", \"used in class\", thanks, structured feedback), stores only totals, uses no cookies or browser storage, and explains this at the button. The apps collect nothing.\n- The channel \"One place to find apps\" has an entry through referral links. Each wave gets one code, never one per person, and the code is not stored in the browser.\n- The first draft includes the teachers' experience and a riskiest trust assumption: the platform convinces teachers who do not know its initiator. At least 3 of them use an app and report it by click.\n- The real MVP reaches teachers through forwarding, with the platform itself as the pitch and a short letter.\n- The development plan updates KD-18, KD-19 and the next actions.\n\n## Dependencies and side effects\n\n- Hints remain for the criteria still open."
+   },
+   {
+    "commits": [
+     "fe5c4360f5ca38dcf7a26c054332fd4bf5e6f6f1",
+     "df25aa3c6f7054504ba83db4b446a8e1704f4be7"
+    ],
+    "reason": "Two open points of the MVP and the prose fix pdt42 diff asked for right after, one after the other on feat/platform-design.",
+    "message": "docs(pdt42): school-network criterion, parents tested later (D8)\n\n## Intent\n\nSettle two open points of the MVP, so that only the criteria that really need a value stay open.\n\n## Key changes\n\n- The school-network test succeeds if the anonymous thanks works at most of the schools of creators who teach. Block and prose say the same.\n- Whether parents find the platform is tested only after the riskiest assumptions hold. Its missing test is accepted with a reason.\n\n## Dependencies and side effects\n\n- One hint remains: the criterion for running the platform alone."
+   }
+  ]
+ },
+ "moved": []
+}

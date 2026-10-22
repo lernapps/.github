@@ -1,0 +1,39 @@
+{
+ "id": "i072",
+ "conventionalCommit": "fix: guidance and checks from the first creator run",
+ "intent": "The first full run worked end to end but showed where creators and their assistants get stuck: no way to report or pick up a template bug, a work branch that became the default, Pages switched off, slow self-made link checks hitting rate limits, an unhelpful message for a failing template test, plan-only commits that redeploy the app, and no comment on a passing listing. Fix them in one batch. Link checks must stay independent of any one source and turn rate limits into information, not failures.",
+ "keyDecisions": [
+  "no checks specific to Wikipedia or any other source, over an adapter per source",
+  "a rate-limited link becomes a hint after a short, bounded retry; it never fails the check or hangs",
+  "use the existing severity hint instead of a new info value, so older readers of the report schema keep working",
+  "external links are confirmed by reading, not fetched by the check",
+  "a command `lernapps update` moves an app to the current template, tooling and actions, since npm update does not",
+  "work on a branch `work`; main comes with the first publish",
+  "a passing listing check also writes the one results comment"
+ ],
+ "trigger": "\"Naturwunder Quiz is complete\" … \"Do the fixes in one batch. Link checking is probably tricky though because of rate limits. Plus not everything comes from Wikipedia, so disambiguation pages are Wikipedia specific and would need an adapter pattern. I'd lean into information messages on rate limits.\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i276", "note": "fixes the friction found in the first full run"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["e427ce9d100ee26c48b0dc657c4f38353bdd813c"],
+    "reason": "The batch of fixes is one commit on the branch of #52.",
+    "message": "fix: guidance and checks from the first creator run\n\n## Intent\n\nThe first full run showed where an assistant gets stuck: it could not report or pick up a template bug, a pushed work branch became the default, Pages was off, its own link checks hit rate limits, a failing template test gave no hint, and plan-only commits redeployed the app.\n\n## Key changes\n\n- The skills say that a runtime test failing on valid content is a template bug: tell the creator, open an issue on app-templates, never work around it.\n- `lernapps update` moves an app to the runtime, tooling and actions the current tooling pins, and reports what moved.\n- The plan template and AGENTS.md use a work branch `work`; main comes with the first publish. Clicks the creator must make go into the publish question; plan edits after publishing are pushed once.\n- App publish warns, with the clicks, when the default branch is not main.\n- The link checks retry HTTP 429 briefly, then report the link as not checked at severity hint.\n- checks-pass names a failing generic test of the template as a template test, with where to report it.\n- A push that changes only the plan publishes nothing.\n- The plan template and the listing skill say the results comment reads \"bestanden\" on a pass.\n\n## Dependencies and side effects\n\n- The catalog writes the passing comment (37fdfa5 in apps)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["37fdfa52b26cf2ba661004bef75cec0da439b866"],
+    "reason": "The one commit of apps#14.",
+    "message": "fix(listing): a passing check also creates the results comment\n\n## Intent\n\nThe listing comment was created only for a failing check. On a first listing that passed, the creator's assistant found no comment to read and had to guess from the check runs.\n\n## Key changes\n\n- Every check that checked an entry creates the one comment or updates it in place.\n- The passing comment is short: \"Prüfung des Eintrags: bestanden\", the checked address and time, the measured values and the number of rules.\n- llms.txt says the comment appears on every run.\n- Tests cover the passing comment and the workflow step with a stand-in for GitHub's CLI.\n\n## Dependencies and side effects\n\n- The tooling's guidance names this comment (e427ce9)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "e427ce9d100ee26c48b0dc657c4f38353bdd813c", "from": "i073", "kind": "moved", "why": "The batch of fixes asked for here; it was committed after the next message."}
+ ]
+}

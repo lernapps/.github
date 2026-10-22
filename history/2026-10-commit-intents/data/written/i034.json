@@ -1,0 +1,32 @@
+{
+ "id": "i034",
+ "conventionalCommit": "docs: plan and architecture workspace for the tooling of agentic app creation",
+ "intent": "Creators should build apps with their AI assistant that meet the platform's rules, quickly and verifiably. Before building tooling for that, settle its structure: the layers that guide and check agentic app creation, a plan that records the decisions, and an arc42 architecture.",
+ "keyDecisions": [
+  "five layers: process guidance, scaffolding, conventions, deterministic verification, formal validation",
+  "the app archetype as the axis across all layers, chosen while exploring the idea with the creator",
+  "the EPCC workflow written out in AGENTS.md with a Markdown plan, over requiring the workflows MCP server",
+  "the guidance only tells the agent to fetch and fill the entry schema; the schema has to explain itself",
+  "a generator with versioned packages kept current by Renovate, over one template repo that drifts",
+  "content correctness is suggested, never a condition for listing",
+  "the catalog entry as a fact sheet with a link to the deployed app from the same commit, deferred",
+  "arc42 with the arc42-language skill and the pinned CLI @doctc/arc42"
+ ],
+ "trigger": "\"Let’s now care about providing the actual tooling to efficiently create apps the way we want them to be.\" … \"No. Let’s create a proper architecture of this.\" … \"Let’s create a plan epcc for this very increment in the tooling repo .vibe and note all explain and key decisions. Then, our next step wil be to debit the architecture for this tooling with @doctc/arc42\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "cbcbf4da629950fdb4a06f67e7f70fe31de5163e",
+     "10e095370e112e3ab017b38c9c2326743592a72c"
+    ],
+    "reason": "The plan commit joins the next commit by the plan rule; both lie directly one after the other.",
+    "message": "docs: plan and architecture workspace for the tooling of agentic app creation\n\n## Intent\n\nCreators should build apps with their AI assistant that meet the platform's rules, quickly and verifiably. Before building tooling for that, settle its structure: the layers that guide and check agentic app creation, a plan that records the decisions, and an arc42 architecture.\n\n## Key changes\n\n- An EPCC plan in .vibe/ with the goal, 15 key decisions and the phases; Explore is done, the Plan phase has one task per arc42 chapter.\n- The arc42-language skill and the pinned arc42 CLI; npm run check validates docs/arc42/.\n- A draft of chapter 1 (use cases, stakeholders) and chapter 10 (five quality goals, seven scenarios), with an evidence file of what is still to be confirmed."
+   }
+  ]
+ },
+ "moved": []
+}

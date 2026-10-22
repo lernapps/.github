@@ -1,0 +1,47 @@
+{
+ "id": "i140",
+ "conventionalCommit": "docs(arc42): one building block per skill, grouped by phase; the branch ready to merge",
+ "intent": "The skills should appear in the architecture as building blocks that can be placed in the phases of the build: each skill a block with one goal, grouped under its phase. The experiment branch should point its URLs back to main so it can be merged, and the links from the apps repo should match the new skill folders. The page that shows who does what in each phase follows from these blocks.",
+ "keyDecisions": [
+  "each skill is a block with one goal, grouped by phase in chapter 5, while the folders on disk stay grouped by kind",
+  "skills prevent; error messages must explain themselves, so check messages do not point to skill files",
+  "llms.txt files only help to navigate; fix their links, add no content",
+  "rename the evaluation sessions instead of archiving them",
+  "a page \"A workshop, not a factory\" shows per phase what the person decides, what the agent does and which tool supports it"
+ ],
+ "trigger": "\"1. das machen wir gleich, erst einmal kümmern wir uns um das Aufräumen der Building blocks und geben jedem Skill einen Block mit einem Ziel und gruppieren sie unter phasen. 2. das wäre auch falsch herum: Skills sind präventiv, fehlermeldungen sollten selbsterklrend sein 3. die llms.txt-Dateien sollten nur beim Navigieren helfen … 4. mach das jetzt …\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i139", "note": "documents the skill layout settled there and readies the branch"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["fa3ece3913cd26f0f07a8c313be37bd3abef6f5c"],
+    "reason": "The only apps commit of this request.",
+    "message": "fix(llms): link the tooling's skills in their grouped folders\n\n## Intent\n\nThe tooling moves its skills into folders by kind and the platform rules into the skill lernapps-check. The links in the apps repo must point to the new places; llms.txt only helps to navigate, so nothing else changes.\n\n## Key changes\n\n- The skill links of the site point to skills/<group>/<name>/ and to the platform rules under lernapps-check.\n\n## Dependencies and side effects\n\n- Merge together with the tooling branch exp/compact-guidance (09b6c86, 1120a6a); against the old layout the links break."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["09b6c860e8bd1549ed7fb7a454ba83f8debfeeeb"],
+    "reason": "Follows the evaluation's rework directly but serves this request; the architecture commit after it is a separate concern.",
+    "message": "chore(experiment): point the URLs back to main\n\n## Intent\n\nThe experiment branch pointed its URLs to itself so test sessions could read it. Before it can be merged, every URL must point to main again.\n\n## Key changes\n\n- The guidance, the skills, llms.txt and the generator point to main again, and skills are installed with the plain npx skills add lernapps/tooling.\n- The experiment's prompt is removed.\n\n## Dependencies and side effects\n\n- New evaluation sessions against the branch now read the guidance of main until the branch is merged.\n- The apps repo's links change in the same step (apps fa3ece3)."
+   },
+   {
+    "commits": ["1120a6a7b2a1b9a498f55938dc8055ab9a239273"],
+    "reason": "Follows the URL change directly but is a different concern, the architecture; kept apart.",
+    "message": "docs(arc42): one building block per skill, with its goal, grouped by phase\n\n## Intent\n\nThe skills should appear in the architecture as building blocks that can be placed in the phases of the build. Modelled as one block from several sources, they could not be mapped to the steps of the work.\n\n## Key changes\n\n- Chapter 5 groups the skills under Explore, Plan, Code and Commit. Each skill is a block with one goal and its folder as path.\n- A level-2 diagram shows the skills by phase.\n- The folders on disk stay grouped by kind; the text says this group tells who changes a skill.\n- The deployment view and the architecture evidence follow."
+   },
+   {
+    "commits": ["e930dc4d5ad433e7dac39575a9bf03f29ab98d5e"],
+    "reason": "Follows a merge of main on the branch, so it cannot join the commits before it.",
+    "message": "docs(site): the page \"A workshop, not a factory\": who does what in each phase\n\n## Intent\n\nDevelopers ask what they get, and managers speak of software factories. The tooling site should show that building an app is a workshop: per phase, what the person decides, what the agent does, and which part of the tooling supports it.\n\n## Key changes\n\n- A new page shows per phase what the person decides, what the agent does, and which guidance, skill, CLI command, hook, action or runtime supports it, with the checkpoints and what no machine decides.\n- The start page links it; the build script builds it."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "e930dc4d5ad433e7dac39575a9bf03f29ab98d5e", "from": "i141", "kind": "dropped", "why": "The page visualises the phases and their tools, the documentation point 1 of this request defers to right after the building blocks; i141 only asked for a pull request to view the architecture and has no other commit. Inferred: no message names the page."}
+ ]
+}

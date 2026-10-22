@@ -1,0 +1,69 @@
+{
+ "id": "i084b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-14T14:49:06.636Z",
+ "conventionalCommit": "feat: the explainer archetype in the tooling",
+ "intent": "Let lernapps create make an explainer app that passes lernapps check, checks its Vue components as the build does, and tells the assistant how to write it. This is step 6 of the explainer MVP, now that app-templates#18 is merged.",
+ "keyDecisions": [
+  "vue-tsc runs only in apps that have a .vue file",
+  "the component lint rules share ids and wording with the build checks; v-html stays a build check, since Oxlint does not see the template",
+  "one new skill, lernapps-explainer, shaped like lernapps-quiz"
+ ],
+ "trigger": "\"done\" (app-templates#18 merged, which the step waited for)",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i083",
+   "note": "step 6 of the explainer MVP, the tooling side"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "5198643015600fb9f9aedf59068dc968f318c8bd",
+     "c8401e79b4c1d97cd83e71a4957bc5b58cdca3ce",
+     "6c22d67b8b088345efea093d3307590ad30e9552",
+     "113532b32fdfbc6fe6ed559374311d935194d4af",
+     "670dcc72d56b012e36a879eed0cd490504c3d3b9"
+    ],
+    "reason": "All commits of tooling#59 are step 6 of the explainer MVP, one thought: the generator, checks, lint, skills, architecture and plan for the new archetype, and a test fix the new pin made necessary. The plan commit joins the architecture commit.",
+    "message": "feat: the explainer archetype in the tooling\n\n## Intent\n\nSteps 1 to 5 built the explainer runtime in app-templates. Let `lernapps create --archetype explainer` make an app that passes lernapps check, checks its Vue components in the editor and at commit as the build does, and tells the assistant how to write it.\n\n## Key changes\n\n- The pin moves to the app-templates commit with every explainer step, and explainer joins the archetypes the generator offers; explainer apps get vue-tsc and typescript.\n- lernapps check runs vue-tsc only where the project has a .vue file, so other apps pay nothing.\n- Four lint rules for component code carry the ids and wording of the build checks: no network, no HTML injection, allowed imports, browser globals.\n- The new skill lernapps-explainer covers structure, blocks, formulas, languages, data files, exercises with generated and {{…}}, components and 26 rules; lernapps-quiz gains its languages; the quiz rules also apply to the explainer.\n- The explainer gets its review rubric, and the docs site publishes its schema.\n- The architecture states the runtime's responsibility for both archetypes, components under a contract, and the decision to render with Vite; the plan records steps 1 to 5 as done, with the spike's result and the deviations.\n- A heavy generator test creates, installs, checks and updates an explainer app, and a type error in a component fails at vue-tsc; the runtime-bug test finds quizTests in the shared chunk."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "5198643015600fb9f9aedf59068dc968f318c8bd",
+   "from": "i084",
+   "kind": "split",
+   "why": "The time cut held two unrelated requests; this one became its own intent."
+  },
+  {
+   "commit": "c8401e79b4c1d97cd83e71a4957bc5b58cdca3ce",
+   "from": "i084",
+   "kind": "split",
+   "why": "The time cut held two unrelated requests; this one became its own intent."
+  },
+  {
+   "commit": "6c22d67b8b088345efea093d3307590ad30e9552",
+   "from": "i084",
+   "kind": "split",
+   "why": "The time cut held two unrelated requests; this one became its own intent."
+  },
+  {
+   "commit": "113532b32fdfbc6fe6ed559374311d935194d4af",
+   "from": "i084",
+   "kind": "split",
+   "why": "The time cut held two unrelated requests; this one became its own intent."
+  },
+  {
+   "commit": "670dcc72d56b012e36a879eed0cd490504c3d3b9",
+   "from": "i084",
+   "kind": "split",
+   "why": "The time cut held two unrelated requests; this one became its own intent."
+  }
+ ]
+}

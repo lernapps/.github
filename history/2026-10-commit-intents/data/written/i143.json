@@ -1,0 +1,32 @@
+{
+ "id": "i143",
+ "conventionalCommit": "docs(site): link each block on the workshop page to its card in the architecture",
+ "intent": "The boxes on the workshop page named building blocks but did not lead to them. A reader should get from each box to its description in the architecture.",
+ "keyDecisions": [
+  "link the block's card in the arc42 web app, with the chapter file taken from arc42 get, over a hand-kept path",
+  "a line of several blocks links the first; its neighbours follow in chapter 5",
+  "accept that an outside deep link lands about a screen early, a fault of the arc42 web app"
+ ],
+ "trigger": "\"Sind die einzeln Blöcke mit Links hinterlegt?\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i142",
+   "note": "adds links to the generated page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "2d08e960261ea823968ed7decff6fcea805d2a1e"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(site): link each block on the workshop page to its card in the architecture\n\n## Intent\n\nThe boxes on the workshop page named building blocks but did not lead to them. Each should take the reader to its description in the architecture.\n\n## Key changes\n\n- Every line of the board, the band \"In every phase\" and the catalog links the block's card in the arc42 web app of this site (#<chapter file>:el-<id>). The chapter file comes from arc42 get.\n- A line of several blocks links the first; its neighbours follow in chapter 5.\n- A test checks the link format."
+   }
+  ]
+ },
+ "moved": []
+}

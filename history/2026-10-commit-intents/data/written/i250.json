@@ -1,0 +1,26 @@
+{
+ "id": "i250",
+ "conventionalCommit": "feat(entries): Elektrizität for grades 7 and 8 and the topics of its new pages",
+ "intent": "The first increment of a published app, built in its own session from the increment template: the Elektrizität app grows to the next grades. Its catalog entry must follow, since a removed page broke a topic link and the new pages are not listed yet.",
+ "keyDecisions": [
+  "update the still open listing pull request of the first version instead of opening a second one",
+  "replace the removed topic of the build editor with the six new pages"
+ ],
+ "trigger": "\"Dann würde ich gerne noch eine Erweiterung der bestehenden App in einer neuen Session anfordern.\" … \"alles gemergt\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i097", "note": "the first increment run on the plan per piece of work"},
+  {"type": "continues", "intent": "i233", "note": "updates the catalog entry of the first version"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["bd214cbf60f36501ae25fe396f16a8a2bc8b1ad3"],
+    "reason": "One commit on the branch of the listing pull request apps#26.",
+    "message": "feat(entries): Elektrizität for grades 7 and 8 and the topics of its new pages\n\n## Intent\n\nThe Elektrizität app grew to grades 7 and 8. Its catalog entry still named grades 5 and 6 and a topic page that no longer exists, so the listing check failed.\n\n## Key changes\n\n- Grades 5 to 8, a new summary and new keywords.\n- The topic of the removed build editor is gone; its tasks now sit on the pages about switches and circuits.\n- Six new topics: current, voltage, resistance, Ohm's law, and series and parallel circuits with meters.\n- The entry passes `lernapps check --entry` against the published app."
+   }
+  ]
+ },
+ "moved": []
+}

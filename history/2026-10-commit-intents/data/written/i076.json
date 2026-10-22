@@ -1,0 +1,119 @@
+{
+ "id": "i076",
+ "conventionalCommit": "feat(explainer): subject-neutral structure and blocks, rendered at build, with the quiz's questions embedded",
+ "intent": "The explainer sketch was built around maths. Learning apps for biology, physics, chemistry, computer science or history need the same structure, so the explainer has to work for any subject, in several languages, and it should not duplicate what the quiz already does.",
+ "keyDecisions": [
+  "reuse the quiz's six question types as exercises for every subject, rather than a maths-only exercise type",
+  "the quiz itself runs on the per-question functions rather than on a second copy of them, with byte-identical output",
+  "package version stays 0.0.0, since apps pin app-templates by commit",
+  "Vite plugin renders all pages from the built index.html as shell; Eleventy is not needed",
+  "a closed set of subject-neutral blocks; Warum, Regel, Beispiel only a recommended page structure",
+  "chapters mandatory; a single chapter hidden in the navigation but kept in the URL",
+  "a property-based `generated` notation instead of a maths-only `calculation` type",
+  "type `vue-component`, not `component`, so other frameworks can follow; each with a required `nojs` text",
+  "every text may be a language map from the start, German required and first",
+  "a Markdown heading in a text is a build error that points to sections, rather than a silent conversion",
+  "marked over markdown-it, whose dependency licence is not allowed; highlight.js over Shiki"
+ ],
+ "trigger": "\"This sounds quite math-specific. What about other topics, such as biology, physics, chemistry, computer science, or even history?\" … \"Fine. I agree to the other question proposals. Update the plan, push it and then start with an mvp.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i075",
+   "note": "builds the explainer MVP sketched there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "fabeae9ecc6b950bebec835bdb5332592b011aad",
+     "d6d72ffd9b2f3a6a6b1d829fd62f3e737c2f5398",
+     "54c1a659be3c92992cde34fb9ebd1385718f28d2",
+     "6eac5f93569f226a0ff93e780ea1821687cc19b3"
+    ],
+    "reason": "The later commits of tooling#54, one after the other and all plan-only: the sketch revised in review until decided. By rule plan-pr they would join the first commit of the pull request, but that one records the first sketch (i075); these serve the review in this intent, so they become one plan commit here.",
+    "message": "docs(plan): the explainer sketch, revised in review and decided\n\n## Intent\n\nThe first sketch was built around maths. Learning apps for biology, physics, chemistry, computer science or history need the same structure, so the explainer has to work for any subject and in several languages, without duplicating what the quiz already does. All of this should be decided before anything is built.\n\n## Key changes\n\n- A page is an ordered list of blocks from a closed set: text, formula, figure, labelled figure, table, timeline, definition, quote, code, example, note, section. Warum, Regel, Beispiel becomes a recommended page structure.\n- Formulas use one LaTeX subset with Temml, chemistry included through mhchem.\n- Structure: app, mandatory chapters (a single one hidden in the navigation, kept in the URL), pages and at most two section levels, with complete order lists and navigation generated without JavaScript.\n- Exercises: the quiz's six question types as blocks, and a property-based `generated` notation instead of a maths-only `calculation` type, run as a property test at build.\n- Components: `vue-component` blocks with typed props, rendered at build and hydrated as islands, each with a required `nojs` text, so the page stays readable without JavaScript.\n- Texts take restricted Markdown; a heading in a text is a build error that points to the section block.\n- Languages: every text may be a language map, German required and first, one page tree per language.\n- The explainer renders with a Vite plugin, Eleventy only as the fallback. The open questions became a list of decisions, and the sketch is marked as decided.\n\n## Dependencies and side effects\n\n- Same intent: app-templates#13 and #14 build steps 1 and 2 of this sketch."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "759a397fc0635a8b357769d2d098576e2cdae2a1",
+     "4202fae5db41b779477dc7eab9fd9b39fa73e219"
+    ],
+    "reason": "Both commits of app-templates#13: the tests and the code of one change, the per-question exports.",
+    "message": "feat(quiz): export each question on its own; the quiz uses the same\n\n## Intent\n\nThe explainer needs exercises for any subject, and the quiz already has six question types that fit: single and multiple choice, statements, ordering, pairs, estimation. Building them a second time would duplicate their validation, rendering and checking. This is step 1 of the explainer MVP.\n\n## Key changes\n\n- A new entry point offers one question at a time: its schema for a $ref from other schemas, validation with the quiz's messages at the caller's path, the rendered controls, the solution as a fragment for a Lösung box without JavaScript, and the checker.\n- The engine gains startQuestion for the feedback and focus of a single question.\n- The quiz's bank validation, page and engine are built from these same functions; rendered pages and messages are unchanged, compared byte for byte.\n- A fixture page embeds one question of each type through the new exports only, tested with and without JavaScript; CI runs lernapps check on it.\n\n## Dependencies and side effects\n\n- Same intent: the decided sketch in the tooling's plan (tooling#54)."
+   },
+   {
+    "commits": [
+     "8f3f88b9a49204a0b975272e9e60a0d734028133"
+    ],
+    "reason": "Stays its own commit: a merge of main lies between it and the rest of step 2.",
+    "message": "spike(explainer): one Vite build writes many pages with one hashed client module\n\n## Intent\n\nRendering many explainer pages should not need a second tool such as Eleventy. Before the runtime is built, prove that a Vite build alone can write every page.\n\n## Key changes\n\n- The explainer's plugin takes the built index.html as the shell of every page and writes each page into its own folder, with one hashed script and stylesheet and the asset URLs rewritten for the page's depth.\n- A build test writes 61 pages this way.\n\n## Dependencies and side effects\n\n- Same intent: the structure and blocks of step 2 follow on this branch after a merge of main; the decided sketch is in the tooling's plan (tooling#54)."
+   },
+   {
+    "commits": [
+     "bbd74b9e9af6f6a62850fe9d73a79d3ec6ecf490",
+     "329f40b254903df7b5d6fb3c616b4d9120490352",
+     "155b10cd3f0e5c63e9be0056177c5ad2208c0c9a",
+     "8d88434727e8134726845eb27b329dd198218f97"
+    ],
+    "reason": "The four commits of app-templates#14 for step 2, directly one after the other on the branch: tests, runtime, template and CI of the same feature. The spike before them stays its own commit, because a merge of main lies between.",
+    "message": "feat(explainer): structure, blocks and languages, rendered at build\n\n## Intent\n\nStep 2 of the explainer MVP. Authors should write only content, for any subject, and get complete pages that read without JavaScript, with every mistake in the content reported by the build. Rendering many pages should not need a second tool such as Eleventy.\n\n## Key changes\n\n- Content is YAML in src/: app.yaml with languages and chapter order, a folder per chapter with chapter.yaml and pages, data/ and images/, covered by a published schema with the closed set of blocks.\n- The build reports each problem as one line with file, line, place and language: incomplete order lists, depth, ids, raw HTML, Markdown headings, unknown formula commands, missing source or licence, missing translations, broken section links, extra files.\n- The plugin renders every page: restricted Markdown, MathML formulas, inline SVG figures, code highlighted at build, generated navigation, a glossary, a hidden single chapter kept in the URL, and a page tree per language with a switch that works without JavaScript.\n- The language-map logic sits in a shared module, for the quiz's questions to reuse.\n- The template holds the chapter Prozent from the Mathe-Karte; explainerTests() checks every page in every language without JavaScript.\n- Fixtures: a large one with every block type, a history app with one hidden chapter, and broken fixtures that each fail with exactly one line; CI runs lernapps check on them.\n- New pinned dependencies: temml, marked (over markdown-it, whose dependency licence is not allowed), highlight.js (over Shiki, for contrast from our own styles), yaml.\n\n## Dependencies and side effects\n\n- Same intent: the spike before it on this branch (Vite alone writes many pages) and the decided sketch in the tooling's plan (tooling#54).\n- The language-map logic is shared, for the quiz's questions to reuse in step 3."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "fabeae9ecc6b950bebec835bdb5332592b011aad",
+   "from": "i075",
+   "kind": "moved",
+   "why": "Records the review that asks for other subjects than maths, chapters and sections. A plan commit whose joinsWith commit c0a3a52 stays in i075, which records the first sketch; it joins the plan commits after it here instead."
+  },
+  {
+   "commit": "d6d72ffd9b2f3a6a6b1d829fd62f3e737c2f5398",
+   "from": "i075",
+   "kind": "moved",
+   "why": "Records the decisions on generated exercises, vue-component, languages and mandatory chapters made in this conversation. Its joinsWith commit c0a3a52 stays in i075."
+  },
+  {
+   "commit": "54c1a659be3c92992cde34fb9ebd1385718f28d2",
+   "from": "i075",
+   "kind": "moved",
+   "why": "Records Markdown without headings, nojs for components and the agreement to the remaining proposals. Its joinsWith commit c0a3a52 stays in i075."
+  },
+  {
+   "commit": "6eac5f93569f226a0ff93e780ea1821687cc19b3",
+   "from": "i075",
+   "kind": "moved",
+   "why": "Marks the sketch as decided after \"Update the plan, push it\". Its joinsWith commit c0a3a52 stays in i075."
+  },
+  {
+   "commit": "bbd74b9e9af6f6a62850fe9d73a79d3ec6ecf490",
+   "from": "i077",
+   "kind": "moved",
+   "why": "Step 2 of the explainer MVP the owner asked to start in i076; only resumed here after the usage limit."
+  },
+  {
+   "commit": "329f40b254903df7b5d6fb3c616b4d9120490352",
+   "from": "i077",
+   "kind": "moved",
+   "why": "Step 2 of the explainer MVP (runtime, schema, rendering), requested in i076."
+  },
+  {
+   "commit": "155b10cd3f0e5c63e9be0056177c5ad2208c0c9a",
+   "from": "i077",
+   "kind": "moved",
+   "why": "Step 2 of the explainer MVP (the template with the Prozent chapter), requested in i076."
+  },
+  {
+   "commit": "8d88434727e8134726845eb27b329dd198218f97",
+   "from": "i077",
+   "kind": "moved",
+   "why": "Step 2 of the explainer MVP (CI for the template and fixtures), requested in i076."
+  }
+ ]
+}

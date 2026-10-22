@@ -1,0 +1,25 @@
+{
+ "id": "i185",
+ "conventionalCommit": "docs(guidance): leave squashing to the skill",
+ "intent": "The skill lernapps-commit now says when to squash and how to write the message. The plan templates should not repeat it, so the rule lives in one place.",
+ "keyDecisions": [
+  "the increment template merges without naming squash or the skill",
+  "the first-version template keeps only the squash command, since its merge command differs from a fast-forward"
+ ],
+ "trigger": "\"Dann brauchen wir das in den templates doch nicht mehr zu wiederholen\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i184", "note": "removes from the templates what the skill now says"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["83805297abad86aa884e3d555596693fc5982f83"],
+    "reason": "The only commit of this request.",
+    "message": "docs(guidance): leave squashing to the skill\n\n## Intent\n\nThe skill lernapps-commit already says to squash and how to write the message. The plan templates should not repeat it, so the rule lives in one place.\n\n## Key changes\n\n- The increment template merges the pull request into main without naming squash or the skill.\n- The first-version template only swaps the fast-forward for a squash, since the merge command differs."
+   }
+  ]
+ },
+ "moved": []
+}

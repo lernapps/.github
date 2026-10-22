@@ -1,0 +1,42 @@
+{
+ "id": "i118",
+ "conventionalCommit": "refactor(skills): split lernapps-app into a short index and rule files",
+ "intent": "The skill lernapps-app loaded all 35 rules at once and mixed rules for every app with rules that only make sense with the lernapps plan and tooling. Tools such as Lovable or bolt.new need the platform rules alone. Split the skill into small modules, as the Agent Skills specification intends, so an agent or a tool reads only what it needs.",
+ "keyDecisions": [
+  "one skill with a references/ folder and links in SKILL.md, over two separate skills or two sections in one file",
+  "the platform rules in a file that reads on its own, without plan, preset or hooks",
+  "every rule keeps id, text, scope and severity byte for byte; only its file changes",
+  "the build page's paragraph on building freely links the platform rules, not the whole skill"
+ ],
+ "trigger": "\"Haben wir nicht schon eine Trennung für Prozess und rules in unterschiedliche skills?\" … \"Mach einen skill mit einem unterordner und links im markdown. Da sollten wir gut modularisieren, das ist ohnehin extrem fett derzeit. Die agentskills spefizikatiin sieht das ohnehin vor\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i117",
+   "note": "gives the free builders of the build page the platform rules alone"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "29be331be3c146ed666a30971883ad5c25550d8c"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "refactor(skills): split lernapps-app into a short SKILL.md and rule files\n\n## Intent\n\nThe skill lernapps-app loaded all 35 rules at once. It mixed rules for every app with rules that only make sense with the lernapps plan and tooling, and a tool such as Lovable or bolt.new needs the platform rules alone. Split the skill as the Agent Skills specification intends (progressive disclosure), so an agent reads only what it needs.\n\n## Key changes\n\n- SKILL.md says what an app is and where the workflow is, and links four rule files in references/, each with one line on when to read it.\n- The four files: platform rules (every app however it is built, plus the catalog entry), workflow rules, tooling rules and archetype rules.\n- The platform rules read on their own, for a tool without the lernapps tooling.\n- Every rule keeps its id, heading, text, scope and severity byte for byte; only its file changes. The rule page and its anchors stay as they were.\n- The new files are exported. Tests check that a skill links and exports each of its files, and that `lernapps update` copies a skill's subfolders.\n\n## Dependencies and side effects\n\n- lernapps/apps 8ffc0e4 (same intent) links the platform rules from the build page."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "8ffc0e46f032975f6f903b54a9084691fb12b861"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "docs(build): give free builders the platform rules of lernapps-app\n\n## Intent\n\n\"Lieber frei bauen?\" told users of Lovable or bolt.new to give their tool the whole skill lernapps-app, which also holds the plan workflow and the tooling rules. A free builder needs only the rules that hold for every app.\n\n## Key changes\n\n- The paragraph, in German and English, links the skill's platform rules (references/platform-rules.md) instead of the whole skill.\n\n## Dependencies and side effects\n\n- Needs lernapps/tooling 29be331 (same intent), which creates the file; the link test fails until it is on main."
+   }
+  ]
+ },
+ "moved": []
+}

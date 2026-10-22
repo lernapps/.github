@@ -1,0 +1,29 @@
+{
+ "id": "i261",
+ "conventionalCommit": "feat(update): every 30 minutes; auto-merge what lernapps update would have done",
+ "intent": "Once an app is listed, each push to its main should lead to an update pull request in the app overview by itself. When the checks pass and the change is no more than what lernapps update would have done, it should merge without a person. Until now the update ran once a day and auto-merged only new versions of npm dependencies, so even a plain lernapps update needed a review.",
+ "keyDecisions": [
+  "ask every 30 minutes, and by hand, over a token in every creator repo or a hosted webhook service",
+  "open the pull request only once the app's address serves the new commit, so the listing check never sees the old version",
+  "replay lernapps update on the listed commit and compare, over a list of allowed file changes",
+  "also let through npm dependency versions and Markdown files, except in src/ and public/, which may reach learners",
+  "the pinned tooling must be a commit on main of lernapps/tooling, so a fork cannot fake the result",
+  "one pull request per app that later pushes move, over a new pull request per push"
+ ],
+ "trigger": "\"I expected that once an app was listed, each push to main of the origin repo creates a PR in the apps repo. … If they succeed and only uncritical changes were done to the app (actually what lernapps update would have done, not more), then automerge it.\" … \"1. A. Can we trigger it manually too? 2. we could actually checkout the base version in the action, then run lernapps update and if it comes to the same result, we're good to go. Also, pure text changes (*.md) should also be ignored\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i257", "note": "changes when update pull requests open and which of them merge automatically"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["ce63db7ef219bdb5ae127f5d72521b2681841495"],
+    "reason": "The one commit of apps#80.",
+    "message": "feat(update): every 30 minutes; auto-merge what lernapps update would have done\n\n## Intent\n\nOnce an app is listed, each push to its main should lead to an update pull request by itself. When the checks pass and the change is no more than what lernapps update would have done, it should merge without a person. Until now the update ran once a day and auto-merged only new npm versions, so even a plain lernapps update needed a review.\n\n## Key changes\n\n- The update workflow runs every 30 minutes and by hand, for one app or all.\n- It opens a pull request only once the app's own address serves the new commit, so the listing check sees the new version. Later pushes move the same pull request update/<id>; a pull request closed without merging stays closed; an unchanged branch is not pushed again.\n- To classify an update, it checks out the listed commit, runs lernapps update on it with the tooling the new commit pins, and compares the result with the new commit. It auto-merges when nothing else differs beyond versions of existing npm dependencies and Markdown files outside src/ and public/. Everything else gets the label review.\n- The pinned tooling must be a commit on main of lernapps/tooling.\n- The classification runs without a secret; only opening the pull request uses the app's token.\n- The plan records the decision."
+   }
+  ]
+ },
+ "moved": []
+}

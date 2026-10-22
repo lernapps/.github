@@ -1,0 +1,42 @@
+{
+ "id": "i223",
+ "conventionalCommit": "feat: link the app overview instead of the old map",
+ "intent": "The home page still points to the old map, and it should get review pages per pull request like the app overview. \"Apps finden\" should lead to the new app overview.",
+ "keyDecisions": [
+  "the same pattern as in apps: main at the root of gh-pages, previews under pr-preview/pr-<number>/",
+  "a CNAME file on gh-pages keeps the domain lernapps.net",
+  "own links get the preview's prefix; links to other repos (/apps/, /docs/, /mathe-karte/) point to the live site",
+  "push the infrastructure to main without visible change; the content change goes through a pull request as the first test of the preview",
+  "retire the map with a redirect in its own repo, later dropped"
+ ],
+ "trigger": "\"Wir müssen noch die GitHub Pages von lernapps.net umbauen. Da ist noch die alte map drin. Auch für die wollen wir Review Pages\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i222",
+   "note": "the same review environments for the home page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "48ccf73ab72ebdb517d98f054c93f31e53064e2a",
+     "ba9d09fbdbbe8f4955bb531a2d8b4bd8fc063f58"
+    ],
+    "reason": "The preview setup and its fix for Dependabot, directly one after the other on main.",
+    "message": "ci: publish the home page from gh-pages, with a preview per pull request\n\n## Intent\n\nThe home page should get a review environment per pull request, like the app overview.\n\n## Key changes\n\n- pages.yml publishes main to the root of gh-pages; src/CNAME keeps the domain lernapps.net on that branch.\n- pr-preview.yml publishes each pull request under pr-preview/pr-<number>/ with a comment; previews show a banner and are not indexed.\n- Own links go through the filter \"own\" and carry the preview's prefix; the check also reports links that would leave the preview.\n- Pull requests from Dependabot get no preview, since their token cannot write.\n- No visible change in production.\n\n## Dependencies and side effects\n\n- The pattern comes from lernapps/apps (e065a19, d11f265, i222).\n- Pages of the repo must be switched to deploy from the gh-pages branch."
+   },
+   {
+    "commits": [
+     "282860787f1c469dbec1d4f074e4b5784d02c2e5"
+    ],
+    "reason": "The content change of pull request #16, kept apart from the infrastructure.",
+    "message": "feat: link the app overview instead of the old map\n\n## Intent\n\n\"Apps finden\" should lead to the new app overview, not the old map.\n\n## Key changes\n\n- Navigation, persona cards and the final call to action lead to /apps/.\n- People who build apps go straight to /apps/eintragen/.\n- The footer and llms.txt name both pages.\n\n## Dependencies and side effects\n\n- Builds on the preview setup in the same repo (48ccf73, ba9d09f)."
+   }
+  ]
+ },
+ "moved": []
+}

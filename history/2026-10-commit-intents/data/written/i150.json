@@ -1,0 +1,35 @@
+{
+ "id": "i150",
+ "conventionalCommit": "feat: the tooling start page leads with the workshop, and the docs get their own header entry",
+ "intent": "The tooling's start page was plain and the tooling site did not show the global navigation. It should present the workshop first, then prompt engineering, architecture and GitHub, and be part of the global header. The docs, as the way into the concepts behind it all, need their own header entry.",
+ "keyDecisions": [
+  "the start page in the look of the workshop page, with the workshop as the one big card whose phases come from workshop.yaml",
+  "move the tooling's site frame to the current main of lernapps.github.io, which already has Tooling in the header",
+  "the docs as their own header entry after Features, and the footer link removed so it is not there twice"
+ ],
+ "trigger": "\"Nun sollten wir noch die Tooling-Homepage ansprechend gestalten und auch in die globale Navigation einhängen. Workshop als prominentester Teil, dann prompt Engineering, architecture, GitHub. docs als einstiegspunkt in die Konzepte dahinter als eigener Navigationsounkt in der Header nav\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "aaf4a369ec9238e67b2d0c4982d6ef8635e19f25"
+    ],
+    "reason": "The only commit of this request in the site frame.",
+    "message": "feat(nav): Konzepte (/docs/) as its own entry of the header\n\n## Intent\n\nThe docs are the way into the concepts behind lernapps.net and its tooling: vision, organisation, platform design. They should be easy to find from every page.\n\n## Key changes\n\n- The header gets the entry \"Konzepte\" (en \"Concepts\") for /docs/, after Features.\n- The footer link to the docs goes, so the link is not there twice.\n\n## Dependencies and side effects\n\n- The other sites show the entry once they move to this site frame. The new tooling start page is tooling dec3530."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "dec3530258b9824d1b2c7778018dd5350aaa1147"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "feat(site): start page with the workshop first, then prompt engineering, architecture and GitHub\n\n## Intent\n\nThe tooling's start page should be inviting and lead with what matters most, the workshop. The tooling site should also be part of the global navigation.\n\n## Key changes\n\n- The start page gets the look of the workshop page: a dark hero and the workshop as the one big card with the phases of the plan, rendered from workshop.yaml.\n- Three cards follow for prompt engineering, architecture and GitHub, then a band that leads to the docs for the concepts behind it, and a reference list of rules, schemas, llms.txt and source.\n- The site frame moves to the current main of lernapps.github.io, whose header has Tooling.\n\n## Dependencies and side effects\n\n- The docs entry of the header comes with lernapps.github.io aaf4a36."
+   }
+  ]
+ },
+ "moved": []
+}

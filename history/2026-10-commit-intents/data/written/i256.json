@@ -1,0 +1,32 @@
+{
+ "id": "i256",
+ "conventionalCommit": "chore(deps): pin lernapps/tooling d31a42a: site-deploy keeps the copies of listed apps",
+ "intent": "Roll out the copies in the right order: the root site must use the tooling whose deploy keeps the copies before the apps repo starts pushing them, or the next deploy of the home page would delete them.",
+ "keyDecisions": [
+  "merge tooling first, then pin it in lernapps.github.io, then merge apps",
+  "the pre-push hook names the same tooling commit as the workflows"
+ ],
+ "trigger": "\"ja, merge und überwache das Ganze\"",
+ "kind": "chore",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i255",
+   "note": "the rollout step between the tooling and the apps merge"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "490860cf9efe561178d25ad1062db830d028192a",
+     "09d77c0ea7b7964a5aaff5df15e843683f3e2729"
+    ],
+    "reason": "Both move the same tooling pin and follow each other directly.",
+    "message": "chore(deps): pin lernapps/tooling d31a42a: site-deploy keeps the copies of listed apps\n\n## Intent\n\nThe root site must use the tooling whose deploy keeps the copies of listed apps before the apps repo starts publishing them. Otherwise the next deploy of the home page deletes them.\n\n## Key changes\n\n- The workflows and the pre-push hook pin lernapps/tooling d31a42a (lernapps/tooling#127): the deploy of the home page leaves the copies in copies.txt alone.\n\n## Dependencies and side effects\n\n- Needs tooling 7dbcb8a; allows the merge of apps 880b129."
+   }
+  ]
+ },
+ "moved": []
+}

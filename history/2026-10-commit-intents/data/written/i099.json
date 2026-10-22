@@ -1,0 +1,27 @@
+{
+ "id": "i099",
+ "conventionalCommit": "feat(explainer): solutions after the answer, reasons for wrong answers, folded captions, redirects",
+ "intent": "The first increment showed problems that the content cannot fix, only the template: solutions were visible before an answer, a wrong answer only said \"not right\" without a reason, a component's long text stayed under the exercise and gave the solution away, and a removed page left a dead address and broke the catalog's topic link.",
+ "keyDecisions": [
+  "with JavaScript the solution shows only after an answer or on request; pages stay complete without JavaScript",
+  "a wrong answer says why, as specific as the content allows, with fallbacks down to a line to look again",
+  "a component's no-JavaScript text can fold into a details element; an exercise component may not keep it",
+  "redirects in app.yaml for old addresses, validated at build"
+ ],
+ "trigger": "\"Die app templates Anpassung is klar zu machen.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i250", "note": "fixes template problems found in the first increment run"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["75aa8c0b7cc39399e1efbba6aad3fbf40f307523"],
+    "reason": "One commit for the template changes asked for.",
+    "message": "feat(explainer): solutions after the answer, reasons for wrong answers, folded captions, redirects\n\n## Intent\n\nThe first increment of an explainer app showed problems only the template can fix: the solution was visible before an answer, a wrong answer gave no reason, a component's long text gave the solution away, and a removed page left a dead address that broke the catalog's topic link.\n\n## Key changes\n\n- An exercise shows its solution only once it is answered: a wrong answer keeps the controls open and offers \"Lösung zeigen\"; the right answer or that button shows the solution. Generated exercises show their worked tasks once solved. Pages stay complete without JavaScript.\n- A wrong answer says why: the message of a typical mistake, the info of each wrong option chosen, else a hint, else a line to look again. The quiz adds the mistake or hint to its feedback, and a component's answer may carry a reason.\n- A component can fold its no-JavaScript text into a details element once it runs; an exercise component may not keep it, since it gives the solution.\n- Redirects in app.yaml keep old addresses working with a small page per old address and language, validated at build."
+   }
+  ]
+ },
+ "moved": []
+}

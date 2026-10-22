@@ -1,0 +1,70 @@
+{
+ "id": "i086b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-14T17:37:47.577Z",
+ "conventionalCommit": "feat(check): explainer pages checked without JavaScript at the gate, and section anchors of an entry",
+ "intent": "Check at the gate what an explainer promises: pages readable without JavaScript, so the listing and /review see it, not only the template's own tests. Let an entry's topics link sections of a page, and make sure those links resolve. This is step 7 of the explainer MVP, after tooling#59.",
+ "keyDecisions": [
+  "a second visit with JavaScript off only for pages with the explainer marker; other apps get no extra visit",
+  "no formula count against the content on a URL, which has no content; explainerTests() keeps that",
+  "a topic's #section is read from the served HTML in the same fetch, without a browser",
+  "pages-reachable needed no change for explainer bundles"
+ ],
+ "trigger": "\"59 is merged. The other scope PRs are still conflicted\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i084b",
+   "note": "step 7 of the explainer MVP, after the archetype step"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "f49dc7013a6d052d3791becd82cc1e9869a07a64",
+     "96c3633e088f21bdf0528544d761a946cc07b005",
+     "24bc63caef2bab2d3a9ec6157258b864c8b0aa1f",
+     "2cc0a6cdce2a70fa1c12e5a5a4eaafbf96ad03cf",
+     "59849ae2225314c477722267138bdfc650b97529"
+    ],
+    "reason": "The step 7 commits of tooling#64, one after the other: its tests, its code, the skill text and the plan; the plan commits join the docs commit. The last commit of the pull request is in i089.",
+    "message": "feat(check): explainer pages checked without JavaScript at the gate, and section anchors of an entry\n\n## Intent\n\nCheck the explainer's promise of being readable without JavaScript at the gate too, so the listing validation and /review see it, not only the template's own tests. Catalog entries may link sections of a page, so make sure those links resolve.\n\n## Key changes\n\n- Pages marked as explainer pages are visited a second time with JavaScript off, in one shared browser context, on a bundle and on a deployed address; other apps get no extra visit and the rule is left out of their report.\n- The new error rule explainer-readable-without-js checks an h1, that every heading, formula and figure is visible, every figure has an accessible name, every exercise has a non-empty Lösung and every component's nojs text is visible.\n- An entry's topic page#section must name an element id of its page, read from the HTML as the server sends it.\n- The explainer and app skills say which rules lernapps check now enforces; the plan records step 7.\n- Tests in the fast set: a passing and a broken explainer fixture, proof from the server log that unmarked pages get no second visit, and the anchors.\n\n## Dependencies and side effects\n\n- lernapps check on an explainer bundle takes a fraction of a second longer; quiz and other bundles are unchanged."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "f49dc7013a6d052d3791becd82cc1e9869a07a64",
+   "from": "i087",
+   "kind": "moved",
+   "why": "Step 7 of the explainer MVP, started right after \"59 is merged\" in i086."
+  },
+  {
+   "commit": "96c3633e088f21bdf0528544d761a946cc07b005",
+   "from": "i087",
+   "kind": "moved",
+   "why": "Step 7 of the explainer MVP, started in i086."
+  },
+  {
+   "commit": "24bc63caef2bab2d3a9ec6157258b864c8b0aa1f",
+   "from": "i087",
+   "kind": "moved",
+   "why": "Step 7 of the explainer MVP (skill and arc42 text), started in i086."
+  },
+  {
+   "commit": "2cc0a6cdce2a70fa1c12e5a5a4eaafbf96ad03cf",
+   "from": "i087",
+   "kind": "moved",
+   "why": "Plan commit of step 7, started in i086."
+  },
+  {
+   "commit": "59849ae2225314c477722267138bdfc650b97529",
+   "from": "i087",
+   "kind": "moved",
+   "why": "Plan commit of step 7, started in i086."
+  }
+ ]
+}

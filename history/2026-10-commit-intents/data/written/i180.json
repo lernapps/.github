@@ -1,0 +1,27 @@
+{
+ "id": "i180",
+ "conventionalCommit": "test: skip the no-browser test in the pre-push hook, on purpose",
+ "intent": "The pre-push hook of tooling failed twice on a test that the push did not touch: \"where no browser can start\" needs more than its 5 seconds under the load of the whole suite running in parallel. Pushes should not fail on it, while CI keeps running it.",
+ "keyDecisions": [
+  "skip the one test in the hook only, by an environment variable the hook sets, over raising its timeout or skipping it everywhere",
+  "the pre-push hook, not pre-commit as first said, since only pre-push runs tests",
+  "never bypass the hook with --no-verify",
+  "the suspected Playwright configuration was not examined"
+ ],
+ "trigger": "\"Das könnte auch mit den playwright config zu tun haben, da hatten wir schon mal Probleme\" … \"Skip den Test bewusst im pre-commit\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i178", "note": "the hook failed while pushing the pin of that release"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["e154fe746a66a09e0ae7a49e31d19e6fcb4d1bf6"],
+    "reason": "Follows the pin directly on the same branch, but serves another request, so it stays apart.",
+    "message": "test: skip the no-browser test in the pre-push hook, on purpose\n\n## Intent\n\nThe pre-push hook failed on a test the push did not touch: \"where no browser can start, the app could not be checked\" starts and refuses Playwright's browser, which takes longer than its 5 seconds while the whole suite runs in parallel. Pushes should not fail on it; CI keeps running it.\n\n## Key changes\n\n- The pre-push hook sets LERNAPPS_PRE_PUSH=1.\n- That one test skips itself when the variable is set, with a comment on why. The other tests of the file run as before.\n- CI and every other run play the test."
+   }
+  ]
+ },
+ "moved": []
+}

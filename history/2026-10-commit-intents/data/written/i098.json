@@ -1,0 +1,29 @@
+{
+ "id": "i098",
+ "conventionalCommit": "feat(app): preview a pull request in the real app before it is published",
+ "intent": "An increment ends with a pull request, and the creator should be able to try the change in the real app before it goes online. The app's workflow only checked a pull request and published nothing to look at. The comment must explain to people who are not technical that the preview is a temporary copy for their own review.",
+ "keyDecisions": [
+  "the checked bundle goes below pr-preview/pr-<number>/ of the app's own Pages, updated on every push and removed when the pull request closes",
+  "no preview for forks or for plan-only and docs-only changes; preview pages are marked noindex",
+  "one comment in plain German, kept up to date, that says what the preview is, who sees it and when it goes away",
+  "the publish checkpoint of the increment template shows the preview link",
+  "`lernapps update` does not rewrite an existing app's workflow, since apps may have changed it"
+ ],
+ "trigger": "\"wäre cool, wenn das inkrement mit einem PR abgeschlossen wird, weil ja danach die CI eine Review-Umgebung erzeugen sollte, nicht?\" … \"ja, mit verständlichem Review-Kommentar, der auch nicht-teckis erklärt, dass das ein temporäres Artefakt für ihr menschliches Review ist\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i097", "note": "the increment's pull request gets a preview"},
+  {"type": "continues", "intent": "i055", "note": "uses the gh-pages setup App publish keeps for review environments"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["fd575b6d0e02d484f17b66c4247d2e95925ab7e7"],
+    "reason": "The one commit of tooling#74.",
+    "message": "feat(app): preview a pull request in the real app before it is published\n\n## Intent\n\nAn increment ends with a pull request, and the creator should try the change in the real app before it goes online. The app's workflow only checked a pull request. Someone who is not technical must understand that the preview is a temporary copy for their own review.\n\n## Key changes\n\n- A new job preview in the app's workflow uses a new app preview action. On a pull request from the app's own repo, after the check passed, the checked bundle goes to gh-pages below pr-preview/pr-<number>/, marked noindex, updated on every push and removed when the pull request closes.\n- One comment in German tells the creator what the preview is, where it is, that learners do not see it, and that only the merge publishes; it says so when the preview is gone.\n- Plan-only and docs-only changes get no preview.\n- The increment template's publish checkpoint shows the creator the preview link.\n- Tests run the comment logic against a fake GitHub API; the architecture names the action.\n\n## Dependencies and side effects\n\n- Existing apps must copy the preview job into their workflow by hand; `lernapps update` does not rewrite it."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,69 @@
+{
+ "id": "i130",
+ "conventionalCommit": "feat(evals): a results page of the first eval runs",
+ "intent": "Show the results of the first night of eval runs, and how we got there, in an appealing way in the tooling docs, so they can be read without the job folders. Put how to run an eval where a reader finds it first, and get the eval branch merged into tooling.",
+ "keyDecisions": [
+  "a static page from aggregates per task and model only, over publishing the job data",
+  "a heatmap of the dimensions, minutes per run, stat tiles and today's cost baseline",
+  "the page names the next step: a compact guidance for agents",
+  "how to run an eval: short at the top, in detail at the end",
+  "merge straight into tooling",
+  "give slow tests a longer timeout instead of retrying pushes under load"
+ ],
+ "trigger": "\"Ich bin gespannt auf die Auswertung. Bereiten sie bitte auch grafisch ansprechend vor, ich möchte sie und das Vorgehen seit gestern Nacht unter tooling in die Docs ausdehnen\" … \"es sollte nur das \\\"How to eval\\\" von unten nach ganz vorne, kompakt und dann ausführlich am Ende der Seite. merge das direkt in Tooling\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i129",
+   "note": "publishes the results of the first matrix"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "c4961eecc4cee54129f1e67d95879c4892ebe8f4",
+     "50db4b44ccb08ff036d68cd2b1f3773e486df93a"
+    ],
+    "reason": "The results page and the move of its how-to follow each other directly on feat/evals-harbor; one page.",
+    "message": "feat(evals): a results page of the first eval runs at /tooling/evals/\n\n## Intent\n\nShow the results of the first eval runs, and how they came about, in the tooling docs, so they can be read without the job folders. A reader should find first how to run an eval.\n\n## Key changes\n\n- evals/report.ts reads the job directories and writes site/evals/data.json (aggregates per task and model only) and the generated parts of the page.\n- The page shows a heatmap of the dimensions, minutes per run, stat tiles and today's cost baseline.\n- It explains how the evals came about, their limits and the next step: a compact guidance for agents.\n- How to run an eval stands short at the top and in detail at the end.\n- Linked from the start page and llms.txt, copied by the build."
+   },
+   {
+    "commits": [
+     "9a930cfcad9ca891a7c118dda389c3519bcd19bc"
+    ],
+    "reason": "Not adjacent to the page commits (a merge of main and the plan commit lie between).",
+    "message": "test: the create test with two CLI runs gets a 20 s timeout\n\n## Intent\n\nThe eval branch could not be pushed or merged: each run of the CLI takes about 2 s, and two of them crossed the default 5 s on a busy runner (the toolchain job of #105, and locally under load).\n\n## Key changes\n\n- The create test that runs the CLI twice gets a 20 s timeout."
+   },
+   {
+    "commits": [
+     "79da6062a1f95d44fea9dc9b876c6f647a2943c3"
+    ],
+    "reason": "On another branch than the other commits of this intent.",
+    "message": "test(check): give the no-browser check the slow timeout\n\n## Intent\n\nThe pre-push run of the eval branch failed twice on the no-browser check. It spawns the CLI, which waits for Playwright to give up on a browser: about 4.4 s alone, over the default 5 s while the whole suite runs.\n\n## Key changes\n\n- The no-browser check takes the slow timeout, like the other process-spawning tests of the file."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "50db4b44ccb08ff036d68cd2b1f3773e486df93a",
+   "from": "i131",
+   "kind": "moved",
+   "why": "Moves the how-to of the results page to the top, as asked for this page."
+  },
+  {
+   "commit": "9a930cfcad9ca891a7c118dda389c3519bcd19bc",
+   "from": "i132",
+   "kind": "moved",
+   "why": "A test timeout that blocked the push and merge of the eval branch (#105)."
+  },
+  {
+   "commit": "79da6062a1f95d44fea9dc9b876c6f647a2943c3",
+   "from": "i133",
+   "kind": "moved",
+   "why": "The second test timeout that failed the pre-push run of the eval branch; i133 has no commits left."
+  }
+ ]
+}

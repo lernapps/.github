@@ -1,0 +1,32 @@
+{
+ "id": "i233",
+ "conventionalCommit": "feat(entries): list the electricity explainer",
+ "intent": "Test, in a second full creator run with the same prompt and model after the creator checkpoints, whether the tooling carries a physics explainer for the younger grades from /apps/build/ to the catalog; list the resulting app in the catalog.",
+ "keyDecisions": [
+  "an explainer for Klasse 5 and 6 that can grow to higher grades, in German and English",
+  "eight topics in three chapters, including a graphical circuit editor as a component",
+  "the live address on lernapps.net, not the redirecting github.io address"
+ ],
+ "trigger": "In the parent session: \"I created lernapps/elektrizitaet. Launch an new session with a sonnet 5.5 agent. Provide a prompt the create an electricity focused curriculum. Start with the younger grades.\" … \"Merged. Starte eine neue Session, selber prompt und Modell\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i091",
+   "note": "the second run after the creator checkpoints of tooling#67"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "843638cc9e6ac3a10b21208f40fd9d42a57fcddd"
+    ],
+    "reason": "The only commit of the electricity listing pull request.",
+    "message": "feat(entries): list the electricity explainer\n\n## Intent\n\nList the electricity explainer in the catalog, as the last step of a second full creator run that tests the explainer archetype on a physics topic for the younger grades, from /apps/build/ to the catalog. The app is live.\n\n## Key changes\n\n- A catalog entry for Elektrizität: Physik for Klasse 5 and 6, at https://lernapps.net/elektrizitaet/, in German and English.\n- Eight topics link the pages: simple circuit, conductors and insulators, switches and circuit symbols, series and parallel circuits, the circuit editor, effects of electric current, safe handling.\n- Fitness: no account, no install, no storage, no third parties."
+   }
+  ]
+ },
+ "moved": []
+}

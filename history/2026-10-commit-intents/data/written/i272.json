@@ -1,0 +1,58 @@
+{
+ "id": "i272",
+ "conventionalCommit": "feat(site-frame): the browser's language until the reader chooses, and a line where a page falls back",
+ "intent": "A reader with a German browser should get the site in German without choosing, and keep it until they change it. Where a page does not exist in the chosen language, the frame should say so in one line above the content, and on the next page in that language the line is gone.",
+ "keyDecisions": [
+  "start in the browser's language, over German for everyone with English only by the switch",
+  "store a choice in localStorage only when it differs from the browser's language, and remove it when the reader chooses the browser's language again",
+  "do not redirect crawlers, so each language stays findable at its own address",
+  "the fallback line says only what is missing (\"Diese Seite gibt es nicht auf Deutsch.\"), without \"Du siehst sie auf Englisch\"",
+  "the test that forbids scripts in the frame allows the counter and the language script by name, over allowing any script"
+ ],
+ "trigger": "\"Browser-Sprache mit Hinweisrahmen fände ich aber wertvoll. Wenn gewählte Sprache = Browser Sprache Localstorage entfernen (nur overwrite speichern)\" … \"Nimm gezielt Counter und language switcher aus dem test aus\" … \"„ du siehst sie auf Englisch“ ist unnötig.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i269", "note": "builds on the frame in the chosen language and the copies in every language tree"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["6b62b2c26f5840824f7acf66fdeb4df451191ea6", "b43693239468373ad1233e96a4b6006f6255d630"],
+    "reason": "The feature and the shorter fallback line with the narrower test follow each other directly on the branch of lernapps.github.io#62.",
+    "message": "feat(site-frame): the browser's language until the reader chooses, and a line where a page falls back\n\n## Intent\n\nA reader should get the site in their browser's language without choosing, and keep it until they change it. Where a page does not exist in the chosen language, the frame should say so above the content.\n\n## Key changes\n\n- On every page with a language switch, a small inline script goes to the same page in the language the reader chose, else in the browser's. Crawlers are not redirected.\n- A choice by the switch is kept in localStorage only if it differs from the browser's language; choosing the browser's language again removes it. The privacy notice says so.\n- Where the text of a page is in another language than the frame, a line above the content says so: \"Diese Seite gibt es nicht auf Deutsch.\" or \"This page is not available in English.\"\n- The test that forbids scripts in the frame allows the counter and the language script by name; any other script fails it. New tests cover the line and the choice of language."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["fd46c4137d2db436bf71fba5f41606f36a5003fa", "83cf08b1bc888470f70a3b36f24f7475cce9a6ae"],
+    "reason": "Two pins of the same feature, directly after each other on the docs branch.",
+    "message": "chore(deps): pin @lernapps/site b436932: browser language, fallback line\n\n## Intent\n\nThe docs should start in the browser's language and show the fallback line on pages that do not exist in the chosen language.\n\n## Key changes\n\n- The docs pin the site frame with the browser's language and the short fallback line.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io b436932; lernapps/tooling and lernapps/apps pin the same frame."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["301503e4a0d709c75b07c5414074f89f468d62ba", "8c66e48276cec0901ccac875c2425c29f27b6336"],
+    "reason": "Two pins of the same feature, directly after each other on the tooling branch.",
+    "message": "chore(deps): pin @lernapps/site b436932: browser language, fallback line\n\n## Intent\n\nThe tooling pages exist in English only, so a reader who chose German should see a line that says so, and the site should start in the browser's language.\n\n## Key changes\n\n- The tooling pins the site frame with the browser's language and the short fallback line.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io b436932; lernapps/docs and lernapps/apps pin the same frame."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["63bfc43065ace404d18602635751594ac8444873", "48d50af7aed9ea65e04de0b097d0414fd4b59948"],
+    "reason": "Two pins of the same feature, directly after each other on the apps branch.",
+    "message": "chore(deps): pin @lernapps/site b436932: browser language, fallback line\n\n## Intent\n\nThe app overview should start in the browser's language and keep a language the reader chose.\n\n## Key changes\n\n- The app overview pins the site frame with the browser's language and the short fallback line.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io b436932; lernapps/docs and lernapps/tooling pin the same frame."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "6b62b2c26f5840824f7acf66fdeb4df451191ea6", "from": "i273", "kind": "dropped", "why": "Implements the browser-language request of this intent; the test instruction of i273 is part of the same work, so i273 has no commits left."},
+  {"commit": "b43693239468373ad1233e96a4b6006f6255d630", "from": "i274", "kind": "dropped", "why": "Shortens the fallback line of this feature and narrows the test; i274 only refines this request and has no commits left."},
+  {"commit": "fd46c4137d2db436bf71fba5f41606f36a5003fa", "from": "i274", "kind": "dropped", "why": "Pins this feature in the docs."},
+  {"commit": "83cf08b1bc888470f70a3b36f24f7475cce9a6ae", "from": "i274", "kind": "dropped", "why": "Pins the shorter fallback line of this feature in the docs."},
+  {"commit": "301503e4a0d709c75b07c5414074f89f468d62ba", "from": "i274", "kind": "dropped", "why": "Pins this feature in the tooling."},
+  {"commit": "8c66e48276cec0901ccac875c2425c29f27b6336", "from": "i274", "kind": "dropped", "why": "Pins the shorter fallback line of this feature in the tooling."},
+  {"commit": "63bfc43065ace404d18602635751594ac8444873", "from": "i274", "kind": "dropped", "why": "Pins this feature in the app overview."},
+  {"commit": "48d50af7aed9ea65e04de0b097d0414fd4b59948", "from": "i274", "kind": "dropped", "why": "Pins the shorter fallback line of this feature in the app overview."}
+ ]
+}

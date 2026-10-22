@@ -1,0 +1,25 @@
+{
+ "id": "i249",
+ "conventionalCommit": "feat(explainer): make exercises, solutions and sections recognisable",
+ "intent": "In the explainer's rendering, exercises do not read as exercises with solutions, and sections are hard to tell apart. Learners should see at a glance where a task starts, where its solution is and where a new section begins, on a phone and on a desktop, with and without JavaScript.",
+ "keyDecisions": [
+  "a card with a visible label \"Übung\" around every exercise, also without JavaScript",
+  "the solution green and marked, the hint neutral and dashed, so both are told apart at a glance",
+  "keep the double label (heading and card) for now, over showing the task number in the card's header",
+  "commit to a branch, without opening a pull request"
+ ],
+ "trigger": "\"Das Rendering des explainer templates ist nicht gut. Die Übungen sind nicht einfach als solche mit Lösungen erkennbar, Abschnitte nicht klar identifizierbar. Guck Dir das mal aus Sicht von Usability an\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["9c45ab29e335bc23f2c41f0d309049598c8df65a"],
+    "reason": "The only commit of this request.",
+    "message": "feat(explainer): make exercises, solutions and sections recognisable\n\n## Intent\n\nExercises did not read as exercises with solutions, and sections were hard to tell apart. Learners should see at a glance where a task starts, where its solution is and where a new section begins, on a phone and on a desktop, with and without JavaScript.\n\n## Key changes\n\n- Every exercise sits in a card with a visible label (\"Übung\", in English \"Exercise\"), also without JavaScript.\n- The solution is a green, marked box; the hint stays neutral and dashed.\n- Each section starts with a rule and more space, and its heading is larger. Subsections get an accent bar.\n- The task text of a live exercise wraps inside its frame instead of running over the border.\n- Worked tasks are separated from each other.\n\n## Dependencies and side effects\n\n- The review rules and the browser tests do not know the new label yet."
+   }
+  ]
+ },
+ "moved": []
+}

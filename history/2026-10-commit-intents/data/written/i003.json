@@ -1,0 +1,40 @@
+{
+ "id": "i003",
+ "conventionalCommit": "fix: do not translate or list the Mathe-Karte in English",
+ "intent": "The Mathe-Karte should not be translated, and no docs should list it.",
+ "keyDecisions": [
+  "remove its row from the German and English docs index",
+  "revert its English entry texts, so it falls back to German marked lang=\"de\", while it stays in the catalog",
+  "llms.txt and the pdt42 and biz42 models left as they are"
+ ],
+ "trigger": "\"Mathe Karte should not be translate. Actually no docs should list it. Send me screenshots,\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i001", "note": "takes the Mathe-Karte out of the English translation"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["df3024c486678be6bd9c8f62eb6c12fbc98f32ee"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "fix: no Mathe-Karte on the English home page\n\n## Intent\n\nThe Mathe-Karte is not translated and should not be promoted in English.\n\n## Key changes\n\n- The English home page no longer has the lines that invite to try the Mathe-Karte. The German home page is unchanged.\n\n## Dependencies and side effects\n\n- docs and apps change the same in this intent (3efebd8, b0ba5f8)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["3efebd8a212d7e177f26ab0eaf16386b8527bb27"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "fix: the docs do not list the Mathe-Karte\n\n## Intent\n\nNo docs should list the Mathe-Karte.\n\n## Key changes\n\n- Its row is gone from the German and the English docs index.\n\n## Dependencies and side effects\n\n- lernapps.github.io and apps change the same in this intent (df3024c, b0ba5f8)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["b0ba5f847301f2c728a33a210703bac97ce671b6"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "fix: the Mathe-Karte entry is not translated\n\n## Intent\n\nThe Mathe-Karte should not be translated.\n\n## Key changes\n\n- Its catalog entry keeps only its German texts. On English pages it falls back to German, marked lang=\"de\". It stays in the catalog.\n\n## Dependencies and side effects\n\n- lernapps.github.io and docs change the same in this intent (df3024c, 3efebd8)."
+   }
+  ]
+ },
+ "moved": []
+}

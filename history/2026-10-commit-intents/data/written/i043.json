@@ -1,0 +1,33 @@
+{
+ "id": "i043",
+ "conventionalCommit": "docs(arc42): no single app, no progress, no foreign ids in the architecture",
+ "intent": "The architecture should describe the system on its own and stay true over time. The Mathe-Karte is one implementation of an archetype, maybe not even a good one, so it is not named. Progress wording and ids of other documents go stale. Only direct cross-references, such as goals derived from the platform design, use deep links.",
+ "keyDecisions": [
+  "no app named in the architecture, over the Mathe-Karte as the reference of the explainer archetype",
+  "decisions phrased as timeless statements, over \"for now\" and \"later\"",
+  "the order of building moves to the plan",
+  "deep links to the rendered platform design only for direct cross-references, over its element ids"
+ ],
+ "trigger": "\"Mathe Karte must not be referenced in the architecture. It’s just one implementation of the archetype. And it may not even be perfect. Also, the architecture document must not describe progress nor quote ids of other documents.\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i042",
+   "note": "cleans up the completed architecture"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "53271cf1e12464d291b8e3dabbdb4013b135ed4d"
+    ],
+    "reason": "One commit for one request; the plan commit after it serves the next request (i044).",
+    "message": "docs(arc42): no single app, no progress, no foreign ids in the architecture\n\n## Intent\n\nThe architecture should describe the system on its own and stay true over time. The Mathe-Karte is one implementation of an archetype, maybe not even a good one, so it is not named. Progress wording and ids of other documents go stale. Only direct cross-references, such as goals derived from the platform design, use deep links.\n\n## Key changes\n\n- The Mathe-Karte and its author no longer appear; the explainer archetype is described by what it is.\n- Progress wording, plan and issue ids and platform-design ids are gone; direct cross-references are deep links to rendered pages.\n- Decisions without progress: the owner runs the review, the tooling sends nothing, every report is bound to a commit."
+   }
+  ]
+ },
+ "moved": []
+}

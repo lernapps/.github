@@ -1,0 +1,34 @@
+{
+ "id": "i230",
+ "conventionalCommit": "docs: biz42 diff in the preview and the PR comment, model checks before commit",
+ "intent": "Reviewers should see what changed in biz42, as they already do for the platform design. A model should never change its blocks without its prose unnoticed, so the model checks run before every commit.",
+ "keyDecisions": [
+  "biz42 0.11.2 for its diff, upgraded in docs#12 where the model is new anyway, over on main where the old model fails",
+  "one \"Docs review\" comment for both models, over one comment per model",
+  "a versioned pre-commit hook in .githooks, activated once per clone",
+  "tool versions in one file shared by build and hook",
+  "accept the findings of the id rename explicitly, since the content does not change"
+ ],
+ "trigger": "\"Was mir noch aufgefallen ist, auch biz42 fehlt noch der Kommentar, dass ein es einen diff gibt. Und das sollte auch pre-commit laufen.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i229",
+   "note": "the review comment and preview of docs"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "ab75eed3ad99650f96131a8eae27a1a6501b5239"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs: biz42 diff in the preview and the PR comment, model checks before commit\n\n## Intent\n\nReviewers should see what changed in biz42, as they already do for the platform design. A model should never change its blocks without its prose unnoticed, so the model checks run before every commit.\n\n## Key changes\n\n- The preview contains about-diff/: the organisation's changes since the merge base as a page, like the platform design's.\n- One comment per pull request (\"Docs review\") links the preview and both change pages and lists the changed elements of each model.\n- .githooks/pre-commit validates a touched model and runs its diff --staged.\n- Tool versions live in scripts/versions.sh, shared by build and hook.\n- biz42 0.11 needs one-line scope fields and the prefix impr- for improvements."
+   }
+  ]
+ },
+ "moved": []
+}

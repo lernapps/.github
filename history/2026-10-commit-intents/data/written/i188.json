@@ -1,0 +1,33 @@
+{
+ "id": "i188",
+ "conventionalCommit": "docs(vibe): development plan for the platform design",
+ "intent": "Keep track of the platform design across sessions: which PDT steps are done, which decisions were taken and what comes next. The CLI derives the progress from the model, but no file keeps the decisions.",
+ "keyDecisions": [
+  "a new plan for this branch, named like the existing edugo plan, over extending that historical plan",
+  "status mirrored from `pdt42 guide` over a status of its own",
+  "finish the exploration (E6, E7) before D1, although `pdt42 next` points to D1"
+ ],
+ "trigger": "\"Ok, weiter. Aktualisiere mal die Fortschrittsdatei und danach wip commit\" … \"Gab es da keine Datei im diff zu Main?\" … \"Mach\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "8ac72c4b24599150cdb9f3b043b13626a48d912b"
+    ],
+    "reason": "A plan commit on its own: the commit it joins by rule (fc7e37a) serves the E5 request and is in i187.",
+    "message": "docs(vibe): development plan for the platform design\n\n## Intent\n\nKeep track of the platform design across sessions: which PDT steps are done, which decisions were taken and what comes next. The CLI derives the progress from the model, but no file keeps the decisions.\n\n## Key changes\n\n- A new development plan for the branch, built like the earlier edugo plan.\n- The goal points to the model in docs/pdt42; `pdt42 guide` decides the status.\n- Key decisions KD-01 to KD-06 summarise E1 to E5: the ecosystem, the four arenas with the focus on \"Getting apps into use\", the unvalidated scan, no inimitable asset, the only moat, and the user needs with the evolution of the value chain.\n- Notes: the exploration ends with E6 and E7 before D1; `pdt42 serve` works only locally, so a cloud session uses `build --single-file`.\n- Tasks per phase, with E1 to E5 done."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "8ac72c4b24599150cdb9f3b043b13626a48d912b",
+   "from": "i188",
+   "kind": "plan-rule",
+   "why": "By rule this plan commit joins fc7e37a, which serves the E5 request and is now in i187; it stays its own commit here, because it answers the request for a progress file."
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "id": "i163",
+ "conventionalCommit": "feat(guidance): each reply begins with the phase; evals: the creator marks its end",
+ "intent": "Guessing the scenario's end from the creator's free sentences took three fixes to one rule and stays fragile. A creator should also always know where the agent is, which makes the checkpoint visible and fits the goal of alignment. If every reply names its phase, the eval can read it directly and compare it with the plan.",
+ "keyDecisions": [
+  "the creator marks its last message with a fixed end marker, over guessing the end from its sentences; the agent sees it only after the end",
+  "the phase at the start of every reply as a rule of the guidance, over a trick of the eval that a real creator would never ask for",
+  "measure the phase announcement as its own configuration in the next run, beside the phase in the plan file",
+  "count announcements that do not match the plan's phase as a finding of their own",
+  "the score falls back to the sentences for earlier runs"
+ ],
+ "trigger": "\"wir könnten das ja auch leichtgewichtiger machen und den creator bitten, zu instruieren, jede Nachricht mit der aktuellen Phase zu beantworten\" … \"ich finde das einen guten Vorschlag, das passt zu Alignment\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i161", "note": "replaces guessing the scenario's end with a marker"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["12b3cdbbe840902af32d0e9d87161433050dc8e4"],
+    "reason": "The one commit of this request.",
+    "message": "feat(guidance): each reply begins with the phase; evals: the creator marks its end, the score reads both\n\n## Intent\n\nGuessing the scenario's end from the creator's free sentences took three fixes to one rule and stays fragile. A creator should also always know where the agent is, and see the checkpoint as one. With the phase named in every reply, the eval can read it directly and compare it with the plan.\n\n## Key changes\n\n- The plan and increment templates ask every reply to the creator to begin with the current phase, and with the word checkpoint at one (\"Plan · Checkpoint\").\n- The transcript score counts the replies that do (phase_announced) and whether the phase matches the plan's at that turn (phase_announced_right).\n- The personas end their last message with a marker: [Ende: veröffentlichen], [Ende: fertig] or [Ende: festgefahren]. scenario_end reads the marker and falls back to the sentences for earlier runs."
+   }
+  ]
+ },
+ "moved": []
+}

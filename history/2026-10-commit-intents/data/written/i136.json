@@ -1,0 +1,32 @@
+{
+ "id": "i136",
+ "conventionalCommit": "docs(guidance): preview of the first version through a draft pull request",
+ "intent": "The first version lived on work without a preview until it was published, so the creator had to merge into main to see it. The creator should see the current state while the app is being built.",
+ "keyDecisions": [
+  "a draft pull request work → main after the first commit, so the existing preview job shows it, over a new preview for branches",
+  "push work after each task",
+  "the publish checkpoint links the preview"
+ ],
+ "trigger": "\"Was noch nervt: beim work branch gibt es kein preview. Daher muss ich immer erst nach Main Mergen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i135",
+   "note": "another lesson from the spikes on the compact guidance"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "f3e14bce03ffc805a6e44a8563001e87d6b3e5c0"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(guidance): preview of the first version through a draft pull request\n\n## Intent\n\nThe first version lived on work without a preview until it was published, so the creator had to merge into main to see it. The creator should see the current state while the app is built.\n\n## Key changes\n\n- In Code the agent opens a draft pull request work → main after the generated app's first commit and pushes work after each task, so the existing preview job shows the current state.\n- The creator gets the link to the preview once; the publish checkpoint links it."
+   }
+  ]
+ },
+ "moved": []
+}

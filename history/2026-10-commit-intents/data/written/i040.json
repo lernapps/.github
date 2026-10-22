@@ -1,0 +1,32 @@
+{
+ "id": "i040",
+ "conventionalCommit": "docs(arc42): count the creator's turns after the confirmed plan, not decisions",
+ "intent": "Counting the creator's decisions is a poor measure: many turns before the plan can mean good assistance. Once the creator confirms the plan, the assistant should work on its own.",
+ "keyDecisions": [
+  "at most 3 creator turns after the confirmed plan, over at most 4 decisions",
+  "turns before the plan are not measured",
+  "the plan's retrospective records these turns"
+ ],
+ "trigger": "\"I think this at most questions is not a good key figure. Sometimes, multi turns is actually a measurement for good assistance. I’d actually count the interactions after the plan phase. Once the user confirms, we should not have more than three turns.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i036",
+   "note": "replaces one scenario"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "d77a131437b695fde511b647a29eb24ea6f5040b"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(arc42): count the creator's turns after the confirmed plan, not decisions\n\n## Intent\n\nCounting the creator's decisions is a poor measure: many turns before the plan can mean good assistance. Once the creator confirms the plan, the assistant should work on its own.\n\n## Key changes\n\n- qs-few-turns-after-plan replaces qs-few-decisions: at most 3 creator turns from the confirmed plan to the listing pull request.\n- The retrospective section of the plan records those turns and is the source of the number."
+   }
+  ]
+ },
+ "moved": []
+}

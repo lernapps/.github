@@ -1,0 +1,34 @@
+{
+ "id": "i209",
+ "conventionalCommit": "docs(pdt42): wip — draft the platform experiences (D7)",
+ "intent": "Assemble the transactions and services into journeys with a value proposition, so each journey can be reviewed before an MVP tests it.",
+ "keyDecisions": [
+  "\"An app for next week\" from the core entity's point of view (adopting adults), covering onboarding and getting better",
+  "\"List an app and hear it is used\" from the creators' point of view, as supply does not come by itself",
+  "a minimal non-profit business model: no revenue, value captured as use, feedback and thanks",
+  "the transformation (users become creators, creators co-owners) left to a later experience, over adding it now",
+  "stay on pdt42 0.4.0, as the new version is not released yet"
+ ],
+ "trigger": "\"Ja. Commit, push, weiter. BTW: Pdt42 bekam eine neue Version, aktualisiere mal\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i206",
+   "note": "experiences built from the D5 transactions and D6 services"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "6abab0a46ccc9b423b76f6b535dd5e89b35f1077"
+    ],
+    "reason": "One draft commit.",
+    "message": "docs(pdt42): wip — draft the platform experiences (D7)\n\n## Intent\n\nAssemble the transactions and services into journeys with a value proposition, so each journey can be reviewed before an MVP tests it.\n\n## Key changes\n\n- A new D7 chapter holds two experiences. \"An app for next week\" takes the adopting adults' point of view: find, check fitness, assemble for a class, use, give feedback and thanks. \"List an app and hear it is used\" takes the creators' point of view.\n- The business model is minimal and non-profit: no revenue; value is captured as use, feedback and thanks that keep creators, and as more and better apps. The costs are the platform owner's time and almost no operating costs.\n\n## Dependencies and side effects\n\n- Two hints remain: no MVP tests the experiences yet (D8)."
+   }
+  ]
+ },
+ "moved": []
+}

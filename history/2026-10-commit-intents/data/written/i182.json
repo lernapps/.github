@@ -1,0 +1,25 @@
+{
+ "id": "i182",
+ "conventionalCommit": "docs(guidance): open pull requests without asking; keep the checkpoint before publishing",
+ "intent": "When an assistant finishes the first version of an app, it stops and waits for a yes before it even opens the pull request. But the pull request and its preview are what the creator needs to judge the result. Assistants should open pull requests on their own, and ask only before publishing, with the preview at hand.",
+ "keyDecisions": [
+  "only publishing needs a yes; opening a pull request never does",
+  "the publish checkpoint shows what the app can do and the preview link from the pull request",
+  "the catalogue pull request is opened without asking too, since the pull request itself is the check; the list checkpoint follows it",
+  "keep all four checkpoints in their order (research, confirm, publish, list)"
+ ],
+ "trigger": "\"Beim entwickeln habe ich festgestellt, dass der checkpoint vor dem erstellen des PR unpraktisch ist: wenn der Agent fertig ist, wartet er auf Bestätigung, dabei hilft dafür der MR und die preview. … Das sollte in der guidance korrigiert werden\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["9dab378136529d35c4e0f261e33781baa6b04347"],
+    "reason": "The only commit of this request; the commit rules after it on the branch serve another request.",
+    "message": "docs(guidance): open pull requests without asking; keep the checkpoint before publishing\n\n## Intent\n\nAn assistant that finished the first version of an app stopped and waited for a yes before it opened the pull request. But the pull request and its preview are what the creator needs to judge the result. Assistants should open pull requests on their own and ask only before publishing.\n\n## Key changes\n\n- In the first-version plan, the assistant opens the pull request from work to main right after the push and waits for green checks.\n- The publish checkpoint then shows what the app can do and the link from the comment \"Vorschau der App\", and asks whether the app may go online.\n- In both plan templates, the catalogue pull request is opened without asking; the assistant waits for \"bestanden\" and then shows the pull request with its result. The list checkpoint follows it.\n- The comments of the Commit phase say that only publishing needs a yes."
+   }
+  ]
+ },
+ "moved": []
+}

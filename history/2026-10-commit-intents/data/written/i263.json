@@ -1,0 +1,41 @@
+{
+ "id": "i263",
+ "conventionalCommit": "docs: llms.txt orients and links instead of repeating",
+ "intent": "The catalog's llms.txt held far too much: every app, the build steps and the listing steps. It should orient an agent and link to the pages that hold the details.",
+ "keyDecisions": [
+  "link the catalog and the app pages instead of listing every app",
+  "point to /build/ and /enter/ instead of repeating their steps",
+  "the tests check the build skill link on /build/ only"
+ ],
+ "trigger": "\"Die llms.txt enthält viel zu viele Informationen. Sie soll orientieren, nicht alle Apps beschreiben. Das geht über Links viel besser\" … \"App bauen kann direkt auf die apps/build verweisen\" … \"Auch all eintragen kann man durch einen Link ersetzen\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "e3dd1f76681d3bf2f2c40a17a9f1151a807f525e",
+     "e3deb1f521afc1e876b1f79c51a655124c181b0d",
+     "e10f28c0de630d9b50199f33221a0a02d9edc6f8"
+    ],
+    "reason": "Three steps of one request that follow each other directly on slim-llms-txt (one pull request).",
+    "message": "docs: llms.txt orients and links instead of repeating\n\n## Intent\n\nThe catalog's llms.txt held every app, the build steps and the listing steps. It should orient an agent and link to the pages that hold the details.\n\n## Key changes\n\n- The list of apps gives way to a short section \"Apps finden\": it links the start page with the catalog, names the pattern of the app pages (`<id>/`) and links the English version.\n- \"Eine App bauen\" points to /build/ instead of repeating skill, command and npx block.\n- \"Eine App eintragen\" points to /enter/, the skill lernapps-listing and the fallback form or e-mail, instead of the conditions, the entry template and the pull request steps.\n- The entry-point tests expect the skill link and the create command on /build/, no longer in llms.txt."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "e3deb1f521afc1e876b1f79c51a655124c181b0d",
+   "from": "i264",
+   "kind": "moved",
+   "why": "Same request: replace the build steps in llms.txt by a link; i264 has no commits left."
+  },
+  {
+   "commit": "e10f28c0de630d9b50199f33221a0a02d9edc6f8",
+   "from": "i265",
+   "kind": "moved",
+   "why": "Same request: replace the listing steps in llms.txt by a link; i265 has no commits left."
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "id": "i275",
+ "conventionalCommit": "fix(lernapps-frame): put the frame in outside the page's scripts",
+ "intent": "The language work had to be brought up to date with main and merged in all four repos. The docs preview then failed: the bundled diff pages carry \"</head>\" as text inside a script, and the frame was put in there. Since the frame's head now holds the language script, it ended the bundle early and broke the page.",
+ "keyDecisions": [
+  "look up </head>, <body> and the last </body> outside script elements, over a special case for the diff pages",
+  "merge the frame with a merge commit, so the pinned commits stay reachable",
+  "keep the newer frame pin when merging main into the branches, and rebuild the lock file"
+ ],
+ "trigger": "\"Aktualisiere noch mal Martin von Origin für alle und mehr dann direkt durch\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i272", "note": "the language script in the frame's head exposed the bug"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["10bc90b55de35d6f69a6f95d88d64ca5200156fe"],
+    "reason": "The one commit of the follow-up pull request.",
+    "message": "fix(lernapps-frame): put the frame in outside the page's scripts\n\n## Intent\n\nA bundled app, such as the biz42 and pdt42 diff pages, carries \"</head>\" as text inside a script in its head. The frame put its head links in at the first \"</head>\", inside that script. Since the frame's head now holds the language script, its closing tag ended the bundle early, and the rest became markup with broken links.\n\n## Key changes\n\n- lernapps-frame looks up </head>, <body> and the last </body> outside script elements.\n\n## Dependencies and side effects\n\n- lernapps/docs 59b3913, lernapps/tooling 1dc81c3 and lernapps/apps e7246d5 pin this fix."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["59b3913929640583ec2f16817552d4787da001ae"],
+    "reason": "The pin follows the merge of main into the branch, so it stays alone.",
+    "message": "chore(deps): pin @lernapps/site 10bc90b: the frame outside page scripts\n\n## Intent\n\nThe preview of the docs failed, because the frame was put in inside the script of the bundled diff pages.\n\n## Key changes\n\n- The docs pin the site frame that puts itself in outside the page's scripts.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io 10bc90b."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["1dc81c3d72c98effdf25d854d2e1507910051578"],
+    "reason": "The pin follows the merge of main into the branch, so it stays alone.",
+    "message": "chore(deps): pin @lernapps/site 10bc90b: the frame outside page scripts\n\n## Intent\n\nThe frame could break a page that carries \"</head>\" as text inside a script. The tooling should use the fixed frame like the other sites.\n\n## Key changes\n\n- The tooling pins the site frame that puts itself in outside the page's scripts.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io 10bc90b."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["e7246d5287c3f8e41a2e3653d44233dee1152abe"],
+    "reason": "The pin follows the merge of main into the branch, so it stays alone.",
+    "message": "chore(deps): pin @lernapps/site 10bc90b: the frame outside page scripts\n\n## Intent\n\nThe frame could break a page that carries \"</head>\" as text inside a script. The app overview should use the fixed frame like the other sites.\n\n## Key changes\n\n- The app overview pins the site frame that puts itself in outside the page's scripts.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io 10bc90b."
+   }
+  ]
+ },
+ "moved": []
+}

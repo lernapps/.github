@@ -1,0 +1,65 @@
+{
+ "id": "i116",
+ "conventionalCommit": "feat: the archetype interactive, with the architecture copied into the app and checked by arc42",
+ "intent": "Build step 2 of the interactive archetype: lernapps create makes an interactive app whose architecture comes from app-templates and is checked before every commit and in the full check. To copy the generic architecture and the interactive extension mechanically, the template blocks must carry their real path in app-templates, which the tooling strips to the app's path, instead of an ignore without a path. A fresh app must pass lernapps check before anything is added to git.",
+ "keyDecisions": [
+  "create and update copy the generic part and the extension into the app as a reference that update replaces; the app's own part lives beside it",
+  "runtime paths become ignores in the app with the reason \"installed package\" (arc42-language#128); template paths lose their prefix",
+  "template blocks carry their path with the template prefix in app-templates, over the ignore introduced just before",
+  "quiz and explainer apps get no architecture and no check",
+  "@doctc/arc42 only in interactive apps' devDependencies, over a dependency of the tooling that every quiz app would carry (165 MB)",
+  "arc42 diff --staged --strict before a commit and validate --strict in the full check, over a full validation on every commit",
+  "the full check validates on a temporary copy of the git index with untracked files added as intent to add, over asking the creator to run git add first"
+ ],
+ "trigger": "\"Das passt\" (to the proposal for how the architecture gets into an interactive app)",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i112",
+   "note": "template blocks get their path back instead of an ignore"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "0d6eeceee5820b755aba558a2f3a182ca28aab5f"
+    ],
+    "reason": "The only commit of app-templates#43.",
+    "message": "docs(arc42): template blocks carry their path with the template prefix\n\n## Intent\n\nThe tooling will copy the generic architecture and the interactive extension into an interactive app and rewrite their paths mechanically. For that, the template blocks need their real path in this repo, which the tooling strips to the app's path.\n\n## Key changes\n\n- The blocks and interfaces of the template folders name their path in this repo (interactive/src/core, quiz/src/quiz.json, explainer/src/app.yaml) instead of an ignore; the paths exist here and validate.\n- The templates' entries, type declarations and the explainer's example chapter are left out of the coverage. The interactive template's own ignore file, which an app gets, also leaves out src/main.ts.\n- The explainer's optional parts, which the template does not contain, keep their ignore with a reason that says so.\n- Every combination still validates without a finding.\n\n## Dependencies and side effects\n\n- lernapps/tooling c6e8015 (same intent) pins this commit and copies the chapters into interactive apps."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "c6e8015526ddfa332b112d5bea8b8ed9eea89126"
+    ],
+    "reason": "The only commit of tooling#96; the next commit of this intent, 66f57a6, follows a merge.",
+    "message": "feat: the archetype interactive, its architecture copied into the app and checked by arc42\n\n## Intent\n\nCreators should get an interactive app from lernapps create, as they do a quiz or an explainer. Its architecture should come from app-templates and stay current: update replaces the copied part, and arc42 stops a commit whose code the architecture does not explain.\n\n## Key changes\n\n- lernapps create --archetype interactive makes an app on which npm install and npx lernapps check pass. The tooling pins app-templates at the commit with the interactive template.\n- An interactive app gets docs/arc42/ with the generic part and the interactive extension combined into twelve chapters. Runtime paths become ignores with the reason \"installed package\" (docToolchain/arc42-language#128); template paths lose their prefix.\n- The app's own architecture goes between the markers <!-- app: begin … --> and <!-- app: end … -->. Update replaces everything else, keeps these sections as they are, and writes nothing when a section with content would lose its place.\n- Quiz and explainer apps get no architecture and no arc42. Only interactive apps get @doctc/arc42, TypeScript and vue-tsc as devDependencies, because arc42 is 165 MB.\n- Before a commit that touches the architecture, .arc42ignore or src/, the hook runs arc42 diff --staged --strict (validate before the first commit). The full check runs arc42 validate --strict.\n- The component rules (no network, no HTML injection, imports, browser globals) also apply to interactive apps. The rule vue-component-imports accepts the template's own imports in an interactive app.\n- The skill lernapps-interactive describes the runtime as built: typed inputs, ticks, libraries, no size limit, the storage quota, declared limits and the architecture with its app sections and check. New rule and rubric item interactive-architecture-current.\n- The plan records steps 1 and 2 as done; the next step is the first full run with a pilot app.\n\n## Dependencies and side effects\n\n- Needs lernapps/app-templates 0d6eece (template blocks carry their path, same intent) and 2baaf45 (the empty app sections).\n- A fresh app fails lernapps check until its files are added to git; 66f57a6 (same intent) fixes that."
+   },
+   {
+    "commits": [
+     "66f57a6e35ec6989deb6660dda77091aea0511e0"
+    ],
+    "reason": "A separate fix after the merge of tooling#97; its parent is a merge commit.",
+    "message": "fix(check): validate the architecture of the working tree, untracked files included\n\n## Intent\n\nA freshly created interactive app failed lernapps check with E011 for every implementation path. arc42 resolves paths only from the files git tracks (docToolchain/arc42-language#128), and nothing is in git after git init. The entry-point e2e test of lernapps/apps (PR #42) failed for this reason. Outside a repository, arc42 took docs/arc42 as the root and failed the same way. A creator should not have to run git add before the check.\n\n## Key changes\n\n- The full check runs arc42 validate --strict on a temporary copy of the git index, with every untracked, not ignored file of the app added as intent to add. The real index stays as it is, and no file content goes into git.\n- Outside a repository, the check passes --root ., so arc42 lists the files of the app's folder.\n- The pre-commit step still reads the staged state, because that is what the commit contains. Its fix text says to stage the files that belong to the commit; the full check no longer says \"git add new files first\". The skill lernapps-interactive says the same.\n- The interactive e2e test checks the fresh app with nothing in git and that the index stays empty.\n\n## Dependencies and side effects\n\n- Fixes c6e8015 (same intent). lernapps/apps PR #42 passes again once this is on main."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "c6e8015526ddfa332b112d5bea8b8ed9eea89126",
+   "from": "i118",
+   "kind": "moved",
+   "why": "It is step 2 of the interactive archetype, which this intent's request started; the time cut put it after the next message because the agent finished later."
+  },
+  {
+   "commit": "66f57a6e35ec6989deb6660dda77091aea0511e0",
+   "from": "i118",
+   "kind": "moved",
+   "why": "It fixes a regression of c6e8015 (a fresh interactive app failed the check), so it serves the same request."
+  }
+ ]
+}

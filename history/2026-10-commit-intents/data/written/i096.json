@@ -1,0 +1,25 @@
+{
+ "id": "i096",
+ "conventionalCommit": "chore(deps): pin app-templates 522d66c",
+ "intent": "The fixes for labelled figures and for credits and link addresses by language should reach new and updated apps now, not only with the next scheduled Renovate update. The app that needed a workaround for the type check can then drop it.",
+ "keyDecisions": [
+  "move the pin by hand instead of waiting about three hours for Renovate",
+  "the app's own session removes its workaround, told through a message to that session"
+ ],
+ "trigger": "\"Sag dem Agenten in der anderen Session, dass es eine neue Version gibt. Dann kann er es ja raus machen\" … \"Ja, mach das gleich.\"",
+ "kind": "chore",
+ "relations": [
+  {"type": "continues", "intent": "i095", "note": "brings the template fixes of that round to apps"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["7541c40c744fa8542330eca96efc112b88ba9547"],
+    "reason": "The one commit of tooling#72.",
+    "message": "chore(deps): pin app-templates 522d66c\n\n## Intent\n\nThe sized labelled figure of an SVG with only a viewBox (app-templates#21) and a credit's source and a link's address by language (app-templates#22) should reach new and updated apps now, ahead of the scheduled Renovate update.\n\n## Key changes\n\n- The pinned app-templates commit moves to 522d66c."
+   }
+  ]
+ },
+ "moved": []
+}

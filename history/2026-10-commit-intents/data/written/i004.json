@@ -1,0 +1,26 @@
+{
+ "id": "i004",
+ "conventionalCommit": "feat(nav): link the tooling home page next to \"App bauen\"",
+ "intent": "People who build an app should find what lernapps provides to build easier and faster: the tooling's home page, reached from where building starts.",
+ "keyDecisions": [
+  "a plain navigation entry after \"App bauen\", over a dropdown under it",
+  "the same English-only address in both languages, labelled \"Bauhilfen\" and \"Build tools\"",
+  "/tooling/ as a known site of the shared frame, so the link resolves like apps and docs"
+ ],
+ "trigger": "\"In top Level Navigation „/build\" we should include a link to the tooling home page \"what lernapps provides for you to build easier and faster\"\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i001", "note": "on the branch of the bilingual frame"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["6003e116f32ea2cc277a786c99c4da416671b6d5"],
+    "reason": "The only commit of this request.",
+    "message": "feat(nav): link the tooling home page next to \"App bauen\"\n\n## Intent\n\nPeople who build an app should find what lernapps provides to build easier and faster.\n\n## Key changes\n\n- The top-level navigation gets an entry after \"App bauen\": \"Bauhilfen\" in German, \"Build tools\" in English, both to the English-only /tooling/.\n- /tooling/ is a known site of the shared frame, so the link resolves and is marked current on the tooling pages.\n\n## Dependencies and side effects\n\n- Replaced by a link in the body of the build page in i005."
+   }
+  ]
+ },
+ "moved": []
+}

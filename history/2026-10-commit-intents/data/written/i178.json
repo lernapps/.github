@@ -1,0 +1,29 @@
+{
+ "id": "i178",
+ "conventionalCommit": "feat(interactive): release the header change through tooling: skill text and pin",
+ "intent": "The new header and the slot in the interactive heading line should reach apps. Since apps and the generator follow app-templates through a commit pinned in tooling, a release means merging the runtime, pinning it in tooling with a skill that describes it, and updating the apps that use it.",
+ "keyDecisions": [
+  "a release is the merge of app-templates plus the pin in tooling, since the runtime is pinned by commit",
+  "write the skill text first and add the pin once the merge commit exists",
+  "merge tooling only after an explicit go; open the app pull requests without merging them, since a merge there goes live",
+  "the pin carries two merged but unpinned changes of others (#46 practice texts and formulas, #48 dark mode)"
+ ],
+ "trigger": "\"Dann mach mal ein neues Release und pass alle betroffenen Repos auf die Änderung an.\" … \"Veröffentliche Tooling, dann bumps alle abhängigen Versijnen und starte für die PRs, damit ich mir das Ergebnis anschauen kann\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i177", "note": "releases the header change made there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["bacaeaa531194023390e584494464589ccddd002", "55f666d291176913b170af2d383b553ddc3f2961"],
+    "reason": "The skill text and the pin follow each other directly on one branch and together release the runtime change.",
+    "message": "feat(interactive): pin app-templates at ea5e798 and describe the slot in the skill\n\n## Intent\n\nThe new header and the slot in the interactive heading line should reach apps. Apps and the generator follow app-templates through the commit pinned here, so the pin moves to the merge of app-templates#50, and the skill tells assistants how to use the new runtime (#111).\n\n## Key changes\n\n- The skill lernapps-interactive describes the slot beside the h1 (startInteractive option title), the frame width by --interactive-max-width, and a header that holds only the language switch.\n- app-templates is pinned at ea5e798. The header of the interactive and explainer pages holds the language switch and nothing else.\n\n## Dependencies and side effects\n\n- The pin also carries app-templates#46 (explainer practice text, worked tasks, formulas in quiz texts) and #48 (dark mode for quiz and explainer), merged earlier but not yet pinned.\n- Needs the runtime change in app-templates (476fda6, 275530a)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "55f666d291176913b170af2d383b553ddc3f2961", "from": "i179", "kind": "dropped", "why": "The pin is the second half of the release asked for here; i179 only asked for the status and gave the go to publish, and has no commits left."}
+ ]
+}

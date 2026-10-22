@@ -1,0 +1,43 @@
+{
+ "id": "i079",
+ "conventionalCommit": "feat: the change scope decides what hooks and CI run",
+ "intent": "Hooks and CI ran every check and build whatever a commit changed, which wastes time on commits that touch only the plan or only the docs. Each change should trigger only the work it needs, decided in one central place for every repo rather than in each one.",
+ "keyDecisions": [
+  "one classifier in the tooling (`lernapps changes`), used by hooks and CI in every repo",
+  "allowlists for none (.vibe/**) and docs (docs/**/*.md only); any other or unknown path runs everything",
+  "README and AGENTS.md count as code, not docs",
+  "gated jobs plus one always-running final job, instead of workflow path filters that leave required checks pending",
+  "the reusable workflow lives in the tooling, not in lernapps/.github",
+  "the generated publish workflow drops its paths-ignore for .vibe"
+ ],
+ "trigger": "\"we currently run all checks and builds pre-commit/pre-push and in ci independent of the scope of the change. Plan file commits (.vibe) should not trigger anything, docs should only trigger site related validations and deployments. Can we adapt this in a central place?\" … \"Only docs/*.md. Agree to put it in tooling\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i074",
+   "note": "replaces the paths-ignore for plan-only changes in the generated publish workflow"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "db30e2e4ec121f86327aaca27e6f45770104a629",
+     "6bd4f21fa856eab7a17812d7135d985be10e0154"
+    ],
+    "reason": "Both commits of tooling#57, one after the other: the classifier, and a fix of its tests under the pre-push hook.",
+    "message": "feat: the change scope decides what hooks and CI run\n\n## Intent\n\nHooks and CI ran every check and build whatever a commit changed. A change of only the plan needs no checks at all, and a change of only docs needs only site work. This should be decided in one central place for every repo, not in each repo on its own.\n\n## Key changes\n\n- A classifier, `lernapps changes`, names the scope: none for only .vibe/**, docs for only docs/**/*.md (with or without the plan), all for anything else or when the changed files cannot be known.\n- The lists are allowlists with a default per kind of repo (app, tooling, site); a repo may declare exceptions in package.json, and invalid entries fail.\n- lernapps check --pre-commit and --pre-push ask it first: with none, and with docs in an app, they print one line and check nothing; with docs in a repo with a site, only the site is built and checked. The tooling's own heavy-test gating uses the same patterns.\n- The app-check and app-publish actions classify the event themselves, so generated apps skip plan-only and docs-only changes with no configuration.\n- A reusable workflow outputs the scope; each workflow gates its jobs on it and has one always-running final job as the required check, since a check skipped by a workflow path filter would stay pending.\n- The generated publish workflow drops its paths-ignore for .vibe.\n- The classifier's tests ignore a hook's git variables and give git a timeout, so they also pass under the pre-push hook and on a busy machine."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "6bd4f21fa856eab7a17812d7135d985be10e0154",
+   "from": "i080",
+   "kind": "moved",
+   "why": "A test fix inside tooling#57, the change-scope classifier."
+  }
+ ]
+}

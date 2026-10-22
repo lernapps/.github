@@ -1,0 +1,48 @@
+{
+ "id": "i164",
+ "conventionalCommit": "feat(evals): a small run that measures the phase announced (interactive × Haiku × 3)",
+ "intent": "The phase announcement and the creator's end marker were in the guidance and the eval but not yet measured. A small run with Haiku on the interactive archetype should show whether they work, and whether Haiku now gets through Code to Commit.",
+ "keyDecisions": [
+  "one session, Haiku, interactive, three trials, over a full matrix",
+  "the eval session pushes nothing and writes no conclusions; they are written here",
+  "fix the scorer and the personas from what the run showed, over taking the first numbers as they are",
+  "press keys a US keyboard lacks as a keydown event with that key, over playthroughs that avoid ä, ö, ü and ß"
+ ],
+ "trigger": "\"mach einen kleinen eval-lauf mit einer session, haiku, interactive\"",
+ "kind": "eval",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i163",
+   "note": "measures the phase announcement and the end marker for the first time"
+  },
+  {
+   "type": "continues",
+   "intent": "i160",
+   "note": "fixes the browser tests that stayed red on ö and ü, an open action of run 2"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "0cb0631a50b056f748293c39ff674baf33d33b86"
+    ],
+    "reason": "The one app-templates commit of this request.",
+    "message": "fix(interactive): the browser tests press ä, ö, ü and ß too\n\n## Intent\n\nThe browser tests of an interactive app could not press ä, ö, ü or ß, because Playwright knows only the keys of a US keyboard by name. In the eval run of 2026-10-21, all three Haiku trials rewrote their playthroughs so that they never press such a key, and the check stayed red where they did.\n\n## Key changes\n\n- A key that Playwright does not know by name goes to the page as a keydown event with that key, which the runtime listens to.\n- The example checks ü as a wrong key.\n\n## Dependencies and side effects\n\n- lernapps/tooling 4258ef4 records the run that found the bug."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "8ef76eaea80be793092d9bb7c8a5c98ea0c3705d",
+     "4258ef452cc8ba2f52365d44c8d0a2749de94fc2"
+    ],
+    "reason": "The scorer fix the run showed and the run's results, re-scored with it, follow each other directly on one branch.",
+    "message": "feat(evals): the small run of 2026-10-21, phase announced (interactive × Haiku × 3)\n\n## Intent\n\nThe phase announcement and the creator's end marker had not been measured yet. A small run with Haiku on the interactive archetype should show whether they work, and whether Haiku now gets from Code to Commit.\n\n## Key changes\n\n- The score reads the phase from the first text of a reply and compares it with the plan's phase after the tool calls before it. It leaves out the reply to the creator's last message, which no one reads.\n- The personas send their last message with the end marker on its last line, instead of writing the marker only into their own summary.\n- The run's results and conclusions: Haiku passes the check in 3 of 3 trials, creates nothing before the plan, and sets phase: commit before the GitHub question in 2 of 3; two trials begin every reply with the phase.\n\n## Dependencies and side effects\n\n- lernapps/app-templates 0cb0631 fixes the browser tests that could not press ä, ö, ü and ß, which the green checks of this run had hidden."
+   }
+  ]
+ },
+ "moved": []
+}

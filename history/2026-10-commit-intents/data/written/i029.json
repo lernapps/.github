@@ -1,0 +1,35 @@
+{
+ "id": "i029",
+ "conventionalCommit": "fix(quiz): keep the quiz light despite its images",
+ "intent": "The seven new images made the quiz page about 33 times as large as before, and the browser fetched every image at once, even those of questions the learner has not reached. The page must stay light on a phone. The image pull request also stayed red, because the CI copied its test images into a nested folder once the quiz had an image folder of its own.",
+ "keyDecisions": [
+  "images at 800 px and lower quality, over keeping them at 960 px",
+  "images stay in the app's source image folder as the runtime expects, over moving them to assets or public",
+  "lazy loading in the runtime as a pull request of its own, over mixing it into the image pull request",
+  "loading=lazy and decoding=async only, over also setting width and height, which needs the image sizes at build time",
+  "fix the copy command of the CI job, over moving the images or changing the runtime or the fixture"
+ ],
+ "trigger": "\"Wie werden denn die Bilder gebundelt? Sollten Sie eigentlich in SRC oder in Asset landen?\" … \"Ich mache mir ein wenig Gedanken bezüglich der bundle soze\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i019", "note": "makes the images of the Naturwunder-Quiz smaller and lets the browser load them only when needed"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["51ae9b041b27ff45a325713267eb464d4e64ef74"],
+    "reason": "The last commit of app-templates#61; the commit before it belongs to the image request, so it stays alone.",
+    "message": "fix(quiz): images at 800 px; the quiz-material job copies its images into an existing folder\n\n## Intent\n\nThe seven images made the quiz page about 33 times as large as its script and styles, and the page must stay light on a phone. The CI job quiz-material also failed once the quiz had an image folder of its own, because it copied its test images into a nested folder.\n\n## Key changes\n\n- Every image is at most 800 px wide and more strongly compressed: about 450 kB in all instead of 737 kB.\n- The job quiz-material creates the image folder and copies the content of the fixture's image folder into it, whether the folder exists or not.\n\n## Dependencies and side effects\n\n- app-templates 1583231 lets the browser load each image only when it is needed."
+   },
+   {
+    "commits": ["158323136f176f570c7567b7017be58ba3627034"],
+    "reason": "A runtime change on a branch of its own.",
+    "message": "feat: load figure images lazily\n\n## Intent\n\nThe browser fetched the images of every question at once, even those the learner has not reached yet. A quiz with an image at every question should load only what is shown.\n\n## Key changes\n\n- Images of questions and explainer pages carry loading=lazy and decoding=async.\n\n## Dependencies and side effects\n\n- app-templates 51ae9b0 makes the images of the Naturwunder-Quiz smaller."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "158323136f176f570c7567b7017be58ba3627034", "from": "i019", "kind": "moved", "why": "Lazy loading answers the worry about the size of the quiz raised here; the steering session only passed the decision on."}
+ ]
+}

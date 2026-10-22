@@ -1,0 +1,45 @@
+{
+ "id": "i117",
+ "conventionalCommit": "docs: build freely or with Lovable and bolt.new; app sections in the interactive architecture",
+ "intent": "Creators may want tools such as Lovable or bolt.new, which choose their own framework and styling, and the platform should stay open to them. The interactive archetype keeps Vue, and the open way is documented instead. An interactive app also needs a place for its own architecture inside the copied chapters, because arc42 checks a block, its parent and its diagram within one file.",
+ "keyDecisions": [
+  "Vue stays in the interactive archetype; building freely or with Lovable and bolt.new is described on the build page, over a framework-agnostic archetype or a raw skill-only setup",
+  "the app's own architecture between markers in the copied chapters, which lernapps update keeps, over separate app files that arc42 cannot validate strictly"
+ ],
+ "trigger": "\"ich glaube, wir sollten Framework Agnostic bleiben. Es ist ein sehr guter Anwendungsfall, das Creator Tools, Loveable oder Bolt.New nutzen möchten\" … \"Lass vue im archetyp. Wir lösen das mit Dokumentation. Unter Bauen beschreiben wir einen kleinen Absatz, wie man Freestyle oder mit lovable/bolt baut. Das mit den Markierungen in unserem template give ich eine gute Idee\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i106",
+   "note": "keeps Vue in the archetype but opens the platform to other tools through documentation"
+  },
+  {
+   "type": "continues",
+   "intent": "i116",
+   "note": "the app's place in the copied architecture of step 2"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "91212ba0c122d036aacaa4853adf39e121354553"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "docs(build): building freely, by hand, with another framework or with Lovable or bolt.new\n\n## Intent\n\nCreators may want tools such as Lovable or bolt.new, which choose their own framework and styling. The platform stays open to them: the archetypes keep their stack, and the build page explains the free way.\n\n## Key changes\n\n- The page \"App bauen\" gets a short paragraph, in German and English, on building an app freely: by hand, with another framework, or with Lovable or bolt.new.\n\n## Dependencies and side effects\n\n- The interactive archetype keeps Vue; its architecture gets sections for the app's own part (2baaf45, same intent)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "2baaf452243dce14ecee56b47b8420f7c37e41c5"
+    ],
+    "reason": "The only app-templates commit of this request.",
+    "message": "docs(arc42): empty app sections in the interactive extension\n\n## Intent\n\nAn interactive app needs a place for its own architecture. arc42 checks a block within its parent's section and in a diagram of the same chapter-5 file, so separate app files cannot validate strictly.\n\n## Key changes\n\n- An interactive app gets the generic part and the interactive extension as a copy, which lernapps update replaces. Its own architecture goes between the markers <!-- app: begin … --> and <!-- app: end … -->, which update keeps.\n- The extension has named, empty sections inside the core, the UI and the data, and one at the end of every interactive chapter.\n- Empty, they change nothing: every combination still validates without a finding.\n\n## Dependencies and side effects\n\n- The tooling's step 2 copies these chapters into interactive apps.\n- The commit also adds package-lock.json files to the three templates."
+   }
+  ]
+ },
+ "moved": []
+}

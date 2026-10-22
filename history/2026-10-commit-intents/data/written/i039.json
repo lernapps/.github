@@ -1,0 +1,32 @@
+{
+ "id": "i039",
+ "conventionalCommit": "docs(plan): archetypes named by character, quiz as a skeleton, TypeScript everywhere",
+ "intent": "Archetypes should be named after their character, not their use, and all code should be strictly typed. A quiz is listed as a further archetype without building it yet.",
+ "keyDecisions": [
+  "names by character, over names by use such as \"lesson\"",
+  "TypeScript everywhere and strictly enforced, over plain JavaScript with type checking",
+  "quiz as a skeleton that is not implemented yet"
+ ],
+ "trigger": "\"Id name the archetypes as per their character, not their use. … We should use typescript everywhere and strictly enforce it. We could list “quiz” as other archetype skeleton which we don’t implement yet\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i038",
+   "note": "the archetype inspired by the Mathe-Karte"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "e8010cf944b529eed5f09b8ce0e3824bbf4834ff"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(plan): archetypes named by character, quiz as a skeleton, TypeScript everywhere\n\n## Intent\n\nArchetypes should be named after their character, not their use, and all code should be strictly typed. A quiz is listed as a further archetype without building it yet.\n\n## Key changes\n\n- KD-02: a content-heavy and an interactive archetype first; quiz as a third, listed as a skeleton; names still open.\n- KD-06: TypeScript everywhere, strict, no JavaScript sources, type check in the pre-commit hook and in CI.\n- Chapter 1 and the evidence file follow."
+   }
+  ]
+ },
+ "moved": []
+}

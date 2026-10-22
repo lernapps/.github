@@ -1,0 +1,37 @@
+{
+ "id": "i128",
+ "conventionalCommit": "docs(adr): accept Harbor for the eval runs",
+ "intent": "Decide the eval infrastructure. Harbor brings a documented method for long agent runs with a simulated creator, so we need not build run control, persona, repetition and rescoring ourselves. Prove in a spike and a first real run that it works in the cloud container before accepting it.",
+ "keyDecisions": [
+  "Harbor over scripts and result files, because its method and documentation already exist",
+  "a spike without a model first, then one real run, before accepting",
+  "single-step tasks with a persona, over multi-step tasks whose creator messages are fixed",
+  "prepared states baked into the images",
+  "a wrapper with a scrubbed environment; the key reaches the container as EVALS_ANTHROPIC_API_KEY, since the platform filters ANTHROPIC_* variables",
+  "a local patch for the subscription token of the ACP adapter",
+  "at least three trials per configuration; a verifier at the end plus a transcript script",
+  "the review topic is closed; only the evals remain"
+ ],
+ "trigger": "\"Den Review-Aspekt betrachte ich mit den genannten Änderungen als abgeschlossen. Wir kümmern uns nur noch um Evals\" … \"D sieht für mich dahingehend attraktiv aus, weil sich schon jemand über die Methodik Gedanken gemacht hat und es Doku gibt\" … \"Mach erst mal den Spike\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i125",
+   "note": "decides for Harbor instead of the proposed scripts and result files"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "0374dee8f4fd5c3dc44334297d3e2791a3ad2c5d"
+    ],
+    "reason": "One commit for one decision.",
+    "message": "docs(adr): accept Harbor for the eval runs\n\n## Intent\n\nDecide how the eval runs are built. Harbor brings a documented method for long agent runs with a simulated creator, so run control, persona, repetition and rescoring need not be built by us. A spike and a first real run had to show that it works in the cloud container.\n\n## Key changes\n\n- The ADR is renamed to eval-runs-with-harbor and decided for Harbor (option D). It records the spike and the first real run of 2026-10-17: Harbor 0.24.0 runs in the cloud container with a simulated creator.\n- The Pugh matrix is revised and keeps the scores before the spike.\n- Decided: single-step tasks with a persona, prepared states baked into the images, a wrapper with a scrubbed environment, a local patch for the ACP token, at least three trials per configuration, a verifier at the end plus a transcript script.\n- It refines \"Evals by hand with three assistants\". Chapters 5, 7, 9 and the plan point to it."
+   }
+  ]
+ },
+ "moved": []
+}

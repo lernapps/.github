@@ -1,0 +1,26 @@
+{
+ "id": "i002",
+ "conventionalCommit": "fix(test): skip the container test without Docker; keep the browser notice out of the check's error",
+ "intent": "The apps tests failed on a machine without a Docker daemon and with an older Chromium, so a push needed a bypass and CI could not be trusted to explain why. A test that needs Docker should skip where there is none, and the mismatch of Playwright's browser should not hide the real error of a check.",
+ "keyDecisions": [
+  "skip the container test when docker info fails, over checking only for the docker binary",
+  "skip the browser-start notices when reporting why a check stopped, over changing how the tooling prints them",
+  "keep using the installed Chromium the tooling already falls back to, over installing a matching one"
+ ],
+ "trigger": "\"Ci would fail too, need to look into the test\" … \"Then we should skip the docker test if there's no docker on the machine. How can we mitigate the playwright version mismatch?\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i101b", "note": "the fallback Chromium's notice from tooling#76 hid the check's error"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["5d18db90f33495bb4ef6e380a3ba5fd74dcfa84b"],
+    "reason": "The only commit of this request.",
+    "message": "fix(test): skip the container test without Docker; keep the browser notice out of the check's error\n\n## Intent\n\nThe tests failed on a machine without a Docker daemon and with an older Chromium. A test that needs Docker should skip where there is none, and the browser fallback should not hide the real error of a check.\n\n## Key changes\n\n- The review test that builds in the workflow's container runs docker info once and skips when there is no daemon.\n- A listing finding for a check that stopped no longer takes the first line of its stderr blindly. It skips the notices about the fallback Chromium, so the finding names the actual error, for example ERR_CONNECTION_REFUSED."
+   }
+  ]
+ },
+ "moved": []
+}

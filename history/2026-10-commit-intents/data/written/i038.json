@@ -1,0 +1,30 @@
+{
+ "id": "i038",
+ "conventionalCommit": "docs(arc42): the Mathe-Karte inspires the content archetype; its compliance is out of scope",
+ "intent": "The Mathe-Karte should serve as inspiration for one archetype, but whether it complies with the tooling is out of scope.",
+ "keyDecisions": [
+  "the Mathe-Karte only as inspiration, over planning its adoption of the shared checks"
+ ],
+ "trigger": "\"We can ignore mathekarte compliance for now, but use it as inspiration for one archetype.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i036",
+   "note": "answers an open point of the quality goals"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "8745a4d262e944b010536b0be89445732d3a3936"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(arc42): the Mathe-Karte inspires the content archetype; its compliance is out of scope\n\n## Intent\n\nThe Mathe-Karte should serve as inspiration for one archetype, but whether it complies with the tooling is out of scope.\n\n## Key changes\n\n- Chapter 1 and the evidence file say that the Mathe-Karte's compliance is out of scope and that it inspires the content archetype."
+   }
+  ]
+ },
+ "moved": []
+}

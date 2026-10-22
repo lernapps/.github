@@ -1,0 +1,29 @@
+{
+ "id": "i062",
+ "conventionalCommit": "feat(tooling): the pre-push runs a fast subset, the heavy end-to-end tests only for paths they exercise",
+ "intent": "Hooks equal to CI suit apps, but not the tooling repo itself: its end-to-end tests are heavy integration tests, and waiting for them on every push takes far too long. Its pre-push should be a reasonable smoke test, while CI keeps running everything.",
+ "keyDecisions": [
+  "a positive list of paths that trigger the heavy tests, over a list of paths that skip them; a folder missing from the list only shows up in CI and is added then",
+  "every push runs format, lint, types, unit tests, the review test, a create that only writes files, the checks of pre-built sample apps and the build",
+  "no reuse of a build from the pre-commit: it builds nothing, and a later change would make the check validate something else",
+  "dec-one-check-command holds for apps only; the tooling's exception is its own decision; lernapps.net's websites are not covered",
+  "the plan template stays off the path list"
+ ],
+ "trigger": "\"I think the “pre push equals ci” is viable for apps, but not for the tooling repo itself … Can we pick a reasonable subset for a smoke test pre push?\" … \"Given the paths, use a positive list when to run the e2e. Even if we add a folder later and only the ci would cast it, we would detect it and can maintain it then\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i052", "note": "narrows the decision that hooks and CI run the same check to apps"},
+  {"type": "continues", "intent": "i060", "note": "the next step to a faster pre-push of the tooling"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["1090be5191de59eeab900829ffc86a50397d7794", "4963c687acd998bd1303203d6ee21176ab63eb18", "b2b6f5517132d12de3846e99e0681d43ad3d581a"],
+    "reason": "Three commits that follow each other directly on the branch of #44: the test split the gate needs, the gate, and its decision.",
+    "message": "feat(tooling): the pre-push runs a fast subset, the heavy end-to-end tests only for paths they exercise\n\n## Intent\n\nHooks equal to CI suit apps, but the tooling repo's end-to-end tests are heavy integration tests, and waiting for them on every push takes minutes. Its pre-push should be a smoke test, while CI keeps running everything.\n\n## Key changes\n\n- The fast and heavy parts of the generator and check tests are separate files: `lernapps create` on files alone and the checks of prepared sample apps are fast; the npx path, installs and runs in an app's repo are heavy.\n- The pre-push hook compares the pushed commits with the remote and runs every test only when a changed path is on its positive list; otherwise only the fast tests. Without that information it runs everything.\n- The hook is quiet: the output goes to a log, and a failure prints one line naming it.\n- CI runs every test on every push.\n- The decision that hooks and CI run one check command holds for apps; a new decision records the tooling's exception.\n\n## Dependencies and side effects\n\n- A docs-only push takes about 24 s instead of about 4 min; a push that touches code still runs everything."
+   }
+  ]
+ },
+ "moved": []
+}

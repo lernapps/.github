@@ -1,0 +1,31 @@
+{
+ "id": "i220",
+ "conventionalCommit": "docs(biz42): GOVERNANCE.md is not updated yet (ch08)",
+ "intent": "The change to GOVERNANCE.md is postponed. The business model must not claim that it already names a sole owner.",
+ "keyDecisions": [
+  "drop the governance patch and track the change as an issue instead, over pushing it through another session",
+  "say again that GOVERNANCE.md still names two owners and is to be updated, over removing the sentence"
+ ],
+ "trigger": "\"Vergiss diese Änderung. So wichtig ist sie auch nicht. Stattdessen kannst Du auch einfach ein Issue anlegen.\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i219",
+   "note": "takes back the claim that GOVERNANCE.md is updated"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "6a1582c6a45d55a94c880ee80a3471eaee27f9ad"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(biz42): GOVERNANCE.md is not updated yet (ch08)\n\n## Intent\n\nThe change to GOVERNANCE.md is postponed. The business model must not claim that it already names a sole owner.\n\n## Key changes\n\n- Chapter 8 says again that GOVERNANCE.md describes two owners with equal rights and is to be updated to the sole owner.\n- The evidence row on the owners is open again."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,32 @@
+{
+ "id": "i082",
+ "conventionalCommit": "feat(explainer): explicit {{placeholders}} in generated exercises, checked at build",
+ "intent": "In the formulas of a generated exercise, every declared variable name was replaced automatically, so a letter meant to stay a letter could be filled in. Placeholders should be unambiguous, and every mistake in them should be caught at build.",
+ "keyDecisions": [
+  "placeholders are always explicit, also in formulas; a bare letter is always the letter",
+  "{{name}} over {name}, because single braces are LaTeX grouping and ambiguous, and over a bracket like ⟨G⟩, which is hard to type",
+  "unknown placeholders, a declared name in single braces, spaces inside braces and unused variables are build errors"
+ ],
+ "trigger": "\"WRT placeholders: whatever is more safe/checkable.\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i080",
+   "note": "changes the placeholder syntax of generated exercises built in step 3"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "7d99da2271abe902f85a7e5b73eb19db27ac22c6"
+    ],
+    "reason": "The only commit of app-templates#17.",
+    "message": "feat(explainer): explicit {{placeholders}} in generated exercises, checked at build\n\n## Intent\n\nInside formulas, every declared variable name of a generated exercise was replaced automatically, so a letter meant to stay a letter could be filled in. Placeholders should be unambiguous, and every mistake in them should be caught at build.\n\n## Key changes\n\n- A placeholder is two braces around a declared name or a field, with nothing else inside: {{G}}, {{e.name}}, {{answer}}, the same in prose and in formulas.\n- One brace is never a placeholder, so in a formula G, {G} and \\frac{W}{G} stay letters; a group around a value keeps its own braces, as in \\frac{{{W}}}{{{G}}}.\n- The build fails, naming file, line, block, language and placeholder, on an unknown placeholder, on a declared name in single braces in prose, on spaces inside the braces, on a variable no placeholder or expression uses, and on a placeholder left after filling in, now also in a figure's alt text.\n- The template's Prozent pages, the fixtures and the schema's descriptions use the new syntax."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,31 @@
+{
+ "id": "i219",
+ "conventionalCommit": "docs(biz42): Oliver Jägle is the sole owner (ch08)",
+ "intent": "The business model should match GOVERNANCE.md in lernapps/.github, which is to name Oliver Jägle as the sole owner. Chapter 8 still says that GOVERNANCE.md describes two owners.",
+ "keyDecisions": [
+  "apply the governance patch from a separate session with lernapps/.github as its repo, since this session cannot attach a repo whose name starts with a dot",
+  "push the biz42 change to main and the platform-design branch together with the governance change, over holding it back"
+ ],
+ "trigger": "\"Patch mache ich später, das geht mobil nicht. Wobei: kannst Du nicht einen Agenten bitten, das per GitHub curl api zu machen?\" … \"Push both to main\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i218",
+   "note": "the governance part of that request"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "16d86f6a6dce34fc8576a899bd69ed7a94edcdd4"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(biz42): Oliver Jägle is the sole owner (ch08)\n\n## Intent\n\nThe business model should match GOVERNANCE.md in lernapps/.github, which is to name Oliver Jägle as the sole owner. Chapter 8 still says that GOVERNANCE.md describes two owners.\n\n## Key changes\n\n- Chapter 8 says that Oliver Jägle is the sole owner and decides; Ralf D. Müller is named as the author of the Mathe-Karte.\n- The evidence row on the owners is marked as updated.\n\n## Dependencies and side effects\n\n- The matching change to GOVERNANCE.md in lernapps/.github is not part of this history here; it was never pushed from this session."
+   }
+  ]
+ },
+ "moved": []
+}

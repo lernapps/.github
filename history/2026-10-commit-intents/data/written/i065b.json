@@ -1,0 +1,30 @@
+{
+ "id": "i065b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-12T11:09:30.741Z",
+ "conventionalCommit": "feat(listing): every finding as a task; an explicit cutoff only past GitHub's limit",
+ "intent": "The listing results comment showed at most 50 findings and then a count, so whole rules could vanish from it. Either the comment has no cutoff, with one checkbox per finding, or the cutoff is explicit and links the full report.",
+ "keyDecisions": [
+  "every finding as a checkbox, grouped by rule, over a fixed cap",
+  "an explicit cutoff only above about 60,000 bytes, with a count per rule, at least one finding per rule and a link to the full report",
+  "no description of the comment format in the architecture; it is an implementation detail"
+ ],
+ "trigger": "\"3. review comments: there must either be no cut off (one checkbox per finding) or an explicit cutoff + attached report linking\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i053", "note": "changes the results comment of the listing validation"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["95ddd5cb812c6a36d1e35f0599691ee098fd675e"],
+    "reason": "The one commit of apps#11.",
+    "message": "feat(listing): every finding as a task; an explicit cutoff only past GitHub's limit\n\n## Intent\n\nThe listing results comment showed at most 50 findings in rule order and then only a count, so rules whose findings fell past the cap never appeared. Every finding must be visible, or the cutoff must be explicit and link the full report.\n\n## Key changes\n\n- Every finding is a task, grouped by rule: the rule id linked to its page and the severity; where, found and fix stay in a code block, since the reports are data from the pull request.\n- Only a comment above 60,000 bytes is cut off. It then says how many findings it shows of how many, lists every rule with its count, shows the same number of findings for every rule, and links the full report attached to the run.\n- The comment is rewritten on every run, so ticked boxes start empty again."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "95ddd5cb812c6a36d1e35f0599691ee098fd675e", "from": "i065", "kind": "split", "why": "The time cut held two unrelated requests: the site rules and the cutoff of the listing comment; this commit serves the second."}
+ ]
+}

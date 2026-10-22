@@ -1,0 +1,26 @@
+{
+ "id": "i241",
+ "conventionalCommit": "fix(app-page): drop the external-site note; name beimir.net as the founder's domain",
+ "intent": "In the fourth persona round, the note that lernapps.net takes no responsibility for privacy on an external site read like a stop sign right under the green checks. The feedback addresses on beimir.net looked private, even like phishing. The app page should not raise doubts it cannot settle, and should say whose domain the addresses are on.",
+ "keyDecisions": [
+  "remove the external-site note entirely; whoever has the question asks it, and the privacy notice still answers it",
+  "hosting every listed app under lernapps.net becomes an issue (#58), not a change now",
+  "keep the addresses on beimir.net for now and say that it is the founder's domain, over setting up mail for lernapps.net"
+ ],
+ "trigger": "\"1. ganz raus. wer die frage hat, stellt sie eben 2. ein issue dafür aufmachen 3. erst mal nicht, Hinweis dass das die Domain des Gründers ist\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i240", "note": "takes back the external-site note added there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["02352caebc55631ef8f503d7bf0860084fa0809e"],
+    "reason": "The only commit of this request.",
+    "message": "fix(app-page): drop the external-site note; name beimir.net as the founder's domain\n\n## Intent\n\nThe note that lernapps.net takes no responsibility for privacy on an external site read like a stop sign right under the checked fitness note. The thanks and feedback addresses on beimir.net looked private, even like phishing. The app page should not raise doubts it cannot settle, and should say whose domain the addresses are on.\n\n## Key changes\n\n- The external-site note is gone. The privacy notice of lernapps.net still says that apps at their makers' own addresses are external sites.\n- Under the thanks and feedback addresses, a note says that beimir.net is the founder's domain."
+   }
+  ]
+ },
+ "moved": []
+}

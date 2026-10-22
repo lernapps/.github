@@ -1,0 +1,34 @@
+{
+ "id": "i110",
+ "conventionalCommit": "docs(interactive): the architecture after review",
+ "intent": "Settle the open points of the architecture's review. The client-side tutor means the handoff to the learner's own assistant, as in the explainer, not a model in the browser. The app's size should not be limited but made visible. The skill is an interface that the creator's agent uses as an actor.",
+ "keyDecisions": [
+  "the tutor as a handoff to the learner's own assistant, over a model in the browser",
+  "IndexedDB left out for now",
+  "no size limit; the size goes into the catalog entry, with an optional loading indicator at start",
+  "the skill as a building block with an interface that the agent uses, low stimulation as its concept",
+  "quality goals without smallness; privacy and checkability high, accessibility and understandability medium"
+ ],
+ "trigger": "\"Tutor Modell im Browser sehe ich nicht. Ich meinte mit Client Side Tutor dass wir beim explainer (a). Tatsächlich sollen die anderen beiden Typen auch der Architektur folgen. … Index dB kannst du erst mal raus lassen … Die Größe sollten wir nicht einschränken. … As reizarmut: der skill ist auch ein Interface, der Agent ein Akteur, der ihn nutzt.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i109",
+   "note": "the review gate of the rebuilt architecture"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "a67c79464f4ca9c52d23d558cc76d6528739f325"
+    ],
+    "reason": "The only commit of this request.",
+    "message": "docs(interactive): the architecture after review\n\n## Intent\n\nSettle the review's open points. The tutor is the handoff to the learner's own assistant, as in the explainer. An app's size should be visible, not limited. The skill is an interface that the creator's agent uses.\n\n## Key changes\n\n- The tutor is a handoff, now an accepted decision; the tutor model in the browser and IndexedDB are gone.\n- No size limit: an optional loading indicator and the size in the catalog entry instead. The 100 kB check in the runtime is recorded as technical debt.\n- The skill lernapps-interactive is a building block with an interface that the creator's agent uses.\n- Every actor requires an interface: start page, app addresses, built files and the tutor handoff.\n- The quality goals drop smallness.\n- The evidence file records the review's decisions. arc42 validate now finds no errors."
+   }
+  ]
+ },
+ "moved": []
+}

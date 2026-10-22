@@ -1,0 +1,31 @@
+{
+ "id": "i266",
+ "conventionalCommit": "docs: keep the listing guide in the catalog repo as /enter/llms.txt",
+ "intent": "Everything about listings belongs to the catalog repo, but the steps, the entry template and how to read the results comment now stood nowhere once llms.txt only linked /enter/. Keep that guide in the catalog repo, next to the listing it explains.",
+ "keyDecisions": [
+  "the listing guide lives in lernapps/apps, over the tooling repo",
+  "a separate file /enter/llms.txt, linked from llms.txt"
+ ],
+ "trigger": "\"Hm, eigentlich gehört alles rund um listings ins App repo. Was ist da in tooling? Verbinde es und verschiebe ggf\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i263",
+   "note": "the steps left llms.txt and need a home"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "367f849a009e2f22331efd23d937d64f6d9c5974"
+    ],
+    "reason": "Its own request, kept apart from the slimmer llms.txt.",
+    "message": "docs: keep the listing guide in this repo as /enter/llms.txt\n\n## Intent\n\nEverything about listings belongs to the catalog repo. Once llms.txt only links /enter/, the steps, the entry template and how to read the results comment need a place there.\n\n## Key changes\n\n- A new page /enter/llms.txt holds the steps, the entry template and how to read the results comment.\n- llms.txt only links it.\n\n## Dependencies and side effects\n\n- The skill lernapps-listing in lernapps/tooling follows this guide (78ccbc6, intent i267)."
+   }
+  ]
+ },
+ "moved": []
+}

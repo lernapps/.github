@@ -1,0 +1,33 @@
+{
+ "id": "i181",
+ "conventionalCommit": "fix(explainer): the e2e counts the formulas in the texts of a quiz question",
+ "intent": "The app elektrizitaet could not take the new runtime: lernapps check failed because a page rendered 26 formulas where 24 were expected. Since #46, the runtime renders formulas in the texts of quiz questions, some of them twice, but the count the end-to-end test expects does not include them (app-templates#47). The count should match what the page renders, so the release can reach every app.",
+ "keyDecisions": [
+  "count the <math> elements the renderer writes for the question, over counting formulas in the source, so formulas shown twice count right",
+  "fix it in app-templates and pin it in tooling, over changing the app's test or bypassing its hook",
+  "merge app-templates and tooling on the explicit go; leave the app pull requests to the person"
+ ],
+ "trigger": "\"Ist der fix denn klar? Ist dafür ein issue offen\" … \"Mach das alles. Templates, Version bumps\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i178", "note": "the update of elektrizitaet to that release was blocked by this bug"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["26c8210fa01e51f5d815bd409bb44d4182494f3a"],
+    "reason": "The only commit of the fix in app-templates.",
+    "message": "fix(explainer): the e2e counts the formulas in the texts of a quiz question\n\n## Intent\n\nSince #46, the runtime renders formulas in the question, options, background and explanation of quiz questions, some of them twice. The outline, which the end-to-end tests compare a page's <math> elements with, did not count them, so an explainer with such a formula failed lernapps check (#47).\n\n## Key changes\n\n- The outline counts the <math> elements the renderer writes for a question exercise, as it already does for the worked tasks of a generated one.\n- The all-blocks fixture has formulas in a question's explanation and in an option's background.\n- A unit test compares the outline with the rendered page for every content page of that fixture.\n\n## Dependencies and side effects\n\n- tooling pins this fix (772bbdc).\n\nCloses #47"
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["772bbdc3aa80692ed4e3cc354e7daa741fa2621a"],
+    "reason": "The only commit of the fix in tooling: the pin.",
+    "message": "fix(explainer): pin app-templates at 5df0763, which counts formulas in quiz texts\n\n## Intent\n\nAn explainer with a formula in the text of a quiz question failed lernapps check, which blocked updating lernapps/elektrizitaet. Apps get the fix through the pin.\n\n## Key changes\n\n- app-templates is pinned at 5df0763 (app-templates#51, closes app-templates#47): the end-to-end test \"one <math> per formula\" counts the formulas the runtime renders in the question, options, background and explanation of quiz questions.\n\n## Dependencies and side effects\n\n- Needs the fix in app-templates (26c8210)."
+   }
+  ]
+ },
+ "moved": []
+}

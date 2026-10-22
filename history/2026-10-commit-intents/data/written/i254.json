@@ -1,0 +1,34 @@
+{
+ "id": "i254",
+ "conventionalCommit": "feat: listing rule own-data-only, an app touches only its own data in the browser",
+ "intent": "Once every listed app is served from lernapps.net, all apps share one origin with each other and the platform. An app must therefore touch only its own data in the browser, or it could read or destroy another app's or the platform's data.",
+ "keyDecisions": [
+  "the rule applies to every listed app, with severity error",
+  "the prefix is lernapps:<id>: with the catalog id",
+  "plant another app's and the platform's data before the page loads and record every access by name, including IndexedDB and the Cache API",
+  "caches now count as stored data",
+  "what happens after the first click goes into the review rubric"
+ ],
+ "trigger": "\"Own data a only gilt immer. Error. Ja, Präfix ist die App\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i253",
+   "note": "the check named in the fitness signal of KD-21"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "8356d57d77e220c71e9a1dfcbdba7a01ef58fa07"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat: listing rule own-data-only, an app touches only its own data in the browser\n\n## Intent\n\nlernapps.net serves a copy of every listed app (lernapps/docs KD-21, lernapps/apps#58), so all apps share one origin with each other and the platform. An app must touch only its own data, or it could read or destroy another's.\n\n## Key changes\n\n- An app names every localStorage and sessionStorage key, IndexedDB database and cache with lernapps:<id>:, where <id> is its catalog id, and touches nothing else. Severity error, scope listing.\n- Before a page loads, the visit puts another app's data into the browser and records every access by name: storage, IndexedDB and the Cache API. Caches now count as stored data.\n- New check own-data-only with unit tests and a fixture.\n- The platform rules, the review rubric, storage-through-wrapper and createStorage say the same; arc42 has the decision dec-own-data-only.\n\n## Dependencies and side effects\n\n- mathe-karte fails the rule: it uses keys without the prefix."
+   }
+  ]
+ },
+ "moved": []
+}

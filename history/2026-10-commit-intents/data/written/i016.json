@@ -1,0 +1,33 @@
+{
+ "id": "i016",
+ "conventionalCommit": "refactor: one frame for every page of the three archetypes",
+ "intent": "Each archetype brought its own CSS for the same page frame: three copies of reset, body, language switch, footer and colours, which had already drifted apart (interactive had no dark mode). The frame should exist once, as the questions already do.",
+ "keyDecisions": [
+  "one shared page.css with one --page-* palette, over three archetype palettes",
+  "interactive follows the dark scheme like the others, and its template's component uses the page's colours",
+  "header and footer are rendered once in shared/pages.ts",
+  "the quiz page takes the width and line height of the others"
+ ],
+ "trigger": "\"Moment, warum gibt es überhaupt beim interaktiven Typen, CSS?\" … \"Das ist akzeptabel\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i014",
+   "note": "the same clean-up, applied to the page frame"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "fd073e2520aea709803d854c232aa1e4eaa3d58e"
+    ],
+    "reason": "One commit for one request.",
+    "message": "refactor: one frame for every page of the three archetypes\n\n## Intent\n\nThe quiz, the explainer and the interactive archetype each had their own CSS for the same page frame. The copies had drifted apart: interactive had no dark mode. The frame should exist once.\n\n## Key changes\n\n- runtime/shared/page.css holds the palette (one set of --page-* colours, light and dark), the reset, [hidden], the body, links, the focus ring, the header with the language switch and the footer. The archetypes' stylesheets keep only their own page.\n- The --quiz-*, --explainer-* and --interactive-* palettes and their mapping to --question-* are gone; the questions use the page's colours.\n- Header and footer are rendered once, with the classes page-header, page-languages and page-footer.\n- The interactive archetype follows the dark scheme; its template's component uses the page's colours. --page-max-width replaces --interactive-max-width.\n- The quiz page is a little wider (44 rem), has the line height of the others and no rule above its footer.\n\n## Dependencies and side effects\n\n- Apps built on the interactive template with fixed light colours in their components must switch to the --page-* colours."
+   }
+  ]
+ },
+ "moved": []
+}

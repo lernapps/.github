@@ -1,0 +1,30 @@
+{
+ "id": "i221",
+ "conventionalCommit": "feat: first draft of the app overview: find an app, its page, list an app",
+ "intent": "Build the first version of the actual application for the first draft of the MVP. The narrow competency map no longer fits the experiences of the platform design. Adults look for an app by topic and grade minutes before a lesson, need to see at a glance that they may use it, and want to say thanks. Creators want to list an app in minutes and hear back. Counting thanks and clicks can wait.",
+ "keyDecisions": [
+  "a new repo `apps` with static Eleventy pages like the home page, over continuing the map's Vue SPA",
+  "park the competency map for showing gaps later, over deleting it",
+  "postpone the counter; Simple Analytics, Plausible, an own counter on Hetzner and cookieless Matomo were weighed",
+  "reusable parts as Nunjucks macros and all texts in one file, over a shared package while only two repos need them",
+  "one entry per app, the Mathe-Karte with its trainers as topics, over one entry per trainer",
+  "plain German as per ISO 24495 with \"du\""
+ ],
+ "trigger": "\"Ok, dann kommen wir uns eigentlich an die Implementierung einer ersten Version der eigentlichen Anwendung machen. Bisher war das map. Ich bin aber nicht sicher, ob der sehr enge Fokus noch trägt.\" … \"Ich würde den Counter erst mal vertagen wollen und sehen, wie Du die Experiences umsetzten\" … \"Ich sehen die Mathe-Karte als EINE App\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "789257cd9a261d6667792e37c3af0088a7b2d25b",
+     "71db78034270333d4c57f92c758a19944c1305e3"
+    ],
+    "reason": "The first commit of the repo and its correction a minute later: the three trainers of the Mathe-Karte become one entry. Together one first draft.",
+    "message": "feat: first draft of the app overview: find an app, its page, list an app\n\n## Intent\n\nBuild the first version of the actual application for the first draft of the MVP. The narrow competency map no longer fits the experiences of the platform design. Adults look for an app by topic and grade minutes before a lesson, need to see at a glance that they may use it, and want to say thanks. Creators want to list an app in minutes and hear back. Counting thanks and clicks can wait.\n\n## Key changes\n\n- \"Finden\": search by topic, subject and grade; matching topics of an app appear with a direct link; the search is in the address and can be shared; one sentence speaks to parents.\n- App page in the order of the experience: what the app is, \"Darfst du sie einsetzen?\", how it gets into class (open, copy link, QR code, tips for projector and home), direct links to its topics, \"Hat die App geholfen?\".\n- \"Eintragen\": the conditions, three details and three ways to list an app: issue form, an AI assistant through llms.txt, or e-mail with personal help.\n- One YAML entry per app; the build checks it and fails on a violation, for example an app that needs an account. Each page says that the details come from the app and are not checked yet.\n- Thanks, use and feedback buttons and the referral banner post to a configurable counter and stay hidden while none is set.\n- Pages workflow with a check of the output, privacy notice and imprint linked on every page; the build clears _site first, so the check never passes on stale output.\n- First entry: the Mathe-Karte, with 21 topics as direct links."
+   }
+  ]
+ },
+ "moved": []
+}

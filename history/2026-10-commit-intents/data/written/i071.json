@@ -1,0 +1,26 @@
+{
+ "id": "i071",
+ "conventionalCommit": "fix(quiz): after an answer the focus moves to the feedback",
+ "intent": "After \"Prüfen\" the page scrolled the button to the next question into the middle of the screen, which pushed the feedback and the start of the explanation out of view above. The learner had to scroll back up to read why an answer was right or wrong.",
+ "keyDecisions": [
+  "move the focus to the feedback, which sits right above the pressed button and needs no scroll, over scrolling it to the top",
+  "keep the next tab stops: the links of the background, then the button to the next question",
+  "test first, on every question at both widths"
+ ],
+ "trigger": "\"Fix this as small follow up\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i070", "note": "a learner-facing problem found while fixing the test timeout"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["4a8e6b8b057db2ac056d9369f14251c8a4001442", "faee004ec3c8fd3cda984f7bccb4103d8bf9eeba"],
+    "reason": "The failing test and its fix follow each other directly on one branch.",
+    "message": "fix(quiz): after an answer the focus moves to the feedback\n\n## Intent\n\nAfter an answer the focus went to the button to the next question, below the background, and the page scrolled the feedback and the start of the explanation out of view. The learner had to scroll back up to read them.\n\n## Key changes\n\n- After \"Prüfen\" the feedback gets the focus. It sits right above the pressed button, so no scroll is needed, and a screen reader reads it. The next tab stops are the links of the background, then the button to the next question.\n- quizTests() checks for every question and at both widths that the top of the feedback is in view, that it has the focus, and that the keyboard reaches the next button."
+   }
+  ]
+ },
+ "moved": []
+}

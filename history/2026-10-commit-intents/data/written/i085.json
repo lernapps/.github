@@ -1,0 +1,42 @@
+{
+ "id": "i085",
+ "conventionalCommit": "chore(hooks): the catalog and the main site get hooks with the change scope and site checks",
+ "intent": "Give the catalog and the main site git hooks like the other repos, with the change scope and the site checks.",
+ "keyDecisions": [
+  "a prepare script points git at .githooks/, since these repos do not use vite-plus",
+  "no formatter or linter added, since neither repo has one and CI runs none (a formatter offered as a later step)",
+  "the catalog's entry-point tests stay in CI: they need the network, take over a minute and fail on a passing 503",
+  "the classifier is fetched at a pinned tooling commit, as app-templates does"
+ ],
+ "trigger": "\"There are merge conflicts in the open PRs\" … \"The catalog and main site should have hooks too, with site checks of course\"",
+ "kind": "chore",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i084",
+   "note": "adds hooks to the change-scope pull requests apps#16 and lernapps.github.io#32"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "60e6f6926f0c59d4dd77d1162cf996dfa1ecfe4e"
+    ],
+    "reason": "One commit in apps#16 for this request; the commits before and after it are in i084 and i087.",
+    "message": "chore(hooks): pre-commit and pre-push hooks with the change scope and the site checks\n\n## Intent\n\nGive the catalog git hooks like the other repos, with the change scope and the site checks.\n\n## Key changes\n\n- npm ci points git at .githooks/. Both hooks are quiet: they print one line, or on a failure the step and its log.\n- Pre-commit checks whitespace and conflict markers, that staged JavaScript, JSON and YAML parse, and that the schema is in sync. The repo has no formatter or linter, so the hook adds none.\n- Pre-push asks the tooling's classifier at a pinned commit: only the plan checks nothing; docs or code run the site's build and check, as CI's build job does; code also runs the offline listing and review tests.\n- The entry-point tests stay in CI: they need the network and fail on a passing 503 of a remote; the containerised review build needs Docker.\n- A test checks that the hook's tooling commit matches every workflow and the tooling pin.\n\n## Dependencies and side effects\n\n- Same intent: lernapps.github.io gets the same hooks."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "37a34ecbee14c3dcb0bd9c9c4a144c860e297168"
+    ],
+    "reason": "One commit in lernapps.github.io#32 for this request.",
+    "message": "chore(hooks): pre-commit and pre-push hooks with the change scope and the site checks\n\n## Intent\n\nGive the main site git hooks like the other repos, with the change scope and the site checks.\n\n## Key changes\n\n- npm ci points git at .githooks/; this costs the sites that install the package from git nothing.\n- Pre-commit checks whitespace and conflict markers and that staged JavaScript and JSON parse. The repo has no formatter or linter, so the hook adds none.\n- Pre-push asks the tooling's classifier at a pinned commit: only the plan checks nothing; docs or code run the site's build and check, as CI does.\n- A test, now also a CI job under the required check site, checks that the hook's tooling commit matches every workflow.\n\n## Dependencies and side effects\n\n- Same intent: lernapps/apps gets the same hooks."
+   }
+  ]
+ },
+ "moved": []
+}

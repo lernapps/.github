@@ -1,0 +1,34 @@
+{
+ "id": "i145",
+ "conventionalCommit": "docs(site): the workshop page takes phase and kind from the blocks (arc42 0.38)",
+ "intent": "arc42 0.38.0 now carries custom x-* attributes. The phase and kind of each block on the workshop page can move from the separate mapping into the architecture model, as first intended.",
+ "keyDecisions": [
+  "x-phase as a list and x-kind on each block the page shows",
+  "the build fails when a phase's boxes and the blocks with that phase differ, a kind is missing or unknown, or a skill's phase is not its group's",
+  "move the arc42 CLI to 0.38.0 in the tooling and in the interactive apps the generator writes",
+  "read the JSON directly from the pipe, since 0.38 no longer cuts it at 64 KiB",
+  "check that the rendered page stays byte-identical"
+ ],
+ "trigger": "\"Der fix von arc42 (0.38.0) ist live\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i142",
+   "note": "replaces the explicit mapping that was the first step"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "cf1cc33f67ff6def7a7cbc793d30dd498bb4bb9f"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(site): the workshop page takes phase and kind from the blocks (arc42 0.38)\n\n## Intent\n\narc42 0.38.0 carries custom x-* attributes (docToolchain/arc42-language#130). The phase and kind of each block on the workshop page belong in the architecture model, not in a separate mapping.\n\n## Key changes\n\n- The blocks of the creator's path name the phases they support and their kind (x-phase, x-kind).\n- The page script reads them from arc42 get. The build fails when a phase's boxes and the blocks with that phase differ, when a kind is missing or unknown, or when a skill's phase is not its group's.\n- workshop.yaml keeps only the page's texts. The rendered page is the same.\n\n## Dependencies and side effects\n\n- The arc42 CLI moves to 0.38.0 here and in the interactive apps the generator writes. 0.38.0 delivers the full JSON on a pipe, so the script reads it directly."
+   }
+  ]
+ },
+ "moved": []
+}

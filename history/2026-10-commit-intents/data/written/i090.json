@@ -1,0 +1,38 @@
+{
+ "id": "i090",
+ "conventionalCommit": "feat: archetype-neutral content skills and a content guide in every app",
+ "intent": "Make the guidance teach more than the template: how to research a chapter's content, add content, build reusable exercise patterns, and write the chosen principles down for later agents. Keep it generic across templates and concrete per app.",
+ "keyDecisions": [
+  "three archetype-neutral skills (research, growth, exercise patterns) rather than more text in the explainer skill",
+  "many competencies are grouped into chapters; the app is never split",
+  "the app's guide sits at the fixed path .agents/skills/app-content, with a symlink for Claude Code",
+  "AGENTS.md says to load the filled guide first, fill it after the plan is confirmed and update it with each content decision",
+  "an error rule app-content-guide and a rubric item app-content-matches; no freshness check",
+  "the Mathe-Karte's research, slice and pattern ideas abstracted into the skills"
+ ],
+ "trigger": "\"Before we start with anything, we should make sure that the skill not only explains how to use the template, but also - instruct how to research the chapter content - how to add additional content - how to create reusable concepts for exercises - how to write the chosen principles down …\" … \"What about creating dedicated skills and reference those from the genetic agents.md? … Could we do this genetically across templates?\" … \".agents/skills/app-content/ can be fixed. We can also symlink it for Claude\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i084b",
+   "note": "extends the guidance written for the explainer archetype"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "1fd3ed5aeff1463af209a5aa9993137663b415be",
+     "d85ab85607c74c52b564ce1763fde4a06f276611",
+     "bdbe61a6428933f23ef8a29513dc5b8cf45a243d",
+     "cde843ee0b32f2167a04d3df7a6cd05e8335b54a"
+    ],
+    "reason": "All commits of tooling#66 serve one wish, content guidance: generic skills plus the app's own guide that they point to, with architecture and plan; the plan commit joins the architecture commit.",
+    "message": "feat: archetype-neutral content skills and a content guide in every app\n\n## Intent\n\nThe skills explained how to use a template, but not where content comes from or how an app grows. A later agent sees neither the plan nor the conversation, so the content decisions of a first run were lost. Add generic skills across templates, referenced from AGENTS.md, and a guide in every app that is made concrete after the first decisions.\n\n## Key changes\n\n- lernapps-content-research: Land, Schulform, Jahrgang and the creator's material; the official Lehrplan cited with document, page and unit; competencies as \"Ich kann …\" grouped into chapters; second sources opened and checked; never guess.\n- lernapps-content-growth: the app's guide first; one slice per competency (competency, content, exercise, the entry's topic, check, commit); a brief for parallel sub-agents.\n- lernapps-exercise-patterns: data files, patterns written once in the app's guide, then a component or an issue; a catalogue of patterns that worked, adapted from the Mathe-Karte.\n- The generator writes .agents/skills/app-content/SKILL.md with nine fixed headings and placeholders, plus a relative symlink for Claude Code where the system allows it; lernapps update adds them to older apps.\n- AGENTS.md and the plan template: load the filled guide first, else the research skill; fill the guide once the plan is confirmed, before building; update it with every content decision.\n- The error rule app-content-guide checks that the guide exists with its headings and, once the plan is in Commit, has no placeholders; the rubric item app-content-matches judges whether it says what was built.\n- The architecture and the plan record the decision.\n\n## Dependencies and side effects\n\n- Listed apps in the Commit phase fail lernapps check until their guide is added and filled in."
+   }
+  ]
+ },
+ "moved": []
+}

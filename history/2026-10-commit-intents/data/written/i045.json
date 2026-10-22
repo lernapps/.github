@@ -1,0 +1,107 @@
+{
+ "id": "i045",
+ "conventionalCommit": "feat(tooling): package @lernapps/tooling with the CLI lernapps, vite-plus, hooks and check in CI",
+ "intent": "Start the Code phase. Each step of the build order becomes an issue linked in the plan and is built by a fresh agent on its own branch: test-first from the consumer's contract, end to end, and with commit bodies in a fixed format. The first steps are the tooling's own build, the process guidance and the rule ids.",
+ "keyDecisions": [
+  "one issue per step under a tracking issue, linked in the plan",
+  "a fresh agent, branch and pull request per issue",
+  "tests from the consumer's contract, end to end on real fixtures, over unit tests of internals",
+  "commit bodies with Intent, Key decisions and Side effects",
+  "the repo root is the package @lernapps/tooling, built into dist/ on install; CI runs exactly what the hooks run",
+  "vite-plus pinned to 1.0.0, since 1.1.0 is younger than the minimum release age",
+  "a short AGENTS.md with a word budget and a plan template with a versioned front matter schema",
+  "a rule is declared once in a skill's rule block; implementations carry only the id and a link; ids are unique per kind"
+ ],
+ "trigger": "\"Im fine with both archetype proposals and the build order. The build order is actually the plan phase of our own epcc. As this will be a long tasks, create issues for all steps that need robbe performed and link them in the plan file\" … \"Yes, let’s merge #7 and start each issue with a new agent and a new branch. Whenever we can, we should build it test driven, with an e2e perspective.\" … \"each commit shall have the following body: ## Intent ## Key decisions ## Side effects (if any)\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i044",
+   "note": "the Code phase of the same plan"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "5861750fc92757330e0e787eace0261dffeff871"
+    ],
+    "reason": "The last plan commit of the architecture branch; it serves this request and lies on another branch than the steps.",
+    "message": "docs(plan): plan phase done; every step of the Code phase is an issue\n\n## Intent\n\nThe build order is the Plan phase of the tooling's own EPCC. Every step should be an issue, so the long Code phase can be tracked.\n\n## Key changes\n\n- The archetype proposals and the build order are accepted.\n- Tracking issue #9 with the steps #10 to #21 and lernapps/apps#3, linked in the Code and Commit phases."
+   },
+   {
+    "commits": [
+     "3b285e4c37a6da0043b52d198a7623ca76cfd902",
+     "8391ac4de2a7d24838498dae3444644308c96773",
+     "8d7c55fa7996f33a54a206be36a0084f10d631a8"
+    ],
+    "reason": "Step 1 (#10), three commits of one agent directly one after the other on its branch.",
+    "message": "feat(tooling): package @lernapps/tooling with the CLI lernapps, vite-plus, hooks and check in CI\n\n## Intent\n\nThe tooling is built with the conventions it gives apps before anything is built on it (#10): one package installed from git, strict TypeScript, vite-plus as the toolchain, git hooks that enforce, and CI that runs exactly what the hooks run.\n\n## Key changes\n\n- The repo root is the package @lernapps/tooling; the CLI lernapps is built into dist/ on install, since Node does not strip types under node_modules.\n- lernapps check: --pre-commit runs format, lint and type check, --pre-push runs tests and the package build; no flag or both flags run both.\n- vite-plus hooks: pre-commit formats the staged files and runs the fast part; pre-push runs the rest. The new workflow check.yml runs both parts.\n- Strict tsconfig, lint forbids any, a test forbids JavaScript sources; the review summary script is migrated to TypeScript.\n- End-to-end tests on a fresh clone: a planted type error, lint error or failing test turns hooks and CI red; an install from git provides lernapps.\n- The org preset groups vite-plus with its Vite core, which an npm override installs.\n- README and plan (KD-21) describe the package, the hooks, the test approach and the commit format.\n\n## Dependencies and side effects\n\n- npm ci now also builds dist/ and sets the hooks path in the clone.\n- Every repo that uses the org preset gets one grouped update for vite-plus and its core."
+   },
+   {
+    "commits": [
+     "e80cc95b607c5e1f3587e4c2143792f1da391566",
+     "0763f8979cbd21ee36e65cf4a1f04781323368ec",
+     "5c7e6440066d8c65267186a1ec7a254d243ee9a8",
+     "7589a1da55e9a615938d48d5daa2b07eef5b042c"
+    ],
+    "reason": "Step 5 (#14, pull request #27): contract tests, the guidance, its docs and a test fix, directly one after the other on one branch.",
+    "message": "feat(guidance): AGENTS.md, the plan template, its front matter schema and the skill lernapps-app\n\n## Intent\n\nAny assistant should follow the EPCC workflow from plain text (#14): keep a plan, follow its phases, stop at the creator's checkpoints and load the skills.\n\n## Key changes\n\n- AGENTS.md (at most 350 words, loaded in every turn) makes the assistant keep .vibe/plan.md from the template, work only in the phase the front matter names, stop at the checkpoints (confirm the plan, publish, list), never bypass a hook and fill in the retrospective.\n- The plan template has Explore, Plan, Code and Commit with comments that guide the assistant; Explore fetches the published entry schema instead of repeating its fields; the retrospective has fixed headings.\n- The front matter has a versioned JSON Schema: archetype, phase and prePushFailures; from phase plan on, archetype is required; unknown keys are rejected.\n- The skill lernapps-app holds the workflow and the general rules; the package exports the guidance files.\n- Contract tests read the real files as a consumer does, with a filled plan and four broken fixtures.\n- The tests drop inherited GIT_* variables, so a run from a worktree's pre-push hook no longer acts on the repo being pushed."
+   },
+   {
+    "commits": [
+     "a4a293f04c58f1268a69909fed0d061364ba05cc",
+     "77b36be74b7bd5dcf4d716826663c8c5ca3a1bc0"
+    ],
+    "reason": "Step 2 (#11, pull request #28) and the plan commit that joins it by the plan rule.",
+    "message": "feat(rules): rule ids, the id test, the first listing and site rules, the rule page\n\n## Intent\n\nThe rules live in their artifacts; they should still form one catalog (#11): one way to declare or implement a rule id per artifact kind, a test that fails on duplicates or missing links, the first rules, and a page that lists them.\n\n## Key changes\n\n- A rule is declared once by a rule block (id, scope, severity, enforcement) under the heading that explains it, in a skill or in the review rubric.\n- Lint rules and checks carry only the id and the link to the rule's entry on the rule page; ids are unique per kind.\n- The id test runs in lernapps check; the build renders the rule page at /tooling/rules/.\n- The first rules of scope listing and site.\n- The plan marks steps 2 and 5 as completed, with the deviations agreed in step 2."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "5861750fc92757330e0e787eace0261dffeff871",
+   "from": "i044",
+   "kind": "moved",
+   "why": "Serves this intent's request to create the step issues and link them in the plan; as a plan commit it does not join e592806 in i044."
+  },
+  {
+   "commit": "e80cc95b607c5e1f3587e4c2143792f1da391566",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Step 5, built by an agent started for this request; it landed after the next message."
+  },
+  {
+   "commit": "0763f8979cbd21ee36e65cf4a1f04781323368ec",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Step 5, built by an agent started for this request; it landed after the next message."
+  },
+  {
+   "commit": "5c7e6440066d8c65267186a1ec7a254d243ee9a8",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Step 5, built by an agent started for this request; it landed after the next message."
+  },
+  {
+   "commit": "7589a1da55e9a615938d48d5daa2b07eef5b042c",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Fix of the step-5 tests, on the same branch."
+  },
+  {
+   "commit": "a4a293f04c58f1268a69909fed0d061364ba05cc",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Step 2, built by an agent started for this request; it landed after the next message."
+  },
+  {
+   "commit": "77b36be74b7bd5dcf4d716826663c8c5ca3a1bc0",
+   "from": "i047",
+   "kind": "moved",
+   "why": "Plan commit that marks steps 2 and 5 done; joins a4a293f."
+  }
+ ]
+}

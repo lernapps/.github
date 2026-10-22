@@ -1,0 +1,62 @@
+{
+ "id": "i231",
+ "conventionalCommit": "chore: Renovate with the shared preset instead of Dependabot",
+ "intent": "Dependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.",
+ "keyDecisions": [
+  "Renovate with the owner's preset, over Dependabot with a cooldown",
+  "a minimum release age of 3 days with internalChecksFilter strict, so a branch appears only after the wait",
+  "automerge for non-major updates, majors as a pull request to merge by hand"
+ ],
+ "trigger": "\"Merge dependabot nach drei Tagen deps (supply chain attack retention)\" … \"Moooment, hatten wir nicht auf renovate umgestellt?\" … \"Ja. Passen den preset an, dass ein automerge mit drei Tage grace period läuft. Manuell zu mergender PR nur bei major version update\"",
+ "kind": "chore",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "c6389eee202e52fcb1d265ab79c8e32ff7de0e81"
+    ],
+    "reason": "One commit per repo.",
+    "message": "chore: Renovate with the shared preset instead of Dependabot\n\n## Intent\n\nDependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.\n\n## Key changes\n\n- renovate.json extends github>mrsimpson/renovate-config.\n- dependabot.yml is gone, and the workflow comments name Renovate.\n\n## Dependencies and side effects\n\n- The same change in apps (5ab90ae), lernapps.github.io (60c9dfc), tooling (6cb0e0d), app-templates (5b17e90).\n- The waiting time and the automerge live in the owner's preset github>mrsimpson/renovate-config."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "5ab90ae0c39b6c9a667227aaa7aa0d3cb04bf018"
+    ],
+    "reason": "One commit per repo.",
+    "message": "chore: Renovate with the shared preset instead of Dependabot\n\n## Intent\n\nDependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.\n\n## Key changes\n\n- renovate.json extends github>mrsimpson/renovate-config.\n- dependabot.yml is gone, and the workflow comments name Renovate.\n\n## Dependencies and side effects\n\n- The same change in docs (c6389ee), lernapps.github.io (60c9dfc), tooling (6cb0e0d), app-templates (5b17e90).\n- The waiting time and the automerge live in the owner's preset github>mrsimpson/renovate-config."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "60c9dfc12f3af81c7a82dcbaab3b02e7ecad5372"
+    ],
+    "reason": "One commit per repo.",
+    "message": "chore: Renovate with the shared preset instead of Dependabot\n\n## Intent\n\nDependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.\n\n## Key changes\n\n- renovate.json extends github>mrsimpson/renovate-config.\n- dependabot.yml is gone, and the workflow comments name Renovate.\n\n## Dependencies and side effects\n\n- The same change in docs (c6389ee), apps (5ab90ae), tooling (6cb0e0d), app-templates (5b17e90).\n- The waiting time and the automerge live in the owner's preset github>mrsimpson/renovate-config."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "6cb0e0d8aa848e1ec54fa607b9a5b73cd6c498c3"
+    ],
+    "reason": "One commit per repo.",
+    "message": "chore: Renovate with the shared preset instead of Dependabot\n\n## Intent\n\nDependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.\n\n## Key changes\n\n- renovate.json extends github>mrsimpson/renovate-config.\n\n## Dependencies and side effects\n\n- The same change in docs (c6389ee), apps (5ab90ae), lernapps.github.io (60c9dfc), app-templates (5b17e90).\n- The waiting time and the automerge live in the owner's preset github>mrsimpson/renovate-config."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "5b17e905bbcfcaf5f695d2d140e186886d8104a5"
+    ],
+    "reason": "One commit per repo.",
+    "message": "chore: Renovate with the shared preset instead of Dependabot\n\n## Intent\n\nDependency updates should arrive without manual merging, but only after a waiting time against supply-chain attacks. Major updates still need a person.\n\n## Key changes\n\n- renovate.json extends github>mrsimpson/renovate-config.\n\n## Dependencies and side effects\n\n- The same change in docs (c6389ee), apps (5ab90ae), lernapps.github.io (60c9dfc), tooling (6cb0e0d).\n- The waiting time and the automerge live in the owner's preset github>mrsimpson/renovate-config."
+   }
+  ]
+ },
+ "moved": []
+}

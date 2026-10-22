@@ -1,0 +1,46 @@
+{
+ "id": "i168",
+ "conventionalCommit": "feat(explainer): every exercise's task number in the address; a tutor button on every page",
+ "intent": "A tutor in a chat could not fetch a page's tutor file, and it did not know which tasks the learner had on screen. The tutor must get the learner's current tasks with the right values without fetching anything. The task numbers of all exercises in the address are worth having on their own: for deep links and for sharing the same tasks in class.",
+ "keyDecisions": [
+  "one address parameter per exercise id, written on load and at each new task, over the single ?seed=<n>#<id>, which still works",
+  "seed and von are reserved exercise ids; the build stops on them",
+  "the page's prompt is built in the browser from the address and the page's tutor file, so the tutor needs no fetch for the current tasks",
+  "a button with a select beside it, \"Mit Claude lernen\" by default, the chosen way kept on the device, over plain links per assistant",
+  "the tutor section after main, so the page's outline stays its own",
+  "all logic in the runtime of app-templates; the tooling only describes it and pins the version"
+ ],
+ "trigger": "\"Der Tutor MUSS die Seite abrufen können … Der Tutor muss die konkreten Aufgaben mit den richtigen Werten begleiten können\" … \"Für Deep links und auch das Teilen in der Klasse fand ich die ausgewählten seeds der Aufgaben als url parameter auch wertvoll\" … \"Mach außerdem den Tutor-Link mit seinen Optionen zu einem Button mit seitlichem select. Default: mit Claude lernen.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i105", "note": "task numbers per exercise in the address instead of one seed per link"},
+  {"type": "continues", "intent": "i104", "note": "the tutor the learner brings, now on every page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "de1b1cb7e65cdc4546959ad194a4be89e609846c",
+     "5a1728a9883f41b088bc8ba2d1925fb331b17e21",
+     "ef69c6a4fb23761e15e3f97feaf37c046f3b27f4"
+    ],
+    "reason": "app-templates#30: the feature and two fixes its own tests found before the merge, one after the other on one branch.",
+    "message": "feat(explainer): every exercise's task number in the address; a tutor button on every page\n\n## Intent\n\nA tutor in a chat could not fetch a page's tutor file, and it did not know which tasks the learner had on screen. It should get the current tasks with the right values without fetching anything. The task numbers in the address also serve deep links and sharing the same tasks in class.\n\n## Key changes\n\n- The address holds one parameter per exercise (?<id>=<n>), written on load and at each \"Neue Aufgabe\". A copied link opens exactly these tasks. ?seed=<n>#<id> still works.\n- seed and von are reserved exercise ids; the build stops with one line when an exercise uses them.\n- The start page and the end of every page offer one button with a select beside it: the assistants, Claude first, and \"Prompt kopieren\". A chosen way is kept on the device through the storage wrapper and is selected again after a reload. Without JavaScript the plain links stay.\n- On a page the prompt carries the page's address and, taken from its tutor file, the tasks, solutions and typical mistakes of the numbers in the address.\n- The tutor files say what to do when a file cannot be fetched.\n- The tutor section comes after main, so the page's outline stays its own.\n- The e2e tests read each exercise's own parameter, and a new test checks the address, the button and the kept way.\n\n## Dependencies and side effects\n\n- The tooling describes the address and pins this version in the same intent.\n- An app that keeps the tutor way on the device now stores something; its catalog entry must say so (i170)."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "2af04d9511f2c79774b03ead498afdef078c2ddf",
+     "a2893f0bab923b5ce753bc1328d9601befd343dc"
+    ],
+    "reason": "tooling#83: the skill text and the pin, one after the other on one branch.",
+    "message": "feat: every exercise's task number in the address; tutor button (pin app-templates dc4a7c2)\n\n## Intent\n\nNew and updated apps should get the task numbers in the address and the tutor button on every page, and the assistant should know how they work.\n\n## Key changes\n\n- Apps get app-templates#30: one address parameter per exercise, and on every page the tutor button with a select of assistants, Claude first, whose prompt carries the tasks of the address.\n- The explainer skill describes the address format and the button, and warns that a shared link shows other tasks once a generator changes.\n\n## Dependencies and side effects\n\n- Pins the app-templates commits of this intent."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "a2893f0bab923b5ce753bc1328d9601befd343dc", "from": "i169", "kind": "dropped", "why": "The pin that brings this feature to the apps, planned as its last step; \"merge einfach\" in i169 only allowed the merge. i169 has no commits left."}
+ ]
+}

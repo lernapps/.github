@@ -1,0 +1,57 @@
+{
+ "id": "i087",
+ "conventionalCommit": "test(entry-point): an outside host's passing 5xx or 429 is a note; the archetypes run at the same time",
+ "intent": "Bring the catalog's entry-point test back to a reasonable time now that it builds two archetypes, and keep the catalog's main from failing when an outside host briefly answers 5xx.",
+ "keyDecisions": [
+  "our own hosts stay strict; an outside 5xx or 429 is retried after 2 s and 5 s, then reported as a note",
+  "the fixes go into apps#16 rather than a new pull request",
+  "the archetypes' create commands run one after the other, their installs and checks at the same time, because npx shares one cache folder"
+ ],
+ "trigger": "\"The app pr tests timeout: https://github.com/lernapps/apps/pull/16\" … \"re-use #16 for both. it anyway got another conflict.\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i084b",
+   "note": "since the explainer archetype, the test creates and checks two apps"
+  },
+  {
+   "type": "continues",
+   "intent": "i084",
+   "note": "the fixes go into apps#16, the catalog's change-scope pull request"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "010f00a981810fc82fb43957ccbe9f056787f8fa"
+    ],
+    "reason": "Stays its own commit: a merge lies between it and the next fix of apps#16.",
+    "message": "test(entry-point): an outside host's passing 5xx or 429 is a note; the archetypes run at the same time\n\n## Intent\n\nSince the explainer joined, the catalog's entry-point test creates and checks two apps one after the other, about 3.5 minutes, which looked like a timeout. The catalog's main also failed because GitHub briefly answered 503 for a linked page. Fix both in apps#16.\n\n## Key changes\n\n- Our own hosts stay strict: any answer but 2xx after redirects fails, never retried.\n- An outside host that answers 5xx or 429 is asked again after 2 s and after 5 s; if it still fails, the test writes a note instead of failing. A 404 or a failed fetch still fails.\n- The archetypes install and check at the same time, each in its own folder with its own preview port and share of the cores."
+   },
+   {
+    "commits": [
+     "92ab8c947485a6b35bee2c2fcdd52fac2f3982c0"
+    ],
+    "reason": "Stays its own commit: a merge lies between it and the commit before.",
+    "message": "test(entry-point): the archetypes' create commands one after the other\n\n## Intent\n\nRunning the archetypes at the same time broke CI: the two npx runs of lernapps create share one cache folder, and one of them found a half-installed package.\n\n## Key changes\n\n- The create commands run one after the other.\n- Installs and checks still run at the same time, each in its own folder.\n\n## Dependencies and side effects\n\n- Same intent: the commit before it on this branch, which made the archetypes run at the same time."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "010f00a981810fc82fb43957ccbe9f056787f8fa",
+   "from": "i088",
+   "kind": "moved",
+   "why": "Fixes the catalog tests that time out, which this intent's own message reports (\"The app pr tests timeout\")."
+  },
+  {
+   "commit": "92ab8c947485a6b35bee2c2fcdd52fac2f3982c0",
+   "from": "i088",
+   "kind": "moved",
+   "why": "Fixes the catalog tests that time out, which this intent's own message reports (\"The app pr tests timeout\")."
+  }
+ ]
+}

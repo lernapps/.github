@@ -1,0 +1,41 @@
+{
+ "id": "i011",
+ "conventionalCommit": "feat: count where visitors come from, and turn the usage counter on",
+ "intent": "Know where visitors come from (a search engine, Moodle, a school website, LinkedIn) without collecting personal data, and switch the counter on with the GoatCounter account.",
+ "keyDecisions": [
+  "send only the origin of the referring website, over the full address that may hold names in its query",
+  "send no referrer for moves within lernapps.net, so nothing reveals an app",
+  "browser, operating system, language and country are fine as totals; screen size is left out, since reading it on the device would need consent",
+  "single page views stay off, over a session id that would build a path of each person",
+  "turning the counter on is its own commit, to be merged only once the data processing agreement is in place"
+ ],
+ "trigger": "\"Woher die Besucher kommen wüsste ich manch schon gerne\" … \"Der Code für goatcounter ist lernapps\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i009",
+   "note": "the counter now sends the referring origin, which it left out before"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "4299ba643e85325f8a1fb5eeef7a0e96e00503a9"
+    ],
+    "reason": "Kept apart from turning the counter on: that commit must wait for the data processing agreement.",
+    "message": "feat: count where visitors come from, as the origin of the other website only\n\n## Intent\n\nKnow where visitors come from, such as a search engine, Moodle, a school website or LinkedIn, without collecting personal data. A full referring address can hold names in its query, so only the website itself may be sent.\n\n## Key changes\n\n- The counter sends the origin of the referring website: no path, no query. A visit from within lernapps.net sends no referrer, so nothing is revealed about an app.\n- The privacy notice says so and names browser, operating system, language and country among what GoatCounter derives from the request. Screen size is still not sent."
+   },
+   {
+    "commits": [
+     "16b71113a8f4cdaca27e14fb78df99099f634ffe"
+    ],
+    "reason": "Turning the counter on stays its own commit, to be merged only once the data processing agreement is in place.",
+    "message": "feat: turn the usage counter on (lernapps.goatcounter.com)\n\n## Intent\n\nStart counting the visits of the platform sites with the GoatCounter account.\n\n## Key changes\n\n- The counter's endpoint is lernapps.goatcounter.com.\n- The privacy notice now shows its section on the counter, with the updated date.\n\n## Dependencies and side effects\n\n- Merge only once the data processing agreement with GoatCounter is in place. The catalog, docs and tooling sites start counting with it."
+   }
+  ]
+ },
+ "moved": []
+}

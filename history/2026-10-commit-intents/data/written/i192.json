@@ -1,0 +1,48 @@
+{
+ "id": "i192",
+ "conventionalCommit": "docs(pdt42): map the ecosystem (D1)",
+ "intent": "Start strategy design: give every entity of the ecosystem its platform role and add the platform with its owner. GitHub needs its own explanation: lernapps.net builds its infrastructure on GitHub on purpose, but is far too small for a relationship with it.",
+ "keyDecisions": [
+  "roles: creators peer-producer; adopting adults and students peer-consumer; school gatekeepers stakeholder; teacher platforms, social media and AI assistants partner",
+  "GitHub without a role, as means of production in the platform's infrastructure, over GitHub as a partner",
+  "AI assistants stay a partner, because the platform has to design for them",
+  "social media stays a partner despite little expected potential",
+  "keep six peer roles on purpose, over clustering them down to the five PDT recommends (H102 is only a hint)",
+  "narrative, core entity and value propositions left for later steps"
+ ],
+ "trigger": "\"GitHub als Partner hätte ich erst mal allgemeiner beschrieben. Allerdings erstellen wir schon viel Infrastuktur … Daher passt das schon, verdient aber eine kleine Erklärung\" … \"War das mit den fünf ein Lint aus dem CLi?\" … \"GitHub würde ich eher als Produktionsmittel als als Partner begreifen … Ich würde die verbliebenen sechs belassen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i190",
+   "note": "first step of strategy design, from the brief"
+  },
+  {
+   "type": "continues",
+   "intent": "i191",
+   "note": "the owner role holds only Oliver Jägle"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "0340de9bf686b18cb989798f1970c5a5bc317e01",
+     "e0a25ab80ed5eedb79d78161968748d52b20e8e6"
+    ],
+    "reason": "The draft of D1 and its completion after review, one after the other on feat/platform-design.",
+    "message": "docs(pdt42): map the ecosystem (D1)\n\n## Intent\n\nStart strategy design: give every entity of the ecosystem its platform role and add the platform with its owner. lernapps.net builds its infrastructure on GitHub on purpose, but is far too small for a relationship with it.\n\n## Key changes\n\n- E2 gives every entity a role: creators are peer-producers, adopting adults and students peer-consumers, school gatekeepers stakeholders, and teacher platforms, social media and AI assistants partners.\n- GitHub has no role. It is the means of production in the platform's infrastructure: issue templates, GitHub Actions workflows and the apps with their labels.\n- The text says why AI assistants stay a partner (the platform has to design for them), why social media stays one despite little potential, and why six peer roles stay instead of five.\n- A new D1 chapter holds the Ecosystem Canvas, the entity \"Platform owner\" (Oliver Jägle only) and the platform block \"lernapps.net\", referring to the ecosystem, the brief and the owner.\n- The development plan marks D1 done and adds KD-10.\n\n## Dependencies and side effects\n\n- Two hints stay open on purpose: GitHub without a role (H101) and six peer roles (H102)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "e0a25ab80ed5eedb79d78161968748d52b20e8e6",
+   "from": "i193",
+   "kind": "dropped",
+   "why": "Finishes D1 (GitHub as means of production, six peer roles), the step drafted here; i193 has no commits left."
+  }
+ ]
+}

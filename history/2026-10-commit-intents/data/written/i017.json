@@ -1,0 +1,43 @@
+{
+ "id": "i017",
+ "conventionalCommit": "feat: a question shows content: material, with the blocks both archetypes share",
+ "intent": "A quiz question should be able to show an image and other content, as the explainer's pages do. The shared runtime now allows this without the quiz depending on the explainer.",
+ "keyDecisions": [
+  "the explainer's self-contained blocks (text, formula, figure, labelled figure, table, quote, code) move to runtime/shared/blocks, over copying them into the quiz",
+  "section, definition, generated and timeline are left out, since they need page structure, a glossary or data files",
+  "three schema layers: text, blocks, question with material",
+  "one text check for the explainer's YAML and the quiz's JSON",
+  "the quiz's browser engine loads none of it, and a test fails when a page module imports build-only code",
+  "a fixture with every block, two languages and real images, with its own CI job"
+ ],
+ "trigger": "\"nein, wir bauen jetzt das Anzeige-Feature für Inhalt (Bilder) in der Frage mit den neuen Blocks. Danach publizierst Du template und tooling.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i013",
+   "note": "the feature the shared library was built for"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "d156c5959bc1be712098aaa258f868f1aac54a2f",
+     "51813970ae928040c1e1f223f0f90faf077ea452"
+    ],
+    "reason": "The format fix of the question-page fixture, changed by the feature, follows it directly on the branch of the pull request.",
+    "message": "feat: a question shows content: material, with the blocks both archetypes share\n\n## Intent\n\nLet a quiz question show an image and other content, as the explainer's pages do, without the quiz depending on the explainer.\n\n## Key changes\n\n- A question has an optional material, shown between its text and its answers: text, a formula, a figure (a bundled image or drawn from numbers), a labelled figure, a table, a quote or code.\n- These are the explainer's blocks, now in runtime/shared/blocks and used by both archetypes, with their schema (blocks.v1 over text.v1), checks, rendering, styles and texts. The schemas of the question, the quiz and the explainer refer to them.\n- The checks cover what a schema cannot say: a figure is drawn or an image, an image exists, every text is complete in each language, a table's rows are as long as its header. One text check serves the explainer's YAML and the quiz's JSON.\n- The quiz plugin checks the images of src/images/, ships and serves them, and each language's page finds them. The explainer's exercises can show material too.\n- The explainer's block classes are block-*; its page is pixel-identical to before.\n- The quiz's browser engine stays at 14 kB; a test fails when a page's modules import what only the build uses.\n- An error in a block names that block's own problem.\n- A new fixture (German and English, every block, two images) with a CI job and end-to-end tests. The question-page fixture uses the new paths and is formatted.\n\n## Dependencies and side effects\n\n- The tooling follows in lernapps/tooling (f32d90d), and the templates pin it afterwards (1e37d56)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "51813970ae928040c1e1f223f0f90faf077ea452",
+   "from": "i018",
+   "kind": "moved",
+   "why": "Fixes the formatting that failed CI on the feature's pull request; it serves the feature, not the publishing."
+  }
+ ]
+}

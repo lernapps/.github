@@ -1,0 +1,73 @@
+{
+ "id": "i115",
+ "conventionalCommit": "feat(interactive): typed inputs, time steps, libraries, declared limits and a storage quota",
+ "intent": "With the architecture settled, build the content of the interactive archetype that does not wait for the tooling: input beyond keys, playthroughs that replay time, no size limit, libraries an app may bundle, declared accessibility limits in the catalog entry and a storage quota per app. The architecture is the agent's concern: it keeps it current and validated, with no checkpoint for the creator.",
+ "keyDecisions": [
+  "no architecture checkpoint with the creator; the agent updates the architecture and arc42 validates it, over a user-facing checkpoint",
+  "typed inputs { kind: key } or { kind: action }, extensible, over keys only",
+  "time steps of n ticks in playthroughs, at build and in the browser through a test clock",
+  "no size limit for an interactive app's own code",
+  "bare imports of the app's dependencies allowed in interactive components; URL imports, network APIs, eval and v-html stay forbidden",
+  "an optional limits field in the entry turns accessible and usable-at-360px into warnings",
+  "a storage quota of 100 kB per app, save returns false beyond it"
+ ],
+ "trigger": "\"Wie weit ist der Agent? Können wir schon mal mit dem eigentlichen Inhalt des archetypes weiter machen? Ich bin zuversichtlich, dass die grundlegende Architektur nun passt\" … \"Ich weiß nicht, on wir eine. Checkpoints Architektur brauchen. Solange wir die Architektur anpassen und dann auch validieren, reicht das. Das muss nicht user facing sein\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i107",
+   "note": "extends the interactive runtime"
+  },
+  {
+   "type": "continues",
+   "intent": "i106",
+   "note": "builds the limits field and the storage quota decided there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "d2a8a9c27d378bd4674533582325141bb123e61a"
+    ],
+    "reason": "A skill change on the branch of tooling#90, after the skill commit of i114.",
+    "message": "docs(skills): the agent keeps the interactive app's architecture current, no creator checkpoint\n\n## Intent\n\nThe architecture is the agent's concern. As long as it is updated and validated, the creator needs no checkpoint for it.\n\n## Key changes\n\n- The skill lernapps-interactive says the agent updates the app's architecture with every change and validates it, without a checkpoint with the creator."
+   },
+   {
+    "commits": [
+     "898b51cfe6281ae1bba2b2a458b418d1ee8e286c"
+    ],
+    "reason": "tooling#93 on its own branch.",
+    "message": "feat(check,storage): warnings for declared limits; storage quota of 100 kB\n\n## Intent\n\nWCAG 2.1 AA and 360 px are rules of the platform; an app may deviate where its idea needs it and says so in its catalog entry. All apps share the origin's localStorage, so no app may take more than a small share.\n\n## Key changes\n\n- When the entry passed to lernapps check --entry has the field limits, the findings of accessible and usable-at-360px are warnings; without it they stay errors. The site checks are unchanged.\n- save of the storage wrapper refuses and returns false when the app's values would take more than 100 kB (2 bytes per UTF-16 code unit of keys and values). The old value stays, and the app keeps working as with blocked storage.\n- Skill texts, rule descriptions and the concepts of the architecture say so.\n\n## Dependencies and side effects\n\n- The field limits comes with lernapps/apps#35 (ac4eb1e, same intent). The warnings take effect in the catalog once lernapps/apps pins this tooling version."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "ac4eb1e3f9687e3d8d1245c6df8755766fa99f7d"
+    ],
+    "reason": "lernapps/apps#35, the only apps commit.",
+    "message": "feat(entry): add optional limits field, shown on the app's page\n\n## Intent\n\nAn app follows WCAG 2.1 AA and works at 360 px by default, but may deviate where its idea needs it. It must say so where creators and teachers look: in its catalog entry.\n\n## Key changes\n\n- The entry has an optional field limits, in plain German: what the app does not offer.\n- The app's page shows it in the fitness panel as \"Das bietet die App nicht: …\".\n- Existing entries stay valid.\n- The test renders the fitness macro with nunjucks, now a direct dev dependency.\n\n## Dependencies and side effects\n\n- lernapps check reads the field to report those rules as warnings (898b51c, same intent)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "391011410bbaf73c322d34f4b096a3ed8d136190"
+    ],
+    "reason": "The first runtime commit, on its own branch beside app-templates#34.",
+    "message": "feat(interactive): typed inputs, time steps in playthroughs, no size limit\n\n## Intent\n\nInteractive apps need input beyond keys, and their timing must be replayable, so that a playthrough proves what a timed game does. Their size should not be limited.\n\n## Key changes\n\n- step(state, input) takes a typed input: a key, or an action with a name and an optional value, extensible by new kinds. The root component emits such inputs.\n- A playthrough step has keys (short form) or inputs, then ticks. The build calls tick n times; the browser player steps the runtime's tick through a test clock.\n- The template's playthrough lets a letter go late and uses the button's action \"again\".\n- The build no longer limits the size of an app's own code."
+   },
+   {
+    "commits": [
+     "450a00678664c77a510e95ed879be3b6d30dc088"
+    ],
+    "reason": "Follows a merge, not the commit before it.",
+    "message": "feat(interactive): components may import the libraries in the app's dependencies\n\n## Intent\n\nAn interactive app may use libraries, for example for a canvas game, as long as they are bundled. The architecture must follow the runtime's changes.\n\n## Key changes\n\n- The interactive scope of the component rules accepts bare imports of the packages in the app's dependencies, which the build bundles. URL imports, network APIs, eval, innerHTML and v-html stay forbidden; the explainer's scope is unchanged.\n- The architecture follows: typed inputs, time steps and the tests' clock, no size budget, and a decision for libraries. The risks of keys-only input, time not replayed, the size budget and the missing skill are gone."
+   }
+  ]
+ },
+ "moved": []
+}

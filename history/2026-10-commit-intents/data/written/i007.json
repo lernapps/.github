@@ -1,0 +1,27 @@
+{
+ "id": "i007",
+ "conventionalCommit": "fix: limits are a text per language",
+ "intent": "main of apps went red when the new limits field met the English translation: its test rendered the page without the language data, and English pages showed the limits as plain German. Fix it and merge.",
+ "keyDecisions": [
+  "limits may be a German string or a { de, en } map, like the other texts of an entry",
+  "an English page without a translation shows the German text marked lang=\"de\"",
+  "the test renders the page template with the language data, over testing the macro alone"
+ ],
+ "trigger": "\"Fix and merge\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i115", "note": "the limits field of apps#35"},
+  {"type": "continues", "intent": "i001", "note": "texts per language in an entry"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["3819d61422a117e9348ce0f8bf0f95c443c6f97f"],
+    "reason": "The only commit of this request.",
+    "message": "fix: limits are a text per language\n\n## Intent\n\nmain went red after the limits field (apps#35) met the English translation (apps#32). The limits test rendered the fitness macro without the language data, and English pages showed the limits as plain German.\n\n## Key changes\n\n- limits may be a string (German) or { de, en }, like the other texts of an entry.\n- An English page without a translation shows the German text marked lang=\"de\".\n- The limits test renders the page template with the language data."
+   }
+  ]
+ },
+ "moved": []
+}

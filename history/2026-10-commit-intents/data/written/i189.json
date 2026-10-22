@@ -1,0 +1,34 @@
+{
+ "id": "i189",
+ "conventionalCommit": "docs(pdt42): apply the six Platform Plays to \"Getting apps into use\" (E6)",
+ "intent": "Show how a platform could change the value chain of the focus arena. Attention for contributed apps is the scarce resource: building an app has become cheap, but being noticed by anyone other than its creator has not.",
+ "keyDecisions": [
+  "PP2 (bring creators on top) as the central play the others serve, over weighing all plays equally",
+  "personalise only on the website, with local storage and collections carried in a link or QR code, over accounts",
+  "an optional website backend, never for the apps and never with student accounts, left for later over building it now",
+  "keep PP4 although it acts mainly in \"Building the app\", because it makes apps comparable",
+  "app, discoverability and signal of fitness for use move to product"
+ ],
+ "trigger": "\"Ja\" … \"Können wir uber andere Mittel personalisieren? Localstorage, optionales backend für die Webseite, nicht für die Appa\" … \"Po2 ist eigentlich am wichtigsten. Unsere knappe Ressource ist Attention für die Contributed Apps\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i187",
+   "note": "the plays act on the E5 value chain"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "6381d32bf84e6d8986debba9d00439f383a2ae7f"
+    ],
+    "reason": "One commit, one step of the exploration.",
+    "message": "docs(pdt42): apply the six Platform Plays to \"Getting apps into use\" (E6)\n\n## Intent\n\nShow how a platform could change the value chain of the focus arena. Attention for contributed apps is the scarce resource: building an app has become cheap, but being noticed by anyone other than its creator has not.\n\n## Key changes\n\n- A new E6 chapter applies the six Platform Plays, with PP2 (bring creators on top) as the central play.\n- PP1 personalises on the website only: local storage and collections carried in a link or QR code. A website backend stays a later option, never for the apps and never with student accounts.\n- PP3 standardises the app listing, PP4 is the guidance for AI agents, PP5 a visible signal of fitness for use, PP6 one overview of scattered apps and seekers.\n- On the Wardley Map the app, discoverability and the signal of fitness for use move to product.\n- The development plan marks E6 done and adds KD-07."
+   }
+  ]
+ },
+ "moved": []
+}

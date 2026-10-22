@@ -1,0 +1,44 @@
+{
+ "id": "i137",
+ "conventionalCommit": "feat(check): count failed checks in the plan instead of self-reporting them",
+ "intent": "The third spike showed two gaps. The agent wrote \"none\" for failed checks after five had failed, because the retrospective was self-reported. And the creator kept specifying for hours after the plan, because the agent assumed or bundled the Explore questions and ticked them; GitHub calls that the cloud blocks caused more friction. The failed checks should be counted by the tooling, and Explore should be a real interview.",
+ "keyDecisions": [
+  "count failed rules in the plan's front matter by the tooling, over a running list the agent keeps",
+  "no tick box for the retrospective's failed checks any more",
+  "Explore as an interview: one topic per question; an assumed answer never counts",
+  "find the fork of lernapps/apps over the public API, not by its name",
+  "pull requests over REST, and the preview pull request is no draft",
+  "no hard checkpoints, no instruction to merge by the creator, no rules on waiting or cleanup commands"
+ ],
+ "trigger": "\"Ich habe noch recht lange weiter spezifiziert. Eigentlich hätten die meisten dieser Diskussionen in explore angeregt werden sollen. Auch gab es wieder Aufstand mit GitHub.\" … \"Können wir den fork anders als über den Namen ermitteln?\" … \"Ich würde lieber vier statt Anleitung ändern. Ankreuzen brauchen wir dann gar nicht.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i135",
+   "note": "lessons from the third spike of the compact guidance"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "111d987649915d7b40e905bc33a882a30eb3e5ce",
+     "22800dad4ae35101830b7bab7e6901c180a6bdae",
+     "9e6b1cf2081c904d53ab5d2a47e0610a0349797a"
+    ],
+    "reason": "The counter, its glossary entry and the formatting of the same files follow each other directly on one branch; one change.",
+    "message": "feat(check): count failed rules in the plan's front matter\n\n## Intent\n\nThe retrospective's \"Failed checks\" was self-reported, and the third spike's agent wrote \"none\" after five failed checks. The number should come from the tooling, not from memory.\n\n## Key changes\n\n- Every failed run of `lernapps check` in the repo, the hooks included, counts each rule with an error in `failedChecks` of the current plan's front matter, a one-line flow map next to prePushFailures, when the plan has the key.\n- The templates get the key and lose the retrospective part on failed checks.\n- Schema, review, the evals verifier and the docs follow; the retrospective's prose names both counters.\n- The changed files are formatted with the repo's formatter.\n\n## Dependencies and side effects\n\n- 66e21d4 (same intent) changes the compact guidance on its experiment branch."
+   },
+   {
+    "commits": [
+     "66e21d407e105a70fe08704ba62bb844ce35f0e2"
+    ],
+    "reason": "On the experiment branch, apart from the counter on main.",
+    "message": "docs(guidance): Explore as an interview; find the fork, open pull requests over REST\n\n## Intent\n\nIn the third spike the agent assumed or bundled the new Explore questions and ticked them, and the creator specified for hours after the plan. GitHub calls that the cloud blocks caused more friction.\n\n## Key changes\n\n- \"Answers\" holds the interview topics: goal, learners, model and focus, hurdles, content and how it is made, amount, languages, look and feel, terms.\n- One topic per question; an assumed answer never counts. No answer: ask once more, then \"(guess)\", shown at the research checkpoint.\n- The fork of lernapps/apps is found over the public API, not by its name; attaching lernapps/apps per repo (add_repo) is allowed for the pull request.\n- Pull requests over REST: gh pr create and gh pr ready need GraphQL, which the cloud proxy blocks. The first version's preview pull request is no draft, so it needs no \"ready\".\n\n## Dependencies and side effects\n\n- 111d987 (same intent) counts the failed checks on main."
+   }
+  ]
+ },
+ "moved": []
+}

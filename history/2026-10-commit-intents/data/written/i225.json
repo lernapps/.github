@@ -1,0 +1,43 @@
+{
+ "id": "i225",
+ "conventionalCommit": "feat: thanks and feedback as prepared e-mails (MVP)",
+ "intent": "Without thanks the app overview makes little sense, and counting is postponed. The MVP should test whether thanks arrive with the simplest means: a prepared e-mail. The privacy notice must cover these e-mails before the first one arrives.",
+ "keyDecisions": [
+  "mailto links to Danke-lernapps@beimir.net and Feedback-lernapps@beimir.net, over a counting service",
+  "the e-mail says it only tests whether thanks arrive, and that thanks will later be one click",
+  "a referral code (?welle=) goes into the e-mail, so referral waves stay apart",
+  "no counter setting, referral banner or totals until counting exists",
+  "merge the privacy notice together with the e-mails"
+ ],
+ "trigger": "\"Ohne Dank ist das aber alles recht witzlos. Implementiere für ein MVP ein vorkonfiguriertes mailto an Danke-lernapps@beimir.net. Erkläre im Body kurz, dass das später aber gezahlt wird und die Mail nur dazu dient, zu gucken, ob es funktioniert. Für Feedback Feedback-lernapps@beimir.net\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i221",
+   "note": "replaces the postponed counter for thanks and feedback"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "2764368962ea7948eb72f07aa8822ed30a093995"
+    ],
+    "reason": "One commit in apps for this request.",
+    "message": "feat: thanks and feedback as prepared e-mails (MVP)\n\n## Intent\n\nWithout thanks the app overview makes little sense, and counting is postponed. The MVP should test whether thanks arrive with the simplest means: a prepared e-mail. The privacy notice must cover these e-mails before the first one arrives.\n\n## Key changes\n\n- \"Danke sagen\" opens a prepared e-mail to Danke-lernapps@beimir.net with subject and body per app; the body says the e-mail only tests whether thanks arrive and that thanks will later be counted with one click.\n- \"Im Unterricht\", \"Zu Hause\" and the answers to \"Wie lief es?\" open an e-mail to Feedback-lernapps@beimir.net with the choice in the subject.\n- A referral code (?welle=) is added to every e-mail.\n- The links work without JavaScript, so the block is always shown; hints say that a click opens the mail program, name both addresses and link the privacy notice.\n- The counter setting, the referral banner and the totals are gone until counting exists.\n\n## Dependencies and side effects\n\n- The privacy notice in lernapps.github.io (84247fd) must be live before the first e-mail arrives."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "84247fd2b0a768ea941ed685d277f2c8f1135d30"
+    ],
+    "reason": "One commit in the home page for this request.",
+    "message": "docs(privacy): thanks and feedback by e-mail\n\n## Intent\n\nWithout thanks the app overview makes little sense, and counting is postponed. The MVP should test whether thanks arrive with the simplest means: a prepared e-mail. The privacy notice must cover these e-mails before the first one arrives.\n\n## Key changes\n\n- A new section \"Danke und Rückmeldung per E-Mail\" in German and English: we receive the e-mail only when it is sent, count it, pass the thanks on to the creator without the address, answer only on request and delete it once counted.\n- The legal basis is legitimate interest.\n- The stubs for AI tutors under the Mathe-Karte's old paths go away with it.\n\n## Dependencies and side effects\n\n- The e-mails come from the app overview in lernapps/apps (2764368)."
+   }
+  ]
+ },
+ "moved": []
+}

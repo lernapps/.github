@@ -1,0 +1,30 @@
+{
+ "id": "i177",
+ "conventionalCommit": "refactor(interactive, explainer): the header holds only the language switch",
+ "intent": "The first fix for the repeated app name added options instead of removing the cause. The name repeats because the header link carries it, and in the explainer the header link and the breadcrumb \"Start\" lead to the same page under different words. The platform opens every app in a new tab from its catalogue page, so a way back to the catalogue makes no sense either. The header should hold nothing but the language switch, so the name appears once, in the h1.",
+ "keyDecisions": [
+  "keep the platform frame for its duties (language switch, imprint, privacy, start page without JavaScript), but not for the app page's layout",
+  "drop the name link from the header entirely, over a \"← Startseite\" or \"← Katalog\" link",
+  "an app with one language has no header at all",
+  "drop the optional heading again; the h1 is the title",
+  "keep the slot beside the h1 and --interactive-max-width; an app that wants full screen does it itself",
+  "apply it to the explainer too, over leaving it for its own issue",
+  "turned down: platform options per app for header and footer items, in app.yaml or startInteractive"
+ ],
+ "trigger": "\"Wie könnten wir das besser machen? Wozu überhaupt der generische Rahmen auch für interaktive apps?\" … \"mein Vorschlag: Das alles raus, bis auf den Sprachen-Wechsler\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i176", "note": "replaces the optional heading with a header that no longer repeats the name"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["275530a4a3318956f73535caec03eafd5f88a8dd"],
+    "reason": "The rework is its own commit; it follows the first state directly on the branch but answers a new request.",
+    "message": "refactor(interactive, explainer): the header holds only the language switch\n\n## Intent\n\nThe app's name repeated because the header link carried it, and in the explainer the header link and the breadcrumb \"Start\" led to the same page under different words. The platform opens every app in a new tab from its catalogue page, so a way back to the catalogue makes no sense either. The header should hold nothing but the language switch, so the name appears once, in the h1.\n\n## Key changes\n\n- The header of the interactive pages and of the explainer holds the language switch and nothing else. An app with one language has no header.\n- Interactive: the optional heading of app.yaml is gone again; the h1 is the title. The slot beside the h1 and --interactive-max-width stay.\n- Explainer: the breadcrumb still leads to the app's start page.\n- Tests cover one language (no header) and two languages (header with the switch only) in both archetypes.\n\n## Dependencies and side effects\n\n- On the interactive start page the name link is gone too, since it pointed to the page itself.\n- From the app page of an interactive app, only the no-JavaScript note links to the start page."
+   }
+  ]
+ },
+ "moved": []
+}

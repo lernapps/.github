@@ -1,0 +1,26 @@
+{
+ "id": "i242",
+ "conventionalCommit": "docs(biz42): the home page product describes the new story and its pages",
+ "intent": "Before the new home page is merged, no link or description may be left pointing at the old one. The organisation docs still describe the home page as the old story (problem, four portraits, principles, why free, sceptics). They should describe the new one, so people and AI assistants who read the docs get a true picture.",
+ "keyDecisions": [
+  "no redirects for the old anchors; attach the tooling repo and search it instead, which found no links to them",
+  "rewrite the one paragraph in chapter 10 as a small pull request of its own",
+  "leave pinning the npx command to a version aside"
+ ],
+ "trigger": "\"Bevor Du die Startseite mergest: Wir haben derzeit noch unter 'wie es funktioniert' und anderen Orten Links, die wir nun verlieren würden. Wo würden diese neu hin passen?\" … \"ja, mach das, dann merge requests\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i234", "note": "brings the docs in line with the new home page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": ["273738492b8b15c1ad35a7c25821d7b94adb053f"],
+    "reason": "The only commit of this request.",
+    "message": "docs(biz42): the home page product describes the new story and its pages\n\n## Intent\n\nThe home page now tells its story solution first and moves the details to Features, Mitmachen and Über uns. Chapter 10 still described the old page (problem, four portraits, principles, why free, sceptics), so people and AI assistants reading the docs got a wrong picture.\n\n## Key changes\n\n- The home page product says: the home page promises learning apps with no strings attached, shows apps from the catalogue, says what teachers and parents get, and then speaks to makers. Features, Mitmachen and Über uns hold the details.\n\n## Dependencies and side effects\n\n- Describes the home page of lernapps.github.io from ec471f2 on."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,35 @@
+{
+ "id": "i171",
+ "conventionalCommit": "fix(explainer): the short tutor prompt names every address the tutor may fetch",
+ "intent": "A tutor in a normal claude.ai chat again could not fetch the instructions. A chat assistant refuses to fetch an address it finds only in a fetched file, to guard against prompt injection; it fetches only addresses the user's own message names. The prompt must therefore name every address the tutor may fetch.",
+ "keyDecisions": [
+  "list llms.txt and the tutor file of every page in the short prompt, over a compact prompt that holds all content",
+  "for an app with very many pages only the list falls away, the first line and the current page's files stay",
+  "merge the whole chain to live directly, after an explicit yes"
+ ],
+ "trigger": "\"it couldn't fetch the instructions again\" … \"Der Grund dafür ist, dass die URL für die llms.txt nicht im originalen prompt stand … Wenn wir statisch anweisen, welche urls bei bedarf abgerufen werden dürfen, klappt das\" … \"Ja. Alles direkt mergen\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i168", "note": "the prompt of the tutor button"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["631f73b26a05203e31732d181999acc38d3c6e68"],
+    "reason": "The only commit of app-templates#31.",
+    "message": "fix(explainer): the short tutor prompt names every address the tutor may fetch\n\n## Intent\n\nA chat assistant fetches only addresses its user wrote into the conversation, not those it finds in a fetched file. The short prompt named only the tutor file, so the fetch of llms.txt and of the pages' tutor files was refused.\n\n## Key changes\n\n- The short prompt lists llms.txt and the tutor file of every page, and says that these addresses may be fetched when needed.\n- The full prompt says that every address in it may be fetched.\n- When the list would make the short prompt too long for an assistant's address, only the list falls away.\n\n## Dependencies and side effects\n\n- The tooling pins this version in the same intent."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["7fecc27e81ad700a3280489f1a6530a94d23a44e"],
+    "reason": "The pin of this fix with one skill sentence (tooling#84).",
+    "message": "chore(deps): pin app-templates d185dcf, the short tutor prompt lists the addresses to fetch\n\n## Intent\n\nNew and updated apps should get the tutor prompt that a chat assistant can follow.\n\n## Key changes\n\n- Apps get app-templates#31.\n- The explainer skill says why: a chat assistant fetches only addresses its user wrote into the conversation.\n\n## Dependencies and side effects\n\n- Pins 631f73b of this intent."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "7fecc27e81ad700a3280489f1a6530a94d23a44e", "from": "i172", "kind": "dropped", "why": "The pin of this fix; \"Ja. Alles direkt mergen\" in i172 only approved the chain to live. i172 has no commits left."}
+ ]
+}

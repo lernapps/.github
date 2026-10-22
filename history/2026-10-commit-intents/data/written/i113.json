@@ -1,0 +1,32 @@
+{
+ "id": "i113",
+ "conventionalCommit": "docs(arc42): the explainer keeps a fixed size per component, its figure an implementation detail",
+ "intent": "Dropping the size limit applies to interactive apps only. The explainer should keep a fixed size per component, because text-heavy pages must load fast; the actual figure of 20 kB is an implementation detail and does not belong in the architecture.",
+ "keyDecisions": [
+  "a fixed size per explainer component, over dropping the limit for every archetype",
+  "the architecture names no figure; the build check holds it",
+  "the generic frame limits no app's size, while an archetype may limit its own parts"
+ ],
+ "trigger": "\"In exoplanet [Explainer] soll das bei einer fixen Größe bleiben. 20kb sind ein Implementierungsdetail\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i110",
+   "note": "narrows \"no size limit\" to the interactive archetype"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "29c9b65346429c1241573bf8b8e829445668e236"
+    ],
+    "reason": "The only commit of this request.",
+    "message": "docs(arc42): the explainer keeps a fixed size per component, its figure an implementation detail\n\n## Intent\n\nDropping the size limit applies to interactive apps only. Text-heavy explainer pages must load fast, so each component keeps a fixed size. The figure itself is an implementation detail of the build check.\n\n## Key changes\n\n- A new explainer decision sets a fixed size per component, without naming the figure.\n- The generic frame limits no app's size; an archetype may limit its own parts.\n- Only the size budget of the interactive runtime stays recorded as technical debt.\n- The evidence file records the decision."
+   }
+  ]
+ },
+ "moved": []
+}

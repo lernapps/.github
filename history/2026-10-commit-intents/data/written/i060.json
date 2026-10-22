@@ -1,0 +1,40 @@
+{
+ "id": "i060",
+ "conventionalCommit": "test: shared fixtures and grouped assertions; apps run their end-to-end tests fully parallel",
+ "intent": "Five minutes for a push is far too long. Most of the time went to an app's own check, whose Playwright tests ran one after another, and to the tooling's tests repeating the same work: the same apps installed again, the same contracts tested in two files, the quiz runtime tested from the generator's side. Tests should share fixtures and run their assertions on the same artifact.",
+ "keyDecisions": [
+  "fullyParallel in the shared Playwright setup, which also speeds up every creator's pre-push",
+  "the generator test tests only the generator; quiz checks it duplicated move to app-templates, where the runtime lives",
+  "one generated quiz app per test run, shared read-only, over an install per test file",
+  "plant several mistakes in one failing round instead of one round per mistake",
+  "no test is weakened; each change states what it still proves"
+ ],
+ "trigger": "\"Five minutes is dead long. Can we speed it up by sharing fixtures? Or is in fact the check running so long? Check the tests setup. Explain, don't change\" … \"What about the tests themselves? Could we group some to run assertion them on the same artifact?\" … \"So it in 44 too\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "continues", "intent": "i059", "note": "the first speed-up of the pre-push was not enough"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["4f909870dd559da45949d9753e73c506fb47f448"],
+    "reason": "The one commit of app-templates#5.",
+    "message": "test(quiz): the runtime's own tests cover what the tooling's generator test checked\n\n## Intent\n\nThe tooling's generator test played the quiz in the browser, which tested the quiz runtime from the wrong repo and made every push slower. The runtime should test itself.\n\n## Key changes\n\n- Unit tests on a fixture bank cover the build step's messages for a broken bank and the page without JavaScript: right answers of every type, marked options, further reading, solutions and sources.\n- The generic end-to-end tests of every quiz also check what the reveal says is right, the order from the seed in the address, and that only the last result is stored when the bank asks for it.\n- Each test opens its own page, so they can run in parallel.\n\n## Dependencies and side effects\n\n- The tooling drops these checks from its generator test and pins this commit (6706fe0 and the commits after it in tooling)."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["80bc10dafce862593320e67c14b0ece9519ab4c4"],
+    "reason": "Changes what every app gets, so it stays apart from the tooling's own test changes.",
+    "message": "feat(preset): Playwright runs an app's end-to-end tests fully parallel\n\n## Intent\n\nAn app's own check took about 23 s, 18 of them for Playwright, because the tests of one file ran one after another. This slowed every creator's pre-push and the tooling's tests that check apps.\n\n## Key changes\n\n- The preset runs the end-to-end tests fully parallel on three quarters of the cores, instead of only the two viewports side by side. Every test opens its own page and depends on no other."
+   },
+   {
+    "commits": ["6706fe043e61719de7f36010d14b6da12bdb6b30", "0618b5e156b570d5220708df342daf960849ff30", "c9ebb9fe73806379560035819a330459dc8c073b", "abb1af561376713e48681001bbb6a29152d7eee5", "484034e899981862a42ee9d5ae2783062ab909d8"],
+    "reason": "Five test commits that follow each other directly on the branch of #44, one thought: stop repeating work in the tooling's own tests.",
+    "message": "test: the tooling's tests share fixtures and assert on the same artifact\n\n## Intent\n\nThe tooling's tests repeated the same work: the generator test played the quiz runtime, two files built and installed their own app to test the same hooks, and checks ran several times on the same input. A push should prove the same contracts with less work.\n\n## Key changes\n\n- The generator test tests only the generator; its browser block and broken banks moved to app-templates. The pin points at that commit.\n- The quiz app from `lernapps create` is made once per test run and shared; the app check and preset tests work in copies. The preset test checks all lint verdicts in one lint run.\n- The app check test has one passing round and one failing round with a lint error and a request to another host: the commit fails with the lint message in its log, the push fails on the request, and the action's one check reports both. The two rounds run as parallel files.\n- The checks of the fixture bundles run once each and concurrently; the determinism tests compare with the run already made. In an app's repo, two runs cover the failing Playwright test, the bad licence and the failure counter.\n- A type error and a lint error are planted together, so the CI command runs once instead of twice.\n\n## Dependencies and side effects\n\n- Needs app-templates#5 (4f90987) merged first."
+   }
+  ]
+ },
+ "moved": []
+}

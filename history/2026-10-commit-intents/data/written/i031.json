@@ -1,0 +1,96 @@
+{
+ "id": "i031",
+ "conventionalCommit": "feat: shared site frame, site actions and Renovate preset for all lernapps.net sites",
+ "intent": "After the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.",
+ "keyDecisions": [
+  "the package @lernapps/site in lernapps.github.io, installed from git, over publishing it to npm",
+  "shared site actions (check, deploy, preview) in tooling with unchanged job names, so required checks stay valid",
+  "an org Renovate preset in tooling that updates own building blocks as soon as they are green",
+  "inject header and footer into the built HTML of the docs, over rebuilding the biz42 and pdt42 apps",
+  "the edugo clean-up of the Mathe-Karte as a pull request for its author, without the shared frame there",
+  "app-template drops the manifest lernapps.json; an app is listed with one entry in lernapps/apps"
+ ],
+ "trigger": "\"Damit das alles auf einem konsistenten Stand ist, füge dieser Session alle nicht-archivierten repositories der lernapps Organisation hinzu … 1. überprüfe, dass alle Referenzen auf die frühere edugo Anwendung verschwunden sind. 2. prüfe alle issue an allen repos … 3. die Story aus dem Plattform Design der docs muss erkennbar sein … 4. … gemeinsame Design-tokens per nom Paket … Ebenso eine gemeinsame Header Navigation.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i030",
+   "note": "the .github branch gets the story on top"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "3a97735bef1e524a766b6517037bbb8ceaeaee87"
+    ],
+    "reason": "One commit in tooling.",
+    "message": "feat: site actions for check, deploy and preview, and the org's Renovate preset\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- actions/site-check, site-deploy and site-preview hold the build, check, deploy and preview of every site, taken from the identical workflows of lernapps.github.io, apps and docs.\n- default.json is the Renovate preset of every repo; it extends the owner's config, and our own building blocks (@lernapps/site, these actions) follow main without release age and merge when green.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "7f0df23ef133ce6773353eb4cf3540c1fd6a59d4"
+    ],
+    "reason": "The package and its first use, one commit.",
+    "message": "feat: shared chrome of all lernapps.net sites, used by the home page\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- chrome/ is the npm package @lernapps/site: design tokens, header with the common navigation, footer with privacy notice and imprint, skip link and preview banner.\n- An Eleventy plugin for Eleventy sites, and a command that puts the same frame into built HTML (for the docs).\n- lernapps-check, the deploy check of every site, merged from the check scripts of the home page and apps.\n- The home page, the legal pages and the 404 page use it; the workflows call the shared site actions in tooling.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   },
+   {
+    "commits": [
+     "888090c0ca767841fb5c4f710b8e44b705fe138f"
+    ],
+    "reason": "The switch to the org preset, kept apart from the package.",
+    "message": "chore: Renovate preset of the org (lernapps/tooling)\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- renovate.json extends github>lernapps/tooling.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   },
+   {
+    "commits": [
+     "c058c944af2e3366b75fe03b083707ff33c344aa",
+     "1789f9bf5a15d25c9f7c3f8b1d851ccc0fc9ed5e"
+    ],
+    "reason": "Two fixes of the package found while adopting it in docs, directly one after the other.",
+    "message": "fix(chrome): noindex in previews of built HTML; the check skips inline scripts\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- The command for built HTML also puts noindex into previews.\n- lernapps-check ignores markup-like strings inside inline scripts when it looks for links.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "bc971c4f61fa627faeb785b41a8e77fc93d634b8",
+     "6d5f8cec1c11d1ef351c852477924ed3fad564ef"
+    ],
+    "reason": "Adopting the package and moving its pin to the fixed commit, directly one after the other.",
+    "message": "feat: shared chrome and site actions in the app overview\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- Header, footer and design tokens come from @lernapps/site; the navigation is the same on every site.\n- npm run check uses lernapps-check from the package instead of its own script.\n- pages.yml and pr-preview.yml call the site actions in tooling; Renovate uses the org preset.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "6941e78bff61a98f33c3603a0f14fa3c562f0f79"
+    ],
+    "reason": "One commit in docs.",
+    "message": "feat: shared chrome and site actions; header, footer and legal links on every page\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- Every page (index, vision, 404, the biz42 and pdt42 apps, the review pages) gets the header and footer with privacy notice and imprint; closes docs#7.\n- The CLIs and the package are devDependencies, so Renovate keeps them current; build, hook and the pdt skill use them from there.\n- npm run build and npm run check like every other site; the workflows call the site actions, the preview keeps its own review comment.\n- The docs index shows the parts of lernapps.net, what each serves in the platform design, and its repo; the evidence file no longer names edugo.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "afaa590a89735a7e557c2328de793cd63d4ca371"
+    ],
+    "reason": "One commit in app-templates.",
+    "message": "docs: listing via lernapps/apps instead of a manifest; shared chrome and actions\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- The README no longer describes the manifest lernapps.json; an app is listed with one entry in lernapps/apps.\n- The template is to use the shared frame and site actions; Renovate uses the org preset.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ],
+  ".github": [
+   {
+    "commits": [
+     "40c8ac71eb12fa045367123ff5aeecbc7f24a3a3"
+    ],
+    "reason": "One commit in .github.",
+    "message": "docs: the story of the platform design and which repo serves which part\n\n## Intent\n\nAfter the merges, the organisation should be consistent. No traces of edugo should remain, and only relevant issues should stay open. The story of the platform design should make clear what each repo is for, so that a person or an agent finds their way at once. Sites deployed separately should behave and look the same: shared design tokens and a shared header come as an npm package from the home page repo, referenced by git and kept current by Renovate.\n\n## Key changes\n\n- ORGANIZATION.md opens with the platform's narrative, says where agents start, maps every repo to its part of the platform design and explains what all sites share.\n- What's being worked on lists the threads still open after going through the issues; the history no longer names edugo; map is archived.\n- The org profile names the app overview, the first app, the docs and the thanks.\n\n## Dependencies and side effects\n\n- Same request: tooling (3a97735), lernapps.github.io (7f0df23, 888090c, c058c94, 1789f9b), apps (bc971c4, 6d5f8ce), docs (6941e78), app-templates (afaa590), .github (40c8ac7)."
+   }
+  ]
+ },
+ "moved": []
+}

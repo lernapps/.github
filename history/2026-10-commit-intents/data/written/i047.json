@@ -1,0 +1,59 @@
+{
+ "id": "i047",
+ "conventionalCommit": "ci(pages): name the job that builds and checks the site `site`",
+ "intent": "Every site repo should give the job that builds and checks its site the same name as tooling does: `site`. `check` stays the name of the code check.",
+ "keyDecisions": [
+  "rename only the job; steps and pinned actions stay",
+  "merge each rename pull request once its CI is green",
+  "tick step 1 and fix the README in a small pull request of its own"
+ ],
+ "trigger": "\"Yes, rename the site jobs in all repos. Merge all PRs\"",
+ "kind": "chore",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i046",
+   "note": "the same job name in every site repo"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "202a5e9a3487e1862cdcf004b3668f6d1cdc4374"
+    ],
+    "reason": "One commit per repo.",
+    "message": "ci(pages): name the job that builds and checks the site `site`\n\n## Intent\n\nEvery site repo should give the job that builds and checks its site the same name as tooling does: `site`. `check` stays the name of the code check.\n\n## Key changes\n\n- Only the job name changes: check becomes site, and deploy needs site; steps, pinned site actions and npm scripts stay.\n\n## Dependencies and side effects\n\n- Same rename in apps (202a5e9), lernapps.github.io (4aa9c64) and docs (a79ea59); the tooling README follows (3e067bf).\n- A branch protection rule or ruleset that requires the status check check must require site instead."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "4aa9c64723dc393d6d2f4a7f75a08c7b60b2f42a"
+    ],
+    "reason": "One commit per repo.",
+    "message": "ci(pages): name the job that builds and checks the site `site`\n\n## Intent\n\nEvery site repo should give the job that builds and checks its site the same name as tooling does: `site`. `check` stays the name of the code check.\n\n## Key changes\n\n- Only the job name changes: check becomes site, and deploy needs site; steps, pinned site actions and npm scripts stay.\n\n## Dependencies and side effects\n\n- Same rename in apps (202a5e9), lernapps.github.io (4aa9c64) and docs (a79ea59); the tooling README follows (3e067bf).\n- A branch protection rule or ruleset that requires the status check check must require site instead."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "a79ea59f4bdf7954612cd62c6aadbd955132ce9f"
+    ],
+    "reason": "One commit per repo.",
+    "message": "ci(pages): name the job that builds and checks the site `site`\n\n## Intent\n\nEvery site repo should give the job that builds and checks its site the same name as tooling does: `site`. `check` stays the name of the code check.\n\n## Key changes\n\n- Only the job name changes: check becomes site, and deploy needs site; steps, pinned site actions and npm scripts stay.\n\n## Dependencies and side effects\n\n- Same rename in apps (202a5e9), lernapps.github.io (4aa9c64) and docs (a79ea59); the tooling README follows (3e067bf).\n- A branch protection rule or ruleset that requires the status check check must require site instead."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "3e067bf3b8758d454231f8917cfa7ca4fd846777"
+    ],
+    "reason": "The follow-up in tooling, its own pull request.",
+    "message": "docs(plan): step 1 done; the site job is `site` in the README\n\n## Intent\n\nEvery site repo should give the job that builds and checks its site the same name as tooling does: `site`. `check` stays the name of the code check.\n\n## Key changes\n\n- The plan moves step 1 to Completed, with what changed in review: npm run check builds nothing, the docs site has its own job site, the site actions take check-script.\n- The README names the site repos' jobs site, deploy and preview; the example pages.yml uses site.\n\n## Dependencies and side effects\n\n- Same rename in apps (202a5e9), lernapps.github.io (4aa9c64) and docs (a79ea59); the tooling README follows (3e067bf)."
+   }
+  ]
+ },
+ "moved": []
+}

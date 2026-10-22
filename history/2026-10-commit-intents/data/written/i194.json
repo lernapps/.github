@@ -1,0 +1,38 @@
+{
+ "id": "i194",
+ "conventionalCommit": "docs(pdt42): accept deliberate deviations with :::ignore",
+ "intent": "The hints for deviations accepted on purpose kept E3 and D1 open in `pdt42 guide` and cluttered `pdt42 validate`. Mark them as accepted, each with its reason, so the guide shows the real progress.",
+ "keyDecisions": [
+  "pdt42's `:::ignore <code> <reason>` directive, found in the CLI code because it is not documented, over leaving the hints open",
+  "the H101 and H102 directives in E2, where the entities live, over D1",
+  "do not ignore the portrait hints (H104), as they are the work of D2",
+  "accept that a directive applies to the whole file and note that risk in the plan"
+ ],
+ "trigger": "\"Schreibe ignores für die bewusst akzeptierten Abweichungen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i192",
+   "note": "accepts the open D1 hints"
+  },
+  {
+   "type": "continues",
+   "intent": "i186",
+   "note": "accepts the open E3 hints"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "693a1d946e7734744d66547b7a6f0216ae53181b"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(pdt42): accept deliberate deviations with :::ignore\n\n## Intent\n\nThe hints for deviations accepted on purpose kept E3 and D1 open in `pdt42 guide` and cluttered `pdt42 validate`. Mark them as accepted, each with its reason, so the guide shows the real progress.\n\n## Key changes\n\n- E3 ignores H002 (no asset is hard to imitate, KD-04).\n- E2 ignores H101 (GitHub has no role) and H102 (six peer roles), both from KD-10, because the entities live there.\n- The development plan refers to the directives.\n\n## Dependencies and side effects\n\n- A directive applies to the whole file: a new H101, H102 or H002 in the same file stays hidden. The development plan notes this."
+   }
+  ]
+ },
+ "moved": []
+}

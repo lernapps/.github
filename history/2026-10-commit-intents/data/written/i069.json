@@ -1,0 +1,25 @@
+{
+ "id": "i069",
+ "conventionalCommit": "feat(enter): the skill lernapps-listing is the way to list an app",
+ "intent": "Listing an app should go through the creator's assistant and the listing skill; writing to a person by e-mail is only the fallback. At the same time the first full run starts: a fresh session builds a natural-wonders quiz only from the build page and the skills, without reading any repo.",
+ "keyDecisions": [
+  "the assistant with the listing skill first, the issue form second, the e-mail last",
+  "the first full run as a separate session with only the quiz repo, over a subagent, so it knows nothing of this conversation and the owner plays the creator"
+ ],
+ "trigger": "\"Promote the skill for entering the app, mailto Oliver only as fallback. Point an agent to https://lernapps.net/apps/build/ and ask him to build a Naturwunder-Quiz. Explicitly ask him not to read any repos but rely on the information it got from the skills\" … \"All merged. Go\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i067", "note": "changes the listing page made there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["5ccedad69eef57c48c562f63d50c78cd403c74ce"],
+    "reason": "One commit for the listing page change.",
+    "message": "feat(enter): the skill lernapps-listing is the way to list an app\n\n## Intent\n\nListing an app should go through the creator's assistant and the listing skill. The e-mail to a person is only the fallback.\n\n## Key changes\n\n- /apps/enter/ leads with the assistant and the skill lernapps-listing: a prompt to copy and the linked skill.\n- The issue form stays for creators without such an assistant; the e-mail is offered only at the end.\n- llms.txt and the build page's lead-on follow the same order; a test checks that the skill comes before the mail link."
+   }
+  ]
+ },
+ "moved": []
+}

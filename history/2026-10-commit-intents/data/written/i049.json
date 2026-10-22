@@ -1,0 +1,26 @@
+{
+ "id": "i049",
+ "conventionalCommit": "fix: archetype rules are hints; the test cleanup gets two minutes",
+ "intent": "An app that misses the archetype rules still runs and harms nobody, so such a finding should guide and be reported, not fail the review. Pushes were also slow and failing: the cleanup of the test folders from the previous change timed out on a busy machine and blocked them.",
+ "keyDecisions": [
+  "the three archetype rules become hints instead of errors",
+  "keep pinning a template commit instead of following main, so one tooling version always makes the same app",
+  "give the cleanup hook two minutes instead of the 10 s default"
+ ],
+ "trigger": "\"1. I'd lean into hint, as they are still executable apps, though probably not ideal. How are those rules enforced? 2. I'm fine with it, but why do we pin the commit, not ref main?\" … \"The agent seems to have problems to complete the push. Is that a permissions thing?\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i048b", "note": "changes the severity of the archetype rules from the review procedure and fixes the timeout of the test cleanup"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["d3cc3cf59fa684449af09edd77c053b33e36f08e"],
+    "reason": "The squash merge of #37 is one commit on main.",
+    "message": "fix: archetype rules are hints; the test cleanup gets two minutes\n\n## Intent\n\ntopic-has-exercises, start-page-explains and quiz-feedback-explains judge how well an app teaches. An app that misses them still runs and harms nobody, so a finding should not fail the review. Pushes also failed: removing a test clone's node_modules took longer than the 10 s hook timeout when several test runs shared the machine.\n\n## Key changes\n\n- The three archetype rules have severity hint. The building agent still aims for them and the reviewer still reports them, but they no longer fail a verdict.\n- The hook that removes the temporary test folders may take two minutes."
+   }
+  ]
+ },
+ "moved": []
+}

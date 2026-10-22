@@ -1,0 +1,32 @@
+{
+ "id": "i147",
+ "conventionalCommit": "docs(site): the workshop page shows a block's technology instead of a kind of its own",
+ "intent": "x-kind duplicated what the architecture already records: the technology of a building block and the protocol of an interface. The page should use those.",
+ "keyDecisions": [
+  "show technology (blocks) and protocol (interfaces), over a custom x-kind",
+  "boxes of a phase follow the order of the chapters",
+  "the technology as a muted line under the title, so long values do not break the cards"
+ ],
+ "trigger": "\"x-kind brauchen wir doch nicht, es gibt doch Technology als Teil des Blocks\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i145",
+   "note": "drops x-kind introduced there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "f2be4e662576dbd7b259ddc146dd2ec9a2865683"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(site): the workshop page shows a block's technology instead of a kind of its own\n\n## Intent\n\nx-kind repeated what the architecture already says: the technology of a building block and the protocol of an interface. Use those instead.\n\n## Key changes\n\n- A box names what the element is built with: the technology of a block, the protocol of an interface.\n- x-kind and the list of kinds are gone; the boxes of a phase follow the order of the chapters.\n- The technology is a muted line under the title, which keeps the icons on the title's line."
+   }
+  ]
+ },
+ "moved": []
+}

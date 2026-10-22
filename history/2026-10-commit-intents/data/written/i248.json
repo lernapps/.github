@@ -1,0 +1,26 @@
+{
+ "id": "i248",
+ "conventionalCommit": "fix(home): role prompts ask the assistant to look at the catalogue",
+ "intent": "After the merge, the role prompts were tested live. Assistants read \"I find suitable apps myself in the catalogue\" as \"do not look\". They skipped the catalogue and named apps from older pages instead. The prompts should ask them to look at the catalogue, still without app details in the prompt.",
+ "keyDecisions": [
+  "merge both pull requests first and test the live pages, since the answers depend on the live llms.txt",
+  "\"have a look at the catalogue\" over \"I find apps myself\", which assistants took as a ban",
+  "retest with a cache buster on the lernapps.net addresses, so assistants see the current pages"
+ ],
+ "trigger": "\"Mehr alles. Teste danach und stehe ggf nach\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i247", "note": "fixes the wording of the shortened prompts"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["7f3017e8f4ebb8521e06c9149e5f8dcc2c25e68f"],
+    "reason": "The only commit of this request, on a new branch after the merge.",
+    "message": "fix(home): role prompts ask the assistant to look at the catalogue\n\n## Intent\n\nIn the live test, assistants read \"I find suitable apps myself in the catalogue\" as \"do not look\". They skipped the catalogue and named apps from older pages instead. The prompts should ask them to look at the catalogue.\n\n## Key changes\n\n- The teacher, parent and learner prompts say \"Wirf auch einen Blick in den Katalog\" (\"Also have a look at the catalogue\"), with its address, in German and English."
+   }
+  ]
+ },
+ "moved": []
+}

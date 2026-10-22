@@ -1,0 +1,25 @@
+{
+ "id": "i061",
+ "conventionalCommit": "test: generated apps' end-to-end tests run with one worker inside the tooling's tests",
+ "intent": "One quiz test failed once during the tooling's pre-push and could not be reproduced. The likeliest cause is a click lost while many browsers competed for the cores inside the tooling's own tests; reduce that load there without changing what creators get.",
+ "keyDecisions": [
+  "only the lower load in the tooling's tests, without a trace on failure and without a readiness signal in the quiz",
+  "an environment variable that only the tooling's test harness sets; creators and CI keep fullyParallel on 75% of the cores"
+ ],
+ "trigger": "\"The flake is now in the templates repo, no? Investigate\" … \"Only do 3\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i060", "note": "limits the parallel Playwright runs introduced there inside the tooling's tests"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["e311114716d1b36272d567dc14da01c1e4d516b8"],
+    "reason": "One commit for the one change asked for.",
+    "message": "test: generated apps' end-to-end tests run with one worker inside the tooling's tests\n\n## Intent\n\nThe tooling's tests check many apps at the same time, and their browsers compete for the cores. A click lost under that load is the likeliest cause of the one quiz test that failed and could not be reproduced.\n\n## Key changes\n\n- The shared Playwright setup reads LERNAPPS_PLAYWRIGHT_WORKERS; the tooling's test harness sets it to 1 for the processes it starts.\n- A creator's own check and CI keep running fully parallel on 75% of the cores."
+   }
+  ]
+ },
+ "moved": []
+}

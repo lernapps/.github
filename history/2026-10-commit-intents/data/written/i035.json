@@ -1,0 +1,34 @@
+{
+ "id": "i035",
+ "conventionalCommit": "ci: publish the architecture at lernapps.net/tooling/ with a review preview per pull request",
+ "intent": "The architecture is hard to read as isolated Markdown. Publish it as a site, with a preview per pull request and the arc42 diff in a comment, as docs does for the platform design and biz42. The open points of this site are recorded for the Code phase.",
+ "keyDecisions": [
+  "mirror the setup of docs for pdt42 and biz42",
+  "the arc42 web app under a short start page with the shared site frame",
+  "on phones, move the app's fixed \"Contents\" button to the bottom, as in docs",
+  "record the three open points as one issue (#6), over fixing them now"
+ ],
+ "trigger": "\"I agree with the proposals. But honestly it’s tough to read this isolated. Before we continue, create a pages workflow that publishes the arc42 built site plus a review environment or pr as well as arc42 diff result in the comments.\" … \"Let's record this as an open issue in the tooling repo and reference it in the plan for the code phase.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i034",
+   "note": "the architecture of the tooling"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "b88b17ea1a541957ab5a235271bd02fbbbfd9de5",
+     "72787d4d9f31898fcac46d536fe94fb90ddeaed4"
+    ],
+    "reason": "The plan commit joins its parent by the plan rule; it records the open points of this same site.",
+    "message": "ci: publish the architecture at lernapps.net/tooling/ with a review preview per pull request\n\n## Intent\n\nThe architecture is hard to read as isolated Markdown. Publish it as a site, with a preview per pull request and the arc42 diff in a comment, as docs does for the platform design and biz42. The open points of this site are recorded for the Code phase.\n\n## Key changes\n\n- scripts/build.sh validates and builds docs/arc42 with the arc42 web app under a short start page and the shared site frame.\n- pages.yml publishes main to gh-pages, served at lernapps.net/tooling/.\n- pr-preview.yml adds a preview per pull request with the architecture diff since the merge base, and one comment that lists the changes.\n- The plan links issue #6: no shared header on the diff page, own actions not exercised by this repo's workflows, /tooling/ missing from the site frame's list of sites."
+   }
+  ]
+ },
+ "moved": []
+}

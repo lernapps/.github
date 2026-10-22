@@ -1,0 +1,42 @@
+{
+ "id": "i018",
+ "conventionalCommit": "chore: the tooling follows the shared runtime, and each pins the other",
+ "intent": "Publish the new templates and make the tooling use them. The tooling referred to the old class names and published app schemas, and its skills did not know about material, so it has to follow the runtime before the pins move.",
+ "keyDecisions": [
+  "merge app-templates first, then move the tooling's pin to the merge, then pin the tooling in the templates",
+  "the schemas of a quiz and an explainer are no longer published, over copying them into the tooling site",
+  "merge each pull request only after its CI is green"
+ ],
+ "trigger": "\"du kannst tooling anhängen, die PRs eröffnen, nach erfolgreicher CI mergen und den Prozess überwachen\"",
+ "kind": "chore",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i017",
+   "note": "publishes the feature and the refactoring"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "f32d90d0ec355652df380777b0f1dc6d10288939",
+     "3bdec7884650d53d67540f989b908d269b4d8938"
+    ],
+    "reason": "The pin of app-templates follows the adaptations directly on the same branch, which named it as its next commit.",
+    "message": "feat: follow the shared runtime of the templates and pin it\n\n## Intent\n\nThe templates now share questions, blocks and a page frame, and a question can show material. The tooling must follow: it referred to the old class names and to published app schemas, and its skills did not know material.\n\n## Key changes\n\n- The visit check treats .question-reveal and .question-actions as the parts only JavaScript shows (they were .quiz-*); its fixtures use the new class.\n- The schemas of a quiz and an explainer are no longer published: the build does not copy them, the site page and llms.txt do not list them, and the skills name the file in the app.\n- The skills say a quiz adds images to src/images/ and a question shows content with material (figure, labelled figure, table, formula, text, quote, code), with the rules for an image. --page-max-width replaces --interactive-max-width.\n- The architecture describes the quiz and the explainer the same way.\n- The pin of app-templates moves from 5df0763 to c016140, the merge of lernapps/app-templates#59.\n\n## Dependencies and side effects\n\n- Needs app-templates with the material feature (d156c59). The templates then pin this tooling (1e37d56)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "1e37d56bad7f1f7e356b8fa89d709120b61f30fb"
+    ],
+    "reason": "The last pin, on a new branch from main after both merges.",
+    "message": "chore: pin the tooling to the commit that follows the runtime\n\n## Intent\n\nThe templates should be checked by the tooling that knows their new question classes, page frame and material.\n\n## Key changes\n\n- The templates' pin of the tooling moves from d3cc3cf and 9b9a34c to 1e4ba59 (lernapps/tooling#129): the dev dependency of the three templates and of the question-page fixture, the reusable workflow of the change scope, and the classifier of the pre-push hook.\n- lernapps check --pre-push passes in the three templates with the new tooling.\n\n## Dependencies and side effects\n\n- Follows the tooling commit of this intent (f32d90d)."
+   }
+  ]
+ },
+ "moved": []
+}

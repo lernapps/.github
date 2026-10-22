@@ -1,0 +1,26 @@
+{
+ "id": "i100",
+ "conventionalCommit": "feat: a 404 page leads unknown addresses to the app's start page, in place of redirects",
+ "intent": "Redirects for moved pages are not needed yet (YAGNI): an app may drop a page and its address on purpose. A learner who follows an old or wrong address should still not end on a dead page, so every unknown address of an app should lead back to the app's start page.",
+ "keyDecisions": [
+  "one generic 404 page with a link and an automatic move to the app's start page, over redirects declared in app.yaml",
+  "the 404 page finds the app's root at run time, so it works under /<repo>/ and in a pull request preview, over a fixed path",
+  "the explainer and the quiz both write the page, over the explainer only"
+ ],
+ "trigger": "\"Im aktuellen PR 24 sollte der Redirect raus. Yagni. Es ist in Ordnung und bewusst, dass Pfade wegfallen. Dann generisch 404 und Redirect zum Home der App beantworten.\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i099", "note": "takes the redirects of app-templates#24 out again"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["0d9205c578ce761137adc3fad5af537139a65452"],
+    "reason": "The only commit of this request.",
+    "message": "feat: a 404 page leads unknown addresses to the app's start page, in place of redirects\n\n## Intent\n\nRedirects for moved pages are not needed yet: an app may drop a page and its address on purpose. A learner who follows an old or wrong address should still not end on a dead page. Every unknown address of an app should lead back to the app's start page.\n\n## Key changes\n\n- The redirects in app.yaml are gone again: no schema entry, no validation, no redirect pages, no handling in the dev server.\n- The explainer and the quiz write a 404.html at the root of the bundle. GitHub Pages serves it for every missing path.\n- The page says in short German that the page does not exist (any more), links to the start page and is not indexed.\n- A small script finds the app's root: the nearest folder upwards that has its own 404.html. So the page also works under /<repo>/ and in a preview below pr-preview/pr-<n>/. It then moves on to that start page.\n\n## Dependencies and side effects\n\n- Changes app-templates#24 (i099) before it is merged."
+   }
+  ]
+ },
+ "moved": []
+}

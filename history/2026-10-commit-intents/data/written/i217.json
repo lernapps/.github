@@ -1,0 +1,49 @@
+{
+ "id": "i217",
+ "conventionalCommit": "feat: tell the platform's story on the home page",
+ "intent": "People who might build apps need to see plainly how the platform works: why it is free, that it counts openly instead of tracking, and that thanks keep it alive. The home page still told the old edugo story. Many will think \"that doesn't work anyway\", so the story must be consistent across the site, with good cross-references.",
+ "keyDecisions": [
+  "portraits from four perspectives (people who build apps, teachers, parents, learners) plus a note for data protection officers, over the edugo personas with school leadership",
+  "parents build for their child, not for a class",
+  "a personal word on why it is free: built out of idealism, no money, possibly a registered association (Verein) if it takes off",
+  "an honest answer for sceptics, linking the rendered platform design and its MVP chapter",
+  "plain German after ISO 24495-1, in the tone of the old page, over a new tone",
+  "capability map and contributing by pull request removed from the home page"
+ ],
+ "trigger": "\"2. Ich halte es für essentiell, dass wir insbesondere für die Gewinnung von Peer Producern voll transparent machen, nach welchen Prinzipien diese Plattform funktionieren soll. Warum sie nichts kostet, dass sie bewusst auf Tracking verzichtet. …\" … \"Achte vor allem auf eine konsistente Story und gute Querverweise. Wir müssen davon ausgehen, dass erst mal viele sagen „das funktioniert doch sowieso nicht“.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i215",
+   "note": "tells the principles of thanks and open counting"
+  },
+  {
+   "type": "continues",
+   "intent": "i212",
+   "note": "thanks as the currency of the free platform"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "88f4ee1a2473486ee798ab66c2f603b4e417ad65"
+    ],
+    "reason": "One commit in this repo.",
+    "message": "feat: tell the platform's story on the home page\n\n## Intent\n\nPeople who might build apps need to see plainly how the platform works: why it is free, that it counts openly instead of tracking, and that thanks keep it alive. The home page still told the old edugo story, and many will think \"that doesn't work anyway\".\n\n## Key changes\n\n- The personas are a teacher minutes before a lesson, a parent the evening before a test, people who build apps for their own class or child, and a learner, each with a quote and a portrait.\n- New sections: the principles (free, input stays on the device, open counting instead of tracking, thanks keep it alive, a note for data protection officers); why it is free, with a personal word by Oliver Jägle; and an honest answer for sceptics that links the rendered platform design, its MVP chapter and the vision.\n- The capability map and the three \"how it works\" steps are gone; navigation and footer link the platform design.\n- The text is plain German after ISO 24495-1, in the tone of the old page.\n- The hero headline no longer overflows on desktop or breaks mid-word on phones.\n- The README describes the new story and points to the pdt skill.\n\n## Dependencies and side effects\n\n- Links /docs/platform-design/, served by lernapps/docs; the docs commit of this intent points the vision there (36a33ad)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "36a33ad8c3591670fb11311c9fc5de12eca5da16"
+    ],
+    "reason": "One commit in this repo.",
+    "message": "docs: note the Verein option, point the vision to the platform design\n\n## Intent\n\nKeep the story consistent across the site: the home page now follows the platform design, while the older vision predates it. A registered association (Verein) is a possible future if the platform takes off.\n\n## Key changes\n\n- The vision says that the platform design refines it and applies where the two differ.\n- biz42 chapter 8: there is no legal entity yet, possibly a Verein later; the evidence table records it.\n- The development plan adds KD-20: idealistic and free, a Verein later, the home page story in plain German.\n\n## Dependencies and side effects\n\n- The home page in lernapps.github.io tells the same story (88f4ee1)."
+   }
+  ]
+ },
+ "moved": []
+}

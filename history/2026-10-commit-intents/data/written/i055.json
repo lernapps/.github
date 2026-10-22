@@ -1,0 +1,41 @@
+{
+ "id": "i055",
+ "conventionalCommit": "feat(app-publish): publish an app to its repo's GitHub Pages, checking the setup",
+ "intent": "Each app lives at its developer's own hosting; lernapps.net only links to it. As a simple default, lernapps provides an action that deploys to GitHub Pages, deployed to the developer's GitHub Actions. Since review environments should follow, the action must make sure a gh-pages branch exists and Pages is set up properly, or explain what is wrong. The assistant must watch that action after a merge to main.",
+ "keyDecisions": [
+  "decision dec-app-own-hosting: apps live at the developer's hosting, over deploying them through the apps repo",
+  "a building block \"App publish\" for apps, with the site actions of lernapps.net kept apart so the app path reads on its own",
+  "the developer's GitHub Actions is the deployment node of app check and app publish",
+  "the action configures Pages itself when its token may, else fails with what is wrong, the clicks and why",
+  "the checks live in a script tested against a fake GitHub API; the action is a thin wrapper",
+  "after the deploy, wait until the address serves this commit's bundle"
+ ],
+ "trigger": "\"we should have the developer's GitHub actions as deployment unit and make clear that the building block for the site publish (i would probably name it app publish) is deployed to it. The arch decision is that each app lives at the developers hosting, we provide an action to deploy to gh pages as simple default … the action should verify that there's a gh-pages branch and that it's configured properly … And the agend should be instructed to watch the action after merge to main\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i054", "note": "replaces the publishing actions block and dec-app-check-action with App publish and dec-app-own-hosting"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["165315e14b442971f849bf8b37778bbac451c383"],
+    "reason": "The app publish action is one feature; the arc42 fix after it answers the architecture review, so it stays apart.",
+    "message": "feat(app-publish): publish an app to its repo's GitHub Pages, checking the setup\n\n## Intent\n\nEach app lives at its developer's own hosting, and lernapps.net only links to it. The simple default is an action that deploys to the app repo's GitHub Pages. Later review environments need a gh-pages branch that Pages serves, so the action must ensure that setup or explain what is wrong.\n\n## Key changes\n\n- actions/app-publish wraps a script. Before the deploy it checks that gh-pages exists and that Pages serves it from its root; it sets this through the API when the token may, else it fails with what is wrong, the clicks in Settings, why, and the rule link. After the deploy it waits until the address serves this commit and prints it.\n- The generated Pages workflow uses app-publish instead of site-deploy; the skill lernapps-app gets the rule pages-from-gh-pages.\n- Tests run the script against a fake GitHub API and Pages; a workflow runs the check against this repo's real API.\n- The architecture records dec-app-own-hosting, replaces the publishing actions block with \"App publish\", and makes the developer's GitHub Actions the deployment node.\n- The plan template says: push a branch, merge after the checkpoint, watch the publish run, confirm the address."
+   },
+   {
+    "commits": ["62f8d490f8e6c2f0ff5a33d5918226fa43418714"],
+    "reason": "Answers the warnings of the architecture review on the same pull request; kept apart from the feature.",
+    "message": "docs(arc42): blocks change with their prose; site actions out of scope\n\n## Intent\n\nThe architecture review asks every block and the prose that explains it to change together. After the move to npx and App publish, several blocks no longer matched their prose.\n\n## Key changes\n\n- The generator's technology names npx from GitHub; the app check and app publish blocks name their paths; the new-app scenario names the npx scaffold and the publish step.\n- The site actions are marked as outside the app tooling."
+   },
+   {
+    "commits": ["b0264b4c2a8653dbcd63e54ce67b28db7dac3d3d"],
+    "reason": "A later answer to the same review; it follows a commit of another intent, so it is its own commit.",
+    "message": "docs(arc42): a small block for the site actions; deployment nodes match their prose\n\n## Intent\n\nThe architecture review still warned: the actions that build and publish the lernapps.net sites belonged to no building block, and some deployment nodes did not match their prose.\n\n## Key changes\n\n- A small block for the site actions (site check, site deploy, site preview), used by the lernapps.net sites and not by apps, instead of leaving them out of scope.\n- The creator's machine also hosts the runtime of app-templates; the agents' environment also runs the generator for evals."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "b0264b4c2a8653dbcd63e54ce67b28db7dac3d3d", "from": "i056", "kind": "moved", "why": "Fixes the architecture review warnings that App publish caused on tooling#44, not the llms.txt request."}
+ ]
+}

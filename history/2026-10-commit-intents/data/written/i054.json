@@ -1,0 +1,36 @@
+{
+ "id": "i054",
+ "conventionalCommit": "docs: publishing actions, distribution, scaffolding with npx from git, llms.txt",
+ "intent": "Follow up on a merge that came too quickly. The site check had no building block and no clear purpose; the deployment view repeated the building blocks instead of describing distribution; the skill assumed an npm package and a globally installed CLI that agents cannot count on, and did not say how to scaffold; and the skill repeated the workflow of the plan template, which invites drift. Agents should also find their way through llms.txt files that point to the skill and the basic paths.",
+ "keyDecisions": [
+  "scaffold with `npx --yes github:lernapps/tooling#main create`, since no npm package can be published now; npm publishing stays the better option for later",
+  "#main is acceptable for scaffolding, because the generator pins templates, runtime and tooling itself",
+  "the generated app pins the tooling commit npx ran from, not the template's older commit",
+  "the plan template is the one source of the workflow; the skill and AGENTS.md only point to it",
+  "chapter 7 describes distribution and updates and links the building blocks instead of describing them again"
+ ],
+ "trigger": "\"I merged it, but that was too quick and we should follow up before proceeding - the part with the site check is not understandable … the deployment repeats the building blocks … there is no such package on npmjs … the skill repeats the workflow … it might be good to provide LLM.txt in the root docs and the /tooling\" … \"I can't create a new npm package for now (no cli access). Thus, we should explain how to scaffold in the skill\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "revises", "intent": "i052", "note": "shortens the decision dec-app-check-action and fixes the tooling commit new apps depend on"},
+  {"type": "revises", "intent": "i048b", "note": "the skill and AGENTS.md stop repeating the workflow; the generator runs through npx"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["66a04cca56dc2278bd3e00db9fb78e0f3f17fc78"],
+    "reason": "The one commit of tooling#44 for these review points; the commits after it serve the next request.",
+    "message": "docs: publishing actions block, distribution in chapter 7, scaffolding with npx from git\n\n## Intent\n\nThe site actions had no building block and no clear purpose, the deployment view repeated the building blocks, and the skill assumed a CLI installed globally from npm that agents cannot count on. The skill also repeated the plan template's workflow. Agents should be able to scaffold an app reliably and find their way from llms.txt.\n\n## Key changes\n\n- New apps are created with `npx --yes github:lernapps/tooling#main create --archetype <archetype>`. The app depends on the tooling commit npx installed, and its Pages workflow uses the actions of that commit; before, it took an older commit without the app check action.\n- A test creates the app with npx from a local clone, so this path keeps working.\n- The plan template names the create command and the next steps and is the one source of the workflow; AGENTS.md and the skill point to it.\n- The architecture gets a building block for the publishing actions, a shorter dec-app-check-action, and a chapter 7 about which part arrives where, at which commit, and how updates come.\n- lernapps.net/tooling/llms.txt lists commands, guidance, skills, rules, schemas, the review procedure and the archetypes; the README follows.\n\n## Dependencies and side effects\n\n- The docs site gets its own llms.txt in the same round (6ecfeb7 in docs)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["6ecfeb77961c56b05151767589c2072b47817711"],
+    "reason": "The first commit of docs#17; the commit after it reworks the file for the next request.",
+    "message": "feat(site): llms.txt for AI assistants: build, list and check an app\n\n## Intent\n\nAssistants should navigate the platform themselves: what lernapps.net is, and where to go to build, list or check an app.\n\n## Key changes\n\n- A new llms.txt says what lernapps.net is and, per path, links what an assistant needs: the plan template, the skill, AGENTS.md, the scaffolding command, the rule catalog, the entry schema and the listing guide.\n- The build publishes it and the index page links it.\n\n## Dependencies and side effects\n\n- The tooling's llms.txt and the scaffolding command come with 66a04cc in tooling."
+   }
+  ]
+ },
+ "moved": []
+}

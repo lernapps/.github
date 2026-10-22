@@ -1,0 +1,26 @@
+{
+ "id": "i235",
+ "conventionalCommit": "feat(features): recommend MIT or Apache 2.0 for code, CC BY 4.0 for content",
+ "intent": "The features page only said that a maker's app stays under the maker's licence. Makers should know which licences the platform recommends, so others can build on their apps and their names stay attached.",
+ "keyDecisions": [
+  "recommend MIT or Apache 2.0 for code and CC BY 4.0 for content, over prescribing a licence",
+  "keep the Mathe-Karte as the first example app; it was only referenced everywhere before",
+  "the English text waits for a native speaker"
+ ],
+ "trigger": "\"1. als EIN beispiel bzw. das prominentestes ist sie schon ok. … 3. wir empfehlen MIT oder Apache 2 für Code, CC-BY für Inhalte …\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i234", "note": "answers the open questions on the new pages"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["ed73725c13cda0ac9544b7b76219f869e2d7b01e"],
+    "reason": "The only commit of this request.",
+    "message": "feat(features): recommend MIT or Apache 2.0 for code, CC BY 4.0 for content\n\n## Intent\n\nThe features page only said that a maker's app stays under the maker's licence. Makers should know which licences the platform recommends, so others can build on their apps and their names stay attached.\n\n## Key changes\n\n- Under \"Eigentum und Lizenz\", in German and English: open licences are recommended, MIT or Apache 2.0 for the code and CC BY 4.0 for the content, so others can develop the app further and the maker's name stays with it."
+   }
+  ]
+ },
+ "moved": []
+}

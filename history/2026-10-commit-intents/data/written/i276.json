@@ -1,0 +1,26 @@
+{
+ "id": "i276",
+ "conventionalCommit": "feat(entries): list the Naturwunder-Quiz",
+ "intent": "The first full run of the quiz archetype: a fresh assistant builds a natural-wonders quiz only from the build page, the llms.txt files and the skills, without reading any repo, and takes it through publishing to a listing pull request. Every point where it stalls or guesses becomes a fix.",
+ "keyDecisions": [
+  "a geography quiz with groups by kind and by continent; biology only as a possible second category later",
+  "for secondary school learners, with a German Wikipedia link on every option, the wrong ones included",
+  "the entry is checked against the published app with `lernapps check --entry` before the pull request"
+ ],
+ "trigger": "\"Point an agent to https://lernapps.net/apps/build/ and ask him to build a Naturwunder-Quiz. Explicitly ask him not to read any repos but rely on the information it got from the skills\" … \"All merged. Go\"",
+ "kind": "eval",
+ "relations": [
+  {"type": "continues", "intent": "i069", "note": "the session started there for the first full run"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["c7e57979d224cb9b7cf8e406b4c87bede0e60e19"],
+    "reason": "The one commit of the listing pull request.",
+    "message": "feat(entries): list the Naturwunder-Quiz\n\n## Intent\n\nThe first app built end to end by a fresh assistant from the build page and the skills alone should be listed in the catalog.\n\n## Key changes\n\n- A catalog entry for the Naturwunder-Quiz at lernapps.net/naturwunder-quiz/: geography for grades 5 to 10, with a direct link to one question per group, stores nothing and loads nothing from other servers.\n- The entry passed `lernapps check --entry` against the published app without findings."
+   }
+  ]
+ },
+ "moved": []
+}

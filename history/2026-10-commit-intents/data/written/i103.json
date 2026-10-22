@@ -1,0 +1,55 @@
+{
+ "id": "i103",
+ "conventionalCommit": "feat: the build checks each exercise's examples against its real check",
+ "intent": "A check that rejects a correct answer should fail before anyone sees the preview, not when a person tries the app. Examples of accepted and rejected answers are test cases only, never shown to learners; the build runs them through the same check as the page. Existing apps must keep building, so the app that lacks examples gets them in its own session before the tooling moves to the new version.",
+ "keyDecisions": [
+  "examples are build-only test cases, not rendered or shipped, over rules shown to learners",
+  "mistakes and the info of wrong options count as rejected examples, so only the accepted ones must be written",
+  "a mistake is matched directly: the chosen option, a value within the task's tolerance, or an expression over a generated exercise's variables, with hint and a general sentence as fallback; no model interprets the answer",
+  "examples required only for exercises with their own component, optional for every other type, so existing apps do not break",
+  "the Elektrizität app adds its examples in its running session before the version bump, over warnings first"
+ ],
+ "trigger": "\"Also wären die Regeln nur Testfälle, nicht user facing? Bei den mistakes: wie kann der Agent wählen, welcher mistake gemacht wurde? Direct Match mit einer pre-computed Funktion? Mit fallback, falls nichts matcht?\" … \"Schick das an die laufende Session mit Hinweis auf den Version-bimp\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i101",
+   "note": "the build side of checking what the task asks for"
+  },
+  {
+   "type": "continues",
+   "intent": "i099",
+   "note": "builds on the mistakes and hints of app-templates#24"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "c7d68d275b3a7e0d5690bcbfa18879a8e7af4232"
+    ],
+    "reason": "The only commit of app-templates#25.",
+    "message": "feat: the build checks each exercise's examples against its real check\n\n## Intent\n\nA check that rejects a correct answer should fail at build, before anyone sees the preview. The person who writes an exercise should first ask which other answers its text allows, and the build should test those answers mechanically. Learners never see these test cases.\n\n## Key changes\n\n- An exercise may carry examples: { accepted, rejected }: the other correct answers its text allows, and typical wrong ones.\n- The build runs each example through the check the page uses: the quiz's checker for its question types, in the quiz and the explainer alike; a generated exercise's comparator for every seed it tests; an exercise component's check.\n- It fails on an accepted example the check rejects, or a rejected one it accepts. Messages say what to change.\n- mistakes and the info of wrong options count as rejected examples.\n- An exercise component's block must give at least one accepted and one rejected example, as its check is the app's own code. For every other type examples are optional.\n- Nothing of the examples is rendered or shipped.\n\n## Dependencies and side effects\n\n- The tooling pins this version and its skills explain examples in a later commit (same intent).\n- An app with exercise components but no examples fails to build after that pin."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "a79ec1ca94042d4f761b33bde930e023792cc27f"
+    ],
+    "reason": "The pin and the skill sentences of this feature, one commit.",
+    "message": "chore(deps): pin app-templates 1f9b585, with build-checked examples\n\n## Intent\n\nNew and updated apps should get the build check of examples, and the assistant should know how to write them.\n\n## Key changes\n\n- Apps get app-templates#25: every exercise may carry examples { accepted, rejected }, which the build runs through the real check; an exercise component's block needs at least one of each.\n- The skills for exercise patterns, the explainer and the quiz say how to write examples, and that a point is the decimal mark in number answers.\n\n## Dependencies and side effects\n\n- Pins app-templates#25 (c7d68d2, same intent). The Elektrizität app gets its examples in its own session before it updates."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "c7d68d275b3a7e0d5690bcbfa18879a8e7af4232",
+   "from": "i102",
+   "kind": "moved",
+   "why": "The build test with examples, agreed in i100/i101 and built by an agent while i102 ran; its pin is this intent's commit."
+  }
+ ]
+}

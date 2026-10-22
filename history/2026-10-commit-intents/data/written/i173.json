@@ -1,0 +1,32 @@
+{
+ "id": "i173",
+ "conventionalCommit": "fix(explainer): the tutor prompt's links start at the root of the language tree on every page",
+ "intent": "On a page below the start page, the tutor prompt linked an llms.txt that does not exist: it took the page's own folder as the base. The prompt's links must point to the files at the root of the app's language tree, on every page.",
+ "keyDecisions": [
+  "the tutor section gives the root of the tree relative to its page, over the page's own folder",
+  "an e2e check and a build test that the links start at the root"
+ ],
+ "trigger": "\"Test: Die generierte url https://lernapps.net/elektrizitaet/schaltungen-messen/reihenschaltung/llms.txt gibt es nicht. Nur unter den Root der App\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i168", "note": "fixes the base of the prompt's links since the button moved to every page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["2fa4969e3bd7f1e3aa6d36a9880c7cfd49bb9435"],
+    "reason": "The only commit of app-templates#35.",
+    "message": "fix(explainer): the tutor prompt's links start at the root of the language tree on every page\n\n## Intent\n\nThe tutor section moved to every page, but its prompt still took the page's own folder as the base. On a page it linked llms.txt below that page, an address that does not exist.\n\n## Key changes\n\n- The tutor section gives the root of the language tree, relative to its page, and the prompt's links start there.\n- An e2e check and a build test make sure llms.txt and the tutor files are linked at the root.\n\n## Dependencies and side effects\n\n- The tooling pins this version in the same intent."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["1ce9716c22230ee192f008846ab31af0315f85e2"],
+    "reason": "The pin of this fix.",
+    "message": "chore(deps): pin app-templates 363bafa, the tutor prompt's links start at the tree root on every page\n\n## Intent\n\nNew and updated apps should get the tutor prompt with working links on every page.\n\n## Key changes\n\n- Apps get app-templates#35, and with it #33, the runtime of the interactive archetype.\n\n## Dependencies and side effects\n\n- Pins 2fa4969 of this intent; it also brings the interactive runtime (i107)."
+   }
+  ]
+ },
+ "moved": []
+}

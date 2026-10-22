@@ -1,0 +1,32 @@
+{
+ "id": "i020",
+ "conventionalCommit": "feat(explainer): neutral practice text, worked tasks off with JavaScript, formulas in quiz texts",
+ "intent": "The chemistry explainer hit three limits of the template that an app cannot change: the practice sentence speaks of \"immer neuen Zahlen\" where elements or substances vary, three worked tasks appear after each solved task although JavaScript makes new tasks, and formulas in quiz texts show as raw characters. The template should fix them for every explainer.",
+ "keyDecisions": [
+  "a neutral default sentence and an optional `practice` per exercise, over only rewording the default",
+  "worked tasks hidden with JavaScript by default, `workedTasks: always` to show them",
+  "`$…$` in quiz-type texts renders as MathML at build and is checked like every formula"
+ ],
+ "trigger": "\"Kummer Dich um issue 45\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i008",
+   "note": "the issue came from the chemistry explainer"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "e15876946e950cb8276646acbddc21e5301fc007"
+    ],
+    "reason": "One commit for one issue.",
+    "message": "feat(explainer): neutral practice text, worked tasks off with JavaScript, formulas in quiz texts\n\n## Intent\n\nThe chemistry explainer hit three limits of the template that an app cannot change. The practice sentence said \"immer neuen Zahlen\" where elements or substances vary. Three worked tasks appeared after each solved task, although with JavaScript a learner gets as many new tasks as they like. Formulas in quiz texts showed as raw characters.\n\n## Key changes\n\n- The sentence above the live task is the exercise's optional `practice`, else the neutral \"Übe selbst, mit immer neuen Aufgaben:\".\n- The worked tasks show only without JavaScript, unless the exercise sets `workedTasks: always`.\n- In the texts of quiz-type exercises `$…$` is a formula, rendered as MathML at build and checked like every formula.\n- Schema, building blocks and runtime view describe the new fields; tests cover the formulas.\n\n## Dependencies and side effects\n\n- Closes lernapps/app-templates#45."
+   }
+  ]
+ },
+ "moved": []
+}

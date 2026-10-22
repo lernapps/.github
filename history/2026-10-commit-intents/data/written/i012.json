@@ -1,0 +1,31 @@
+{
+ "id": "i012",
+ "conventionalCommit": "docs: the apps can be used without any tracking; the platform counts visits only",
+ "intent": "The vision promised that only explicit clicks are counted. With the usage counter, the platform's own pages also count visits. The principle must say so honestly, and say that the apps can still be used entirely without tracking.",
+ "keyDecisions": [
+  "state the counter in the vision itself, over leaving the principle as it was",
+  "change the same rule in the platform design (D5, D8) and the measures (biz42 ch. 7), so all texts agree"
+ ],
+ "trigger": "\"Pad die Vision am: Apps sind komplett ohne Tracking nutzbar. In der Plattform zählen wir nur Besucher um zu wissen, ob es irgendjemand nutzt\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i010",
+   "note": "the counter rolled out there contradicted the vision"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "220c35d65e0657b6b08f483b13751ac0c077efa5"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs: the apps can be used without any tracking; the platform counts visits only\n\n## Intent\n\nThe vision said that only explicit clicks are counted. The platform's own pages now also count visits, so the principle must say so honestly, and that the apps can still be used entirely without tracking.\n\n## Key changes\n\n- The principle \"No hidden data collection\" now says: the apps can be used entirely without tracking; the platform's own pages count visits as totals, only to know whether anyone uses it; no cookies, no profiles.\n- The same rule in the platform design (D5, D8) and in the measures (biz42 ch. 7) says the same.\n\n## Dependencies and side effects\n\n- Matches the usage counter of lernapps.github.io and the page rules of the tooling and .github."
+   }
+  ]
+ },
+ "moved": []
+}

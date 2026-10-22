@@ -1,0 +1,37 @@
+{
+ "id": "i059",
+ "conventionalCommit": "test: a faster pre-push for the tooling, a quiet pre-commit for every repo",
+ "intent": "The tooling's own pre-push took around ten minutes, because it installed and ran the full check again and again inside copies of the repo. It should prove the same contracts in less time, still the same in hook and CI. The pre-commit output should also be quiet: usually only its exit code matters, and the details belong in a file to read on demand.",
+ "keyDecisions": [
+  "share one npm ci across the heavy test files, over one install per file",
+  "show once that a broken rule id turns the full check red, and test the other cases with the rule-id test directly",
+  "no test is skipped or weakened; each change says what it still proves",
+  "the pre-commit hook writes its output to a log and prints nothing on success, one line with step, exit code and log path on failure; CI keeps printing"
+ ],
+ "trigger": "\"Why does the pre push take so long?\" … \"Before you do this, optimize the tests, as you suggested. Also redact the output in the pre-commit (pipe it to a file, so it can be read in demand, but we should usually only need the RC)\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i048b", "note": "changes the shared pre-commit hook and the tooling's own end-to-end tests"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["df30d24acd830f5be87d6b5853adeb8bf3090826"],
+    "reason": "The test speed-up is one change; the quiet hook after it is another.",
+    "message": "test: the tooling's own pre-push check runs the same contracts in less time\n\n## Intent\n\nThe tooling's pre-push installed fresh copies of the repo several times and ran the full check more than ten times in them, so a push took minutes. It should prove the same contracts faster, and still the same in the hook and in CI.\n\n## Key changes\n\n- One fresh clone is installed with npm ci once per test run and shared; the heavy tests work in copies that link to it.\n- One case shows that a broken rule id turns `npm run check` red and one that planted rules keep it green; the other cases run the rule-id test that the check runs.\n- The full check runs once for green and once per planted mistake; a failing unit test is shown through the real pre-push hook instead of a second heavy run."
+   },
+   {
+    "commits": ["91270d4ce4ca9f55d0d44fe9402d577433f569ef"],
+    "reason": "The quiet pre-commit is a change of its own; its test fix comes later, after a commit of another intent.",
+    "message": "feat(hooks): the pre-commit hook is quiet and names its log on a failure\n\n## Intent\n\nA commit usually only needs the hook's exit code. Its output filled the assistant's context; the details should be in a file to read on demand.\n\n## Key changes\n\n- The pre-commit hook of every app and of the tooling writes what its steps print to a log next to the check report. On success it prints nothing; on failure one line: the step, its exit code and the log.\n- CI runs the same command and prints to its log as before.\n- The plan template and the skill tell the assistant to read the log after a failed commit.\n- Tests check the one line and that the log holds the lint message with its rule link."
+   },
+   {
+    "commits": ["3233d5407559da888ccf847d7f305d3552587024"],
+    "reason": "A test fix for the quiet hook; it follows a commit of another intent, so it stays alone.",
+    "message": "test(hooks): a failed commit names whichever step failed\n\n## Intent\n\nIn an app, the staged-files step already lints, so a lint error stops that step first and the test expected the wrong step.\n\n## Key changes\n\n- The test checks the shape of the one line and that the log holds the lint message with its rule link, whichever step failed."
+   }
+  ]
+ },
+ "moved": []
+}

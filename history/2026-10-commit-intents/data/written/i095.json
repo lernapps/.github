@@ -1,0 +1,64 @@
+{
+ "id": "i095",
+ "conventionalCommit": "fix: lessons from the second explainer run: published address, content guide in the review, credits and links by language",
+ "intent": "Learn from the second explainer run: take the published address from the deploy job, let the review read the content guide, and let credits and link addresses differ by language.",
+ "keyDecisions": [
+  "take the address the deploy job prints and follow redirects, never a derived github.io address",
+  "the review input carries the content guide, and the review prompt reads it before the rubric",
+  "a credit's source is a text like any other (a URL stays one string); a link's address may be one https address or a map by language",
+  "points 4 and 5 now, point 3 after"
+ ],
+ "trigger": "\"Die andere Session ist jetzt fertig. Was können wir daraus lernen?\" … \"Ja, 4 und 5 jetzt, 3 danach\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i090",
+   "note": "the rubric item app-content-matches could not work without the guide in the review input"
+  },
+  {
+   "type": "revises",
+   "intent": "i081",
+   "note": "language maps extended to credits and link addresses"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "83c608125df28d5a8c76df4cc6d0743bcb57aa50"
+    ],
+    "reason": "The only commit of tooling#70.",
+    "message": "docs(guidance): take the published address from the deploy job; the review reads the content guide\n\n## Intent\n\nThe second explainer run waited for an answer from the repo's github.io address, which only redirects to lernapps.net. And its review could not compare the content guide with the content, because the guide was not in the review input. Take the address from the deploy job, and let the review read the guide.\n\n## Key changes\n\n- The plan template says to take the address the deploy job printed, never a derived one, not to wait on it, since the job already did, and to follow redirects.\n- The review prompt reads the content guide from the prepared input before the rubric, which compares it with the content.\n\n## Dependencies and side effects\n\n- Works with lernapps/apps#27, which puts the guide into the review input; either can be merged first.\n- Same intent: app-templates#22 and tooling#71 give credits and link addresses per language."
+   },
+   {
+    "commits": [
+     "55063273d66ed19cd5b6064a287973e2958a221a",
+     "464b78fdb6d2b624d5b7466d2984c31b8a77e7e1"
+    ],
+    "reason": "Both commits of tooling#71: the skill lines for one schema change, and a one-word clarification of them.",
+    "message": "docs(skills): a credit's source and a link's url by language\n\n## Intent\n\napp-templates now lets a credit's source and a link's address differ by language. Tell the assistant in the skills, and say that page addresses, not link addresses, are the same in every language.\n\n## Key changes\n\n- lernapps-explainer: credit.source takes a language map like any text, a URL stays one string; page addresses, numbers, formulas and drawn figures are the same in every language.\n- lernapps-quiz: a link's url is one address for every language or a map by language.\n\n## Dependencies and side effects\n\n- Describes the schemas of app-templates#22 in this intent."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "d60cad3007b610f36cf8b7035faa198c3cc4a24d"
+    ],
+    "reason": "The only commit of apps#27.",
+    "message": "fix(review): put the app's content guide into the review input\n\n## Intent\n\nThe review agent compares the content guide with the content (rubric item app-content-matches). But the review input held only the bundle, the plan, package.json and the lock file, so in the review of the electricity listing the agent could not read the guide. Put the guide into the review input.\n\n## Key changes\n\n- The review input carries .agents/skills/app-content/SKILL.md, and the workflow's prompt names it.\n- The review test fails without the change and passes with it.\n\n## Dependencies and side effects\n\n- Works with tooling#70, whose review prompt reads the guide; either can be merged first."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "c421abaf2c681b07b724f8369f4225c2d8498201"
+    ],
+    "reason": "The only commit of app-templates#22.",
+    "message": "feat(schemas): a credit's source and a link's address by language\n\n## Intent\n\nIn the bilingual electricity app, a figure's credit had one text for every page and a link one address, so English pages credited in German and linked the German Wikipedia. Let both differ by language.\n\n## Key changes\n\n- credit.source is a text like any other: a string while German is the only language, else a map with every declared language. A source that is only a URL stays one string, shown as a link.\n- A link's url, shared by the quiz and the explainer's exercises, is one https address or a map of https addresses by language, complete like a text's map. German-only quizzes and plain addresses stay valid.\n- Each language's page renders its own credit and address at build, so the page without JavaScript has them.\n- A bad address says it must be an https address.\n\n## Dependencies and side effects\n\n- The tooling skills describe this in tooling#71 of this intent."
+   }
+  ]
+ },
+ "moved": []
+}

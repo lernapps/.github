@@ -1,0 +1,26 @@
+{
+ "id": "i021",
+ "conventionalCommit": "feat(quiz): the learner chooses the number of questions at the start",
+ "intent": "A learner should be able to answer only part of a quiz (issue #11), without the creator having to configure it. A shared link must still give everyone the same questions in the same order.",
+ "keyDecisions": [
+  "the learner picks the count in a form at the start, over a questionCount setting in the question bank",
+  "seed and count both go into the address (?seed=…&n=…), so a link reproduces the run without the form",
+  "\"Noch einmal\" restarts at once with a new seed and the same count, over asking for the count again",
+  "the restart stays a link styled as a button, over a <button> element",
+  "the earlier questionCount commit and the merge of main are squashed into one commit"
+ ],
+ "trigger": "\"Guck Dir mal die Issues für das Quiz an und wenn sie eindeutig sind: Lösen\" … \"Ich dachte eher daran, dass man beim Start des Quiz die Anzahl der Fragen selbst auswählen kann. Natürlich nicht mehr als Fragen da sind. Aber das geht ohne Konfiguration\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["a590fc2496aaddeafb364044e168133d62e2df2e"],
+    "reason": "One commit for one request; the preview workflow after it serves another request (i022).",
+    "message": "feat(quiz): the learner chooses the number of questions at the start\n\n## Intent\n\nLet a learner answer only part of a quiz (#11) without any configuration by the creator. A shared link must still give everyone the same questions in the same order.\n\n## Key changes\n\n- Before the first question, a form asks how many questions to answer: from 1 to all, all by default.\n- The seed and the chosen count are in the address (?seed=…&n=…). A link with them opens the same questions in the same order and skips the form; so do a link to a single question and a quiz of one question.\n- Questions outside the run are removed with their solutions; progress and score count only the questions asked. Without JavaScript, the page still shows all questions.\n- At the end, \"Noch einmal\" (en \"Again\") starts at once with a new seed and the same count. It is a link that looks like a button.\n- The question bank needs no new setting. New texts in German and English, an end-to-end test for the form, README and runtime view updated."
+   }
+  ]
+ },
+ "moved": []
+}

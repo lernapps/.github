@@ -1,0 +1,34 @@
+{
+ "id": "i144",
+ "conventionalCommit": "docs(site): the workshop page in the style of the lifecycle page from #116",
+ "intent": "The workshop page was noisy. The lifecycle page drafted in tooling#116 showed the same content more calmly and should be the model, without its striped background.",
+ "keyDecisions": [
+  "take the look of #116: a timeline of phases with quiet boxes, over the board with lanes and coloured chips",
+  "what a box does for person and agent opens on hover and keyboard focus, and stands in the card on touch",
+  "a plain tint for the band across all phases, over stripes",
+  "drop the attention bar, the lists per lane and the kind chips",
+  "a new branch and pull request from main, since #118 was merged"
+ ],
+ "trigger": "\"Guck Dir mal die Darstellung aus tooling#116 an. Die fand ich besser. Weniger noisy (bis auf den gestreiften Hintergrund der übergreifenden Unterstützung).\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i142",
+   "note": "new look for the generated page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "54272966abc48fc1c2b3cb0ef78933fd8f5fab1f"
+    ],
+    "reason": "One commit for one request; it starts a new branch after a merge.",
+    "message": "docs(site): the workshop page in the style of the lifecycle page from #116\n\n## Intent\n\nThe workshop page was noisy. Show the same content as calmly as the lifecycle page drafted in #116, without its striped background.\n\n## Key changes\n\n- The phases are a timeline: per phase its question, what the person decides with the checkpoint, and the building blocks as quiet boxes with kind, who works with them and a link.\n- What a box does for the person and the agent opens on hover and keyboard focus; on touch it stands in the card.\n- The band of what runs through every phase has a plain tint instead of stripes.\n- The mapping says per box what it does for the agent and, where the person works with it, for the person. The attention bar, the lists per lane and the coloured kind chips are gone.\n- Light, dark and 390 px checked."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,61 @@
+{
+ "id": "i206",
+ "conventionalCommit": "docs(pdt42): learning engine (D6)",
+ "intent": "Show how the platform helps each core role start, get better and catch new opportunities. Supply does not come by itself, so the engine has to make the first listing cheap and return use and praise to creators.",
+ "keyDecisions": [
+  "guidance for building as the creators' benefit that does not depend on reach",
+  "adults and students can evolve into creators, from the consumption to the production side",
+  "creators can evolve into co-owners by contributing best practices to the guidance",
+  "a service per role and stage where roles differ, because the canvas draws a service in every row of its roles, over services shared by several roles",
+  "how creators become co-owners left to the governance in lernapps/.github"
+ ],
+ "trigger": "\"Ja, passt so, weiter mit D6\" … \"Auch Studenten könnten zu App-Creators werden\" … \"App creators könnten auch eigene best practices einbringen wollen und so co-owner der plattform werden. könnte man das auch abbilden?\" … \"Ja. Commit, push, weiter.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i203",
+   "note": "the engine answers the supply insight"
+  },
+  {
+   "type": "continues",
+   "intent": "i205",
+   "note": "services use the D5 transactions and channels"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "9577919c1cb66658ccb7b9caf95095efa5482dbf",
+     "d80a8134bf4a9eca1e9289b88abb6fca56717ddb",
+     "4d02b3c4d79526ae025edb55c50fbb1085b18720",
+     "d9a3ef1a75f37502ba1498d6bfafd285517216f1"
+    ],
+    "reason": "The draft of the learning engine, two refinements and its completion, one after the other on feat/platform-design; three are marked wip.",
+    "message": "docs(pdt42): learning engine (D6)\n\n## Intent\n\nShow how the platform helps each core role start, get better and catch new opportunities. Supply does not come by itself, so the engine has to make the first listing cheap and return use and praise to creators.\n\n## Key changes\n\n- A new D6 chapter holds the learning engine for creators, adopting adults and students, with generic services linked to stages, transactions and channels.\n- Creators start with guidance for their AI assistant, list their first app almost without effort, learn how it is used, and build on other apps.\n- Adults and students can evolve into creators. Creators can evolve into co-owners of the platform by contributing best practices to the guidance; D1 notes this path.\n- Services are placed per role and stage: assembling apps for a class only for adults, finding apps before a test and starting an app right away for students. The students' portrait gains the potential to build their own app.\n- The development plan marks D6 done and adds KD-16.\n\n## Dependencies and side effects\n\n- How creators become co-owners belongs to the governance in lernapps/.github."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "d80a8134bf4a9eca1e9289b88abb6fca56717ddb",
+   "from": "i207",
+   "kind": "dropped",
+   "why": "Students as creators, a refinement of D6; i207 has no commits left."
+  },
+  {
+   "commit": "4d02b3c4d79526ae025edb55c50fbb1085b18720",
+   "from": "i208",
+   "kind": "dropped",
+   "why": "Creators as co-owners, a refinement of D6; i208 has no commits left."
+  },
+  {
+   "commit": "d9a3ef1a75f37502ba1498d6bfafd285517216f1",
+   "from": "i209",
+   "kind": "moved",
+   "why": "Closes D6 (draft note removed, KD-16) before D7 starts."
+  }
+ ]
+}

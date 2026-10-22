@@ -1,0 +1,34 @@
+{
+ "id": "i075",
+ "conventionalCommit": "docs(plan): bookkeeping, and the first sketch of the explainer MVP",
+ "intent": "The quiz's principles (a tightly constrained stack, checks as deterministic as possible, pages readable without JavaScript) have only been tried on one archetype. An explainer based on the Mathe-Karte should show whether they hold on a second one, and its plan should be open to review before anything is built.",
+ "keyDecisions": [
+  "explainer MVP before the evals (step 10)",
+  "content only as data, validated against a schema at build, rather than free code",
+  "formulas rendered to MathML at build with Temml, figures as SVG, so pages need no script",
+  "readable without JavaScript returns, but only as a rule of the explainer archetype",
+  "a closed set of declared exercise types configured as data, with open questions left for review"
+ ],
+ "trigger": "\"Let’s do the bookkeeping and then a mvp for the explainer archetype based on the mathekarte first to see that the principles hold there. Bias and constraint the stack tightly … Before you start, sketch the plan in our development plan file and present it to me\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i073",
+   "note": "the bookkeeping marks the listing, the entry point and the first full run as done"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "c0a3a528be97f124c22b806e84cd39b754085c3e"
+    ],
+    "reason": "The first commit of tooling#54: the bookkeeping and the first sketch. The later plan commits of the pull request record the review of the sketch and belong to the next request.",
+    "message": "docs(plan): bookkeeping, and the first sketch of the explainer MVP\n\n## Intent\n\nThe quiz's principles (a tightly constrained stack, checks that are as deterministic as possible, pages readable without JavaScript) have only been tried on one archetype. An explainer based on the Mathe-Karte should show whether they hold on a second one. Its plan should be open to review before anything is built, and the plan should show what is already done.\n\n## Key changes\n\n- Steps 9 and 13, the first full run with its lessons and fixes, and the removal of the site rules are marked done, each with its issue and pull requests.\n- The explainer MVP comes before the evals (10); steps 10 and 12 stay open.\n- The sketch: content only as data, YAML per topic validated against a schema at build; formulas as MathML and figures as SVG, rendered at build, so pages need no script.\n- Exercises are declared types, configured as data.\n- Readable without JavaScript becomes a rule of the explainer archetype.\n- Five open questions are listed for review."
+   }
+  ]
+ },
+ "moved": []
+}

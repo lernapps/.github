@@ -1,0 +1,34 @@
+{
+ "id": "i083",
+ "conventionalCommit": "feat(explainer): vue-component blocks, rendered at build and hydrated as islands",
+ "intent": "Data-driven exercises carry maths and some sciences, but a cell diagram to label or a circuit to switch needs real interface code. Pages that use such code must still read without JavaScript. This is step 5 of the explainer MVP.",
+ "keyDecisions": [
+  "Vue first, as type vue-component, so other frameworks can come in later under their own names",
+  "props checked with Vue's own SFC compiler rather than vue-component-meta, which would add about 23 MB of tooling and seconds per start",
+  "pages without a component load no Vue at all",
+  "the logic module gets generate(seed, props), because a task often depends on the content",
+  "browser globals allowed in onMounted and the unmount hooks; property test over 50 seeds"
+ ],
+ "trigger": "\"It’s merged\" (step 5 as decided earlier: \"we should allow for components too … type vue-component\", \"A component might get an explanatory nojs explanation text though. Then it should hold\")",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i076",
+   "note": "step 5 of the explainer MVP decided in the sketch"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "fd048887a63fdb1f3ee1c6e8c89e1de790e3e22b"
+    ],
+    "reason": "The only commit of app-templates#18.",
+    "message": "feat(explainer): vue-component blocks, rendered at build and hydrated as islands\n\n## Intent\n\nData-driven exercises carry maths and some sciences, but a cell diagram to label or a circuit to switch needs real interface code. Pages that use such code must still read without JavaScript. This is step 5 of the explainer MVP.\n\n## Key changes\n\n- A vue-component block names a component in src/components/, gives its props and requires a nojs text in every language, which the page shows without JavaScript.\n- The build renders each component on the server into a hidden island; in the browser it hydrates and replaces the nojs text, or keeps it as a caption if the component declares that. Only pages with a component load Vue.\n- Props are checked against the component's declared types; a string prop is a learner text, checked in every language.\n- Build checks with one line per problem: no network, no eval, innerHTML or v-html, imports only from allowed modules, browser globals only while mounted, a test file per component, 20 kB gzip per component.\n- A component that emits answered is an exercise: its logic module exports generate, check, solution and wrong, property-tested over 50 seeds, and answered drives the quiz's feedback.\n- explainerTests() checks each nojs text without JavaScript and, with JavaScript in German, that each component hydrates without errors.\n- The history fixture gets a component where the learner labels a pyramid; vue and the Vue plugin are pinned, and vue-tsc type-checks .vue files in CI."
+   }
+  ]
+ },
+ "moved": []
+}

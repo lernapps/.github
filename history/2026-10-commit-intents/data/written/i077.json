@@ -1,0 +1,48 @@
+{
+ "id": "i077",
+ "conventionalCommit": "feat(quiz): language maps in a question's texts, and a multi-language quiz in the plan",
+ "intent": "Every explainer text may be a language map, and the explainer embeds quiz questions through the shared question schema, so a multi-language explainer page breaks on a question with plain strings only. Quiz and explainer should also handle languages the same way before the first explainer run.",
+ "keyDecisions": [
+  "language maps in the shared question schema already in step 3, rather than later as the decided sketch had planned (Q5)",
+  "the multi-language quiz as a small step 4 of its own, not folded into step 3",
+  "plain strings stay valid next to language maps, so existing quiz banks need no change"
+ ],
+ "trigger": "\"did you also plan to update the quiz template for multi-language blocks/shapes?\" … \"limit has been reset, resume the agents and add the i18n for the quiz blocks in step 3\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i076",
+   "note": "the decided sketch had deferred language maps in the quiz's schema to later (Q5)"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "b1eab5d72f4ced52382c88efe50d661e6e171e7a"
+    ],
+    "reason": "The only commit of tooling#55; a plan change of its own.",
+    "message": "docs(plan): language maps for quiz questions in step 3, a multi-language quiz as step 4\n\n## Intent\n\nThe plan deferred language maps in the quiz's schema to later. But the explainer embeds quiz questions through the shared question schema, and every explainer text must accept a language map, so embedded questions need them already in step 3. Quiz and explainer should also handle languages the same way before the first explainer run.\n\n## Key changes\n\n- Step 3 includes language maps for every text of an embedded quiz question, German required, completeness checked, existing banks valid unchanged.\n- A new step 4 makes the quiz template multi-language: a languages field, a page per language, a switch without JavaScript, tests per language. Later steps move up by one.\n- The decisions list records the decision of 2026-10-14, and the languages section no longer says later for the quiz.\n\n## Dependencies and side effects\n\n- Same intent: app-templates#15 gives a question's learner texts language maps."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "52dc5e00e68d726cb04c579ab92deee147de5c11"
+    ],
+    "reason": "The first commit of app-templates#15, a thought of its own: language maps in quiz questions. The exercises that follow in the same pull request are in i080.",
+    "message": "feat(quiz): language maps in a question's learner texts\n\n## Intent\n\nThe explainer embeds the quiz's question types, and every explainer text may be a language map. A question that accepts only plain strings would break a multi-language explainer page. This belongs to step 3 of the explainer MVP.\n\n## Key changes\n\n- Every learner text of a question (question, options and their info, items, pairs, unit, explanation, link titles) is a string or a map like { de: …, en: … }.\n- Validation takes the declared languages and checks each text with the explainer's language messages; German is always required.\n- Rendering, solution and engine take the page's language, with English engine texts; a wrong answer can carry a diagnosis.\n- Banks with plain strings stay valid and render as before.\n\n## Dependencies and side effects\n\n- Same intent: the tooling's plan puts this into step 3 (tooling#55)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "52dc5e00e68d726cb04c579ab92deee147de5c11",
+   "from": "i080",
+   "kind": "moved",
+   "why": "The language maps for quiz questions the owner asked for in i077 (\"add the i18n for the quiz blocks in step 3\"), built as part of step 3."
+  }
+ ]
+}

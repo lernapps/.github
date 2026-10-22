@@ -1,0 +1,42 @@
+{
+ "id": "i132",
+ "conventionalCommit": "docs(guidance): compact guidance for agents (experiment)",
+ "intent": "The guidance is long and written for people; an agent carries about 30,000 tokens of it through every turn. Try a radically compact variant written for agents, with the same rules and steps, and test it interactively with one small app before anything changes on main.",
+ "keyDecisions": [
+  "a separate branch exp/compact-guidance; main stays untouched",
+  "headings of one to three words, bullets, no prose; SKILL.md as an index of references loaded on demand",
+  "every rule, task, checkpoint and marker that hooks and checks read stays exactly as it is",
+  "short hard rules where the evals found weaknesses",
+  "all URLs, commands and the generator's ref point to the branch in one commit that is reverted before a merge",
+  "a first prompt that holds all must-read URLs, since agents did not follow links found in fetched files"
+ ],
+ "trigger": "\"Ich würde da gerne mal einen recht radikalen alternativen Ansatz probieren * minimale Fülltexte * Strukturierung über sehr kompakte Überschriften * Aufzählungen * Dekomposition … Wir könnten das einmal radikal umformulieren und dann hier erst mal interaktiv eine einzelne kleine App bauen.\" … \"Wenn wir das testen, funktioniert es wahrscheinlich nicht einfach, da die URLs, die sich der Agent abruft ebenso wie das CLI nur den Main-Stand enthalten.\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i131",
+   "note": "the next step named after the first eval results"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "cfab0e5b432d3a95b449cb63e93e6737acedead2"
+    ],
+    "reason": "Kept apart from the URL commit after it, which must stay revertable on its own.",
+    "message": "docs(guidance): compact guidance for agents (experiment)\n\n## Intent\n\nThe creator guidance is long and written for people, and an agent carries it through every turn. Try a radically shorter variant written for agents, with every rule and step kept, and test it before main changes.\n\n## Key changes\n\n- Headings of one to three words, bullets, no prose, no reasons for humans, no repetition.\n- SKILL.md files are an index of links to references/ loaded on demand; llms.txt lists the must-read files first.\n- Every rule (77, same ids, scopes and severities), task, checkpoint and command stays.\n- Hard rules where the evals found weaknesses: tick every box, competencies as Ich-kann-Sätze, the content guide grepped for placeholders, no create before the yes, at most two questions per message, a typing game is interactive.\n- The content guide's top comment no longer contains the placeholder marker. The rule page joins wrapped list items."
+   },
+   {
+    "commits": [
+     "18ee98c8063064f615c3a310e55331be26317cf3"
+    ],
+    "reason": "Its own commit, to be reverted before anything of the branch is merged.",
+    "message": "chore(experiment): point all URLs to the branch\n\n## Intent\n\nThe agent in the experiment must never read main's guidance, but the guidance, the CLI and a generated app all point to main.\n\n## Key changes\n\n- Every raw URL, create/update/check command and skills install in the guidance, skills, llms.txt, the content guide skeleton and the generator's plan-template hint names exp/compact-guidance instead of main.\n- guidance/experiment-prompt.md is the creator's first prompt, with all must-read URLs.\n\n## Dependencies and side effects\n\n- Revert this commit before anything of the branch is merged."
+   }
+  ]
+ },
+ "moved": []
+}

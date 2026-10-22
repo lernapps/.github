@@ -1,0 +1,35 @@
+{
+ "id": "i222",
+ "conventionalCommit": "ci: publish from the gh-pages branch, with a preview per pull request",
+ "intent": "Changes to the app overview should be reviewable in the browser before they reach main. Every pull request needs its own review environment.",
+ "keyDecisions": [
+  "Pages from the gh-pages branch as in pdt42, over the artifact-based Pages deploy",
+  "a configurable path prefix, so every link also works under the preview's path",
+  "one concurrency group per pull request, over one group that would drop waiting previews of other pull requests",
+  "no preview for pull requests from forks or Dependabot, whose token cannot write"
+ ],
+ "trigger": "\"Ich möchte Review-Umgebungen deployen können. Dafür hattest Du letztes Mal ein branch basiertes Pages empfohlen\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "e065a19c368c46a215caa9a7812de2c90771f984",
+     "d11f265809aeca6576226ae3598f1b6386b7e67e"
+    ],
+    "reason": "The preview workflow and its fix for Dependabot, directly one after the other on main.",
+    "message": "ci: publish from the gh-pages branch, with a preview per pull request\n\n## Intent\n\nChanges to the app overview should be reviewable in the browser before they reach main. Every pull request needs its own review environment.\n\n## Key changes\n\n- pages.yml builds, checks and publishes main to the root of gh-pages, served at lernapps.net/apps/.\n- pr-preview.yml publishes each pull request under pr-preview/pr-<number>/, links it in a comment, updates it on every push and removes it when the pull request closes.\n- The path prefix is configurable (SITE_PATH_PREFIX); previews show a banner and are not indexed.\n- Pull requests from forks and from Dependabot get no preview: their token is read-only, so the run would fail.\n\n## Dependencies and side effects\n\n- The home page gets the same setup in lernapps.github.io (48ccf73, ba9d09f, i223).\n- Pages of the repo must be switched to deploy from the gh-pages branch."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "d11f265809aeca6576226ae3598f1b6386b7e67e",
+   "from": "i223",
+   "kind": "moved",
+   "why": "Fixes this request's preview workflow for Dependabot pull requests; found while setting up the same workflow for the home page."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "i006",
+ "conventionalCommit": "chore(deps): update @lernapps/site to the bilingual frame",
+ "intent": "Merge the three English pull requests in order: the frame first, then apps and docs. apps and docs can only pass their checks once they build with the bilingual frame, so their pin must move together with their English pages.",
+ "keyDecisions": [
+  "move the frame pin inside the English branches, over merging the pin bump on its own, which fails because the frame links English pages that do not exist yet",
+  "merge apps and docs only with green CI"
+ ],
+ "trigger": "\"Go. Merge them in order\"",
+ "kind": "chore",
+ "relations": [
+  {"type": "continues", "intent": "i001", "note": "lands the English translation"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": ["9a4db149ea0b561829bd888a0095c1e89634f7b2"],
+    "reason": "The only commit of this request.",
+    "message": "chore(deps): update @lernapps/site to the bilingual frame\n\n## Intent\n\nThe English docs index can only pass its check with the bilingual frame, which is now merged in lernapps.github.io.\n\n## Key changes\n\n- docs pins @lernapps/site to the merged bilingual frame, on the branch of the English docs index, so both land together.\n\n## Dependencies and side effects\n\n- apps takes the same pin through the Renovate update merged into its English branch."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,25 @@
+{
+ "id": "i183",
+ "conventionalCommit": "docs(guidance): skill lernapps-commit for a linear history and structured messages",
+ "intent": "Work in app repos reaches main as merge or fast-forwarded commits with free-form messages, so the history is neither linear nor explained. Every piece of work should land as one squash commit with a message that says why it was made, following a commit skill that has proven itself.",
+ "keyDecisions": [
+  "squash every piece of work into one commit on main, never a merge commit",
+  "conventional commit with Intent, Key changes and Dependencies and side effects, taken from mrsimpson/skills-coding's commit skill",
+  "a skill of its own, linked from lernapps-app, over rules in AGENTS.md, which was at its 350-word limit",
+  "the message uses the language of the repo's history, over fixing English or German"
+ ],
+ "trigger": "\"Und noch etwas: wir sollte eigentlich immer Squashen und eine lineare Historie anpeilen. Dazu eine bessere commit-Nachricht. Dieser Skill hat sich bewährt: https://github.com/mrsimpson/skills-coding/blob/main/commit/SKILL.md\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["b598594d74c6ecf636c4e1ffa9a32edad7ce7cec", "fd33346a59b8a5bd797ab3a82e2d6dbc84e572a5"],
+    "reason": "Follow each other directly on one branch: the rules first went into AGENTS.md and then moved into their own skill because AGENTS.md was at its word limit.",
+    "message": "docs(guidance): skill lernapps-commit for a linear history and structured messages\n\n## Intent\n\nWork in app repos reached main as merge or fast-forwarded commits with free-form messages, so the history was neither linear nor explained. Every piece of work should land as one squash commit with a message that says why it was made.\n\n## Key changes\n\n- A new skill lernapps-commit: bring a branch into main by squash (squash merge of the pull request, or git merge --squash), never a merge commit. Every message is a conventional commit with the sections Intent, Key changes and Dependencies and side effects, without file lists, in the language of the repo's history.\n- lernapps-app tells the assistant to load the skill before every commit and every merge into main. AGENTS.md stays under its word limit.\n- The first-version plan brings work into main with git merge --squash instead of --ff-only; the increment plan squash-merges its pull request.\n- The package exports the new skill."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,44 @@
+{
+ "id": "i106",
+ "conventionalCommit": "docs(plan): step 11 done; the interactive archetype decided; WCAG and 360 px as platform rules",
+ "intent": "Close the explainer step with the lessons of the first full run, and take on the interactive archetype before the evals. Apps such as a typing trainer played like a shooting game, a Kniffel trainer that teaches probability, or a text in which learners mark mistakes are free in their architecture, so a shared, minimal architecture frame should guide the very free agent early. Accessibility has its limits in such apps: WCAG and 360 px bind the platform, while a single app may deviate and say so.",
+ "keyDecisions": [
+  "one archetype interactive with recipes in the skill, over one archetype per kind of app",
+  "Vue with TypeScript prescribed, free in decomposition, data, logic and rendering, over allowing any framework",
+  "an arc42 architecture only for interactive apps, in English and minimal, checked only by what arc42 itself can do (arc42 diff in pre-commit), over checking the code against responsibilities",
+  "a minimal shell without settings dialog, reduced motion, sound or pause (feature creep)",
+  "localStorage through the existing wrapper as the component for small storage, with a quota per app, over IndexedDB (YAGNI, a second wrapper only when an app needs it)",
+  "WCAG 2.1 AA and 360 px are rules of the platform (frame, catalog, overview pages); apps may deviate and say so in an optional limits field",
+  "no flashing as advice in the skill (low stimulation), not a duty"
+ ],
+ "trigger": "\"Räum auf. Danach; Ich würde gerne den interaktiven Archetyp zuerst angehen. Lass uns erst mal überlegen\" … \"Barrierefreiheit hat ihre Grenzen … eine gemeinsame Architektur … basierend auf @doctc/arc42\" … \"Weniger Bewegung ist schon Feature creep. Minimal!\" … \"Yagni. Erst mal nur Localstorage. Kontingent festlegen.\" … \"Keine Blitze ist auch keine Pflicht, reizarmheit sollte per skill empfohlen werden. Leg los\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i075", "note": "the next archetype sketch after the explainer sketch, on the same plan"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "4c23f8212082da4f0f720b25e84eb4f4fc8817eb",
+     "730c6b39f8b6f749694bdf41868ff3b69ecad50f",
+     "f19102ddcac720bdf4c83d9a32d57513e5e2765c",
+     "0102d0913fe4086944162f8b105e06c04d996c17",
+     "9caa3dd0bd0b60cbe410d5122f57089d5744862a",
+     "b36da7b0d7dac175d62c9ab55c0a369dd7b5ebec"
+    ],
+    "reason": "tooling#87, one after the other on one branch; the five plan commits join 0102d09 by rule (next and parent).",
+    "message": "docs(plan): step 11 done; the interactive archetype decided; WCAG and 360 px as platform rules\n\n## Intent\n\nClose the explainer step with the lessons of the first full run, and take on the interactive archetype before the evals. Interactive apps are free in their architecture, so a shared, minimal architecture frame should guide the agent early. Accessibility has limits in such apps: WCAG and 360 px bind the platform, while a single app may deviate and say so.\n\n## Key changes\n\n- The plan marks step 11 done with the lessons of the Elektrizität run, records the tutor as brought forward against Q5, and puts the interactive archetype (12) before the evals (10).\n- The plan holds the decided sketch of the interactive archetype: one archetype with recipes in the skill; Vue with TypeScript, free in decomposition, data, logic and rendering; a minimal shell (start page, app page, languages, storage, hash routes); core, view, data and playthroughs.\n- Each interactive app carries an arc42 architecture in English and minimal: a frame from the tooling that lernapps update replaces, and the app's own part. arc42 diff runs before a commit; the code is not checked against responsibilities.\n- Small storage is localStorage through the existing wrapper, with a quota per app. A wrapper for IndexedDB comes only when an app needs it.\n- Accessibility limits go into an optional field of the catalog entry. Low stimulation is advice in the skill, not a duty.\n- The constraints of the tooling's architecture: WCAG 2.1 AA and 360 px are rules of the platform; apps meet them by default and may deviate where their idea needs it, saying so in their entry.\n\n## Dependencies and side effects\n\n- lernapps/.github states the same rule in ORGANIZATION.md and CONTRIBUTING.md (199fecc).\n- Skills and checks still ask every app for WCAG and 360 px until the entry field and its checks exist."
+   }
+  ],
+  ".github": [
+   {
+    "commits": ["199fecc0863de6097b560644689935b433406fb0"],
+    "reason": "The only .github commit of this request (lernapps/.github#43).",
+    "message": "docs: WCAG 2.1 AA and 360 px are rules of the platform; apps may deviate and say so\n\n## Intent\n\nAccessibility has its limits in some apps, for example a fast typing game. The platform itself must always be accessible, while a single app may deviate where its idea needs it.\n\n## Key changes\n\n- Pages of the platform (the site frame, the catalog and the overview pages) meet WCAG 2.1 AA, are usable at 360 px and are readable without JavaScript.\n- Apps meet WCAG 2.1 AA and are usable at 360 px by default. An app may deviate and says so in its entry.\n\n## Dependencies and side effects\n\n- The tooling's plan and architecture state the same rule (tooling#87, same intent)."
+   }
+  ]
+ },
+ "moved": []
+}

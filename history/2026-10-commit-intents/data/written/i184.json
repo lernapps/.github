@@ -1,0 +1,25 @@
+{
+ "id": "i184",
+ "conventionalCommit": "docs(guidance): take the squash message from the plan",
+ "intent": "The plan of each piece of work already records its goal, key decisions and notes. The commit message should come from there, not be invented again at the merge, and an assistant that merges itself can squash right away.",
+ "keyDecisions": [
+  "map the plan's Goal to Intent, Key decisions and the content method to Key changes, Notes to Dependencies and side effects",
+  "an assistant that merges itself squashes and writes the message, over leaving the squash to GitHub's settings"
+ ],
+ "trigger": "\"Wenn der Agent selbst merger, kann er doch squashen. Im skill können wir kurz hinweisen, dass die Inhalte des commits aus der Plandatei genutzt werden\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i183", "note": "refines the commit skill written there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["79a45b5777f5ff8bbe145ba583dcb67cfd71b873"],
+    "reason": "The only commit of this request; it follows the skill directly but answers a new message, so it stays apart.",
+    "message": "docs(guidance): take the squash message from the plan\n\n## Intent\n\nThe plan already records why and what a piece of work does. The commit message should come from there and not be invented again at the merge.\n\n## Key changes\n\n- The skill lernapps-commit says that an assistant that merges itself squashes and writes the message.\n- A new section \"Content from the plan\": Intent comes from the plan's Goal, Key changes from Key decisions and the content method, Dependencies and side effects from Notes."
+   }
+  ]
+ },
+ "moved": []
+}

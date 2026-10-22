@@ -1,0 +1,43 @@
+{
+ "id": "i138",
+ "conventionalCommit": "refactor(guidance): one skill per phase, skills grouped by kind, guidance only for the process",
+ "intent": "The \"compact\" guidance is only about 30% shorter, and agents still read too much too early: the entry pages and the skill index link everything at the same level, and skills mix process, tooling and content. The skills are also hard to place in the architecture and in the phases of the build. Each skill should belong to exactly one phase and say when it is needed, the llms.txt pages should only help to navigate, and every statement should have one place. A manual evaluation with test sessions per archetype should show whether agents then read the right thing at the right time.",
+ "keyDecisions": [
+  "group skills on disk by kind: process, tooling, content, archetypes",
+  "one skill, one phase of Explore, Plan, Code and Commit, over skills that span phases",
+  "information hierarchy: llms.txt says where to find what; tooling/llms.txt points to the plan template; the template is the system prompt and loads each skill at its task",
+  "install all phase skills at the start and the archetype's skills lazily; each description says first when the skill is needed",
+  "each link to a reference names the occasion to read it, following agentskills.io best practices",
+  "a Plan skill and a Code skill per archetype; the Code skill describes how to use the generated app",
+  "new skills lernapps-github-setup (Code), lernapps-check (tooling rules) and lernapps-content-questions (question types and quality, also for the explainer)",
+  "cross-phase rules move to guidance/workflow-rules.md, the sub-agent brief to guidance/",
+  "lernapps update installs only the base skills and those of the app's archetype",
+  "evaluate with one Sonnet test session per archetype that asks the orchestrator for every file, over letting them fetch URLs"
+ ],
+ "trigger": "\"die compact guidance ist nicht wirklich kompakt, soweit ich das sehe.\" … \"Ich möchte mich noch einmal intensiv den Skills und ihrer Rolle in unserer Architektur widmen. … Ich würde sie gerne aufteilen …\" … \"Mein Vorschlag: Schreib *alles* auf einmal konsistent um. … Wenn Du damit fertig bist, mach eine manuelle Evaluierung …\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "continues", "intent": "i137", "note": "reworks the experiment branch exp/compact-guidance started there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["6134d59bc1d9bc43c017532f3ef313e5c3172a65"],
+    "reason": "The evaluation skill is its own change; the guidance rework after it is a different concern.",
+    "message": "docs(skills): add the internal skill manual-eval for trying guidance with test sessions\n\n## Intent\n\nChanged guidance should be tried with real agents before it is merged. The question is not only whether the app turns out well, but what each agent read, when and why, and where the creator had to steer. Harbor evals measure scores; this measures the reading path.\n\n## Key changes\n\n- An internal skill manual-eval: the orchestrating session starts one test session per archetype, serves every guidance file the session asks for, plays the creator from a short persona, and logs each request with time and phase.\n- A script serves a file of the branch by its path for the answers."
+   },
+   {
+    "commits": ["d85eb2c92b002753824c95f09afd959ab4df83d8", "d4768c69d709e73d123e826bf0e22efcc065957d"],
+    "reason": "Follow each other directly: the rework and the fix of two test files that still used the old skill paths.",
+    "message": "refactor(guidance): one skill per phase, skills grouped by kind, guidance only for the process\n\n## Intent\n\nAgents read too much too early: the entry pages and the skill index linked everything at the same level, and skills mixed process, tooling and content. Each skill should belong to exactly one phase and say when it is needed, the entry pages should only help to navigate, and every statement should have one place.\n\n## Key changes\n\n- Skills are grouped on disk into process, tooling, content and archetypes. Every skill belongs to one phase of Explore, Plan, Code and Commit, and its description says first when it is needed.\n- New skills: lernapps-github-setup (Code), lernapps-check (Code, from the tooling rules), lernapps-content-questions (Code, question types and the rules for good questions, for quiz and explainer), and a Plan skill per archetype.\n- guidance/ holds only what spans phases: llms.txt as the entry, AGENTS.md, both plan templates, which load each skill at its task, workflow-rules.md and subagent-brief.md (moved from the skills). The rule catalogue reads guidance/ too.\n- lernapps update installs the skills of every phase and of the plan's archetype only.\n- Tests check one phase per skill and that the templates load each skill in its phase. Architecture chapter 5 shows the skill groups; chapter 9 records the decision \"one skill, one phase\".\n\n## Dependencies and side effects\n\n- Apps get the new layout with lernapps update.\n- The experiment prompts still point to the branch exp/compact-guidance."
+   },
+   {
+    "commits": ["9dd7b276de11fd769d214b92d8b6a534dec732a4"],
+    "reason": "A fix of the evaluation script, separated from the evaluation skill by the rework; it stays its own commit.",
+    "message": "chore(manual-eval): serve skills by name and package paths\n\n## Intent\n\nTest sessions ask for skills by their name or by their path inside the installed package, as the new templates write them. The evaluation script should serve both.\n\n## Key changes\n\n- The serve script maps a request for a path under the installed @lernapps/tooling package to the file in the branch."
+   }
+  ]
+ },
+ "moved": []
+}

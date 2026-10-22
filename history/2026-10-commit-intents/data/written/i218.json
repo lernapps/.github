@@ -1,0 +1,26 @@
+{
+ "id": "i218",
+ "conventionalCommit": "docs(pdt42): test thanks and unpaid contribution already in the first draft",
+ "intent": "The first draft of the MVP should already test the business model: do thanks arrive, and do creators contribute without pay? The test group gets no explanation of the thanks, so the platform has to make it self-evident.",
+ "keyDecisions": [
+  "both business-model assumptions already in the first draft, over a first draft without them",
+  "the thanks is explained to no one, over briefing the test group",
+  "success criteria: thanks for at least 3 listed apps within 4 weeks; no creator asks for payment, most name guidance or thanks as reason enough"
+ ],
+ "trigger": "\"Ich würde gerne auch im MVP wenigstens „es geht Dank ein“. Ich werde das der Testgruppe nicht erklären, die Plattform soll sich so leicht erschließen, dass das unnötig ist. Beide Annahmen sollten wir im MVP vertraten.\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "9283700ad535542d10e9266075cf473716e8867b"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(pdt42): test thanks and unpaid contribution already in the first draft\n\n## Intent\n\nThe first draft of the MVP should already test the business model: do thanks arrive, and do creators contribute without pay? The test group gets no explanation of the thanks, so the platform has to make it self-evident.\n\n## Key changes\n\n- D8 has two new riskiest assumptions for the first draft: \"Thanks arrive without being explained\" (thanks for at least 3 listed apps within 4 weeks) and \"Creators contribute without payment\" (talks with every creator after listing and after 4 weeks).\n- The implementation of the first draft states that the thanks is explained to no one.\n- The finding that the first draft tests no business-model assumption is resolved; the development plan extends KD-19."
+   }
+  ]
+ },
+ "moved": []
+}

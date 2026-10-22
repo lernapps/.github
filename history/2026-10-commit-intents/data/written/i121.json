@@ -1,0 +1,41 @@
+{
+ "id": "i121",
+ "conventionalCommit": "feat(rules): platform rule app-checkable for apps that cannot be checked",
+ "intent": "Since the scope tooling, checks-pass applies only to apps built with the tooling. When the catalog cannot open or check an app, it still filed the finding under checks-pass, so a freely built app failed under a rule that does not apply to it. Such an app should still fail, but under a platform rule with a fitting name.",
+ "keyDecisions": [
+  "a new listing rule app-checkable with severity error, over keeping the finding under checks-pass",
+  "checks-pass keeps the toolchain's own checks in a repo",
+  "an entry that lernapps check cannot read names entry-from-schema"
+ ],
+ "trigger": "\"Ich verstehe nicht, was Du zuletzt geändert hast\" … \"Das fände ich eine sinnvolle Erweiterung.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i119",
+   "note": "closes the gap the scope tooling left for unchecked apps"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "9b1edd72047a5345f7c5e42482baff889acba368"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "feat(rules): add platform rule app-checkable for apps that cannot be checked\n\n## Intent\n\n`lernapps check` on a built app or a URL filed \"no browser can start\" under checks-pass, which now has scope tooling and no longer applies to freely built apps. An app that cannot be opened or checked should fail under a platform rule.\n\n## Key changes\n\n- New listing rule app-checkable: \"The published app can be opened and checked\".\n- Findings that the check could not run on a built app or a URL now name app-checkable.\n- checks-pass keeps the toolchain's own checks in a repo, including a browser that cannot start there.\n\n## Dependencies and side effects\n\n- lernapps/apps fe8c6cb (same intent) files such findings of the listing under app-checkable."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "fe8c6cb0e079104f2db6b618c306cd4c1759145f"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "fix(listing): file unchecked apps under app-checkable, not checks-pass\n\n## Intent\n\nWhen `lernapps check` stops, the listing validation and the review input wrote a finding of checks-pass, a tooling rule that no longer applies to freely built apps.\n\n## Key changes\n\n- Such findings name the platform rule app-checkable.\n- An entry that `lernapps check` cannot read is the entry's own problem and names entry-from-schema.\n\n## Dependencies and side effects\n\n- Needs lernapps/tooling 9b1edd7 (same intent) for the rule."
+   }
+  ]
+ },
+ "moved": []
+}

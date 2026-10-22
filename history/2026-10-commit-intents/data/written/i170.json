@@ -1,0 +1,26 @@
+{
+ "id": "i170",
+ "conventionalCommit": "fix(entry): Elektrizität stores the tutor way on the device",
+ "intent": "Bring the Elektrizität app to the version with task numbers in the address and the tutor button, publish it, and keep its catalog entry true to what the app does. The app now remembers the chosen tutor way in the browser, so its entry must no longer say that it stores nothing.",
+ "keyDecisions": [
+  "fitness.storage set to device, as the app keeps the tutor way after a choice, although the local entry check lets both values pass",
+  "a new increment (plan 04) for the update, since PR #4 was already merged",
+  "summary and topics of the entry unchanged, as the learning content does not change"
+ ],
+ "trigger": "\"Ja, mach das. Danach darfst du #4 auch mergen und den Eintrag in lernapps/apps (https://github.com/lernapps/apps/pull/26) aktualisieren\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i168", "note": "the tutor way kept on the device comes from app-templates#30"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["2cc20aa9148d90c9d48bf1ae04a189a59f90fdbb"],
+    "reason": "The only apps commit of this request, on the branch of the listing pull request apps#26.",
+    "message": "fix(entry): Elektrizität stores the tutor way on the device\n\n## Intent\n\nThe Elektrizität app now remembers the chosen tutor way in the browser. Its catalog entry should say what the app really does, as the rule entry-fitness-matches asks.\n\n## Key changes\n\n- fitness.storage of the entry is device instead of none. The app writes to localStorage only after a learner chooses a way.\n\n## Dependencies and side effects\n\n- Follows the app's update to the runtime of app-templates#30 (i168)."
+   }
+  ]
+ },
+ "moved": []
+}

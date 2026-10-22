@@ -1,0 +1,27 @@
+{
+ "id": "i160",
+ "conventionalCommit": "fix(evals): measure the scenario's end at Commit; guidance: only a checkpoint waits",
+ "intent": "Haiku seemed to stop before Commit, but the simulated creator caused it: it answers the first GitHub question with \"no repo, publish later\" and stops at the publish question. So the phase reached only measured whether the agent set the phase before asking, which is a flaw in the eval, not in Haiku. The evaluation must measure the scenario's real end.",
+ "keyDecisions": [
+  "count a green check followed by the scenario's end as Code done, over the phase reached",
+  "treat the creator's GitHub answer after the plan as the scenario's end, over a stop by the agent",
+  "keep the phase row as a side line and relabel it",
+  "keep the two template sentences (only a checkpoint waits; no checkpoint before Commit), although they came from a misreading, because they make the rule clearer"
+ ],
+ "trigger": "\"aus dem, was ich entnommen habe, ist eine unpassende Antwort des Creators der Auslöser dafür, dass nHaiku nicht auf commit setzte. Das wäre ein methodischer Fehler in dem Eval-Setup\" … \"Sätze rein und setz 1–3 um.\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i159", "note": "replaces the reading that Haiku stops at the end of the project"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["352c64e9571220406cf3c49bef07575db239b1f2"],
+    "reason": "The one commit of this request; the commits around it serve other requests.",
+    "message": "fix(evals): measure the scenario's end at Commit; guidance: only a checkpoint waits\n\n## Intent\n\nThe simulated creator answers the first GitHub question after the plan with \"no repo, publish later\" and stops at the publish question. So the phase reached only measured whether the agent set the phase before asking, and Haiku looked as if it stopped early. The evaluation must measure the scenario's real end.\n\n## Key changes\n\n- The transcript score reads that end (reached_commit). A new row \"Code done\" counts a green check followed by it; the phase row is relabelled.\n- The plan and increment templates say that only a checkpoint waits, and that Code has no checkpoint before Commit.\n- The conclusions of run 2 read Haiku's endings in Code as the scenario's end. The real failures, browser tests that stay red on ö and ü, stay an open action.\n- The Prompt engineering page names the end of the scenario and lists the free-text creator as a limit."
+   }
+  ]
+ },
+ "moved": []
+}

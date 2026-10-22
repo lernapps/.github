@@ -1,0 +1,52 @@
+{
+ "id": "i255",
+ "conventionalCommit": "feat: serve a copy of every listed app at lernapps.net/<id>/",
+ "intent": "Build the copies that KD-21 decided: when a listing pull request is merged, or an app is updated, lernapps.net should build and serve a checked copy of the app, our own apps included, at a short address that teachers already know.",
+ "keyDecisions": [
+  "the path lernapps.net/<id>/ on the root site, over /apps/<id>/app/ with app three times in the address",
+  "our own apps go the same way, without exception",
+  "build from the commit pinned in the entry, in a container without secrets; only jobs without app code get a token",
+  "push the copy into the root site's gh-pages, with a GitHub App of the organisation, over a personal token or polling",
+  "site-deploy keeps the copies listed in copies.txt",
+  "updates by pull request; auto-merge only when nothing but versions of existing npm dependencies changed",
+  "the catalog links a copy only when it is live at the entry's commit",
+  "mathe-karte as the test of an unfit entry; licences fixed afterwards as the test of an update",
+  "write the plan first, with the workflows server's epcc process"
+ ],
+ "trigger": "\"Dann können wir nun die eigentliche Action zum kopieren beim merge des listing PRs machen. Wir wollen wir es denn technisch umsetzen?\" … \"Ich fände es nur konsistent, dann auch unsere apps dort hin zu bauen und zu piblizieren\" … \"Automatisches Merge eines Updates soll nur dann möglich sein, wenn ausschließlich bestehende npm-dependencies … auf eine neue Version geändert wurden.\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i253",
+   "note": "implements the copies decided in KD-21"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "7dbcb8aa9b883feac21d8f8423e8179280bb53d4"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "feat: site-deploy keeps the copies of listed apps; decision dec-copies-served\n\n## Intent\n\nlernapps.net serves a copy of every listed app at lernapps.net/<id>/ (lernapps/docs KD-21, lernapps/apps#58). The apps repo pushes the copies into the root site's gh-pages, so the deploy of the home page must not delete them.\n\n## Key changes\n\n- site-deploy leaves the directories listed in copies.txt (\"<id> <commit>\" per line) and the file itself alone, as it does pr-preview/.\n- arc42: dec-copies-served supersedes dec-app-own-hosting; chapters 3, 5 and 7 follow.\n- The skills, the README, the GitHub page and the plan template say an app is published at the creator's address and served as a copy once listed.\n\n## Dependencies and side effects\n\n- lernapps.github.io pins this tooling (490860c) before the apps change (880b129) is merged."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "2bffd52b145e55e53e00d70d5bd29fb57c868cb0",
+     "379e15d2774a81fbad323580d58df7d5fe9a8e04",
+     "1f5772fac602b109e2fd164d43c73f6424c6e906",
+     "5ed1c8b777c470f7fe9c666991db59f5ac94393f",
+     "880b129b216b035c091241677df8d05632972aca",
+     "bba443bfc3932b6f5631ae5df3ad34e1b8f6e4bf"
+    ],
+    "reason": "The plan commits and the feature follow each other directly on feat/serve-copies; the plan commits join the feature by rule.",
+    "message": "feat: serve a copy of every listed app at lernapps.net/<id>/\n\n## Intent\n\nlernapps.net serves a copy of every listed app, our own included (lernapps/docs KD-21, #58). The copy is built and published when a listing is merged and when an app is updated, at the short address lernapps.net/<id>/.\n\n## Key changes\n\n- Entry format: source (a GitHub repo) and commit (a full id) are required; the seven entries are pinned to the head of their main. Reserved ids: no path of the home page and no other repo of the organisation.\n- publish.yml: on a push to main that changes entries, it builds each app at its commit in a container without secrets, checks it, pushes the copy into <id>/ of the root site's gh-pages with the organisation's GitHub App, keeps copies.txt, checks the copy where it is served and builds the catalog again.\n- The catalog links an app's copy only when copies.txt lists it at the entry's commit; otherwise it links the entry's url.\n- update.yml opens a daily pull request update/<id> for apps whose main moved. It is merged automatically only when nothing but versions of existing npm dependencies changed; otherwise it is labelled review.\n- /review reviews the entry's commit by default.\n- The texts say the licence must allow the copy and the creator stays the author.\n- The plan (.vibe/development-plan-feat-serve-copies.md) records the decisions KD-01 to KD-12, the steps, the GitHub App setup, the rollout and the findings while coding.\n\n## Dependencies and side effects\n\n- Merge only after tooling's site-deploy keeps the copies (7dbcb8a) and lernapps.github.io pins it (490860c), or the next home page deploy deletes the copies.\n- Needs the GitHub App in the environment publish, \"Allow auto-merge\" and a ruleset that requires the listing check."
+   }
+  ]
+ },
+ "moved": []
+}

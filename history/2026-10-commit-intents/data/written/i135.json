@@ -1,0 +1,35 @@
+{
+ "id": "i135",
+ "conventionalCommit": "docs(guidance): content questions in Explore, lessons from the spikes",
+ "intent": "In the two spikes the creator had to step in often: the agents asked for the Land again and again, never asked about didactics, model apps, languages or look, narrowed requests silently, and showed sketches only on request. Research and pedagogic design should be shaped with the creator in Explore, so fewer corrections follow later.",
+ "keyDecisions": [
+  "content questions belong to Explore; Plan only maps the confirmed content onto the scaffold",
+  "the Land only when a school is named, at most once, else the KMK-Bildungsstandards",
+  "the research checkpoint shows the didactic approach and the scope, including what is left out",
+  "Plan names the references to read; the plan checkpoint needs the sketches",
+  "echo a change request in one sentence and never narrow it",
+  "the agent opens the listing pull request from the fork itself"
+ ],
+ "trigger": "\"Mich interessiert vor allem, wo ich eingegriffen habe und ob man dies durch besseres Steering im Vorhinein besser hätte machen können. Und vor allem die Interaktivität im Explainer zu Recherche und pädagogischer Ausgestaltung hat mir gefehlt.\" … \"Ja, setz das im Branch um\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i132",
+   "note": "revises the compact guidance on its branch"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "e8b84538e00ed63857821d366d0a81844f9aa1e7"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(guidance): content questions in Explore, lessons from the spikes\n\n## Intent\n\nIn the two spikes of the compact guidance the creator had to step in often: repeated questions about the Land, no questions about didactics, model apps, languages or look, silently narrowed requests, and sketches only on request. Explore should shape the content with the creator, so fewer corrections follow.\n\n## Key changes\n\n- Explore asks for model apps, hurdles and misconceptions, languages, look and feel. The research skill is loaded before the first curriculum question. The Land only when a school is named, at most once, else the KMK-Bildungsstandards.\n- The research checkpoint shows the didactic approach and the scope (in, out, data range, languages); Plan only maps the confirmed content onto the scaffold.\n- Plan names the references to read; the plan checkpoint needs the sketches.\n- Code: echo the reading of a change request, never narrow it; screenshot every state against the sketches and the frame.\n- The front matter comments no longer contain \"phase: explore\", which agents replaced instead of the value line.\n- Opening the listing pull request from the fork is the agent's job."
+   }
+  ]
+ },
+ "moved": []
+}

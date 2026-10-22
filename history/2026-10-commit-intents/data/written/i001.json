@@ -1,0 +1,40 @@
+{
+ "id": "i001",
+ "conventionalCommit": "feat: English translation of every site, including the navigation",
+ "intent": "Every site of lernapps.net should be available in English as well as German, with the shared navigation included, so that English-speaking visitors can use the home page, the app catalog and the docs.",
+ "keyDecisions": [
+  "English under each site's own /en/ folder (/en/, /apps/en/, /docs/en/), over one top-level /en/ tree, since each site is served from its own repo",
+  "entry texts as the existing { de, en } map, as app-templates uses it, over { lang, text }",
+  "documents already written in English (biz42, pdt42, vision) keep their text and get only the English frame",
+  "the German privacy notice and imprint stay binding; both languages were already there",
+  "translated by hand, without a translation service"
+ ],
+ "trigger": "\"I would like to i18n all sites and provide an English translation for all of them, including the navigation.\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["f1b915988d1e902ac9c04b81fd97c4c2be8d8be1"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "feat: English translation of the home page and the shared site frame\n\n## Intent\n\nEvery site of lernapps.net should be available in English as well as German, with the shared navigation included.\n\n## Key changes\n\n- The shared frame is bilingual: navigation and footer in German and English, a language switch, and hreflang links. The frame's checker knows both languages.\n- The home page has an English version at /en/, with English texts kept in their own data file beside the German one.\n- The privacy notice and imprint at /en/privacy/ and /en/imprint/ put the reader's language first; the German text stays binding.\n- The 404 page shows German and English together.\n\n## Dependencies and side effects\n\n- apps and docs get the bilingual frame only after their pin of @lernapps/site moves (i006).\n- The apps and docs translations are in the same intent (3359a71, 1d99c49)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["1d99c49193607ac592f43ffc3e3239dbd2d46a34"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "feat: English docs index\n\n## Intent\n\nThe docs should be reachable in English as well as German.\n\n## Key changes\n\n- An English docs index at /docs/en/, built along with the German one.\n- The 404 page gets an English line.\n- Documents already written in English keep their text.\n\n## Dependencies and side effects\n\n- Needs the bilingual frame of lernapps.github.io (f1b9159, same intent) to link both languages."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["3359a71ebe64cbcc54f5a92418a7bfde891349c0"],
+    "reason": "The only commit of this request in this repo.",
+    "message": "feat: English translation of the app overview\n\n## Intent\n\nThe app catalog should be usable in English as well as German.\n\n## Key changes\n\n- English pages under /apps/en/: the overview, the build and enter pages, and every app's page.\n- The texts of a catalog entry may be a { de, en } map; a German-only text stays valid and is marked lang=\"de\" on English pages.\n- The existing entries are translated.\n\n## Dependencies and side effects\n\n- Needs the bilingual frame of lernapps.github.io (f1b9159, same intent)."
+   }
+  ]
+ },
+ "moved": []
+}

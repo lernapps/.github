@@ -1,0 +1,42 @@
+{
+ "id": "i101b",
+ "session": "session_01CokaJ6YdJLqEGhHnk4MHJp",
+ "start": "2026-10-15T16:28:43.227Z",
+ "conventionalCommit": "fix(hooks,check): git hooks survive an update; the check uses an installed Chromium",
+ "intent": "The retrospective of the Elektrizität increment found two faults in the tooling's own tools. The pre-commit hook once let a type error pass that the full check found later. lernapps check downloaded Chromium although one was installed and the environment forbids downloads.",
+ "keyDecisions": [
+  "hooks in node_modules/.cache/lernapps/hooks, where npm does not touch them, over a folder inside the tooling's package",
+  "a missing hook makes the commit fail, over git skipping it silently",
+  "the newest installed Chromium with a one-line note, download only when none starts, over always downloading Playwright's own build"
+ ],
+ "trigger": "Finding of the increment retrospective: \"Der Pre-Commit-Hook ließ einmal einen Typfehler im Test durch … `lernapps check` lädt Chromium nach, obwohl einer installiert ist\"; started with \"Die app templates Anpassung is klar zu machen.\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i099", "note": "fixes two tool findings of the same retrospective"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["013891edba2229107d0031cb269068014303a7ae"],
+    "reason": "The hook fix of tooling#76; b0ec04b, a different fix, follows it directly, so e210597 cannot join it.",
+    "message": "fix(hooks): keep the git hooks when npm replaces the tooling's package\n\n## Intent\n\nCommits with type errors passed now and then. The git hooks were gone: they lived in a folder inside the tooling's package, which npm replaces whenever the tooling moves to another commit. Git skipped the missing hooks without a word until the next npm install put them back.\n\n## Key changes\n\n- lernapps hooks installs the hooks in node_modules/.cache/lernapps/hooks, each a line that runs the package's hook, and moves an app from the old folder.\n- A missing hook makes the commit fail instead of passing silently.\n- lernapps update installs the hooks again after its npm install.\n- The time of the pre-commit hook does not change.\n\n## Dependencies and side effects\n\n- The copies of the shared quiz app in the tests install the hooks in a later commit of this pull request."
+   },
+   {
+    "commits": ["b0ec04b91578ed9832a04be8629f890f62ad7594"],
+    "reason": "The browser fix of tooling#76, a topic of its own.",
+    "message": "fix(check): use an installed Chromium where Playwright's own is missing\n\n## Intent\n\nlernapps check downloaded Chromium although one was installed and the environment forbids downloads. The app's Playwright needs a newer build than the preinstalled one.\n\n## Key changes\n\n- When Playwright's own Chromium is missing and downloads are turned off, the check starts the newest Chromium in the browser folder and says so in one line. The end-to-end tests use the same one through the Playwright preset.\n- Only when none starts does it download Playwright's own, also with one line.\n- The end-to-end tests no longer run playwright install before every run.\n- CI sets no such variable and downloads as before."
+   },
+   {
+    "commits": ["e2105976500aafb7219ed3329bccb820722cca11"],
+    "reason": "Follows the browser fix, not the hook fix it completes, so it stays its own commit.",
+    "message": "test: install the hooks in the copies of the shared quiz app\n\n## Intent\n\nThe hooks now live in the app's node_modules/.cache/. A copy of the shared quiz app links node_modules and so has no hooks.\n\n## Key changes\n\n- The test fixture installs the hooks in each copy, as npm install does.\n\n## Dependencies and side effects\n\n- Completes the hook fix earlier in tooling#76."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "013891edba2229107d0031cb269068014303a7ae", "from": "i101", "kind": "split", "why": "The time cut held two unrelated requests: the guidance of tooling#75 and the tool fixes of tooling#76; this commit serves the second."},
+  {"commit": "b0ec04b91578ed9832a04be8629f890f62ad7594", "from": "i101", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves the tool fixes of tooling#76."},
+  {"commit": "e2105976500aafb7219ed3329bccb820722cca11", "from": "i101", "kind": "split", "why": "The time cut held two unrelated requests; this commit serves the tool fixes of tooling#76."}
+ ]
+}

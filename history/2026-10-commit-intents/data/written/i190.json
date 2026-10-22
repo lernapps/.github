@@ -1,0 +1,32 @@
+{
+ "id": "i190",
+ "conventionalCommit": "docs(pdt42): brief \"Attention for small learning apps\" closes the exploration (E7)",
+ "intent": "Close the exploration: choose the space the platform is designed for, around one core relationship, and write the brief that strategy design starts from.",
+ "keyDecisions": [
+  "Pattern Cards E3 (connect niches), E8 (let the best emerge) and E12 (teacher platforms as channels) over E7, E4 and E9, whose signal is not visible or which act mainly in building",
+  "core relationship app creators and adopting adults, students ancillary, over students in the core",
+  "standardise the app listing, passing apps on by link or QR code, and the signal of fitness for use"
+ ],
+ "trigger": "\"Ja\" … \"Das passt alles\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i189",
+   "note": "last step of the exploration"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "54872594e20ecb52291068e59d252eb9c7fd3947"
+    ],
+    "reason": "One commit, one step of the exploration.",
+    "message": "docs(pdt42): brief \"Attention for small learning apps\" closes the exploration (E7)\n\n## Intent\n\nClose the exploration: choose the space the platform is designed for, around one core relationship, and write the brief that strategy design starts from.\n\n## Key changes\n\n- A new E7 chapter plays three Pattern Cards as what-if scenarios: the one app for the one gap is found (E3), apps that work in class rise (E8), teacher platforms show apps from lernapps.net (E12). It says why E7, E4 and E9 are left out.\n- The brief \"Attention for small learning apps\": arena \"Getting apps into use\", core relationship app creators and adopting adults with students ancillary, standardised listing, passing on and fitness signal, the product side (agent guidance, templates, frontend-only hosting, personalisation without accounts) and the data protection moat.\n- The development plan closes the exploration and adds KD-08."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,91 @@
+{
+ "id": "i032",
+ "conventionalCommit": "refactor: the shared chrome is now the site frame",
+ "intent": "\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.",
+ "keyDecisions": [
+  "site frame, over chrome, shared or design",
+  "keep the package name @lernapps/site, lernapps-check, the prefix la- and the shortcodes laHead, laHeader, laFooter",
+  "rename now, before the pull requests are merged, while it is cheap"
+ ],
+ "trigger": "\"Wieso „chrome”?\" … \"„Frame“ Finde ich einfacher verständlich\" … \"Also Site-Frame\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i031",
+   "note": "renames the shared chrome"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "bd3ca7cd112220714f6a0db56d098253f913c4cc"
+    ],
+    "reason": "One commit in the package's repo.",
+    "message": "refactor: chrome/ is now site-frame/\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- Folder site-frame/, files frame.js and frame.css (published as lernapps-frame.css), command lernapps-frame, export @lernapps/site/frame.\n- lernapps-check, the class prefix la- and the shortcodes laHead, laHeader and laFooter stay.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "a1b888247180b10f4c15076a6f0e07e295f18786"
+    ],
+    "reason": "The rename on the open branch.",
+    "message": "refactor: the shared chrome is now the site frame\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- \"Shared chrome\" becomes \"site frame\" in this repo's texts and references.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   },
+   {
+    "commits": [
+     "621864d549014ecccce136551d395dc8cde68fa0"
+    ],
+    "reason": "Pointing to main after the merges, a separate step.",
+    "message": "chore: site frame and site actions from main\n\n## Intent\n\nAfter the merges in tooling and lernapps.github.io, the branch commits no longer exist on main. The references should point to main.\n\n## Key changes\n\n- @lernapps/site points to the rename commit on main of lernapps.github.io; the workflows use the site actions at the merge commit of tooling.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "07749426a4b30c04d5c2d69db61d203585b9c339"
+    ],
+    "reason": "The rename on the open branch.",
+    "message": "refactor: the shared chrome is now the site frame\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- \"Shared chrome\" becomes \"site frame\" in this repo's texts and references.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   },
+   {
+    "commits": [
+     "0193b4c694fe093238c14c4662e9ba9e715ceb69"
+    ],
+    "reason": "Pointing to main after the merges, a separate step.",
+    "message": "chore: site frame and site actions from main\n\n## Intent\n\nAfter the merges in tooling and lernapps.github.io, the branch commits no longer exist on main. The references should point to main.\n\n## Key changes\n\n- @lernapps/site points to the rename commit on main of lernapps.github.io; the workflows use the site actions at the merge commit of tooling.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "9b3a492ce061e6647f208f01af6279d2c3757f38"
+    ],
+    "reason": "One commit.",
+    "message": "refactor: the shared chrome is now the site frame\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- \"Shared chrome\" becomes \"site frame\" in this repo's texts and references.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ],
+  ".github": [
+   {
+    "commits": [
+     "abf3760e7e2f20402673113f44f3dfff04442578"
+    ],
+    "reason": "One commit.",
+    "message": "refactor: the shared chrome is now the site frame\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- \"Shared chrome\" becomes \"site frame\" in this repo's texts and references.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "befc855eb077f31c4450ccd1beb05c4a41afb7c2"
+    ],
+    "reason": "One commit, after tooling#2 was merged; it went in as tooling#3.",
+    "message": "refactor: the shared chrome is now the site frame\n\n## Intent\n\n\"Chrome\" is UI jargon that people and agents in the organisation do not understand at once. The frame that every site shares should have a name that says what it is: the site frame.\n\n## Key changes\n\n- \"Shared chrome\" becomes \"site frame\" in this repo's texts and references.\n\n## Dependencies and side effects\n\n- Same rename in lernapps.github.io (bd3ca7c), apps (a1b8882), docs (0774942), app-templates (9b3a492), .github (abf3760), tooling (befc855); apps (621864d) and docs (0193b4c) then pin the frame and the site actions to main."
+   }
+  ]
+ },
+ "moved": []
+}

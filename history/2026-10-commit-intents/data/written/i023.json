@@ -1,0 +1,41 @@
+{
+ "id": "i023",
+ "conventionalCommit": "feat(entries): list Typonaut, a touch-typing game",
+ "intent": "Test in a first full run whether the tooling carries an interactive app from the build prompt to the catalog: a separate session with Sonnet 5.5 knows only the public guidance and skills, and the creator answers there. List the resulting app, a playful touch-typing course for children, in the catalog.",
+ "keyDecisions": [
+  "the pilot session knows only the skills and the public llms.txt, not our repos",
+  "the app in the creator's own repo on his GitHub Pages, over a repo under lernapps",
+  "the creator named Oliver, not the GitHub handle the agent had assumed",
+  "limits stated openly: no screen reader, not for phones"
+ ],
+ "trigger": "In the parent session: \"Ja. sonnet 5.5\" … \"https://github.com/mrsimpson/tipp-huhn\" … \"Eigentlich sollte die andere Sessions nichts über unsere Repos wissen. Nur über die skills\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i116",
+   "note": "the first full creator run of the interactive archetype"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "2b69b4627baf53eaa4d6b15171fb842cc53b94ba",
+     "cf7c4902ad29fd3bcf408ebcb050330aad4bc331"
+    ],
+    "reason": "The listing commit and the fix of its creator name follow each other directly on the listing branch; one entry, one commit.",
+    "message": "feat(entries): list Typonaut, a touch-typing game\n\n## Intent\n\nList Typonaut in the catalog, as the last step of the first full creator run of the interactive archetype: a session that knows only the public guidance and skills builds an app from the build prompt to the listing.\n\n## Key changes\n\n- A catalog entry for Typonaut: Informatik for grades 3 to 13, at https://mrsimpson.github.io/typonaut/, in German and English.\n- Words fly across the screen and turn into stardust when typed; chapter by chapter new keys join, from the home row to the whole keyboard.\n- Two topics: German with a German keyboard (QWERTZ) and English with an English keyboard (QWERTY).\n- Limits stated openly: not usable with a screen reader and not meant for phones.\n- Fitness: no account, no install, storage on the device, no third parties.\n- The creator is Oliver, linked to his GitHub profile."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "cf7c4902ad29fd3bcf408ebcb050330aad4bc331",
+   "from": "i024",
+   "kind": "moved",
+   "why": "Corrects the creator name of the same entry; i024 has no commits left."
+  }
+ ]
+}

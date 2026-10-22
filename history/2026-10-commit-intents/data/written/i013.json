@@ -1,0 +1,36 @@
+{
+ "id": "i013",
+ "conventionalCommit": "refactor: the questions and the shared parts move to runtime/shared",
+ "intent": "The quiz should show images and other content blocks of the explainer. If the quiz then took blocks from the explainer while the explainer takes its questions from the quiz, the two archetypes would depend on each other. A neutral shared library has to come first, and a test must keep the archetypes from importing each other again.",
+ "keyDecisions": [
+  "a shared library that knows no archetype, over the explainer borrowing from the quiz or the other way round",
+  "first move the code with behaviour unchanged, then build the feature on it",
+  "a test enforces the import direction: no archetype imports another, shared imports none",
+  "public paths stay as thin re-exports for apps already generated (later dropped in i014)",
+  "also clean up interactive's imports from the explainer, over leaving them as a listed exception",
+  "split load.ts and components.ts along what is general and what is the explainer's, passing the explainer's messages in as describe"
+ ],
+ "trigger": "\"Ich hätte gerne mehr Blocktypen im Quiz: Es soll auch Bilder geben. Dabei fiel mir auf: Ist ein Quiz nicht nur eine Auswahl von Blocktypen des Explainers …\" … \"ich frage mich, ob wir das so refractorn sollten, dass es für die Elemente eine gemeinsame lib gibt. Wenn sie mal das Quiz aus den explainer bedient und mal de explainer aus dem Quiz, ist das mehr als ein smell.\" … \"Altlasten aufräumen! Wir wollen eine saubere Architektur.\"",
+ "kind": "rework",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "e68242d9ba429d7bdb0129a924a87175846bc45c"
+    ],
+    "reason": "Kept apart from the next commit: each is a separate step of the refactoring, with all tests green after each.",
+    "message": "refactor: the questions move to runtime/shared/questions\n\n## Intent\n\nThe quiz should show content blocks of the explainer. Today the explainer takes its exercises from the quiz; if the quiz then took blocks from the explainer, the two archetypes would depend on each other. Both should build on a neutral library instead.\n\n## Key changes\n\n- runtime/shared/questions holds the six question types: types and checker, schema, validation, rendering, the engine (startQuestion), the end-to-end helpers and the texts.\n- The quiz keeps only its bank, page, order and score. The explainer imports nothing from the quiz.\n- New package paths: @lernapps/app-templates/questions, /questions/engine, /questions/e2e, the question schema and its messages. The old public paths re-export what they exported; the quiz's schema carries the same question definitions, and a script keeps them equal.\n- A new architecture test fails on an import between archetypes, an import of an archetype from runtime/shared, a public path without a file, and a built path without an entry of the build. The existing imports of interactive from the explainer are listed as known exceptions.\n- Behaviour is unchanged; the architecture documents and a decision record the new building block.\n\n## Dependencies and side effects\n\n- The question texts moved out of quiz/messages/*.json; code that imports those files directly sees only the quiz page's texts."
+   },
+   {
+    "commits": [
+     "88e74b45c1234e11ca1659d3e54685cb8dd1cdd9"
+    ],
+    "reason": "Kept apart: a second refactoring step that removes the last exceptions of the architecture test.",
+    "message": "refactor: interactive no longer imports the explainer\n\n## Intent\n\nThe interactive archetype still imported loading, Markdown and the component checks from the explainer, the same kind of coupling as before. No archetype should import another, without exceptions.\n\n## Key changes\n\n- What both archetypes use alike moves to runtime/shared: reading YAML with line positions and reporting problems with file, line and path; schema errors as problems; the checks of the texts; restricted Markdown and formulas; the checks of the code of Vue components (no network, no code from strings, imports, browser globals).\n- The messages that only fit the explainer's blocks stay in the explainer and are passed in as describe. The explainer keeps its own scope and exercise contract for components.\n- One HTML escape function instead of six copies.\n- The architecture test has no exceptions left. Comments in the explainer say \"the question types\" where they mean the shared questions."
+   }
+  ]
+ },
+ "moved": []
+}

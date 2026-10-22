@@ -1,0 +1,48 @@
+{
+ "id": "i056",
+ "conventionalCommit": "docs(llms): a network of llms.txt files that link each other",
+ "intent": "Assistants should find their way from any llms.txt. The docs file should explain how to navigate the docs, including the biz42 and pdt42 CLIs; the root file should give the vision and overview; the tooling file should cover building. Every file links the others, and the root and tooling files lead straight to the skill as a quick path.",
+ "keyDecisions": [
+  "four files with one job each: root (vision and paths), docs (navigation and model queries), tooling (building), apps (listing)",
+  "each file keeps its language, so the root stays German",
+  "the apps file only gains cross-links, so it merges cleanly with the paused listing branch",
+  "the CLI commands in the docs file are run in a fresh clone before they are written down"
+ ],
+ "trigger": "\"The docs llm.txt should explain how to navigate the docs (including the biz42 and the Pdt42 cli). It should also link the root llm.txt exposing the vision and overall write and the tooling llm.txt for building. All of the others should cross reference too. From root and from tooling, the skill should be directly referenced as quick path\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i054", "note": "extends the first llms.txt files into a linked network"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["4e36e425695417279e98acfa9caec0110d029652", "74b13d86f8c9b7d31d6023cd0abd2b0dbfb83fcb"],
+    "reason": "The root file and its one-line correction follow each other directly on the branch of lernapps.github.io#23.",
+    "message": "feat(llms): the root of the llms.txt network: vision, paths, quick path, links\n\n## Intent\n\nlernapps.net/llms.txt is where an assistant starts. It should give the vision and overview and lead straight to building an app.\n\n## Key changes\n\n- The file says what lernapps.net is and why, and gives three paths: find, build and list an app.\n- A quick path links the skill lernapps-app, installed with `npx skills add lernapps/tooling`, and the plan template. The skill holds the rules; the plan template holds the workflow.\n- One line each links the llms.txt of docs, tooling and apps. The app list stays.\n\n## Dependencies and side effects\n\n- The other files link back: 4f3ae48 in docs, eb7563e in tooling, dc0bd9e in apps."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["4f3ae48678dcf74d8cc76f60f7c967edcfe29f07"],
+    "reason": "The rework of the docs file on docs#17; one commit.",
+    "message": "feat(site): llms.txt says how to navigate the docs and query biz42 and pdt42\n\n## Intent\n\nThe docs file should help an assistant navigate the docs, not repeat building, listing and checking an app, which belong to the root and tooling files.\n\n## Key changes\n\n- The file points to the vision, the organisation (biz42) and the platform design (pdt42).\n- It gives tested CLI commands to list elements, show one and follow its references, and names the skill pdt for other repos.\n- It links the llms.txt of lernapps.net, tooling and apps.\n\n## Dependencies and side effects\n\n- The other files of the network: 4e36e42 and 74b13d8 in lernapps.github.io, eb7563e in tooling, dc0bd9e in apps."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["eb7563e19e9a76956f14fac129f845e9449c7359"],
+    "reason": "One commit for the tooling file, between commits of other intents.",
+    "message": "docs(site): llms.txt starts with a quick path and links the other llms.txt\n\n## Intent\n\nAn assistant that reaches the tooling's llms.txt should get to the skill at once and find the other files.\n\n## Key changes\n\n- A quick path right after the summary: the skill lernapps-app with its install line, then \"load it, then follow the plan template\".\n- One line each for the llms.txt of lernapps.net, docs and apps.\n\n## Dependencies and side effects\n\n- The other files of the network: 4e36e42 and 74b13d8 in lernapps.github.io, 4f3ae48 in docs, dc0bd9e in apps."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["dc0bd9e085491719b2f241c554e8b6bc982569c6"],
+    "reason": "The only commit of apps#7.",
+    "message": "docs(llms): link the llms.txt of lernapps.net, docs and tooling\n\n## Intent\n\nThe catalog's llms.txt should lead to the rest of the network.\n\n## Key changes\n\n- A short section near the top links the llms.txt of lernapps.net, docs and tooling.\n\n## Dependencies and side effects\n\n- The other files of the network: 4e36e42 and 74b13d8 in lernapps.github.io, 4f3ae48 in docs, eb7563e in tooling."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,84 @@
+{
+ "id": "i092",
+ "conventionalCommit": "fix: read the guidance in full, create only from a confirmed plan, and type-check only the app's own code",
+ "intent": "Make a creator run follow the plan template from the start: read the template and the skills in full from their files, never as a summary, and create no app without a confirmed plan. Limit an app's type check to its own code, so it reports no errors from node_modules.",
+ "keyDecisions": [
+  "describe the method (download the file, read it complete and unchanged, never work from a summary) rather than name a curl command",
+  "Explore starts by installing the skills",
+  "AGENTS.md trimmed to its 350-word limit",
+  "create refuses without a plan, or with one not yet confirmed, instead of writing an empty plan in the phase code",
+  "the template's tsconfig includes src/ only, rather than adding @types/node as the session did, which would keep checking runtime code",
+  "component types move out of a Node module, so what src/ reaches needs no Node",
+  "vite.config.ts, playwright.config.ts and e2e/ stay checked by vp check"
+ ],
+ "trigger": "\"Schau dir schon mal den Zwischenstand der Session an. Mich hatte bspw gewundert, dass der Check node_modules beinhaltet hätte. Ist das so gewollt?\" … \"Ein curl Befehl sollte nicht genannt werden, sondern die Methodik (Downloads the file from… don’t truncate/compact it…)\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i091",
+   "note": "the checkpoints of #67 never reached a session that read the plan template as a summary"
+  },
+  {
+   "type": "revises",
+   "intent": "i084b",
+   "note": "vue-tsc in lernapps check came with the explainer archetype"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "da6783fa2a46b97e1ea02ad5bf69e7ecab699d86",
+     "f8ef02630656e53a755e0c2b96d88b5cb0132577"
+    ],
+    "reason": "Two consecutive commits of tooling#69; the second only trims the first to the word limit of AGENTS.md.",
+    "message": "docs(guidance): read the plan template and the skills in full, from their files\n\n## Intent\n\nThe second explainer run fetched the plan template and the skills with a tool that returned summaries. It never had the plan's tasks and checkpoints, asked for the plan before researching and created the app right after. State the method of reading in the guidance, not a command.\n\n## Key changes\n\n- The quick path in llms.txt, AGENTS.md, lernapps-app and the plan template say how to read: download the file, read it complete and unchanged, never work from a summary.\n- Explore starts by installing the skills, and the skills are read from where they were installed.\n- AGENTS.md stays within its limit of 350 words.\n\n## Dependencies and side effects\n\n- Same intent: app-templates#20 limits an app's type check to src/."
+   },
+   {
+    "commits": [
+     "9b885fac212057589214f5b3617d64a9a92a4090"
+    ],
+    "reason": "A commit of tooling#69 with its own thought, the pin of the type-check fix; kept apart from the guidance before it and the generator change after it.",
+    "message": "fix(explainer): pin app-templates whose app type check reads only src/\n\n## Intent\n\nAn explainer app's vue-tsc checked the runtime's build and test code in node_modules and failed with 19 errors on Node's modules. app-templates fixes the template; pin that fix.\n\n## Key changes\n\n- The pin of app-templates moves to the commit that limits the template's tsconfig to src/.\n- The rule keep-the-preset now says to keep tsconfig.json as generated, since it no longer only extends the preset's.\n\n## Dependencies and side effects\n\n- Needs app-templates 98cfbc4 (app-templates#20) merged first; the generator change in this pull request tests an explainer app with a component against this pin."
+   },
+   {
+    "commits": [
+     "071146bef46de19f7b9fda3e1bd5a5f59179001e"
+    ],
+    "reason": "A commit of tooling#69 with its own thought, the generator; kept apart from the pin.",
+    "message": "fix(create): keep the installed skills, and create only from the confirmed plan\n\n## Intent\n\nThe second explainer run never read the plan template in full and created the app right after a plan was confirmed. Without a plan file, create silently wrote one in the phase code, which hid that Explore and Plan were skipped. And the new first task of Explore, installing the skills, made create refuse the folder. Let create keep the installed skills, and create only from a confirmed plan.\n\n## Key changes\n\n- create accepts exactly what installing the tooling's skills writes: the lock file and each locked skill's folder or link. It keeps them, writes the content guide beside them and ignores them in git, like node_modules; the app's own content guide stays committed.\n- Without a plan, create refuses and says to start one from the plan template, downloaded complete and unchanged; with a plan still in Explore or Plan it says the creator must confirm it first; with another archetype than asked it names both.\n- The explainer's end-to-end test adds a valid component and runs the commit's part of the check, which failed on the previous app-templates pin.\n\n## Dependencies and side effects\n\n- Same intent: app-templates#20, whose type-check fix this pull request pins."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "98cfbc4c353e1bcf332ca865177461003ad35fac"
+    ],
+    "reason": "The only commit of app-templates#20.",
+    "message": "fix(explainer): the app's type check reads src/ only, and the client reaches no Node code\n\n## Intent\n\nIn an explainer app with a component, vue-tsc checked every .ts file of the app and, through vite.config.ts and e2e/, the runtime's build and test code in node_modules. That is Node code, which the app's browser types cannot check: 19 errors for an app whose own code had none. Check only the app's own code.\n\n## Key changes\n\n- The template's tsconfig includes src/ only, so vue-tsc checks the app's own code and components with the tooling's settings.\n- vite.config.ts, playwright.config.ts and e2e/ stay checked by vp check, which reports only the app's own files.\n- The component types the client reached through a Node module now live in a plain content module, so nothing src/ reaches needs Node.\n- The quiz is unchanged: it has no components, so vue-tsc does not run there.\n\n## Dependencies and side effects\n\n- Same intent: tooling#69 pins this commit, and its guidance and generator changes."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "9b885fac212057589214f5b3617d64a9a92a4090",
+   "from": "i094",
+   "kind": "moved",
+   "why": "Pins the type-check fix that the question about node_modules in this intent led to."
+  },
+  {
+   "commit": "071146bef46de19f7b9fda3e1bd5a5f59179001e",
+   "from": "i094",
+   "kind": "moved",
+   "why": "The generator part of the read-in-full finding in i092: create keeps installed skills and refuses without a confirmed plan."
+  },
+  {
+   "commit": "98cfbc4c353e1bcf332ca865177461003ad35fac",
+   "from": "i093",
+   "kind": "dropped",
+   "why": "Answers this intent's question whether the check should include node_modules. i093 has no commits left; its other finding, the labelled figure, is fixed in i094."
+  }
+ ]
+}

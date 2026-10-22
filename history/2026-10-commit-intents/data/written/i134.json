@@ -1,0 +1,40 @@
+{
+ "id": "i134",
+ "conventionalCommit": "docs(site): the evals page becomes Prompt engineering, with how we work",
+ "intent": "Changing the guidance and testing it fast needs a loop: an interactive test, the evals, changes, and an interactive test of the new, unpublished guidance. Record that loop where others can read it, including how the orchestrating session serves the unpublished guidance to a test session.",
+ "keyDecisions": [
+  "the test session asks the orchestrating session for each guidance URL (GET over send_message), over pushing every change to a branch",
+  "a real session as the test session, not a sub-agent",
+  "acceptable for fast iteration in Claude Code on the web, although the agent knows it is tested",
+  "rename the evals page to Prompt engineering; /tooling/evals/ points to it"
+ ],
+ "trigger": "\"Er soll daher jedes mal, anstatt eine URL auf lernapps.net oder in unserem Github aufzurufen, Dich nach dem neuen Inhalt der URL fragen.\" … \"Ich finde das für schnelles iterieren in claude code web für vertretbar. Wo können wir das festhalten? Vielleicht auf der evals seite, die wir in \\\"prompt engineering\\\" umbenennen können?\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i130",
+   "note": "the results page grows into the page on prompt engineering"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "3d48ea65dfc54de787f183b7e154fbc51b08adc8"
+    ],
+    "reason": "Kept apart from the test timeout that follows it.",
+    "message": "docs(site): the evals page becomes Prompt engineering, with how we work\n\n## Intent\n\nChanging the guidance and testing it fast needs a loop, and others should be able to read it: an interactive test, the evals, changes to the guidance, and an interactive test of the new guidance before it is published.\n\n## Key changes\n\n- The page lives at /tooling/prompt-engineering/ and describes that loop, including the orchestrating session that serves the unpublished guidance to the test session.\n- /tooling/evals/ points to the new page; the report writes its data there."
+   },
+   {
+    "commits": [
+     "ef291bf8c02c74fab2eb12c3dc80e9d8d9cdd6be"
+    ],
+    "reason": "A test fix to get this request's pull request through; kept apart from the page.",
+    "message": "test: the CLI tests get a 20 s timeout\n\n## Intent\n\nThe pull request of the new page failed: each CLI test starts the CLI, about 2 s, and `changes --help` crossed the default 5 s on a busy runner (toolchain job of #106).\n\n## Key changes\n\n- The CLI tests get a 20 s timeout."
+   }
+  ]
+ },
+ "moved": []
+}

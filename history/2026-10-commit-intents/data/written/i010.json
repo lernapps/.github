@@ -1,0 +1,73 @@
+{
+ "id": "i010",
+ "conventionalCommit": "feat: count the visits of the catalog, docs and tooling sites",
+ "intent": "The counter prepared on the home site only counts there. The other platform sites (catalog, docs, tooling) must load it too, and the platform's own rules, which forbid requests to other servers on every page, must name it as the one exception. The rules for apps stay as they are.",
+ "keyDecisions": [
+  "each site adds the script in its own layout or build step after lernapps-frame, over the shared frame",
+  "the catalog counts \"open app\" clicks as the event app/<id>, so app use shows without touching the app",
+  "never in a preview",
+  "the page rules (con-page-rules, ORGANIZATION.md) name the counter as the one exception for the platform sites; the app rules (no-tracking, no-request-before-click, the rubric) stay unchanged"
+ ],
+ "trigger": "\"Ich nehme an, dass wir in der Konsequenz auch einzelne Regelungen beim Review anpassen müssen, um genau dieses Skript beziehungsweise diesen URL Zugriff zu ermöglichen\" … \"Du darfst alle lernapps/* repos anhängen\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i009",
+   "note": "the platform sites load the counter prepared there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "ee5555a8f5fb4f511824f797c3482b8896b59439"
+    ],
+    "reason": "The only commit of this request in the catalog.",
+    "message": "feat: count the catalog's pages and \"open app\" clicks, never the apps\n\n## Intent\n\nSee whether the apps are used at all, without counting anything inside an app. The catalog is a platform site and counts its visits and how often an app is opened from it.\n\n## Key changes\n\n- The catalog's own layout loads the platform's usage counter (/lernapps-count.js, served by lernapps.github.io), not the shared laHead, and never in a preview.\n- The \"open app\" link counts as the event app/<id>.\n- Nothing happens until the counter is turned on in lernapps.github.io.\n\n## Dependencies and side effects\n\n- Needs the counter script of lernapps.github.io (6a62044). The tooling (e2a59eb) and docs (8ccaaa4) sites load it the same way; ORGANIZATION.md in .github (502dbfe) names the exception."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "e2a59eb09b2213dd68a8feeb4ac8ade6cc75bafe"
+    ],
+    "reason": "The only commit of this request in the tooling.",
+    "message": "feat: count the tooling site's pages; the counter is the one exception to the page rules\n\n## Intent\n\nThe tooling site is a platform site and counts its visits. The architecture forbids requests to other servers on every page, so it must name the counter as the one exception; the rules for apps stay as they are.\n\n## Key changes\n\n- The build adds the platform's usage counter (/lernapps-count.js) to the site's pages after lernapps-frame, never in a preview. It is not part of the site frame, so an app never carries it.\n- The page rules (con-page-rules) and their evidence name the counter as the one exception for the platform's own sites.\n- The app rules (no-tracking, no-request-before-click, the rubric) are unchanged.\n\n## Dependencies and side effects\n\n- Needs the counter script of lernapps.github.io (6a62044). The catalog (apps ee5555a) and docs (8ccaaa4) load it too; ORGANIZATION.md in .github (502dbfe) names the same exception."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "8ccaaa4d9be0fb31a3b87073894d89de43cc7aa4"
+    ],
+    "reason": "The only commit of this request in docs.",
+    "message": "feat: count the docs site's pages with the platform's usage counter\n\n## Intent\n\nThe docs site is a platform site and counts its visits, like the home, catalog and tooling sites.\n\n## Key changes\n\n- The build adds the platform's usage counter (/lernapps-count.js, served by lernapps.github.io) to the site's pages after lernapps-frame, never in a preview. It is not part of the site frame, so an app never carries it.\n\n## Dependencies and side effects\n\n- Needs the counter script of lernapps.github.io (6a62044). The catalog (apps ee5555a) and tooling (e2a59eb) load it the same way."
+   }
+  ],
+  ".github": [
+   {
+    "commits": [
+     "502dbfef08eba850233504893508a0d9da85a701"
+    ],
+    "reason": "The only commit of this request in .github.",
+    "message": "docs: name the platform sites' usage counter as the one exception to the page rules\n\n## Intent\n\nThe organisation's rules say no page sends requests to other servers before a click. The platform sites now count their visits, so the rules must name that one exception, and say that apps are never counted.\n\n## Key changes\n\n- ORGANIZATION.md: the platform's own sites (home, catalog, docs, tooling) count their visits as totals with the usage counter, only to see whether the apps are used. It is not part of the site frame, and nothing is counted inside an app.\n\n## Dependencies and side effects\n\n- The same exception is in the tooling's page rules (e2a59eb); the counter itself is in lernapps.github.io (6a62044)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "8ccaaa4d9be0fb31a3b87073894d89de43cc7aa4",
+   "from": "i011",
+   "kind": "moved",
+   "why": "Adds the counter to the docs site, part of rolling it out to all platform repos; made after the next message by time only."
+  },
+  {
+   "commit": "502dbfef08eba850233504893508a0d9da85a701",
+   "from": "i011",
+   "kind": "moved",
+   "why": "Names the counter as the exception in the organisation's rules, part of the same rollout."
+  }
+ ]
+}

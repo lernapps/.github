@@ -1,0 +1,26 @@
+{
+ "id": "i186",
+ "conventionalCommit": "docs(pdt42): assets and moats of lernapps.net (E3)",
+ "intent": "Continue the platform exploration with step E3. Find the strengths lernapps.net can build on, and the positions in the ecosystem that nobody can bypass, because they decide where a platform can gain an advantage.",
+ "keyDecisions": [
+  "modelling DSLs rated rare because nobody intends to earn money with them, over rating them as common",
+  "data protection law and terms of use as the only moat, without a holder, over teacher platforms or school gatekeepers, which have alternatives or can be bypassed",
+  "keep the hints that no asset is hard to imitate open and state this as a finding, over rating an asset higher"
+ ],
+ "trigger": "\"Ich möchte, dass Du mir hilfst, die Plattform weiter zu erkunden. Nutze dafür ausschließlich das npx @pdt42/cli … das Plattformdesign soll auf Englisch geschrieben werden\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "bb4649bfc7a809b897b95b66a871e206ea832bc8"
+    ],
+    "reason": "One commit, one step of the exploration.",
+    "message": "docs(pdt42): assets and moats of lernapps.net (E3)\n\n## Intent\n\nContinue the platform exploration with step E3. Find the strengths lernapps.net can build on, and the positions in the ecosystem that nobody can bypass.\n\n## Key changes\n\n- A new E3 chapter rates three assets with VRIO: the modelling DSLs as guidance for AI agents (valuable and rare, because nobody intends to earn money with them), the frontend-only architecture (valuable) and the non-profit model at near-zero marginal cost (valuable and rare).\n- The only moat is data protection law and terms of use: a regulated position in the arena \"Getting apps into use\", without a holder. The text explains why teacher platforms and school gatekeepers are no moats.\n- No asset is hard to imitate. The chapter states this as a finding: the advantage has to come from the platform itself, not from what exists today."
+   }
+  ]
+ },
+ "moved": []
+}

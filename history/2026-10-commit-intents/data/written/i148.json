@@ -1,0 +1,31 @@
+{
+ "id": "i148",
+ "conventionalCommit": "fix(site): on touch, a workshop box keeps the tool and what it does for whom in one card",
+ "intent": "On a phone, the dividing line under a workshop box separated the tool from what it does for person and agent, so the text read as part of the next box.",
+ "keyDecisions": [
+  "one card with title, technology and the explanation on touch, over the text below a dividing line",
+  "keep the hover on the desktop"
+ ],
+ "trigger": "\"Die Zuordnung der Tools/building-blocks zu den Tätigkeiten funktioniert zumindest mobil nicht gut: die Trennlinie trennt Werkzeug und Akteur\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i144",
+   "note": "fixes the touch layout of the new look"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "5d5f9214a3dacc7ef759a5cfb6203524dd148cd9"
+    ],
+    "reason": "One commit for one request.",
+    "message": "fix(site): on touch, a workshop box keeps the tool and what it does for whom in one card\n\n## Intent\n\nOn touch devices the explanation sat under the box, after a dividing line, and read as part of the next box.\n\n## Key changes\n\n- On touch, each box is one card: the link with title and technology, then what the part does for the person and the agent. No dividing line.\n- The desktop keeps the hover."
+   }
+  ]
+ },
+ "moved": []
+}

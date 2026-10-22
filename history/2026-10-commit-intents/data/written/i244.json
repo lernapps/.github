@@ -1,0 +1,27 @@
+{
+ "id": "i244",
+ "conventionalCommit": "feat(home): a prompt per role that lets an AI assistant explain lernapps.net",
+ "intent": "People who land on the home page should be able to ask their own AI assistant what lernapps.net offers someone in their role. A ready prompt per role in the solution section lets them do that in one copy. The answers must convey safety: apps listed in the catalogue meet the same requirements even when they are hosted by their makers, not on lernapps.net.",
+ "keyDecisions": [
+  "try each prompt with a fresh subagent before building it in, over writing them blind",
+  "prompts ask about the platform and what it offers the role, with a link to the catalogue, over details of subject, grade or single apps",
+  "the prompt box is always open under each role in the solution section, over a collapsed box",
+  "the copy button is added by JavaScript; without it the prompt stays readable",
+  "the student prompt offers to build a small app together when the catalogue has nothing, over only pointing to the catalogue",
+  "ask about apps \"that are not on lernapps.net itself but with their makers\", over \"on other servers\", which assistants read as content loaded after a click"
+ ],
+ "trigger": "\"Ich möchte gerne für die einzelnen Rollen auf der Startseite im Lösungsabschnitt pro Route einen prompt einfügen, den interessierte an ihren Agenten werfen können, um sich lernapps. Net mit dem nutzen für ihre Rolle erklären zu lassen. Mach mal Vorschläge, probiere sie mit einem subagenten aus …\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["4ebe8c6592086333f026b97015b944a2ef4c5e53", "e548c2c9d9ebe6a984e9b16223fc096c0c059f8b"],
+    "reason": "Two commits that follow each other directly on one branch: the prompt boxes, and their wording on externally hosted apps after the retest.",
+    "message": "feat(home): a prompt per role that lets an AI assistant explain lernapps.net\n\n## Intent\n\nPeople who land on the home page should be able to ask their own AI assistant what lernapps.net offers someone in their role. A ready prompt per role lets them do that in one copy. The answers must convey safety: listed apps meet the same requirements even when they are hosted by their makers, not on lernapps.net.\n\n## Key changes\n\n- Each role in the solution section (teacher, parent, maker, learner) has an open box \"Frag deinen KI-Assistenten\" with a prompt to copy, in German and English.\n- Each prompt points the assistant to llms.txt and the catalogue at /apps/, and asks how apps are checked and whether the same requirements apply to apps that are not on lernapps.net itself but with their makers.\n- The maker's prompt asks what they get back when someone uses their app; the learner's prompt offers to build a small app together when the catalogue has nothing on the topic.\n- A copy button is added by JavaScript; without it the prompt stays readable.\n\n## Dependencies and side effects\n\n- The prompts were tried with fresh assistants per role; the last wording change was not retested."
+   }
+  ]
+ },
+ "moved": []
+}

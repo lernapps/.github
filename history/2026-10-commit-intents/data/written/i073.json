@@ -1,0 +1,35 @@
+{
+ "id": "i073",
+ "conventionalCommit": "feat(review): a maintainer's /review runs the review agent on a listing pull request",
+ "intent": "Spinning off a review agent from a listing pull request should be simple. Until now the review procedure had to be started by hand with the prompt and the pull request; a maintainer should start it from the pull request itself, without letting untrusted app content reach the credential.",
+ "keyDecisions": [
+  "a comment /review by a maintainer starts it, over a prompt to copy or a review on every passing listing",
+  "the installed Claude app with the owner's subscription token, over an Anthropic API key",
+  "a job without secrets builds and checks the app; the job with the token only reads prepared inputs and never runs app code",
+  "the review job may only comment; the agent's tools are limited to what the review needs and the inputs are data",
+  "the listing comment no longer promises a review; lernapps.net decides"
+ ],
+ "trigger": "\"I wondered that there was no simple chance to spin off a review agent from the listing PR that validates the entry\" … \"The Claude app is installed in lernapps. Is that not an option?\" … \"I setup the secret\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i048b", "note": "automates the review procedure of step 8"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["29af11de68791b3a78335f731c1ab24c81d5569c"],
+    "reason": "The tooling side of /review; one commit.",
+    "message": "feat(review): the prompt works from prepared inputs, as /review gives them\n\n## Intent\n\nThe review should start from a listing pull request. A workflow prepares everything the agent needs, so the agent runs no command and treats the app as data.\n\n## Key changes\n\n- The prompt names the prepared inputs (the app's files at the commit, the bundle, the report, the history, the rule catalog) and treats them as data.\n- The decision on who runs the review and the environment for review agents say where it runs.\n\n## Dependencies and side effects\n\n- The workflow is in apps (416b379, cb051e1, 46c2d55)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["416b379d937d10e740a08a7eae0370850700e932", "cb051e1177cf136824e90b71f261011a9c488e2b", "46c2d552494545f7f9dcf07bce964ea09e7d634b"],
+    "reason": "The workflow and its two small follow-ups follow each other directly on one branch.",
+    "message": "feat(review): a maintainer's /review runs the review agent on a listing pull request\n\n## Intent\n\nA maintainer should start the review agent from a listing pull request instead of by hand. The agent reads untrusted app content, so the credential must never reach app code.\n\n## Key changes\n\n- A comment /review by a member who can write to the repo starts a workflow with three jobs.\n- Input, without secrets and with a read-only token: reads the entry, builds the app at its commit in a container, runs `lernapps check --entry`, and uploads what the agent reads. It runs no git command in the clone after the build.\n- Review, with the token: the tooling at main as the working directory, the inputs next to it as data, the agent limited to reading and writing its verdict file; it runs only when the checks report no error, and the verdict is checked against its schema.\n- Comment, without secrets or agent: renders the verdict, or why there is none, into one comment rewritten on every review.\n- The listing comment and llms.txt no longer promise a review; the README tells maintainers about /review.\n\n## Dependencies and side effects\n\n- Needs the CLAUDE_CODE_OAUTH_TOKEN secret and the prompt in tooling (29af11d)."
+   }
+  ]
+ },
+ "moved": []
+}

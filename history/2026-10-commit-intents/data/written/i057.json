@@ -1,0 +1,33 @@
+{
+ "id": "i057",
+ "conventionalCommit": "docs: the architecture states responsibilities, the README orients, details live in code",
+ "intent": "The architecture had too many implementation details that go stale with any code change. It should describe responsibilities and the contracts between building blocks, and chapter 1 should explain why the system exists, not how it works. The README should only give orientation; implementation details belong in the code alone.",
+ "keyDecisions": [
+  "details move into the code (`--help`, action input descriptions, error messages), with tests where they are contracts, over moving them into the README",
+  "the README gives orientation and links only",
+  "chapter 1 at about half its length: problem, purpose, the five steps as outcomes, quality goals, stakeholders",
+  "a fresh agent does the rewrite; the stopped agent's edits made under the wrong rule are only kept on a side branch",
+  "each site action becomes a block of its own with its path, to clear the review warnings"
+ ],
+ "trigger": "\"Architecture hooks to many implementation details. It should focus on responsibilities. Particularly chapter 1 should be high level and explain why the system exists, not how its done.\" … \"Also the [Readme] should contain no implementation details! It should only give orientation. Implementation is only in code!\" … \"Start a fresh agent\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "revises", "intent": "i054", "note": "rewrites the architecture and README of tooling#44 towards responsibilities"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["d67eb7cc52f0c2825b5e2477451f1b0fd3b6bd85", "66db5a9d545188d636b5fac4643d2caf4bdb9371", "70b6dbc54d3059bdd8410f7be0524886f370e795"],
+    "reason": "The rewrite agent's three commits follow each other directly on the branch of #44 and form one change: details move from the docs into the code, the docs keep responsibilities, and a test fix for the help.",
+    "message": "docs: the architecture states responsibilities, the README orients, details live in code\n\n## Intent\n\nThe architecture described how things are done more than what each part is responsible for, and its details went stale with every code change. Chapter 1 should explain why the tooling exists. The README should only orient; details belong in the code alone.\n\n## Key changes\n\n- Chapter 1 is half as long: the problem, the purpose, the creator's five steps as outcomes, five quality goals and the stakeholders' expectations. Strict TypeScript moves to the constraints, archetypes to the solution strategy.\n- Chapters 2 to 12 drop paths, flags, exit codes and workflow and file names; each building block states its responsibility and what a consumer can rely on. Inline code snippets go from 205 to 21 element ids.\n- The README gives orientation and links only, from about 4,300 to 280 words. A test checks that every link to a README section still finds its heading.\n- `lernapps --help`, `check --help` and `create --help` hold the details: how to run the CLI before it is installed, the network it needs, the next steps, exit codes, and every check with its rule id and severity, read from the checks themselves.\n- Every action input and output has a description. Tests check that each help names every option and each action describes every input."
+   },
+   {
+    "commits": ["2b23840c7d747d3ea4e1110068fe679efa9ee3f8"],
+    "reason": "Answers the architecture review on the rewrite; a separate step.",
+    "message": "docs(arc42): each site action is a block of its own with its path\n\n## Intent\n\nThe architecture review flagged the changed action descriptions of the site actions: their paths sat on interfaces, to which a change of an action cannot be matched.\n\n## Key changes\n\n- Each site action is a child block of the site actions, with its path and its interface; the interface ids stay."
+   }
+  ]
+ },
+ "moved": []
+}

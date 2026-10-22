@@ -1,0 +1,40 @@
+{
+ "id": "i052",
+ "conventionalCommit": "feat(actions): the app check action runs the same check as the hooks",
+ "intent": "Take the next step of the plan: an app's CI as a safety net for pushes without hooks (step 7, #16). As much as possible must be tested deterministically in the local git hooks, and CI must run exactly the same, so a mistake gives the same message in both places.",
+ "keyDecisions": [
+  "the action runs the hooks' command without a flag and adds only the environment, over a CI-only check",
+  "new apps check with app-check and deploy exactly the bundle they checked; site-check stays for the docs sites, over two slightly different checks",
+  "every check run writes its report to one place, so CI uploads it without a CI-only switch",
+  "the generator's tests fetch app-templates at the pin locally instead of being skipped, so a push checks as much as CI",
+  "pages are found without query and fragment, so a random seed link does not change the report"
+ ],
+ "trigger": "\"Goldie up with the next step in the plan\" … \"It's crucial that we test as much as possible deterministically local in git hooks and then the same in CI.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i048b", "note": "step 7 of the plan, built on the check CLI and the generator"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["5ca6146edfa73b6f4e1ccb451ee9eddfb7ad29f5"],
+    "reason": "A bug fix in the check, found while comparing hook and CI; it stands on its own.",
+    "message": "fix(check): a link that only changes the query is the same page\n\n## Intent\n\nThe hook and CI must give the same report for the same app. The quiz links to itself with a random seed (\"start again\"), and the check followed that link as a new page, so the report named a random page and changed from run to run.\n\n## Key changes\n\n- Pages are found without query and fragment, since a static host serves the same file for any query. Links are still checked with their query.\n- A fixture app links to itself with a random seed; the test expects one finding on index.html and the same report twice."
+   },
+   {
+    "commits": ["3bab1a02c7a68a7e671b5654dad6cae2e344266e"],
+    "reason": "Closes a gap between push and CI in the tooling's own tests; separate from the action itself.",
+    "message": "test(create): the generator's tests fetch app-templates at the pin instead of being skipped\n\n## Intent\n\nCI should run what the hooks run, nothing more. The generator's tests ran in CI, which checked out app-templates, but were skipped in a local push, so a push checked less than CI.\n\n## Key changes\n\n- Without a local clone named, the tests fetch app-templates once at the pinned commit into a cache and use it. Offline and without the cache, they fail with a message that says what to do.\n- CI no longer checks out app-templates; it runs the hooks' command and nothing else.\n\n## Dependencies and side effects\n\n- The tooling's tests need the network once per pinned commit."
+   },
+   {
+    "commits": ["f0be0710cb500ff9589d54266c2481314172e645", "ca9051b7ef99c3fb048fe2fa23e623b700ed1f41", "cb470e7b3558bb3db17112fb89cad45e9a13c7d7"],
+    "reason": "The action and the two CI fixes it needed follow each other directly on the branch of #38.",
+    "message": "feat(actions): the app check action, the same check as the hooks\n\n## Intent\n\nStep 7 of the plan (#16): an app's CI is a safety net that checks exactly what the hooks check. A mistake the hooks catch fails CI the same way, with the same message, and the report is kept.\n\n## Key changes\n\n- actions/app-check installs the app and runs `lernapps check`, the hooks' command without a flag. Around it there is only the environment: checkout, Node, npm ci and the cached Playwright browser.\n- Every check in a repo writes its report to one place, so the action uploads it, passing or not.\n- The generated Pages workflow uses app-check and deploys the bundle it checked; site-check stays for the docs sites.\n- Tests run the action's check step and the hooks on fixture apps and compare them, ignoring colours and frame style of the linter's output. A workflow runs the real action on a passing and a failing fixture, kept in a folder that is not hidden.\n- README, architecture (dec-app-check-action, dec-one-check-command), skill and plan say the same.\n\n## Dependencies and side effects\n\n- A generated app no longer runs its build script in CI."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "cb470e7b3558bb3db17112fb89cad45e9a13c7d7", "from": "i053", "kind": "moved", "why": "A test fix on the branch of #38 (step 7) that serves the app check action."}
+ ]
+}

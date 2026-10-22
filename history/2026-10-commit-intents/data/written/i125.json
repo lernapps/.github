@@ -1,0 +1,36 @@
+{
+ "id": "i125",
+ "conventionalCommit": "docs(evals): inventory, expectations and a proposed infrastructure for the evals",
+ "intent": "The evals are the last open step of the plan. Before building them, know what an agent reads from the first prompt to the listing and what we expect of it. Then decide how a run is built: simple enough that the orchestrating session starts it with a sub-agent or a new session and a chosen model, and good enough to draw conclusions from.",
+ "keyDecisions": [
+  "start the evals without waiting for open merges",
+  "the tooling's own messages count as instructions and belong to the inventory",
+  "our own repos' skills, biz42/pdt42 and .github are not evaluated",
+  "an ADR after Nygard with a three-point Pugh matrix against scripts plus result files as the baseline",
+  "propose scripts and result files laid out so Harbor can take over later, over a framework or own containers now"
+ ],
+ "trigger": "\"Aber auch ohne den Mergen können wir zu Evals übergehen, nicht? … Erstelle erst mal ein Inventar von Prompts, skills und Instruktionen in den Docs, die wir evaluieren wollen und dann Aspekte, die wir bei einem Agenten erwarten.\" … \"Ob es sich lohnt, dafür ein Framework einzusetzen, es zu containerisieren oder einfach ein Shell-Sktipt zu nutzen … Lass einen ADR schreiben, nach nygard, three Point Pugh matrix\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "702bddcd1d468238bcc619e09b2c7a394a304274",
+     "58644be4e0846814d754eaa1f8378e6f06d46355"
+    ],
+    "reason": "The plan commit with the inventory joins the ADR that follows it directly on the same branch (plan rule next).",
+    "message": "docs(evals): inventory, expectations and a proposed infrastructure for the evals\n\n## Intent\n\nThe evals are the last open step of the plan. Before building them, know what an agent reads from the first prompt to the listing, what we expect of it, and how a run is built. A run must be simple enough that the orchestrating session starts it with a sub-agent or a new session and a chosen model, and its results must allow conclusions.\n\n## Key changes\n\n- Step 10 of the plan lists what the evals cover: the entry prompts, the llms.txt files and docs, AGENTS.md and the templates, all skills, the tooling's messages, and the review agent's prompt and rubric. Our own repos' skills and .github are left out on purpose.\n- It lists what we expect of the creator's agent (A1–A34) and of the review agent, each with where the evidence is: transcript, plan file, git and GitHub, or checks and review.\n- An ADR in chapter 9 (proposed) compares scripts with result files, Claude Code's plugin eval, Inspect, Harbor, promptfoo and an own container in a Pugh matrix. It proposes scripts and result files in a layout Harbor can take over later, and refines \"Evals by hand with three assistants\" without changing it.\n- The plan points to the ADR from step 10."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "702bddcd1d468238bcc619e09b2c7a394a304274",
+   "from": "i124",
+   "kind": "moved",
+   "why": "The inventory and expectations asked for in the last message before this intent; it opens the eval work that the ADR continues and joins it by the plan rule."
+  }
+ ]
+}

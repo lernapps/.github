@@ -1,0 +1,72 @@
+{
+ "id": "i216b",
+ "session": "session_01EyV1HdhPctE65bCEgVHtuE",
+ "start": "2026-10-06T11:37:50.096232Z",
+ "conventionalCommit": "docs: point the other repositories to the platform design",
+ "intent": "The other repositories of the lernapps organisation need to know that the platform is designed with the Platform Design Toolkit, where that design lives and how to read it. They need only the entry points, not the next steps of the method.",
+ "keyDecisions": [
+  "a compact skill in the docs repo with checkout plus `pdt42 get` and a table of where each element type lives, over a walk-through of the method",
+  "a short README paragraph in each repo with links to the rendered design and the skill",
+  "no entry for the Mathe-Karte; a skill for thanks components goes to tooling later, not to the docs repo",
+  "push directly to main, as everything is still early, over branches and pull requests"
+ ],
+ "trigger": "\"1. die weiteren Repositories in der lernapps Organisation brauchen Wissen darüber, wie sie das Plattformdesign erschließen können (docs rep + pdt42 cli). Vorschlag: kurzer Eintrag in allen betroffenen Readmes und ein Skill im docs repo …\" … \"Mathe-Apps braucht die Info zu pdt nicht.\" … \"Du kannst direkt auf Main pushen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i210",
+   "note": "links the published platform design"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "3654d5e0b8f60b3a193ae43d7bccf980e7fd936d"
+    ],
+    "reason": "One commit in this repo.",
+    "message": "docs: add a skill for reading the platform design from other repos\n\n## Intent\n\nThe other repositories of the lernapps organisation need to know that the platform is designed with the Platform Design Toolkit, where that design lives and how to read it. They need only the entry points, not the next steps of the method.\n\n## Key changes\n\n- A compact skill says that lernapps.net is a platform in the sense of PDT and is read with a checkout plus `pdt42 get`. A table names the chapter of each element type: entities, platform, motivations, relationships, transactions, learning engine, experiences and MVP. It points to the key decisions on thanks and on data collection.\n- The README lists the skill.\n\n## Dependencies and side effects\n\n- app-templates and tooling link the skill and the rendered design in their READMEs (f00a343, a29546b).\n- The link to /docs/platform-design/ works once the branch is merged."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "f00a3430d9dbfab8f0ebe2ddca7362ce164e0540"
+    ],
+    "reason": "One commit in this repo.",
+    "message": "docs: point to the platform design\n\n## Intent\n\nThis repo is part of the lernapps.net platform, whose design lives in lernapps/docs. People and agents working here should find it.\n\n## Key changes\n\n- One short README paragraph says how the repo relates to the platform design and links the rendered design and the pdt skill in lernapps/docs.\n\n## Dependencies and side effects\n\n- The skill comes from lernapps/docs (3654d5e); tooling has the same paragraph (a29546b)."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "a29546b17c381e7da8715cde2844016df32f12be"
+    ],
+    "reason": "One commit in this repo.",
+    "message": "docs: point to the platform design\n\n## Intent\n\nThis repo is part of the lernapps.net platform, whose design lives in lernapps/docs. People and agents working here should find it.\n\n## Key changes\n\n- One short README paragraph says how the repo relates to the platform design and links the rendered design and the pdt skill in lernapps/docs.\n\n## Dependencies and side effects\n\n- The skill comes from lernapps/docs (3654d5e); app-templates has the same paragraph (f00a343)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "3654d5e0b8f60b3a193ae43d7bccf980e7fd936d",
+   "from": "i216",
+   "kind": "split",
+   "why": "Point 1 of the message that also closes D8: knowledge about the platform design for the other repos."
+  },
+  {
+   "commit": "f00a3430d9dbfab8f0ebe2ddca7362ce164e0540",
+   "from": "i217",
+   "kind": "moved",
+   "why": "README entry for the other repos, point 1 of the request in i216b."
+  },
+  {
+   "commit": "a29546b17c381e7da8715cde2844016df32f12be",
+   "from": "i217",
+   "kind": "moved",
+   "why": "README entry for the other repos, point 1 of the request in i216b."
+  }
+ ]
+}

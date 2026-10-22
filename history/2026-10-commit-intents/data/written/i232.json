@@ -1,0 +1,24 @@
+{
+ "id": "i232",
+ "conventionalCommit": "feat(quiz): confetti from 80% right, fireworks for all right",
+ "intent": "Finishing a quiz well should feel like a success. Learners who answer at least 80% right should see confetti, and those who get everything right should see fireworks, as the Textcheck app already does.",
+ "keyDecisions": [
+  "the same celebration as Textcheck's result, over a design of its own",
+  "build it into the quiz engine, so every quiz app gets it",
+  "no animation for people who ask for reduced motion"
+ ],
+ "trigger": "\"Wenn das Quiz mit >=80% richtig abgeschlossen wurde, soll es Konfetti-Regnen, bei 100% ein Feuerwerk geben. Wie im Textcheck\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["c0c742ebba6804d3bb96c0a1bafcc55f6876629e"],
+    "reason": "The only commit of this request.",
+    "message": "feat(quiz): confetti from 80% right, fireworks for all right\n\n## Intent\n\nFinishing a quiz well should feel like a success. Learners who answer at least 80% right see confetti; those who get everything right see fireworks, as in the Textcheck app.\n\n## Key changes\n\n- The quiz engine starts confetti on the result when at least 80% of the answers are right, and fireworks when all are right.\n- The quiz stylesheet draws both animations; they stay hidden when the system asks for reduced motion."
+   }
+  ]
+ },
+ "moved": []
+}

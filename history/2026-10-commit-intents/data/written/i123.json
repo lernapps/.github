@@ -1,0 +1,33 @@
+{
+ "id": "i123",
+ "conventionalCommit": "fix(check): judge the commit's arc42 diff instead of failing on every hint",
+ "intent": "In the first creator run the first commit of a fresh interactive app failed on hints that are no errors, and the agent then set ARC42_CONSISTENT in advance, which bypasses the gate like --no-verify. The architecture gate should block only real inconsistencies and new code no block claims, so that agents have no reason to bypass it.",
+ "keyDecisions": [
+  "the tooling judges arc42's findings itself, over waiting for arc42 to change",
+  "review hints become warnings; consistency findings and unclaimed new code still fail",
+  "ARC42_CONSISTENT accepts only consistency findings, never new code",
+  "fix it although the creator did not ask for it, since it is a real defect"
+ ],
+ "trigger": "Finding of the Typonaut evaluation: the first commit failed on hints about files listed in .arc42ignore, and the agent then set ARC42_CONSISTENT in advance three times.",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i121",
+   "note": "a finding of the Typonaut evaluation started there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "d3d1c841bdabde9c8877b9d9a507360f1f0b1b3e"
+    ],
+    "reason": "One commit for one fix.",
+    "message": "fix(check): judge the commit's arc42 diff instead of failing on every hint\n\n## Intent\n\nA fresh interactive app's first commit after the plan ran `arc42 diff --staged --strict`, which fails on every hint. arc42 diff does not read .arc42ignore, so src/main.ts and src/env.d.ts counted as not covered, and it hints \"review architecture element\" at every file under an interface's path. The agent then accepted with ARC42_CONSISTENT and went on to set it in advance, which bypasses the gate. The gate should block only what is really wrong.\n\n## Key changes\n\n- lernapps check runs `arc42 diff --staged --format json` and judges the findings itself.\n- Consistency findings and new code that no block claims fail; .arc42ignore applies as validate applies it.\n- Review hints are a warning in the report.\n- ARC42_CONSISTENT accepts only consistency findings, which stay in the report as a warning; it never accepts new code.\n- The skills say that setting it without a finding shown is a bypass like --no-verify.\n\n## Dependencies and side effects\n\n- A new e2e test replays the case from the first creator run."
+   }
+  ]
+ },
+ "moved": []
+}

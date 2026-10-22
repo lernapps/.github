@@ -1,0 +1,36 @@
+{
+ "id": "i066",
+ "conventionalCommit": "fix(hooks): install an app's hooks only where the app is the root of its repository",
+ "intent": "Running npm install in the quiz template pointed the whole app-templates repo at the template's git hooks, so commits at its root failed. Every generated app copied the same script, so an app inside another repo would do the same.",
+ "keyDecisions": [
+  "a command `lernapps hooks` that installs hooks only at the root of a git work tree and says why it did nothing otherwise",
+  "the generator writes the prepare script, so a template needs none of its own",
+  "CI of app-templates fails if installing a template changes the repo's own hooks"
+ ],
+ "trigger": "\"Fix the app templates hook.\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i048b", "note": "changes how the shared preset's hooks are installed"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["00442ab3a728e6133163a23031d1e52ec97e4e4a"],
+    "reason": "The one commit of tooling#48.",
+    "message": "fix(hooks): install an app's hooks only where the app is the root of its repository\n\n## Intent\n\nThe template's prepare script installed the hook dispatcher into whichever git repo contains the folder. npm install in app-templates' quiz folder pointed the whole repo at the template's hooks, and commits at its root failed. Every generated app copied that script.\n\n## Key changes\n\n- `lernapps hooks` installs the hooks only where the current folder is the root of its git work tree, and otherwise says why it changed nothing.\n- The generator writes it as every app's prepare script, so a template needs none of its own.\n- The generator test covers both: an app at the root of its repo gets the hooks; the same app inside another repo leaves that repo's hooks alone.\n\n## Dependencies and side effects\n\n- The template drops its own prepare script (5267e05 in app-templates); merge this first."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": ["5267e05f58c835241a6f709308ce3b2ff5e46764"],
+    "reason": "The one commit of app-templates#7.",
+    "message": "fix(quiz): the template installs no git hooks\n\n## Intent\n\nnpm install in quiz/ ran the template's prepare script, which set the hooks of the whole app-templates repo to the template's; commits at the root then failed.\n\n## Key changes\n\n- The quiz template has no prepare script; the generator writes the app's own.\n- CI checks that npm install in a template leaves the repo's hooks alone.\n\n## Dependencies and side effects\n\n- Needs `lernapps hooks` from the tooling (00442ab, tooling#48)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "5267e05f58c835241a6f709308ce3b2ff5e46764", "from": "i067", "kind": "moved", "why": "The hooks fix asked for here; it was committed after the next message."},
+  {"commit": "00442ab3a728e6133163a23031d1e52ec97e4e4a", "from": "i067", "kind": "moved", "why": "The hooks fix asked for here; it was committed after the next message."}
+ ]
+}

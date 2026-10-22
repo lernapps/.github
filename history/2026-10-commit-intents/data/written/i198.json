@@ -1,0 +1,55 @@
+{
+ "id": "i198",
+ "conventionalCommit": "docs(pdt42): motivations matrix (D3)",
+ "intent": "Find what each role can give each other role, today and potentially. The matrix shows where value already flows and where only a platform could make it flow, such as feedback and recognition for creators.",
+ "keyDecisions": [
+  "write the draft straight into the model so the CLI draws the matrix, over reviewing a table in chat",
+  "gratitude as potential reputation in all six directions between the three core roles, over a single cell from students to creators",
+  "no gratitude cells towards partners, where it is weaker; the degree per direction stays open, as the matrix has no attribute for it",
+  "exchanges between creators and teacher platforms limited to non-profit platforms, since free apps are unwelcome competition for commercial ones"
+ ],
+ "trigger": "\"Ja, weiter\" … \"Das muss ich visuell sehen\" … \"Tatsächlich denke ich, dass auch eine gewisse Dankbarkeit von Studenten kommen könnte. Ich glaube, dass der Gain für andere Teacher-Plattformen eher gering ist … Wahrscheinlich finden das nur non-Profits gut\" … \"Dankbarkeit geht potentiell in alle Richtungen, in unterschiedlichem Maß\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i195",
+   "note": "motivations between the portrayed roles"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "b3eec3127e273287d0b8b010c6929ebb384b701e",
+     "353c755ac8bc425ff2ed80da9d205bb6a6e8ff10",
+     "b114172a685d49b1fa0c5427d5a29752f281576c",
+     "75aa7947f1fce0a200bfe763b266a223d9d7e812"
+    ],
+    "reason": "The draft of the matrix, two refinements and its completion, one after the other on feat/platform-design; three are marked wip.",
+    "message": "docs(pdt42): motivations matrix (D3)\n\n## Intent\n\nFind what each role can give each other role, today and potentially. The matrix shows where value already flows and where only a platform could make it flow, such as feedback and recognition for creators.\n\n## Key changes\n\n- A new D3 chapter holds the Motivations Matrix of the six peer roles. Each cell says what one role gives another, current or potential, with its kind of value.\n- Gratitude can flow in all directions to a different degree. Six potential cells between creators, adopting adults and students record it as reputation; partners get none, as it is weaker there.\n- Exchanges between creators and teacher platforms apply to non-profit platforms only. The portrait of teacher platforms (D2) and the scenario E12 in the brief say the same.\n- The development plan marks D3 done and adds KD-12."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "353c755ac8bc425ff2ed80da9d205bb6a6e8ff10",
+   "from": "i199",
+   "kind": "dropped",
+   "why": "Refines the D3 matrix (students' gratitude, non-profit teacher platforms); i199 has no commits left."
+  },
+  {
+   "commit": "b114172a685d49b1fa0c5427d5a29752f281576c",
+   "from": "i200",
+   "kind": "dropped",
+   "why": "Gratitude in all directions, a refinement of the D3 matrix; i200 has no commits left."
+  },
+  {
+   "commit": "75aa7947f1fce0a200bfe763b266a223d9d7e812",
+   "from": "i201",
+   "kind": "moved",
+   "why": "Closes D3 (draft note removed, KD-12) before D4 starts."
+  }
+ ]
+}

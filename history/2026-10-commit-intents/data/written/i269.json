@@ -1,0 +1,52 @@
+{
+ "id": "i269",
+ "conventionalCommit": "feat(site-frame): the frame in the chosen language, the text in the one it exists in",
+ "intent": "The tooling pages exist only in English. A click on them switched the whole site to English, and since no German version existed, there was no way back. Header and footer should always stay in the language the reader chose; the content should show in that language where it exists, and otherwise in the language it is available in.",
+ "keyDecisions": [
+  "copy a page that exists in one language only into every language tree at build time, each copy with the frame of its tree, over a frame that follows the page's own language",
+  "keep the chosen language in the address, without a cookie or browser storage",
+  "a language switch on every page, the tooling included",
+  "links between platform pages lead to the same page in the page's language",
+  "carry lang on header, footer, skip link and preview banner, so screen readers read the frame right inside a page in another language"
+ ],
+ "trigger": "\"Hier ist aufgefallen, dass es die tooling Seite nur auf Englisch. Gibt. Wenn man da drauf klickt, wechselt die gesamte Seite auf Englisch Englisch und auch nicht mehr zurück auf Deutsch\" … \"Rahmen immer in der gewählten Sprache, Inhalte wenn verfügbar in der gewählten, ansonsten als fallback die verfügbare\"",
+ "kind": "fix",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["2f300aa145d2bc1e9227c332f97e7c7c04de047d", "e87d6a9da36b392e6eb9a8c177b65a2be22c87c0"],
+    "reason": "The first fix kept a German frame on English-only pages; the second, directly after it on the same branch, replaces that with a frame in the chosen language. Only the second state was meant to ship.",
+    "message": "feat(site-frame): the frame in the chosen language, the text in the one it exists in\n\n## Intent\n\nThe tooling and the platform design exist in English only. Their frame followed the page's own language, so a click on them switched the whole site to English, and with no German page to switch to, there was no way back. Header and footer should stay in the language the reader chose; the text should show in that language where it exists, and otherwise in the one it is available in.\n\n## Key changes\n\n- lernapps-frame copies a page that exists in one language only (the tooling, the platform design, the vision, the organisation), with the files of its folder, into every language tree it is missing from. Each copy gets the frame of its tree and a language switch.\n- Links to pages in a copy lead to the same page in its language. The tooling joins the translated sites, so the navigation leads English readers to /tooling/en/; the footer and the English home page link the English copies.\n- The frame carries lang on header, footer, skip link and preview banner, so screen readers read it right inside a page in another language.\n- lernapps-check accepts a page of the English tree whose frame says lang=\"en\".\n\n## Dependencies and side effects\n\n- lernapps/docs 3dff842, lernapps/tooling e8c5955 and lernapps/apps 4768bcd use the new frame."
+   }
+  ],
+  "docs": [
+   {
+    "commits": ["3dff8423b41b6a8513510b0fc409999f7d294c48"],
+    "reason": "The docs side of this request; the next commit on the branch serves the browser-language request.",
+    "message": "fix: the vision, organisation and platform design in the English tree too\n\n## Intent\n\nThe vision, the organisation and the platform design exist in English only. Readers who chose English must reach them with an English frame, and readers who chose German must keep a German one.\n\n## Key changes\n\n- The docs use the site frame that copies English-only pages below /docs/en/; the English start page links them there.\n- The styling of the single-page app runs before the frame, so the copies get it too.\n- The README says so.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io e87d6a9, which this commit pins."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["e8c5955c5fe6e810ed3d8266180c9f220ce099cb"],
+    "reason": "The tooling side of this request; the next commit on the branch serves the browser-language request.",
+    "message": "fix(site): the tooling in every language tree\n\n## Intent\n\nThe tooling pages exist in English only. A click on them switched the whole site to English with no way back. They must keep the frame of the language the reader chose.\n\n## Key changes\n\n- The site frame serves the English pages at /tooling/ with a German frame and at /tooling/en/ with an English frame.\n- The arc42 styling runs before the frame, so the copies get it too.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io e87d6a9, which this commit pins."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["4768bcdf3141c5c1d648969b85d78d5c85724743"],
+    "reason": "The apps side of this request; the next commit on the branch serves the browser-language request.",
+    "message": "fix(build): the tooling links lead to the tooling in the page's language\n\n## Intent\n\nThe tooling now exists in every language tree. The links to it from the app overview must keep the reader in the language of the page.\n\n## Key changes\n\n- A filter turns links to other platform pages into links in the page's language; the build page uses it for its tooling links.\n\n## Dependencies and side effects\n\n- Needs lernapps/lernapps.github.io e87d6a9, which this commit pins."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "e87d6a9da36b392e6eb9a8c177b65a2be22c87c0", "from": "i270", "kind": "dropped", "why": "Reworks the fix of this request into a frame in the chosen language; i270 refines the same request and has no commits left."},
+  {"commit": "3dff8423b41b6a8513510b0fc409999f7d294c48", "from": "i271", "kind": "dropped", "why": "Rolls the frame of this request out to the docs; the question in i271 turned out to be a misunderstanding and led to no change, so i271 has no commits left."},
+  {"commit": "e8c5955c5fe6e810ed3d8266180c9f220ce099cb", "from": "i271", "kind": "dropped", "why": "Rolls the frame of this request out to the tooling; i271 has no commits left."},
+  {"commit": "4768bcdf3141c5c1d648969b85d78d5c85724743", "from": "i272", "kind": "moved", "why": "Rolls the frame of this request out to the app overview; it was committed before the browser-language request of i272 was worked on."}
+ ]
+}

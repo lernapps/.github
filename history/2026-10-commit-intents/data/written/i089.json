@@ -1,0 +1,33 @@
+{
+ "id": "i089",
+ "conventionalCommit": "docs(arc42): responsibilities only, no implementation details",
+ "intent": "Keep the architecture at the level of responsibilities: say what each part is accountable for, and leave the details to the code, the help texts and the skills.",
+ "keyDecisions": [
+  "bb-check-cli rewritten at the level of responsibility",
+  "a sweep of the whole of docs/arc42 instead of fixing one element",
+  "standards and quality targets such as WCAG 2.1 AA and 360 px stay as constraints",
+  "a guard test against details in arc42 only proposed, not built"
+ ],
+ "trigger": "\"`bb-check-cli again contains implementatino details`\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i086b",
+   "note": "step 7 had added implementation details to bb-check-cli"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "049a3a73ce3d333ac67387c30f33a2349b501f31"
+    ],
+    "reason": "A single commit for this review point; it is the last commit of tooling#64, but a separate thought from step 7, whose commits are in i086b.",
+    "message": "docs(arc42): responsibilities only, no implementation details\n\n## Intent\n\nThe architecture's check CLI element again described implementation details. State what each part is accountable for and why; details belong in the code, the help texts and the skills.\n\n## Key changes\n\n- bb-check-cli says what the check CLI is accountable for: every check of an app, the same command everywhere, a built app or a deployed address as a learner meets it, explainer pages also without JavaScript, the entry against the app, every finding with its rule.\n- A sweep of docs/arc42 removes client-module wording, a named comment command and other details; the evidence table's derived facts name no paths, flags, packages or environment variables, while its source column keeps its sources."
+   }
+  ]
+ },
+ "moved": []
+}

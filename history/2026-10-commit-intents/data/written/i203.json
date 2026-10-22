@@ -1,0 +1,41 @@
+{
+ "id": "i203",
+ "conventionalCommit": "docs: supply does not come by itself; creators stay for recognition",
+ "intent": "Keep the insight from D4 where later steps and the business model see it. Use by others gives creators no reason to start, so supply does not come by itself. Once their apps are used, praise and use motivate most engaged creators strongly: the hurdle is the first contribution.",
+ "keyDecisions": [
+  "record the insight in the platform design (D4), the business model (a risk) and the development plan (KD-14), over the plan alone",
+  "biz42 risk risk-weak-supply (high), addressed by the agent-guidance objective, since guidance is a benefit independent of reach",
+  "reword the expectation exp-contributor from \"need visibility\" to \"build for themselves, stay for recognition\", over keeping the contradiction as the original hypothesis",
+  "the pdt42 assumption waits for D8, since an assumption needs an MVP"
+ ],
+ "trigger": "\"Das ist eine super Erkenntnis, wie können wir diese festhalten?\" … \"Gleichzeitig sind die meisten engagierten Entwickler empfänglich für Lob und Nutzung. Wenn also ihre Apps genutzt werden, sind sie sehr motivierter durch den Reputationsfluss\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i201",
+   "note": "follows from the reason for the core entity"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "6fb695f93dc244b24ee44cba722b4106e3424e53",
+     "13f1aa13333b1e691862e829e4f3deb74316bd9e"
+    ],
+    "reason": "The insight and its refinement a minute later, one after the other on feat/platform-design; the second resolves the contradiction the first left open.",
+    "message": "docs: supply does not come by itself; creators stay for recognition\n\n## Intent\n\nKeep the insight from D4 where later steps and the business model see it. Use by others gives creators no reason to start, so supply does not come by itself. Once their apps are used, praise and use motivate most engaged creators strongly: the hurdle is the first contribution.\n\n## Key changes\n\n- D4 has an insight paragraph: the platform has to make listing almost effortless, offer a benefit that does not depend on reach, and let use and praise reach creators. It names the follow-ups in D6, G4 and D8.\n- The creators' portrait (D2) says that reach is no reason to start, but a strong reason to stay.\n- biz42 has a new high risk, risk-weak-supply, addressed by the agent-guidance objective. The expectation exp-contributor now reads that creators build for themselves and that recognition motivates them once their work is used; it is the source of the risk.\n- The evidence table and KD-14 in the development plan record the insight."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "13f1aa13333b1e691862e829e4f3deb74316bd9e",
+   "from": "i204",
+   "kind": "dropped",
+   "why": "Refines the supply insight and resolves the biz42 hint left open; i204 has no commits left."
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "i260",
+ "conventionalCommit": "fix(publish): catch up on every copy that differs from what is served",
+ "intent": "After six update pull requests were merged in a row, four copies on lernapps.net/apps/start/ stayed at their old version. The publish runs waiting in between were cancelled, and the last one built only what its own push changed. Every publish run must bring all copies up to date, whatever runs were cancelled before.",
+ "keyDecisions": [
+  "compare the entries with the served list of copies, over building only what the last push changed",
+  "accept that an entry whose copy never builds (mathe-karte) is retried and turns every run red until it is fixed or delisted"
+ ],
+ "trigger": "\"Ich habe gerade https://lernapps.net/apps/naturwunder-quiz/ mit einer neuen Version versorgt. … Und warum ist start/naturwunder-quiz nicht erreichbar? https://github.com/lernapps/apps/pull/75 wurde doch gemergt?\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "revises", "intent": "i257", "note": "changes how the publish workflow decides which copies to build"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["b7871763f78946025487e6a58b42da21d07ca367"],
+    "reason": "The one commit of apps#78.",
+    "message": "fix(publish): catch up on every copy that differs from what is served\n\n## Intent\n\nSix update pull requests merged in a row left four copies at their old version. The publish runs waiting in between were cancelled, and the last one built only what its own push changed. Every run must bring all copies up to date.\n\n## Key changes\n\n- The publish plan compares the entries with the served start/copies.txt and builds every app whose copy is missing or at another commit.\n- The plan records the bug and its side effect: an entry whose copy never builds is retried on every push, and the run stays red until it is fixed or delisted."
+   }
+  ]
+ },
+ "moved": []
+}

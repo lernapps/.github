@@ -1,0 +1,41 @@
+{
+ "id": "i174",
+ "conventionalCommit": "fix(quiz): scroll the heading \"Frage N\" into view after \"Nächste Frage\"",
+ "intent": "After answering a question and pressing \"Nächste Frage\", the page jumped all the way to the top, so the learner lost sight of the next question. The heading \"Frage N\" should come into view instead, and the tooling should use the fixed template.",
+ "keyDecisions": [
+  "change the quiz engine in the template, where the quiz is rendered, over the general focus helper in the tooling, which also serves the explainer and other apps",
+  "scroll only on a change by button or link, not on the first load"
+ ],
+ "trigger": "\"nach dem Beantworten einer Frage und „nächste Frage“ sollte die Überschrift „Frage N“ in den Viewport gescrollt werden. derzeit scrollt sie komplett nach oben\" … \"nun kannst Du tooling aktualisieren auf die neuen templates\"",
+ "kind": "fix",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "dcdff3825f52e1a376b887d8ccbbc69d21011b73"
+    ],
+    "reason": "The one commit of app-templates#63.",
+    "message": "fix(quiz): scroll the heading \"Frage N\" into view after \"Nächste Frage\"\n\n## Intent\n\nAfter \"Nächste Frage\" the page jumped all the way to the top, so the learner lost sight of the next question. The heading \"Frage N\" should come into view instead.\n\n## Key changes\n\n- After moving the focus to the next question, the quiz scrolls its heading to the top of the visible area.\n- This happens only on a change by button or link, not when the page first loads.\n\n## Dependencies and side effects\n\n- lernapps/tooling 7fd174e pins the template with this fix."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "7fd174e83f2d08838d4b32683e8af96a7c25da3c"
+    ],
+    "reason": "The one tooling commit of this request.",
+    "message": "chore(deps): pin app-templates to the quiz scroll fix\n\n## Intent\n\nApps get the quiz runtime through the tooling, so the tooling must pin the template that scrolls the heading \"Frage N\" into view after \"Nächste Frage\".\n\n## Key changes\n\n- The tooling pins app-templates at the commit with the fix.\n\n## Dependencies and side effects\n\n- lernapps/app-templates dcdff38 holds the fix."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "7fd174e83f2d08838d4b32683e8af96a7c25da3c",
+   "from": "i175",
+   "kind": "dropped",
+   "why": "The pin rolls out the scroll fix of this request; the question in i175 about where the change belongs led to no other commit, so i175 has no commits left."
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "i008",
+ "conventionalCommit": "feat(entries): list Anorganische Chemie – Einstieg",
+ "intent": "Validate the compact guidance with a second archetype: a second spike in its own session builds an explainer on inorganic chemistry for the lower grades with the creator. List the resulting app in the catalog.",
+ "keyDecisions": [
+  "an explainer for grades 7 and 8 whose core are exercises and visualisations, like the Mathe-Trainer and Elektrizität",
+  "all main groups, with an interactive periodic table, over only the elements 1 to 20",
+  "electronegativity left for later in an issue",
+  "in German and English, under lernapps on lernapps.net"
+ ],
+ "trigger": "In the parent session: \"der Spike sieht vielversprechend aus. Ich würde gerne eine weitere solche Session für einen Eklärer zu anorganischer Chemie erstellen, um den anderen archtypen zu validieren\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i251",
+   "note": "the second spike of the compact guidance, for the explainer"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "588b158eb4a80a1259bcaa91f6ada51cce912c70"
+    ],
+    "reason": "The only commit of the listing.",
+    "message": "feat(entries): list Anorganische Chemie – Einstieg\n\n## Intent\n\nList the chemistry explainer in the catalog, as the last step of the second spike of the compact guidance, which validates the explainer archetype.\n\n## Key changes\n\n- A catalog entry for Anorganische Chemie – Einstieg (Inorganic chemistry – first steps): Chemie for grades 7 and 8, at https://lernapps.net/anorganische-chemie/, in German and English.\n- Eleven topics in four chapters: substances, particles, the periodic table with its main groups and an interactive table to explore the elements, and reactions with symbols, formulas and equations.\n- Fitness: no account, no install, no storage, no third parties.\n- The creator is Oliver (@mrsimpson)."
+   }
+  ]
+ },
+ "moved": []
+}

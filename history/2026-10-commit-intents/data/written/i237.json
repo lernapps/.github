@@ -1,0 +1,40 @@
+{
+ "id": "i237",
+ "conventionalCommit": "feat(home): honest about quality, a way out for non-makers, no single authority",
+ "intent": "Simulated teachers, parents and developers read the new pages a second time. They asked who vouches for the content, stumbled over the AI tutor and over the half of the home page meant for makers, and asked who decides on listing. The pages should be honest that a person, not the platform, stands behind each app; let readers report mistakes in the content; and tie listing to rules, not to one person's judgement.",
+ "keyDecisions": [
+  "say honestly that each app comes from a person and the platform's help is no guarantee of quality; reviews of apps are left for later",
+  "add \"Fehler im Inhalt\" as a feedback option on every app page",
+  "the AI tutor moves to the features of the explainer archetype, optional, over a promise on the home page",
+  "keep the makers' half of the home page; a link to the catalogue at the break lets others leave",
+  "plain words on the home page, moderate jargon only on the features page",
+  "listing is checked against the rules as exclusion criteria; the operator no longer appears as the one who decides",
+  "thanks is explained as the prepared email it is today; a click-only API comes later",
+  "dead links of listed apps become an issue in the apps repo (#57), not a change now"
+ ],
+ "trigger": "\"1. Sei ehrlich: jede App kommt von einem Menschen. Dieser wurde unterstützt bei der Erstellung, aber Garant für Qualität ist das nicht. Wir sollten auf jeden fall ein 'Fehler im Inhalt' aufnehmen. … 2. nimm den KI-Tutor raus, pack ihn zu den features des archetyps explainer …\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i234", "note": "the second persona round changes the new home page and features page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["aaed0452bc2a8851c51c81dc49ab34867dab1617"],
+    "reason": "The only website commit of this request; the privacy paragraph after it answers the next message.",
+    "message": "feat(home): honest about quality, a way out for non-makers, no single authority\n\n## Intent\n\nParents and teachers asked who vouches for the content and stumbled over the AI tutor and over the half of the home page meant for makers. Developers asked who decides on listing. The pages should be honest that a person stands behind each app, let readers report mistakes, and tie listing to rules instead of one person.\n\n## Key changes\n\n- Every app comes from a person; the platform helps to build it, but that is no guarantee. Mistakes in the content are reported on the app's page. This is said under the example apps and on /features/ as \"Von Menschen gemacht\".\n- The AI tutor leaves the parents' card and the users' list; it is a feature of the explainer archetype, optional, and the app works without AI.\n- After \"Was du davon hast\", a line tells everyone who does not build apps that they need not read on, with a link to the catalogue.\n- The cost point says in plain words why it stays free; the technical detail stays on /features/.\n- /features/: anyone can submit an app; it is checked against the rules for every app, which are exclusion criteria. The operator no longer appears as the one who decides. The thank-you is a prepared email that lernapps.net passes on.\n\n## Dependencies and side effects\n\n- The option \"Fehler im Inhalt\" on the app pages is in the apps repo (b24d521)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["b24d5215dc9d7c089eff4cf7fd6e9497bbf5b89a"],
+    "reason": "The apps side of this request: the feedback option the website now points to.",
+    "message": "feat(app-page): \"Fehler im Inhalt\" as a feedback option on every app page\n\n## Intent\n\nEvery app comes from a person; lernapps.net helps to build it but does not vouch for its content. Teachers, parents and learners who spot a mistake in the content need a way to report it.\n\n## Key changes\n\n- Every app page offers \"Fehler im Inhalt\" as a fifth feedback option. Like the others, it opens a prepared email.\n\n## Dependencies and side effects\n\n- The website says that mistakes are reported on the app's page (lernapps.github.io aaed045)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "b24d5215dc9d7c089eff4cf7fd6e9497bbf5b89a", "from": "i238", "kind": "moved", "why": "Implements point 1 of this request (\"Fehler im Inhalt\"); it was committed only after the next message, which asked for the privacy paragraph."}
+ ]
+}

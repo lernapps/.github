@@ -1,0 +1,41 @@
+{
+ "id": "i005",
+ "conventionalCommit": "feat(build): link the tooling home page in the body of App bauen, not in the navigation",
+ "intent": "The link to the tooling belongs in the body of the build page, where builders read what to do, not in the top-level navigation of every site.",
+ "keyDecisions": [
+  "a section with a short text and a button in the build page, over a navigation entry",
+  "the German button says \"(auf Englisch)\", since the tooling site is English only",
+  "/tooling/ stays a known site of the shared frame"
+ ],
+ "trigger": "\"I would have it in the body of App bauen, not in the top level navigational all\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i004",
+   "note": "moves the tooling link from the navigation into the build page"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "831d96cca860b53038910fadee1a64ebb9cc2350"
+    ],
+    "reason": "The only commit of this request in this repo.",
+    "message": "revert(nav): no tooling entry in the top-level navigation; keep /tooling/ a known site\n\n## Intent\n\nThe link to the tooling belongs in the body of the build page, not in the navigation of every site.\n\n## Key changes\n\n- The \"Bauhilfen\" entry is gone from the top-level navigation.\n- /tooling/ stays a known site of the shared frame, so links to it still resolve.\n\n## Dependencies and side effects\n\n- The build page of apps links the tooling instead (18b65da, same intent)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "18b65dafdae5c9645ee81ce726a02b83694b8277"
+    ],
+    "reason": "The only commit of this request in this repo.",
+    "message": "feat(build): link the tooling home page in the body of App bauen\n\n## Intent\n\nBuilders should learn what lernapps provides to build easier and faster, right on the page where building starts.\n\n## Key changes\n\n- A new section on the build page, between \"Tell your assistant\" and \"What happens next\": \"Was lernapps.net dir zum Bauen bereitstellt\" (in English \"What lernapps.net provides for you to build\"), with a short text and a button to /tooling/.\n- The German button says \"Zu den Bauhilfen (auf Englisch)\", because the tooling site is English only.\n\n## Dependencies and side effects\n\n- The navigation entry of lernapps.github.io is removed in the same intent (831d96c)."
+   }
+  ]
+ },
+ "moved": []
+}

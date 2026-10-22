@@ -1,0 +1,58 @@
+{
+ "id": "i122",
+ "conventionalCommit": "feat(guidance): make the GitHub side transparent from the start",
+ "intent": "The first full creator run lost most time on GitHub: work became the default branch, Pages was off at the first deploy, GraphQL was blocked in the cloud, a rename cost access, the review read a stale branch, and the listing path through a fork stayed untested. The tooling works deeply with GitHub. Creators should learn early what that means without having to know GitHub, and agents should set it up at the start and know what to do when a GitHub call fails.",
+ "keyDecisions": [
+  "explain GitHub Pages in Explore and offer a plain explanation of GitHub, plus a docs page under build, over leaving it implicit",
+  "set up main, gh-pages and work at the start of Explore, over doing it in lernapps create or in the Commit phase",
+  "a compact skill lernapps-github for when the direct way fails, over spreading the alternatives over the templates",
+  "publish deploys even when Pages is off and fails only after the deploy, over stopping before it",
+  "the review reads the head of main and names the ref it read, over the default branch",
+  "GitHub handling becomes part of the evals"
+ ],
+ "trigger": "\"Wir arbeiten tief integriert mit Github in unserem Tooling. das müssen wir transparent machen und auch in den Prozess integrieren\" … \"Der Agent kann im Scaffolding angewiesern werden, direkt als erstes einen main branch anzulegen\" … \"Die Alternativen zum gh cli sollten wir in einen Skill packen (wie man mit Github interagiert, wenn es mal nicht direkt klappt – ganz kompakt)\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i023",
+   "note": "removes the GitHub friction found in the Typonaut run"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "dcf5561fd0861d5222a1d5b9fed5ec8267b9443e"
+    ],
+    "reason": "Kept apart from the guidance commit that follows it: a code fix of the publish action, not guidance.",
+    "message": "fix(publish): deploy even when Pages is off, fail only after the deploy\n\n## Intent\n\nWhen Pages was off or misconfigured, the publish action stopped before the deploy. After the creator's click Pages served the old state, and the integration may not start a rerun (403), so the agent pushed a dummy change to trigger one. The creator's click should show the newest state at once.\n\n## Key changes\n\n- A Pages setup the token may not fix is a warning before the deploy; the check after the deploy fails until the creator makes the click. The message says that no new run is needed.\n- The advice to set the default branch uses REST (`gh api -X PATCH repos/<o>/<r> -f default_branch=main`), since GraphQL may be blocked where the assistant runs.\n\n## Dependencies and side effects\n\n- `publish.ts before` exits 0 on a wrong Pages setup; its tests expect the warning and the failure of `after`.\n- Part of making the GitHub side transparent, with 9cf04cd and lernapps/apps ba3d7e7 (same intent)."
+   },
+   {
+    "commits": [
+     "9cf04cde97b93d4e907dc653466646afd763f762"
+    ],
+    "reason": "The guidance part of the request, kept apart from the publish fix.",
+    "message": "feat(guidance): make the GitHub side transparent from the start\n\n## Intent\n\nThe first full creator run lost most time on GitHub: work became the default branch, Pages was off at the first deploy, GraphQL was blocked, a rename cost access, and an early message was taken as a yes. The tooling works deeply with GitHub. Creators should know what that means without having to know GitHub, and agents should set it up right at the start.\n\n## Key changes\n\n- In Explore the agent tells the creator where the app lives (own repo, GitHub Pages, public, free) and offers to explain GitHub in plain words. A new docs page, https://lernapps.net/tooling/github/, explains it for humans.\n- The agent fixes the repo name, pushes main alone so it becomes the default branch, then creates gh-pages and work and sets the Pages source, before anything else is pushed. The Commit phase only verifies and brings work into main by fast-forward.\n- New compact skill lernapps-github: tool order (gh over REST, then MCP, then curl), GraphQL may be blocked, \"403 by integration\" means a click for the creator and never a dummy push, REST checks, and the listing pull request from a fork.\n- stop-at-checkpoints: a message sent before the checkpoint question is not a yes.\n- lernapps-interactive: how to handle the frame and a full-screen game (overlay, way out, focus, keys that scroll the page).\n\n## Dependencies and side effects\n\n- A new guidance test checks the branch setup in Explore and that the template has no GraphQL `gh repo` commands.\n- AGENTS.md is at its word limit, so it does not reference the new skill.\n- dcf5561 changes the publish action; lernapps/apps ba3d7e7 links the new page and writes out the fork path (same intent)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "ba3d7e709ef1702925e5766f037da002d9567a11"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "docs: explain GitHub to creators, the fork path, and review the head of main\n\n## Intent\n\nIn the first creator run the review read a stale work, the default branch, and failed the plan. The listing path did not say to use a fork, so the way real creators must take stayed untested. Creators also need a plain word that the app lives on GitHub and that they need not know it.\n\n## Key changes\n\n- `/review` without a commit reads the head of main (else HEAD), says which ref it read, and warns when the default branch is not main.\n- llms.txt writes out the fork path and points to the new tooling skill lernapps-github.\n- The build page links the tooling's page \"GitHub, explained\".\n\n## Dependencies and side effects\n\n- The review comment's closing line changed; the golden comment follows.\n- Needs lernapps/tooling 9cf04cd (same intent) for the linked page and skill."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "ba3d7e709ef1702925e5766f037da002d9567a11",
+   "from": "i123",
+   "kind": "moved",
+   "why": "The catalog side of making GitHub transparent (review reads main, fork path, link to the GitHub page); it landed after the next message."
+  }
+ ]
+}

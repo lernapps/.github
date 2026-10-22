@@ -1,0 +1,32 @@
+{
+ "id": "i041",
+ "conventionalCommit": "docs(plan): archetypes explainer, interactive, quiz; the pre-push hook counts its failures",
+ "intent": "The archetypes need their final names. The quiz should be a deep scaffold where the creator supplies only questions and options. Failed pre-push runs should be counted without relying on the agent.",
+ "keyDecisions": [
+  "explainer, interactive and quiz, named after what the content does",
+  "quiz as a deep scaffold with engine, question types, feedback, scoring, accessibility, i18n and a no-JS fallback built in, over a placeholder",
+  "the pre-push hook counts its failures in the plan's front matter, over the agent reporting them"
+ ],
+ "trigger": "\"Agree on the archetypes. And we should build a solid quiz architecture with very high depth as scaffold so that basically only the questions and options need to be supplied by the implementer. WRT pre push fails: We could increment the pre push fails as part of the hook itself (e. G. In the frontmatter of the plan file we create).\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i039",
+   "note": "settles the names"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "1bb8a7e73439452311b874ed2d202f8703a077db"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(plan): archetypes explainer, interactive, quiz; the pre-push hook counts its failures\n\n## Intent\n\nThe archetypes need their final names. The quiz should be a deep scaffold where the creator supplies only questions and options. Failed pre-push runs should be counted without relying on the agent.\n\n## Key changes\n\n- KD-02 names the three archetypes; quiz becomes a deep scaffold where only questions and options are supplied, as typed data that is checked.\n- KD-07: the pre-push hook increments a counter in the plan's front matter on each failure; chapter 10 names it as a source for fewer iterations."
+   }
+  ]
+ },
+ "moved": []
+}

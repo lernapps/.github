@@ -1,0 +1,55 @@
+{
+ "id": "i067",
+ "conventionalCommit": "feat(build,enter): building and listing on their own pages with English paths",
+ "intent": "Building an app and listing a published one are different jobs, but both sat on a page named \"eintragen\", which suggests the app already exists. They need their own pages, with English paths. The responsibilities must be clear: the apps repo explains building and listing and provides the apps; the tooling helps builders get their apps out.",
+ "keyDecisions": [
+  "separate pages on lernapps.net for building and for listing, over making the tooling site the home of builders (English and technical, for assistants and maintainers)",
+  "/apps/build/ and /apps/enter/ with English paths and German texts",
+  "remove /apps/eintragen/ without a redirect and list only the actual paths",
+  "separate texts for building and listing, with no string covering both",
+  "no listing skill on the build page; the plan refers to it in its last phase",
+  "the shared navigation gets both items; the home page leads to building"
+ ],
+ "trigger": "\"I don't like the “eintragen”, based linking, as entering an app suggests it's been already built.\" … \"I am reluctant to German terms in urls. I'd prefer apps/build and apps/enter. So the responsibilities are: apps repo explains building, listing and provides the actual apps. Tooling is responsible for helping builders get their apps out\" … \"we also don't need a redirect to apps/enter. Just list the actual paths\" … \"src/_data/de.js still reads about eintragen and mixes it with build\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i063", "note": "splits the step 13 entry point into a build page and a listing page"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["c0cff2972a8a8405655a20bb20dd6eab7c56c4c2"],
+    "reason": "The one commit of lernapps.github.io#25.",
+    "message": "feat(nav): \"App bauen\" and \"App eintragen\" at /apps/build/ and /apps/enter/\n\n## Intent\n\nThe app overview splits building and listing into two pages with English paths, and the old path goes away without a redirect. The shared navigation must link the new pages.\n\n## Key changes\n\n- The navigation links \"App bauen\" (/apps/build/) before \"App eintragen\" (/apps/enter/); texts stay German.\n- The home page's call to action for creators leads to building.\n\n## Dependencies and side effects\n\n- Every site picks up the navigation with the next bump of @lernapps/site; the new pages are in apps (3b06f1c)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["3b06f1caa5cb81796822b6a3f4a0dfafdbb90cdb"],
+    "reason": "The rework of apps#10 is one commit.",
+    "message": "feat(build,enter): building and listing on their own pages, English paths\n\n## Intent\n\nBuilding an app and listing a published one are two different jobs, and \"eintragen\" suggested the app already exists. They get their own pages with English paths and German texts. This repo explains building and listing and provides the apps; helping builders get their apps out is the tooling's job.\n\n## Key changes\n\n- /apps/build/ holds the prompt for the assistant, the command, the skill lernapps-app as the quick path, and leads on to listing. Nothing on it suggests the app already exists.\n- /apps/enter/ is for listing a published app, with one line that leads those without an app to /apps/build/.\n- /apps/eintragen/ is gone without a redirect; the issue form is renamed, so no URL holds the old path.\n- The texts are split into building and listing, with no string covering both; llms.txt has a section for each page.\n- Tests check every link on both pages and in llms.txt, and that the command from /apps/build/ creates an app that passes the check.\n\n## Dependencies and side effects\n\n- @lernapps/site is pinned to the navigation of lernapps.github.io#25 (c0cff29); without it the navigation would link a page that no longer exists.\n- The tooling README and architecture (5644817) and the organisation docs (0e035d1 in .github) state the responsibilities."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["564481713f84e6fda1304bbbfdcb8bfce42f742d"],
+    "reason": "The rework of tooling#46 is one commit.",
+    "message": "docs: the tooling helps builders get their apps out; creators start at /apps/build/\n\n## Intent\n\nThe responsibilities between the tooling and the app overview must be clear: the tooling helps builders get their apps out; lernapps/apps explains building and listing and provides the apps.\n\n## Key changes\n\n- The README states both responsibilities and sends creators to lernapps.net/apps/build/.\n- The architecture states them at responsibility level in the scope and the context.\n\n## Dependencies and side effects\n\n- The pages are in apps (3b06f1c) and the navigation in lernapps.github.io (c0cff29)."
+   }
+  ],
+  ".github": [
+   {
+    "commits": ["0e035d19409beeaa4b9a11ca8211d8ff2adb3f59"],
+    "reason": "The rework of .github#42 is one commit.",
+    "message": "docs: /apps/build/ and /apps/enter/, responsibilities, the no-JavaScript rule for the own site only\n\n## Intent\n\nThe organisation docs must link the new pages, state who is responsible for what, and stop asking apps to work without JavaScript, which matters only to lernapps.net's own site.\n\n## Key changes\n\n- ORGANIZATION.md names the responsibilities of apps and tooling and has one contact row for building and one for listing.\n- The rule \"readable without JavaScript\" applies to the pages of the own site; apps are not bound by it. The PR template and CONTRIBUTING.md say the same.\n- CONTRIBUTING.md, the profile README and the issue chooser link /apps/build/ and /apps/enter/.\n\n## Dependencies and side effects\n\n- The pages are in apps (3b06f1c); the removal of the site rules from the tooling is i065."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "c0cff2972a8a8405655a20bb20dd6eab7c56c4c2", "from": "i068", "kind": "dropped", "why": "The build and enter pages asked for here; i068 only refined them and has no commits left."},
+  {"commit": "3b06f1caa5cb81796822b6a3f4a0dfafdbb90cdb", "from": "i068", "kind": "dropped", "why": "The build and enter pages asked for here; i068 has no commits left."},
+  {"commit": "564481713f84e6fda1304bbbfdcb8bfce42f742d", "from": "i068", "kind": "dropped", "why": "The responsibilities asked for here; i068 has no commits left."},
+  {"commit": "0e035d19409beeaa4b9a11ca8211d8ff2adb3f59", "from": "i068", "kind": "dropped", "why": "The responsibilities and links asked for here; i068 has no commits left."}
+ ]
+}

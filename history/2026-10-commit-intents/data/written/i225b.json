@@ -1,0 +1,110 @@
+{
+ "id": "i225b",
+ "conventionalCommit": "chore: remove all legacy: forwards, the map, edugo, the old domain",
+ "intent": "Start clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.",
+ "keyDecisions": [
+  "remove the forwards of the Mathe-Karte's old paths, over keeping them",
+  "close the map's redirect pull request instead of forwarding /map/ to /apps/",
+  "delete the edugo planning documents in docs, over keeping them as history",
+  "push the one-line README fixes in tooling and app-template to main; everything else goes through pull requests"
+ ],
+ "trigger": "\"Weiterleitungen brauchen wir nicht, das darf noch alles inkompatibel sein.\" … \"Auch Weiterleitungen für binom etc. brauchen wir nicht. Entferne alle Legacy, wir wollen sauber neu starten\"",
+ "kind": "chore",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "127d4facf877dafd172af90bfae0f7630f928c75",
+     "c714fba09874cb121d53da986c4911614c17806d",
+     "99e1a162a0b2c041591405fa0fb02a9afc43f2b6"
+    ],
+    "reason": "Three clean-up commits directly one after the other on the branch of pull request #17.",
+    "message": "chore: no forwards and no legacy mentions on the home page\n\n## Intent\n\nStart clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.\n\n## Key changes\n\n- 404.html is a plain not-found page instead of a script that forwards the Mathe-Karte's old root paths; llms.txt no longer explains the move.\n- /map/ is no longer treated as a path of another repo.\n- The README, the UnoCSS config, the privacy notice and the start page no longer mention edugo, the map or lernapps.github.io; the README has no history section.\n\n## Dependencies and side effects\n\n- The same clean-up in lernapps.github.io (127d4fa, c714fba, 99e1a16), docs (3c41d23), apps (b60a22f), tooling (53a4f1a) and app-templates (a075a7b)."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "3c41d236f3fce7b74cacee323a68314ef7fe5d6b"
+    ],
+    "reason": "One commit in docs.",
+    "message": "chore: remove legacy in docs: forwards, map, edugo, old domain\n\n## Intent\n\nStart clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.\n\n## Key changes\n\n- The 404 page no longer forwards old Mathe-Karte paths.\n- The index no longer links the retired map's architecture.\n- The edugo planning documents (design, requirements, research plan) are gone.\n- All addresses use lernapps.net instead of lernapps.github.io.\n\n## Dependencies and side effects\n\n- The same clean-up in lernapps.github.io (127d4fa, c714fba, 99e1a16), docs (3c41d23), apps (b60a22f), tooling (53a4f1a) and app-templates (a075a7b)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "b60a22f17a5b600b7b497d0e1b94eda5a2550639"
+    ],
+    "reason": "One commit in apps.",
+    "message": "chore: remove legacy mentions in apps (map, edugo)\n\n## Intent\n\nStart clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.\n\n## Key changes\n\n- The README and the UnoCSS config no longer mention the map or edugo.\n\n## Dependencies and side effects\n\n- The same clean-up in lernapps.github.io (127d4fa, c714fba, 99e1a16), docs (3c41d23), apps (b60a22f), tooling (53a4f1a) and app-templates (a075a7b)."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "53a4f1a9cc80d29e770e097570fbdcec52cbcc34"
+    ],
+    "reason": "One commit in tooling.",
+    "message": "docs(readme): link the platform design at lernapps.net\n\n## Intent\n\nStart clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.\n\n## Key changes\n\n- The README links the platform design at lernapps.net instead of lernapps.github.io.\n\n## Dependencies and side effects\n\n- The same clean-up in lernapps.github.io (127d4fa, c714fba, 99e1a16), docs (3c41d23), apps (b60a22f), tooling (53a4f1a) and app-templates (a075a7b)."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "a075a7b03c9caac8ccb247ca7bcaaca42adbd7be"
+    ],
+    "reason": "One commit in app-templates.",
+    "message": "docs(readme): link the platform design at lernapps.net\n\n## Intent\n\nStart clean. Nothing needs to stay compatible yet, so forwards of old addresses, mentions of the map and of the earlier edugo idea, and the old domain lernapps.github.io go away in every repo.\n\n## Key changes\n\n- The README links the platform design at lernapps.net instead of lernapps.github.io.\n\n## Dependencies and side effects\n\n- The same clean-up in lernapps.github.io (127d4fa, c714fba, 99e1a16), docs (3c41d23), apps (b60a22f), tooling (53a4f1a) and app-templates (a075a7b)."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "127d4facf877dafd172af90bfae0f7630f928c75",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "c714fba09874cb121d53da986c4911614c17806d",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "99e1a162a0b2c041591405fa0fb02a9afc43f2b6",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "3c41d236f3fce7b74cacee323a68314ef7fe5d6b",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "b60a22f17a5b600b7b497d0e1b94eda5a2550639",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "53a4f1a9cc80d29e770e097570fbdcec52cbcc34",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  },
+  {
+   "commit": "a075a7b03c9caac8ccb247ca7bcaaca42adbd7be",
+   "from": "i225",
+   "kind": "split",
+   "why": "Second request of i225: remove all legacy, unrelated to thanks by e-mail."
+  }
+ ],
+ "session": "session_01EyV1HdhPctE65bCEgVHtuE",
+ "start": "2026-10-07T11:51:23.378308Z"
+}

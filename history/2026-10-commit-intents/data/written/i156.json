@@ -1,0 +1,28 @@
+{
+ "id": "i156",
+ "conventionalCommit": "feat(evals): score the skills loaded in their phase (A2), from the architecture",
+ "intent": "The evals should also show whether the agent loads the right skills in the right phase. The phases of the skills are already in the architecture, so the expectation can come from there. Old runs used other skill names, so the new dimension starts as its own baseline.",
+ "keyDecisions": [
+  "a new dimension beside the existing ones, so old and new runs stay comparable on those",
+  "do not re-score the runs of 18 October, since the skills had other names then",
+  "the expectation comes from x-phase of the skill blocks at the job's guidance commit, written into each job",
+  "conditional skills are named per task in task.toml, not in the architecture",
+  "two values: skills_in_phase and skills_out_of_place"
+ ],
+ "trigger": "\"Können wir denn die harbor-Konfiguration ergänzen um bounties für das aktivieren der richtigen skills? Deren Phasen stehen ja in der Architektur bei den Building Blocks\" … \"Die skills hießen bei dem vorherigen Kauf auch noch anders. Replay bringt nicht viel\" … \"ja, bau die Dimension\"",
+ "kind": "eval",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "55390a67ba39bb05e5dd3f7446620948d0dd2e24"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat(evals): score the skills loaded in their phase (A2), from the architecture\n\n## Intent\n\nShow in the evals whether the agent loads the skills its guidance names for a phase, in that phase. The phases of the skills are in the architecture, so the expectation comes from there.\n\n## Key changes\n\n- Two new values per trial: skills_in_phase (the share of expected skills loaded in full within their phase) and skills_out_of_place (a skill of another archetype, or one loaded before its phase).\n- The expected skills come from the x-phase of the skill blocks in the architecture at the job's guidance commit. run.sh writes them into each job, so later changes do not move old scores.\n- Each task names the skills it leaves to a condition (skills_conditional in task.toml).\n- Jobs without the file, like the runs of 18 October, keep their scores; the report shows the two rows empty for them.\n- A read of SKILL.md after cd into the skill's folder counts as a load."
+   }
+  ]
+ },
+ "moved": []
+}

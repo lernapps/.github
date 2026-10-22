@@ -1,0 +1,34 @@
+{
+ "id": "i042",
+ "conventionalCommit": "docs(arc42): complete the architecture of the tooling for agentic app creation",
+ "intent": "With goals and archetypes settled, complete the architecture so it can be reviewed as a whole. Failed pre-push runs should stay below 5 at the 90th percentile.",
+ "keyDecisions": [
+  "one generic rule with scope (listing, site, archetype) and severity (error, warning, hint) plus an enforcement level, over five separate rule terms",
+  "rules move down a promotion path from review to check, skill rule or plan step",
+  "one package @lernapps/tooling; templates in a separate repo; listing validation in apps",
+  "three decisions left as proposals: explainer rendering, quiz question types, order of building",
+  "p90 of failed pre-push runs below 5"
+ ],
+ "trigger": "\"I’d be happy with p90 < 5 failures. We can complete the architecture now, no?\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i041",
+   "note": "the remaining chapters"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "855a5fdb1a9512e0155c821179b94f4f0da97a3e"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(arc42): complete the architecture of the tooling for agentic app creation\n\n## Intent\n\nWith goals and archetypes settled, complete the architecture so it can be reviewed as a whole. Failed pre-push runs should stay below 5 at the 90th percentile.\n\n## Key changes\n\n- Chapters 2 to 9, 11 and 12: constraints, context, solution strategy, building blocks, runtime scenarios, deployment, concepts (rule model, promotion path, plan file, messages for agents, validation report), 21 decisions, risks and glossary.\n- Chapter 1 shows the five-step journey of a creator: clarify, set up, build, validate, list.\n- The scenario for failed pre-push runs uses p90 below 5."
+   }
+  ]
+ },
+ "moved": []
+}

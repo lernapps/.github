@@ -1,0 +1,48 @@
+{
+ "id": "i213",
+ "conventionalCommit": "docs(pdt42): wip — MVP in two stages, first draft and real MVP (D8)",
+ "intent": "Plan the leanest test of the riskiest assumptions with the real ecosystem: does supply come about, and does thanks work as the currency of a free platform, which sounds idealistic? Only 5 to 10 creators are known now, and teachers still have to be won.",
+ "keyDecisions": [
+  "users are neither accompanied nor observed, because watched users behave differently, over a guided test group",
+  "measure outcomes (do thanks arrive, do creators stay) over rates, since there is no denominator without tracking",
+  "small absolute criteria and conversations with creators over percentages, given 5 to 10 creators and up to 10 teachers",
+  "two stages, a first draft with creators now and the real MVP with teachers later, over one MVP",
+  "winning teachers is itself a riskiest assumption of the real MVP",
+  "comparing wordings for thanks dropped until there are enough users"
+ ],
+ "trigger": "\"Wir sollten auch validieren, ob das mit dem Dank als Währung klappt. Das klingt schon sehr idealistisch.\" … \"Ich finde das begleiten der Testgruppe schwierig. … ich fürchte, dass sie sich unter Beobachtung anders verhalten\" … \"vielleicht sollten wir unterscheiden von einem echten MvP, für das ich eben mehr Kontakte herstellen muss und einem ersten Entwurf\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i212",
+   "note": "the MVP tests the D7 experiences and thanks as currency"
+  },
+  {
+   "type": "continues",
+   "intent": "i203",
+   "note": "supply is a riskiest assumption"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "ec8c1c42c1ef7eb3d06a2278588bd71618321dd9",
+     "dc2249cb863a521f3a362d75b8b6a7f35c908da2"
+    ],
+    "reason": "The draft of D8 and its split into two stages, one after the other on feat/platform-design, both marked wip.",
+    "message": "docs(pdt42): wip — MVP in two stages, first draft and real MVP (D8)\n\n## Intent\n\nPlan the leanest test of the riskiest assumptions with the real ecosystem: does supply come about, and does thanks work as the currency of a free platform? Only 5 to 10 creators are known now, and teachers still have to be won.\n\n## Key changes\n\n- A new D8 chapter holds two MVPs. The first draft \"First draft: first apps\" starts now with the known creators. It tests the supply side and the anonymous thanks from school networks, and produces material to win teachers.\n- The real MVP \"First apps, first thanks\" follows with about 10 teachers. Winning them is itself a riskiest assumption; thanks and built-in trust are tested there.\n- Nobody is accompanied or observed. Without tracking there is no rate, so the tests measure outcomes with small absolute criteria and conversations with creators.\n- The development plan adds KD-19 and a list of next actions outside the model.\n\n## Dependencies and side effects\n\n- Hints remain for assumptions that still need a test or a criterion."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "dc2249cb863a521f3a362d75b8b6a7f35c908da2",
+   "from": "i214",
+   "kind": "dropped",
+   "why": "Splits the D8 draft into a first draft and the real MVP; i214 has no commits left."
+  }
+ ]
+}

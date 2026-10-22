@@ -1,0 +1,35 @@
+{
+ "id": "i240",
+ "conventionalCommit": "feat(home, app-page): truer promises, a checked app, and feedback straight to the maker",
+ "intent": "The third persona round found a badge that promised more than the privacy notice says, parents looking for their child's grade, teachers asking what happens to apps if lernapps.net ends, and developers asking whether keeping the rules is enough and how long listing takes. The pages should promise only what is true. The app page should say that the app was checked, be clear about who is responsible for privacy on an app hosted by its maker, and let feedback reach the maker directly.",
+ "keyDecisions": [
+  "the catalogue page says the app was checked, but an app on its maker's site is an external site whose privacy lernapps.net cannot take responsibility for; people with concerns can ask the maker to host it on lernapps.net",
+  "an app that keeps the rules is listed, over a decision by the operator",
+  "promise that listing a finished app takes a few hours",
+  "feedback can go straight to the maker as an issue on GitHub, offered on every app page",
+  "\"Eingaben bleiben auf dem Gerät\" over \"Nichts verlässt das Gerät\", since GitHub Pages sees the IP address"
+ ],
+ "trigger": "\"Zu meinen Entscheidungen: 1. Die Katalogseite sollte sagen: Die App wurde geprüft. Aber es ist technisch eine externe Seite. Da können wir keine Verantwortung für den Datenschutz übernehmen. … 2. Ja 3. wenige Stunden 4. Issue erstellen können wir ruhig schon direkt in das Feeback auf jeder Seite aufnehmen (apps feature)\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i238", "note": "acts on the third persona round"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["45e8c7b582f754db99d41811f729ecc57697591d"],
+    "reason": "The apps side of this request.",
+    "message": "feat(app-page): say the app was checked, mark external sites, and offer an issue to the maker\n\n## Intent\n\nTeachers asked who stands behind the privacy of an app that lives at its maker's own address. Developers asked for feedback that reaches them directly. The app page should say that the app was checked, be clear about who is responsible on an external site, and let feedback go straight to the maker.\n\n## Key changes\n\n- The fitness note says: \"Die App wurde geprüft: Bei der Aufnahme hat eine automatische Prüfung diese Angaben mit der App verglichen.\"\n- An app outside lernapps.net gets a second note: it is on an external site (the host is named), lernapps.net cannot take responsibility for privacy there, and whoever has concerns can ask the maker to host the app on lernapps.net, with a link to the maker.\n- For an app whose source is on GitHub, the feedback offers \"Du hast ein GitHub-Konto? Dann schreib es direkt an <maker>: Issue anlegen\". It opens a new issue in the app's repository with the title and the app's address filled in.\n\n## Dependencies and side effects\n\n- The website explains both ways of feedback and the scope of the privacy notice (lernapps.github.io 3333e36)."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": ["3333e36e2dc20e7dfbf2a33cacfd5a7e05ba311a"],
+    "reason": "The website side of this request.",
+    "message": "feat(home): truer badges, the grade in one click, a listing promise and the scope of the privacy notice\n\n## Intent\n\nA badge promised more than the privacy notice says. Parents looked for their child's grade, teachers asked what happens to apps if lernapps.net ends, and developers asked whether keeping the rules is enough and how long listing takes. The pages should promise only what is true and answer these questions.\n\n## Key changes\n\n- Hero badges: \"Eingaben bleiben auf dem Gerät\" instead of \"Nichts verlässt das Gerät\", since GitHub Pages sees the IP address, as the privacy notice says; and \"Auch auf dem Handy\".\n- Under the examples: links by grade (3 to 13) and by subject into the catalogue's filter, and \"Die Apps liegen bei ihren Machern, nicht bei uns. Gäbe es lernapps.net nicht mehr, liefen sie weiter.\"\n- /features/: \"Erfüllt die App die Regeln, wird sie aufgenommen\", and listing a finished app takes a few hours in all; /join/ says so too. A new block \"Rückmeldungen kommen bei dir an\": email through lernapps.net today, and an issue in the maker's repository straight from the app page.\n- Privacy notice, scope: apps that their makers publish at their own address are external sites. They are checked when listed, but their makers are responsible for privacy there; the catalogue page says where an app lives.\n\n## Dependencies and side effects\n\n- The issue link on the app page is in the apps repo (45e8c7b).\n- The privacy notice is a legal text and needs a human read."
+   }
+  ]
+ },
+ "moved": []
+}

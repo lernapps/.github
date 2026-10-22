@@ -1,0 +1,39 @@
+{
+ "id": "i131",
+ "conventionalCommit": "docs(plan): evals measure following the process",
+ "intent": "When an agent follows the guidance and the creator knows the subject, the app is good. So the evals should measure how well the agent follows the process, not the quality of the content, and the next step is to make the guidance cheaper for agents.",
+ "keyDecisions": [
+  "measure how well the agent follows the process, over scoring content quality",
+  "no review agent on the built apps for now",
+  "next: a compact guidance for agents, compared in quality and cost"
+ ],
+ "trigger": "\"wenn sich der agent an die Anleitungen gehalten hat, können wir davon ausgehen, dass die apps dann gut sind, wenn der Creator eine hohe Domänenexpertise hat. daher fokussieren wir uns auf das Befolgen des Vorgehens\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i129",
+   "note": "sets the focus of the evals after the first matrix"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "e01eb33741a22cb47c6ec55c29b009499e8e42df"
+    ],
+    "reason": "A plan commit alone: the test fix it would join by the plan rule serves the merge of the eval branch (i130).",
+    "message": "docs(plan): evals focus on following the process; first results and next step\n\n## Intent\n\nAn app the agent built by the guidance is good when its creator knows the subject. The evals should therefore measure how well the agent follows the process, not the quality of the content.\n\n## Key changes\n\n- Step 10 of the plan records the focus: the evals measure how the agent follows the process; content quality is not scored.\n- It links the first results (33 runs, three archetypes with Haiku, Sonnet and Opus 5.5) at lernapps.net/tooling/evals/.\n- Next: optimise the guidance for agents (compact, bullets, less boilerplate) and compare quality and cost."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "e01eb33741a22cb47c6ec55c29b009499e8e42df",
+   "from": "i132",
+   "kind": "plan-rule",
+   "why": "Records the focus asked for here. Its joinsWith commit 9a930cf (a test timeout) serves the merge of the eval branch and is in i130, so it stays its own commit."
+  }
+ ]
+}

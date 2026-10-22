@@ -1,0 +1,26 @@
+{
+ "id": "i246",
+ "conventionalCommit": "feat(llms): explain safety and thanks in llms.txt",
+ "intent": "Assistants that answer the new role prompts found nothing on how thanks reach an app's makers, and read the safety of listed apps only indirectly. lernapps.net wants to convey safety. llms.txt should say plainly how listed apps are checked, that apps hosted by their makers meet the same requirements, and how a thank-you works.",
+ "keyDecisions": [
+  "put safety and thanks into llms.txt, over adding more detail to the prompts",
+  "say openly that lernapps.net is no certification body and no replacement for a school's approval",
+  "thanks is a deliberate click whose sum alone is stored, over reading it as donations"
+ ],
+ "trigger": "\"Ergänze Dank und Sicherheit in der llms.txt\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i244", "note": "the assistant tests of the role prompts found no answer on thanks and only an indirect one on safety"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["9fa66d84e061f906f318bfc09217279b4e6029c0"],
+    "reason": "The only commit of this request; it follows the Mathe-Karte commit directly but serves another request, so they stay apart.",
+    "message": "feat(llms): explain safety and thanks in llms.txt\n\n## Intent\n\nAssistants that answer the role prompts of the home page need a plain source on safety and on thanks. They should be able to say how listed apps are checked, that apps hosted by their makers meet the same requirements, and what a maker gets back when someone uses their app.\n\n## Key changes\n\n- A section \"Sicherheit\": every listed app meets the same requirements, also when it is not on lernapps.net but with its makers. It names the rules (in the browser, no sign-in, no own server, no cookies, no tracking, no ads, other servers only after a click), the automatic check of the running app, the review by an AI agent and the operator's decision. lernapps.net is no certification body and no replacement for a school's approval. Links to the rules and the privacy page.\n- A section \"Danke\": a thank-you is a deliberate click, only the sum is stored, and the makers learn of it. Assistants that recommend an app should mention that people can say thanks."
+   }
+  ]
+ },
+ "moved": []
+}

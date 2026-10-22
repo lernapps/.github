@@ -1,0 +1,35 @@
+{
+ "id": "i081",
+ "conventionalCommit": "feat(quiz): the quiz in several languages",
+ "intent": "A quiz should be possible in several languages, as an explainer is, so that both archetypes behave the same before the first explainer run. This is step 4 of the explainer MVP.",
+ "keyDecisions": [
+  "no new template or archetype: the existing quiz runtime and template are extended",
+  "a skill change alone cannot work, because quiz-only-data forbids code and the runtime built one page in one language",
+  "the explainer's page-tree and language-switch code moves into the shared runtime instead of being copied",
+  "full tests in German only; other languages get a short no-JavaScript test and one answered question",
+  "single-language banks render byte for byte as before"
+ ],
+ "trigger": "\"Why do we need a separate template for it, not only an expansion in the specific skill?\" … \"Agreed\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i077",
+   "note": "step 4, added to the plan there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "915a1f1caa02b434648cf8bfcfbfc0036aba71af",
+     "63663c36c9e08c5089eb03c93a3df97783e3b2f8"
+    ],
+    "reason": "Both commits of app-templates#16 serve one thought: the refactor moves the language code into the shared runtime only so that the quiz can use it.",
+    "message": "feat(quiz): the quiz in several languages\n\n## Intent\n\nA quiz should be possible in several languages, as an explainer is, so that both archetypes behave the same before the first explainer run. A quiz app may only write its question bank, and the runtime built exactly one page in one language, so a skill alone cannot give a quiz a second language. This is step 4 of the explainer MVP.\n\n## Key changes\n\n- The explainer's page trees, page language, hreflang alternates and language switch of plain links move to the shared runtime; every explainer page renders byte for byte as before.\n- A bank may declare its languages, German first; every learner text, the title, intro and source titles too, is then a map with each of them. The build fails on a missing translation, an undeclared language, or German not first.\n- The build writes a page per language: German at the root, others below /<language>/, each with hreflang, a switch that works without JavaScript, the worksheet with solutions, and the engine's texts in that language.\n- quizTests() runs in full in German; for every other language it checks the page without JavaScript and one answered question.\n- A German-only bank builds the same page as before; a small bilingual fixture runs in its own CI job."
+   }
+  ]
+ },
+ "moved": []
+}

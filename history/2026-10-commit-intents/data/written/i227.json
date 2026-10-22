@@ -1,0 +1,31 @@
+{
+ "id": "i227",
+ "conventionalCommit": "docs(biz42): date the objectives from the start of the first draft",
+ "intent": "The objectives of the business model need real dates. The first draft of the MVP starts at the end of October 2026.",
+ "keyDecisions": [
+  "read \"the MVP\" as the first draft, over the real MVP with about 10 teachers",
+  "first apps listed by mid-November; thanks and the first referral wave by the end of November"
+ ],
+ "trigger": "\"Zu den Daten: ich Pelle an, den mvp am Ende Oktober zu verproben\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i226",
+   "note": "resolves one of the OPEN rows"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "a7988fd8d2895ca017c637b15f11cf6650828a6f"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(biz42): date the objectives from the start of the first draft\n\n## Intent\n\nThe objectives of the business model need real dates. The first draft of the MVP starts at the end of October 2026.\n\n## Key changes\n\n- The objectives follow from the time frames of the first draft's assumptions: listing by mid-November, thanks and the first referral wave by the end of November.\n- The evidence row on the dates is confirmed."
+   }
+  ]
+ },
+ "moved": []
+}

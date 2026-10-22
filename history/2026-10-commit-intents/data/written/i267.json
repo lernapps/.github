@@ -1,0 +1,25 @@
+{
+ "id": "i267",
+ "conventionalCommit": "docs(listing): the listing skill follows the listing guide in the apps repo",
+ "intent": "Everything about listing an app belongs in the apps repo, and its listing guide now lives at apps/enter/llms.txt. The tooling's listing skill still pointed to apps/llms.txt, which is now only a short overview, so its step-by-step link ran into nothing. The skill should point to the new guide and stop repeating how to read the results comment.",
+ "keyDecisions": [
+  "get write access to the tooling repo and change it in a pull request of its own, over leaving the change to the person",
+  "the skill keeps one or two sentences on the results comment and points to the guide, over keeping its own copy of the steps"
+ ],
+ "trigger": "\"Hol dir Schreibzugriff\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i266", "note": "moves the listing guide into the apps repo; this commit makes the tooling follow it"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["78ccbc6071a3caff023d52206d880e03913093b5"],
+    "reason": "The only commit of this request.",
+    "message": "docs(listing): the listing skill follows the listing guide in the apps repo\n\n## Intent\n\nEverything about listing an app belongs in the apps repo. Its listing guide now lives at apps/enter/llms.txt, and apps/llms.txt is only a short overview. The listing skill must point to the new guide, or its step-by-step link runs into nothing.\n\n## Key changes\n\n- The listing skill sends the assistant to https://lernapps.net/apps/enter/llms.txt for the steps.\n- How to read the results comment is no longer repeated in the skill; it names the guide and keeps only what happens after \"bestanden\".\n- The tooling's llms.txt and the risk \"Creators without a shell\" link the new guide; the guidance test expects the new address.\n\n## Dependencies and side effects\n\n- Needs the listing guide of the apps repo (apps#55), which must not be merged before this change."
+   }
+  ]
+ },
+ "moved": []
+}

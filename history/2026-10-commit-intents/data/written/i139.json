@@ -1,0 +1,38 @@
+{
+ "id": "i139",
+ "conventionalCommit": "refactor(skills): act on the evaluation: archetype choice from the template's README, GitHub only in Commit",
+ "intent": "The manual evaluation showed what worked and what did not. Agents read less and mostly at the right time, but they did not know what an archetype can do during the interview, pulled Code skills forward, never reread a rule after a red check, bypassed the pre-commit hook for empty commits, and skipped phase changes. Setting up GitHub late keeps technology out of the way at the start. The skills should be cut again where the evaluation shows a need, and what an archetype can do should come from the place that changes with the feature.",
+ "keyDecisions": [
+  "GitHub only in Commit: Code stays local, lernapps-github-setup merges back into lernapps-github",
+  "choose the archetype after the topics goal and learners, then load its design skill (renamed from -plan) for the rest of the interview",
+  "what an archetype can do lives in a README per template in app-templates, read by URL; turned down: a generated capability table, a trial create, examples",
+  "small references fold into SKILL.md (quiz, interactive); exercise patterns are split by subject",
+  "the platform rules move to lernapps-check",
+  "each phase starts by checking the plan's phase",
+  "the pre-commit hook lets commits with nothing staged pass, so agents have no reason to bypass it",
+  "keep lernapps update at the start of Code in increments, since its skill belongs to Code"
+ ],
+ "trigger": "\"Ich finde das mit dem späten Github eigentlich ziemlich cool, dann kommt die Technik am Anfang nicht in den Weg\" … \"Setz das jetzt alles auf dem Branch um\" … \"Das mit dem generieren gefällt mir nicht. Könnten wir dafür nicht einfach das readme des templates nutzen?\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i138", "note": "acts on the manual evaluation of the rework done there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["395ecc5d171af8cede67ef4dd2b48d9df958f5e5"],
+    "reason": "The only app-templates commit of this request.",
+    "message": "docs: a README per archetype: what it can and cannot do, what the app supplies\n\n## Intent\n\nAgents need to know what an archetype can do before they choose it, and humans look in the template's README first. A README that changes in the same pull request as the feature cannot fall behind it.\n\n## Key changes\n\n- quiz/, explainer/ and interactive/ each get a README: what the template can do and cannot do, and what the app supplies. No examples.\n- The main README links them.\n\n## Dependencies and side effects\n\n- The tooling's skills read these READMEs by URL before the archetype is chosen (tooling 341e27e)."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["341e27ef540910f23dd2627b18ecaeb1f2df7530"],
+    "reason": "One commit already: the work-in-progress commit was squashed into it before the push.",
+    "message": "refactor(skills): act on the evaluation: archetype choice from the template's README, GitHub only in Commit\n\n## Intent\n\nThe manual evaluation showed that agents did not know what an archetype can do during the interview, pulled Code skills forward, never reread a rule after a red check, bypassed the pre-commit hook for empty commits, and skipped phase changes. Setting up GitHub late keeps technology out of the way at the start.\n\n## Key changes\n\n- Explore: the archetype is chosen after \"Goal\" and \"Learners\", from the README of each template in app-templates, read by URL. Then the agent installs and loads lernapps-<archetype>-design (was -plan) for the rest of the interview.\n- Code stays local on work. lernapps-github, with lernapps-github-setup merged into it, puts the app on GitHub in Commit.\n- Each phase starts by checking the plan's phase.\n- Quiz and interactive: their references are folded into SKILL.md. The exercise patterns are split by subject. The platform rules move to lernapps-check. An exercise component does not count as the page's exercise.\n- create leaves out the template's README; the pre-commit hook passes a commit with nothing staged.\n- Tests, package exports, llms.txt and the architecture follow.\n\n## Dependencies and side effects\n\n- Needs the template READMEs in app-templates (395ecc5)."
+   }
+  ]
+ },
+ "moved": []
+}

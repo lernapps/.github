@@ -1,0 +1,29 @@
+{
+ "id": "i107",
+ "conventionalCommit": "feat(interactive): the runtime of the interactive archetype and a letter-typing template",
+ "intent": "Step 1 of the decided interactive archetype: apps whose doing is the content need a runtime that gives them a static start page, an app page and languages, while the agent stays free in logic and rendering. The core must be deterministic and testable by playthroughs, and the app must stay within a size budget, so that the build can check what a free app does.",
+ "keyDecisions": [
+  "a core contract start(seed, route), step(state, key) and optional tick(state, dt), kept by the runtime",
+  "playthroughs as data, played against the core at build and with the keyboard in the browser",
+  "the explainer's component checks reused for the whole app, with a wider import scope",
+  "one size budget of 100 kB gzip for the app's own code, over a budget per component",
+  "a small letter-typing game as the template",
+  "left out on purpose: the tooling side, the storage quota, the exercise contract with the tutor, and settings"
+ ],
+ "trigger": "\"Keine Blitze ist auch keine Pflicht, reizarmheit sollte per skill empfohlen werden. Leg los\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "continues", "intent": "i106", "note": "step 1 of the decided interactive sketch"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["c5e72850262ebc1875d25d9424befcb6c2566a6f"],
+    "reason": "The only commit of this step (app-templates#33).",
+    "message": "feat(interactive): the runtime of the interactive archetype and a letter-typing template\n\n## Intent\n\nStep 1 of the interactive archetype. Apps whose doing is the content need a runtime that gives them a start page, an app page and languages, while the agent stays free in logic and rendering. The build must still be able to check them: a deterministic core, playthroughs and a size budget.\n\n## Key changes\n\n- A new runtime interactive/ with its schemas for src/app.yaml and the playthroughs.\n- A static start page from src/app.yaml without any script, with a <noscript> note, and an app page that mounts the app's root component.\n- German first, and each declared language complete. Routes are app/#<id>, each an anchor of the app page.\n- The runtime keeps the state of the app's core: start(seed, route), step(state, key) and optional tick(state, dt).\n- The build checks the components with the explainer's code checks, now reusable with a wider import scope, plays every playthrough against the core twice, and keeps the app's own code within 100 kB gzip.\n- interactiveTests() checks both pages without JavaScript and plays every playthrough with the keyboard in the browser.\n- The template interactive/ is a small letter-typing game with two lessons as data and two playthroughs, and runs in the CI matrix.\n\n## Dependencies and side effects\n\n- The explainer's component checks move into a shared module; their behaviour for the explainer stays the same."
+   }
+  ]
+ },
+ "moved": []
+}

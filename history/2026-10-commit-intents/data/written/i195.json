@@ -1,0 +1,49 @@
+{
+ "id": "i195",
+ "conventionalCommit": "docs(pdt42): portray the entity-roles (D2)",
+ "intent": "Describe for every peer role what drives it and which gains it seeks today, independent of lernapps.net. The motivations (D3) and the platform's value propositions build on these portraits.",
+ "keyDecisions": [
+  "start with the core relationship (creators, adopting adults), as the CLI recommends",
+  "drafts from E1, E2, the vision and earlier statements, with unvalidated items named as assumptions in the prose, over waiting for interviews",
+  "AI assistants seek a working app with fewer iterations; instructions and scaffolding are what lernapps.net offers and stay out of the portrait",
+  "AI assistants' value gain: build apps that can easily be used",
+  "a potential for social media taken from the E2 observation, over a file-wide ignore of H104"
+ ],
+ "trigger": "\"Lösche den Klon und mach weiter mit d2\" … \"Ich bin unsicher was reach, convenience und value gains sind\" … \"Bei den Agenten überlege ich, ob wir für sie convenience gains mit besseren Instruktionen oder scaffolding schaffen würden.\" … \"Value wäre, dass sie Apps bauen, die einfach genutzt werden können\" … \"Passt so\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i192",
+   "note": "portraits of the roles mapped in D1"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "3136aba592e77cf304fceec6a7ff19ea83ec532c",
+     "be53e87fcf7e622a4513d837cbd07bd0a2eb6aff",
+     "bdc313d52ae6bd115c4aaa4c3a1c523ecff5b078"
+    ],
+    "reason": "Three commits of D2, one after the other on feat/platform-design, two of them marked wip; together they portray all six peer roles.",
+    "message": "docs(pdt42): portray the entity-roles (D2)\n\n## Intent\n\nDescribe for every peer role what drives it and which gains it seeks today, independent of lernapps.net. The motivations (D3) and the platform's value propositions build on these portraits.\n\n## Key changes\n\n- E2 portrays all six peer roles: app creators, adopting adults, students, teacher platforms, social media and AI assistants. Each portrait has context, potential, goals, pressures and the convenience, reach and value gains the role seeks today.\n- Each portrait has its Entity-Role Portrait canvas next to the entity.\n- The prose of each role names the items that are still assumptions.\n- AI assistants seek a working app with fewer iterations and want to build apps that can easily be used. The text notes that lernapps.net plans to serve this with instructions and scaffolding.\n- Social media stays minimal; its potential is spreading apps by recommendation, as observed in E2.\n- The development plan marks D2 done and adds KD-11."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "be53e87fcf7e622a4513d837cbd07bd0a2eb6aff",
+   "from": "i196",
+   "kind": "dropped",
+   "why": "Portrait of the AI assistants, part of D2; i196 has no commits left."
+  },
+  {
+   "commit": "bdc313d52ae6bd115c4aaa4c3a1c523ecff5b078",
+   "from": "i197",
+   "kind": "dropped",
+   "why": "Last three portraits that finish D2; i197 has no commits left."
+  }
+ ]
+}

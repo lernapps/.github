@@ -1,0 +1,77 @@
+{
+ "id": "i167",
+ "conventionalCommit": "docs(agents): agents reply in plain language as per ISO 24495",
+ "intent": "Agents working in the lernapps repositories should reply in plain language, so that the reader finds what they need, understands it and can use it.",
+ "keyDecisions": [
+  "one line in AGENTS.md that names the standard, over writing its rules out",
+  "CLAUDE.md imports AGENTS.md, so Claude Code and other agents read the same instruction",
+  "push directly to main together with the commit skill, over a pull request per repo"
+ ],
+ "trigger": "\"Außerdem ergänze in allen repos AGENTS.md mit “Reply as per ISO 24495” Danach kannst Du beides (commit skill und agents.md) direkt auf Main pushen\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i166",
+   "note": "goes to main together with the commit skill"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "7420306a53d4411fe8ef12b7d70773b63076fdf4"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: app-templates ec64acc, apps 46144a8, lernapps.github.io 2eab101, docs a8d5632, .github a5ddfb2."
+   }
+  ],
+  "app-templates": [
+   {
+    "commits": [
+     "ec64accf0981323b192016076e990e659c256106"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: tooling 7420306, apps 46144a8, lernapps.github.io 2eab101, docs a8d5632, .github a5ddfb2."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "46144a8e685605141defd10abb5ae6630965771f"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: tooling 7420306, app-templates ec64acc, lernapps.github.io 2eab101, docs a8d5632, .github a5ddfb2."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "2eab1013fac66911d5854f49338ff7f5dc88fb35"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: tooling 7420306, app-templates ec64acc, apps 46144a8, docs a8d5632, .github a5ddfb2."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "a8d563299cda880f6b702478ea2ea5a21102e08e"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: tooling 7420306, app-templates ec64acc, apps 46144a8, lernapps.github.io 2eab101, .github a5ddfb2."
+   }
+  ],
+  ".github": [
+   {
+    "commits": [
+     "a5ddfb21455358c6968bbde670fcc2981e560d7f"
+    ],
+    "reason": "The one commit of this request in this repo; the commit before it belongs to the commit-skill request.",
+    "message": "docs(agents): agents reply in plain language as per ISO 24495\n\n## Intent\n\nAgents working in the lernapps repositories should reply in plain language. ISO 24495 (Plain language) names the principles: the reader finds what they need, understands it and can use it.\n\n## Key changes\n\n- AGENTS.md holds the instruction \"Reply as per ISO 24495\" for every agent that reads it.\n- CLAUDE.md imports AGENTS.md, because Claude Code reads only CLAUDE.md.\n\n## Dependencies and side effects\n\n- Every platform repository gets the same two files: tooling 7420306, app-templates ec64acc, apps 46144a8, lernapps.github.io 2eab101, docs a8d5632."
+   }
+  ]
+ },
+ "moved": []
+}

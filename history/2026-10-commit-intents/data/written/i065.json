@@ -1,0 +1,36 @@
+{
+ "id": "i065",
+ "conventionalCommit": "refactor(check): remove the site scope and every site rule from the tooling",
+ "intent": "Since every app lives at its developer's hosting, the rules of lernapps.net's own websites do not belong in the tooling that serves creators; they produced false errors on apps hosted elsewhere. Readability without JavaScript matters only to lernapps.net's own websites, not to apps.",
+ "keyDecisions": [
+  "remove the site scope, the site checks and the --site option entirely, over skipping site-only rules for apps hosted elsewhere",
+  "drop readable-without-javascript for apps, over moving it to the listing scope or to the site frame",
+  "nothing moves to the site frame; the site frame owns the websites' rules",
+  "drop the noscript ask from the interactive archetype's start-page rule as well"
+ ],
+ "trigger": "\"1. agreed. Actually, I wonder why we have site rules actually in the check api.\" … \"1. Remove site scope and rules from the check entirely. 2. readable without JS is only important to the site => remove it for apps\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i048b", "note": "removes site-check, readable-without-javascript and the --site option of the check CLI"},
+  {"type": "continues", "intent": "i058", "note": "follows from the decision that apps live at their developer's hosting"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["9bff1e770282fecb6575d16c76bc95c477eeb32a", "d804be030268294e689f9b4931095f313cdc7c4b"],
+    "reason": "The removal and the glossary prose fix the architecture review asked for follow each other directly on the branch of #47.",
+    "message": "refactor(check): remove the site scope and every site rule from the tooling\n\n## Intent\n\nEvery app lives at its developer's hosting, so the rules of lernapps.net's own websites do not belong in the tooling that serves creators; a run on an app hosted elsewhere reported false errors. Readability without JavaScript matters only to lernapps.net's own websites.\n\n## Key changes\n\n- The checks site-check and readable-without-javascript, the page visit without JavaScript and the --site option are gone; --site is now a usage error.\n- The rule sections readable-without-javascript and imprint-and-privacy and the scope site leave the skill, the rule-id test, the rule page and the verdict schema; rules that were listing and site are listing only.\n- The explainer archetype no longer asks for every page to be readable without JavaScript.\n- @lernapps/site becomes a development dependency, used only by the docs site build.\n- The architecture no longer names site rules; the glossary explains its changed terms in the prose."
+   },
+   {
+    "commits": ["66a2b63986cd14203b6e6779c8de9eda636769eb"],
+    "reason": "A follow-up merged as its own pull request (#49) after #47.",
+    "message": "fix(rules): drop the noscript ask from start-page-explains\n\n## Intent\n\nReadability without JavaScript matters only to lernapps.net's own websites, but the interactive archetype's start-page rule still asked apps for a noscript text.\n\n## Key changes\n\n- The rule start-page-explains and its rubric item only ask the start page to say what learners train, for whom and how to begin."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "d804be030268294e689f9b4931095f313cdc7c4b", "from": "i066", "kind": "moved", "why": "Fixes the architecture review warning of the site rule removal (#47)."},
+  {"commit": "66a2b63986cd14203b6e6779c8de9eda636769eb", "from": "i067", "kind": "moved", "why": "The follow-up of the site rule removal: no noscript ask for apps."}
+ ]
+}

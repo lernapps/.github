@@ -1,0 +1,33 @@
+{
+ "id": "i152",
+ "conventionalCommit": "feat(site): the vision on the docs start page as the change from personal software to many",
+ "intent": "The most important part of the docs start page, the vision, was weak: it described listing, a dull process. The vision is the change from personal software built for one child or one class to a real change for many, which everyone can use without worry. The wording must not speak to a single persona.",
+ "keyDecisions": [
+  "\"Viele kleine Lösungen. Eine große Veränderung.\" as the heading, over persona-bound headings",
+  "the term personal software in the subline",
+  "tiles for origin, reach and trust, over the steps of listing",
+  "the home page leaves the tiles of the parts of lernapps.net"
+ ],
+ "trigger": "\"Das wichtigste auf der Seite, die Formulierung der Vision ist schwach. … worum es geht, von Personal Software für das eigene Kind, die eigene Klasse, zu einer wirklich Veränderung für viele, die sich auch sorgenfrei nutzen können.\" … \"4. aber den Begriff Personal Software in der unterzeile. Die Startseite als Teil der Plattform kann raus.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i151",
+   "note": "rewrites the vision card"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "8012cc09e8e5fe91d72866e0f13a4362dac46fb0"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat(site): the vision on the docs start page as the change from personal software to many\n\n## Intent\n\nThe vision card described how listing works, not what lernapps.net is for. The vision is the change from personal software for one class or child to a change for many, used without worry, and it should speak to no single persona.\n\n## Key changes\n\n- Heading: \"Viele kleine Lösungen. Eine große Veränderung.\" (en \"Many small solutions. One real change.\").\n- Subline: personal software mostly stays where it was made; lernapps.net turns it into a change for many, easy to find, free to use and without worry.\n- Tiles: made where it is needed, reaching far beyond, used without worry.\n- The home page leaves the parts of lernapps.net; three tiles in a row."
+   }
+  ]
+ },
+ "moved": []
+}

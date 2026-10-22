@@ -1,0 +1,34 @@
+{
+ "id": "i245",
+ "conventionalCommit": "docs: stop promoting the Mathe-Karte; point to the app catalogue",
+ "intent": "The Mathe-Karte is one app among others and should no longer be promoted on its own, nor split into sub-apps that assistants then report as several apps. The home page and the platform documents should point to the app catalogue instead.",
+ "keyDecisions": [
+  "attach the docs repo and change it too, over leaving the Mathe-Karte in the platform documents",
+  "point to the app catalogue where the Mathe-Karte was the example",
+  "leave recorded user answers in the business evidence unchanged, over rewriting them",
+  "leave the page /mathe-karte/ and its own repo untouched"
+ ],
+ "trigger": "\"Binde alle beiden Reis ein und nimm die Mathe Karte aus docs  raus. Verweise ggf. Auf den App Katalog\"",
+ "kind": "docs",
+ "relations": [
+  {"type": "continues", "intent": "i244", "note": "the assistant tests named the Mathe-Karte as the highlighted app and split it into parts"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": ["1c52c3278f039351cba23f43eb1965a9bfa11523"],
+    "reason": "The only commit of this request in docs.",
+    "message": "docs: take the Mathe-Karte out of the platform documents\n\n## Intent\n\nThe Mathe-Karte is one app among others. The platform documents should not single it out; where they need an example of the first apps, they point to the app catalogue.\n\n## Key changes\n\n- The MVP design names \"the first apps in the app catalogue\", linked to lernapps.net/apps/, instead of the Mathe-Karte.\n- The scan, the owners chapter and the development plan say that Ralf D. Müller builds apps, without naming the Mathe-Karte.\n- The README no longer uses the Mathe-Karte as its example of a repo's own document.\n\n## Dependencies and side effects\n\n- The home page drops the Mathe-Karte in the same step (lernapps.github.io f3fc04f).\n- The recorded user answer in the business evidence still names the Mathe-Karte on purpose."
+   }
+  ],
+  "lernapps.github.io": [
+   {
+    "commits": ["f3fc04f39e73ecd1f89c77f7a0c7bc1ae2dd7302"],
+    "reason": "The only commit of this request in the home page; the llms.txt sections after it serve another request.",
+    "message": "feat(home): no longer promote the Mathe-Karte; the catalogue is the way to apps\n\n## Intent\n\nThe Mathe-Karte is one app among others. The home page should not promote it on its own; the app catalogue is the way to apps.\n\n## Key changes\n\n- The \"Ausprobieren: Mathe-Karte\" lines for teachers and learners are gone; \"Apps finden\" still leads to the catalogue.\n- llms.txt no longer lists the Mathe-Karte; its apps section points only to the catalogue.\n- The README no longer mentions the Mathe-Karte.\n\n## Dependencies and side effects\n\n- The platform documents drop it in the same step (docs 1c52c32)."
+   }
+  ]
+ },
+ "moved": []
+}

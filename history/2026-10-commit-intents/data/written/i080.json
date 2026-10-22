@@ -1,0 +1,42 @@
+{
+ "id": "i080",
+ "conventionalCommit": "feat(explainer): exercises on every page, with the quiz's types and generated exercises",
+ "intent": "Learners should practise on every explainer page, not only read: for any subject, and with tasks drawn from new values each time. This is step 3 of the explainer MVP, and its tests must stay minimal, because git hooks must stay as fast as possible.",
+ "keyDecisions": [
+  "property test over 200 seeds, since it costs about 30 ms per exercise",
+  "browser tests with JavaScript only in German at 360 px, one exercise per type per page; the checks without JavaScript stay per page and language",
+  "broken cases as build-only tests, no new apps and no new CI jobs",
+  "an expression language on exact fractions, parsed and walked, never eval",
+  "without JavaScript a generated exercise shows three worked tasks from fixed seeds"
+ ],
+ "trigger": "\"I merged #14, start step 3\" … \"Keep the test minimal. We must keep particularly git hooks s as fast as possible\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i076",
+   "note": "step 3 of the explainer MVP"
+  },
+  {
+   "type": "continues",
+   "intent": "i077",
+   "note": "uses the language maps of quiz questions"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "b9885b4e77e7127d9eb17bdd3914563a3b3e7d4d",
+     "30f99178d7c5fbb55ba7f7516c0bbdc8f8fe2354",
+     "71404040b946757831d4eb2f33bbd6ce791ad969",
+     "b6cdfd96bae0048fd58cf3f19556b53f30aabd2c"
+    ],
+    "reason": "The commits of app-templates#15 after the language maps, one after the other; together one feature, exercises in explainer pages. The expression language exists for the generated exercises, and the last commit only formats the template's content.",
+    "message": "feat(explainer): exercises on every page, with the quiz's types and generated exercises\n\n## Intent\n\nStep 3 of the explainer MVP. Learners should practise on every page, not only read: for any subject, and with tasks drawn from new values each time, as the decided sketch requires. The tests must stay minimal, so hooks stay fast.\n\n## Key changes\n\n- A small expression language on exact fractions, parsed into a tree and evaluated without eval, with comparisons, record fields, list access and a few list functions; errors say what to change.\n- A generated exercise declares what is drawn (numbers, picks from lists or data files, shuffles), conditions, a task template, an answer with a comparator mapped onto the quiz's answer kinds, mistakes with messages, a hint and steps. The same module runs at build and in the browser.\n- The build runs each generated exercise as a property test over 200 seeds: conditions do not starve, the answer passes its comparator, no mistake equals it, the task is deterministic and the figure does not show the answer.\n- Without JavaScript a question shows its Lösung box and a generated exercise three worked tasks from fixed seeds; with JavaScript they become live, with feedback in view and a seed in the address for every task.\n- The schema requires an exercise on every page; the template's Prozent pages get theirs from the Mathe-Karte's generators.\n- explainerTests() checks every exercise without JavaScript in every language, and with JavaScript only in German at 360 px, one exercise of each type per page; broken cases are build-only tests.\n\n## Dependencies and side effects\n\n- Builds on the language maps of quiz questions, the first commit of app-templates#15 (52dc5e0)."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,31 @@
+{
+ "id": "i228",
+ "conventionalCommit": "docs(biz42): agent-based fitness check before the real MVP",
+ "intent": "What an app sends to other servers should be checked, not taken on trust, before teachers come. Before the real MVP, an agent checks every listed app: it clicks through the app while the network is recorded, and reviews its source code.",
+ "keyDecisions": [
+  "an agent-based check as a precondition of the real MVP, over checking a few apps by hand",
+  "the agent reports per app against the entry; a person decides and sets checked: true"
+ ],
+ "trigger": "\"Ich würde schon noch ein agentenasiertes „Durcklicken und auf Netzwerk gucken sowie sourcecode validieren“ implementieren\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i226",
+   "note": "resolves the other OPEN row"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "9e27339ee0e7094c9e760db6ead55831ab906f12"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(biz42): agent-based fitness check before the real MVP\n\n## Intent\n\nWhat an app sends to other servers should be checked, not taken on trust, before teachers come. Before the real MVP, an agent checks every listed app: it clicks through the app while the network is recorded, and reviews its source code.\n\n## Key changes\n\n- The objective obj-trust, its measure, the capability and the improvement describe the check: click through with the network recorded, review the source code, run for every listing before the real MVP.\n- The evidence row is confirmed; only the row on GOVERNANCE.md stays open.\n\n## Dependencies and side effects\n\n- lernapps/tooling#1 describes the agent's steps and its report."
+   }
+  ]
+ },
+ "moved": []
+}

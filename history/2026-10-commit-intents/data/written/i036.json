@@ -1,0 +1,33 @@
+{
+ "id": "i036",
+ "conventionalCommit": "docs(arc42): quality goals grounded in the platform design, metrics with their source",
+ "intent": "The quality goals of the tooling should rest on the platform design. Other agents cannot be measured directly, so every scenario needs a number from a source that can actually be observed.",
+ "keyDecisions": [
+  "seven goals, each traced to a part of the platform design",
+  "simplicity for the creator and cost for the assistant as separate goals, over one goal",
+  "a retrospective section in the plan file as a cheap source of numbers",
+  "agent feedback after a session deferred to an issue (#8), over an API now"
+ ],
+ "trigger": "\"OK, let’s discuss the actual quality goals and quality scenarios. They should be grounded in the pdt.\" … \"1. keep them separate. One addresses simplicity, the other cost. 2. I like the retrospective section. … 3. yes. Create an issue which we defer for now.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i034",
+   "note": "replaces the first quality goals"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "b9b987c8f791dc32d323a28c943bb62b73b04302"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(arc42): quality goals grounded in the platform design, metrics with their source\n\n## Intent\n\nThe quality goals of the tooling should rest on the platform design. Other agents cannot be measured directly, so every scenario needs a number from a source that can actually be observed.\n\n## Key changes\n\n- Chapter 10 has seven goals, each quoting the part of the platform design it rests on, and thirteen scenarios.\n- A new section says how the scenarios are measured: evals, listing reports, the plan's retrospective, conversations with creators.\n- The plan records KD-16 and KD-17 (retrospective in the plan file); agent feedback is deferred to #8."
+   }
+  ]
+ },
+ "moved": []
+}

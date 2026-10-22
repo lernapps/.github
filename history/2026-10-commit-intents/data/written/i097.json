@@ -1,0 +1,40 @@
+{
+ "id": "i097",
+ "conventionalCommit": "feat(guidance): a plan per piece of work, with an increment template",
+ "intent": "Extending a published app needs nearly every step of the first version except its initial decisions, and the plan is what instructs the agent. But the agent was only pointed to one shared plan, and in a published app it found the finished plan of the first version. Every increment needs a plan of its own.",
+ "keyDecisions": [
+  "plans in .vibe/plans/<NN>-<short name>.md, the highest number is the current one, older ones stay as record",
+  "two templates: plan-template.md for the first version, increment-template.md for every later change, on the first version's decisions",
+  "AGENTS.md only says when to start which plan; the branch to push comes from the plan",
+  "an older app's .vibe/plan.md counts as plan 01, and `lernapps update` moves it",
+  "the app's own `lernapps update` names the command for the latest version instead of fetching it"
+ ],
+ "trigger": "\"Dann würde ich gerne noch eine Erweiterung der bestehenden App in einer neuen Session anfordern. Mir ist aufgefallen, dass dafür wahrscheinlich alle Schritte bis auf die Initialen How-To Entscheidungen auch anstehen. Die instruieren wir über den Plan, aber bisher wird der Agent nur auf einen gemeinsamen Plan hingewiesen. Es sollte aber einen Plan pro increment geben\" … \"Ja. Mach mal die zwei Vorlagen und passe die instructions, wann man sie verwendet kurz in der agents.md an\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i054", "note": "the plan template is no longer the one plan of an app"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["976046b1b8624dc91a7c1623e126d0004b776357", "93e4bb101cc46bd30adec274fbcc02c1f534d52c", "1bca221be2b33486a70d82a6fe864babfc1a1210"],
+    "reason": "The three commits of tooling#73 follow each other directly: the templates, the code that reads the current plan, and a fix of the numbering in older apps.",
+    "message": "feat(guidance): a plan per piece of work, with an increment template\n\n## Intent\n\nAn agent asked to extend a published app found only the finished plan of the first version. Extending an app needs nearly every step of the first version except its initial decisions, so every piece of work needs its own plan.\n\n## Key changes\n\n- Each piece of work has its own plan in .vibe/plans/<NN>-<short name>.md; the highest number is the current plan, the others are its record.\n- A new increment template carries every later change on the first version's decisions: Explore with the content guide and the research checkpoint, Plan with slices, Code on a branch increment/<NN>-<short name> after updating the tooling, Commit with a pull request, the publish checkpoint and, when the entry changes, the listing checkpoint.\n- plan-template.md is the first version's plan, kept as plan 01. AGENTS.md says when to start which plan and leaves the branch to push to the plan.\n- The pre-push hook counts failures in the current plan, the content-guide check reads its phase, and the review reads all plans.\n- `create` needs exactly one plan, numbered 01, in the phase code. `update` moves an older app's .vibe/plan.md to plan 01; until then it counts as plan 01 and the first increment is 02.\n- Run as the app's own tooling, `update` only knows the pins the app has; it now names the command for the latest version.\n- The skill, the rubric, README, llms.txt, glossary and front matter schema follow; tests cover both templates and the legacy plan.\n\n## Dependencies and side effects\n\n- The catalog's review input copies every plan, and its entry point test starts the plan first (2500733, 2160098 in apps)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["2500733eaba050bd5d54fd14ca9d73dbf12025c7"],
+    "reason": "The review input change; the test fix after it is a separate concern.",
+    "message": "feat(review): the review input copies every plan in .vibe/plans/\n\n## Intent\n\nAn app now keeps one plan per piece of work. The review must see all of them, not only a single plan file.\n\n## Key changes\n\n- The review input copies every plan in .vibe/plans/, regular files only, and an older app's .vibe/plan.md; the prompt names the highest number as the current plan.\n\n## Dependencies and side effects\n\n- Follows the plan per piece of work in tooling (976046b, 93e4bb1, 1bca221)."
+   },
+   {
+    "commits": ["2160098d9a20dd1a68246fcfb96231edbf594f18"],
+    "reason": "A test fix for the stricter create; one commit.",
+    "message": "test(entry-point): start the plan before the command creates the app\n\n## Intent\n\n`lernapps create` now creates an app only from a confirmed plan, so the entry point test failed by calling it without one.\n\n## Key changes\n\n- The test starts the plan as the plan template of the same tooling says: in its place, with the archetype set and in the phase code.\n\n## Dependencies and side effects\n\n- Follows the plan per piece of work in tooling (976046b, 93e4bb1, 1bca221)."
+   }
+  ]
+ },
+ "moved": []
+}

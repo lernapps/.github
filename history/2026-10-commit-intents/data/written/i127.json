@@ -1,0 +1,32 @@
+{
+ "id": "i127",
+ "conventionalCommit": "docs(adr): eval infrastructure as its own ADR file, short form in chapter 9",
+ "intent": "The full eval ADR with its Pugh matrix is too long inline in chapter 9. Keep it as its own linked file, and keep chapter 9 as short as its other decisions.",
+ "keyDecisions": [
+  "a separate ADR file after Nygard, linked, over the full text inline",
+  "chapter 9 keeps a short form with context, decision, consequences and the decision block",
+  "the link points absolutely to main, since the docs' architecture page holds only docs/arc42/"
+ ],
+ "trigger": "\"Als separate Datei, verlinkt. Inline ist das zu viel\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i125",
+   "note": "moves the proposed ADR into its own file"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "77580ba5c946b7e03e4f0757679a66b42a5339af"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(adr): eval infrastructure as its own ADR file, short form in chapter 9\n\n## Intent\n\nThe full ADR on the eval infrastructure, with its Pugh matrix, is too long inline in chapter 9. Chapter 9 should stay as short as its other decisions.\n\n## Key changes\n\n- The ADR lives in docs/adr/eval-runs-from-files.md, structured after Nygard: status, context (with the Pugh matrix), decision, consequences.\n- Chapter 9 keeps a short form with context, decision and consequences, the decision block and a link to the file.\n- The plan links the file at both places.\n\n## Dependencies and side effects\n\n- The link from chapter 9 points to main, since the docs' architecture page holds only docs/arc42/; it works after the merge."
+   }
+  ]
+ },
+ "moved": []
+}

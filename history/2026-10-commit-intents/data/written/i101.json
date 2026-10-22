@@ -1,0 +1,59 @@
+{
+ "id": "i101",
+ "conventionalCommit": "feat(guidance): exercises check what the task asks for; a sketch before building; apps keep their skills",
+ "intent": "The retrospective of the Elektrizität increment found exercises that rejected correct answers, because they compared with one model solution instead of the property the task text asks for. The guidance must teach this on a meta level, valid for any subject, not with physics-specific rules. The creator spent most turns on an editor that the plan showed only in words. The Lehrplan should only orient grade and order, not be forced. And an app must keep its skills across sessions, which git-ignored skills prevent.",
+ "keyDecisions": [
+  "check the property the task text asks for, written as a subject-neutral rule with examples from several subjects, over physics-specific instructions",
+  "the reason for a wrong answer comes from its own small function and answered { correct, reason }, while a component's check stays true or false",
+  "a sketch (image or steps) of every new component at the plan checkpoint, over a description in words",
+  "the Lehrplan as orientation for grade and order, a citation welcome but not required, over a required citation",
+  "apps commit the lernapps-* skills and lernapps update replaces them, over git-ignoring them; the app's own skills stay and take precedence",
+  "test the skills step as a function in milliseconds, over a 60 s timeout for two CLI runs"
+ ],
+ "trigger": "\"Wir sollten auf einer Meta-Ebene instruieren, wie bspw. Erfolg in Übungen geprüft werden kann … Der Lehrplan dient eigentlich nur als Orientierung … Gitignore verhindert, dass die App sich die Skills anpasst und uber mehrere Sessions konsistent arbeitet\" … \"Ok, verstanden. Das mit den teilweise ersetzten Skills und dem Lehrplan passt auch\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i099",
+   "note": "the guidance side of the increment's retrospective; describes what app-templates#24 added"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "d49736a656bedceebbea45102843c1cbc5c90dd1"
+    ],
+    "reason": "The first commit of tooling#75: how exercises check success. It stays apart from the plan templates and the update step, which are other topics.",
+    "message": "feat(skills): check the property the task asks for, and say why an answer is wrong\n\n## Intent\n\nExercises rejected correct answers, because they compared with one model solution instead of the property the task text asks for. The skills must teach this on a meta level, for any subject. They must also describe how a wrong answer gets its reason.\n\n## Key changes\n\n- Exercise patterns: check the property the task asks for, never equality with one model solution. Examples come from several subjects.\n- Before writing an exercise, note the answers the text allows, the typical wrong ones and the feedback for each. If a type cannot accept every correct answer, choose another type or change the text.\n- Components are tested with equivalent right answers and typical wrong ones.\n- The explainer skill gives the rules of src/components/ up front. It explains solutions after the answer, the order of reasons (info, mistakes, hint), how a component reports a reason, that nojs: \"caption\" is not for exercises, and that a page may be removed thanks to the 404 page.\n- The quiz skill asks for an info at every wrong option, mistakes for numbers, a hint, and a type that accepts every allowed answer.\n\n## Dependencies and side effects\n\n- Describes the runtime of app-templates#24 (i099, i100)."
+   },
+   {
+    "commits": [
+     "d7602177af6a7d2d1c65b1ec375f6fc3e99d0d8c"
+    ],
+    "reason": "Its own topic in tooling#75: the plan checkpoint and the Lehrplan.",
+    "message": "feat(guidance): sketch every interaction before building it; the Lehrplan as orientation\n\n## Intent\n\nThe creator should see every new interaction before it is built, not only read about it. The Lehrplan should only orient which content fits which grade and in which order; it should not block the work.\n\n## Key changes\n\n- At the checkpoint \"confirm the plan and the content method\", the plan and increment templates ask for a sketch of every new component and interactive exercise: an image of what learners see, or the steps and what they see after each. Words alone are not enough.\n- Content research: the Lehrplan decides grade and order. A citation is welcome, not required; a missing Lehrplan is no reason to stop or ask again. A Lehrplan in use is downloaded and read, not summarised by a fetch tool.\n- Content growth and the content guide's skeleton follow this.\n- In an app the skills are in its repo; the templates install them only when they are missing, and the update step says it replaces the lernapps-* skills."
+   },
+   {
+    "commits": [
+     "f1625e6e22210a295906442d1ddab2947cf55f23",
+     "bde99bdfae1bcf630529219b14530e89e8e178c0",
+     "97bdf5d4fc3fc3f15b55e1730c1606db1864eb53",
+     "5944cb8fd28b0b845a6a236e648d2136fb5c7bbb"
+    ],
+    "reason": "The update step and the fixes of its test, one after the other on the branch of tooling#75; the timeout of 97bdf5d is replaced by 5944cb8.",
+    "message": "feat(update): apps commit their skills; lernapps update replaces the lernapps-* ones\n\n## Intent\n\nAn app must keep its skills across sessions. Skills ignored by git are missing in every new checkout, and the app cannot add its own rules next to them.\n\n## Key changes\n\n- lernapps create no longer ignores the installed skills; an app commits them, their links and skills-lock.json.\n- lernapps update replaces the app's lernapps-* skills with those of the tooling it runs from, in the layout of npx skills add, and keeps skills-lock.json in step. It removes a lernapps-* skill the tooling no longer has and the old ignore lines, and says what it did.\n- app-content and every other skill of the app stay untouched.\n- AGENTS.md: the app's own skills take precedence; never edit a lernapps-* skill; app-specific rules go into the app's own skills.\n- The skills step is tested as a function on a temporary folder, in milliseconds and with the default timeout; an existing CLI run checks that update installs the skills.\n\n## Dependencies and side effects\n\n- README, the generator's building block and llms.txt describe the new behaviour."
+   },
+   {
+    "commits": [
+     "6b1c9daaf104f7665ff3acb3cba4a9942d1516f4"
+    ],
+    "reason": "A test fix for a failure on the CI of tooling#75 that the change did not cause; kept apart.",
+    "message": "test(create): no automatic git maintenance in the commit before .git is removed\n\n## Intent\n\nA create test failed on CI now and then: it removes a test app's .git right after a commit, while newer git still writes into it.\n\n## Key changes\n\n- The test turns off git's automatic maintenance for that commit. Git 2.47 and later run it in the background after a commit, which caused ENOTEMPTY on CI (git 2.55)."
+   }
+  ]
+ },
+ "moved": []
+}

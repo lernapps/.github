@@ -1,0 +1,68 @@
+{
+ "id": "i102",
+ "conventionalCommit": "perf(hooks): type-check once before a commit; main green again after the merges",
+ "intent": "Close the round of fixes from the increment retrospective without waiting for a person: merge in the agreed order once CI is green, bring app-templates#24 to the apps, and repair whatever turns main red. The pre-commit hook type-checks twice, which costs seconds on every commit; it must stay as fast as possible.",
+ "keyDecisions": [
+  "the staged step only formats and the check after it lints and type-checks once, at the price of no automatic lint fixes on commit, over two type checks",
+  "the error message of a failed check says to run vp check --fix",
+  "fix a slow test by moving its logic into a function the test calls directly, over raising its timeout",
+  "merge each pull request only with green CI, and check main once more after several merges in a row"
+ ],
+ "trigger": "\"Entferne das doppelte Prüfen pre-commit / Diese Dinge und die Ursache für den fehlschlagenden Test auf mein darfst Du selbst merken / Mergen\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i101",
+   "note": "merges tooling#75 and #76 and finishes the round"
+  },
+  {
+   "type": "continues",
+   "intent": "i097",
+   "note": "repairs an apps test of the plan-per-increment change (apps#29)"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "fd0ab2bbb6b16c1590692d78aafbe4958c20e9ab"
+    ],
+    "reason": "Its own pull request (tooling#78), on a branch of its own.",
+    "message": "chore(deps): pin app-templates e54c743\n\n## Intent\n\nNew and updated apps should get app-templates#24, which is merged.\n\n## Key changes\n\n- Apps get solutions after the answer, reasons for wrong answers (hint, number mistakes, a component's reason), folded nojs captions and a 404 page that leads to the app's start page.\n\n## Dependencies and side effects\n\n- tooling#75 (i101) describes these features and is merged after this pin."
+   },
+   {
+    "commits": [
+     "bafc3c72064ca6f1dfd3458afc425b28856b7876"
+    ],
+    "reason": "Its own pull request (tooling#79), on a branch of its own.",
+    "message": "perf(hooks): type-check once before a commit\n\n## Intent\n\nThe pre-commit hook type-checked the app twice, which cost seconds on every commit. Git hooks must stay as fast as possible.\n\n## Key changes\n\n- The step for the staged files only formats them. The check that follows lints and type-checks the whole app once.\n- Lint issues are no longer fixed automatically on commit. The message of a failed check says to run vp check --fix.\n- The tooling's own hook does the same.\n- Measured on one file: 2.1 s before, 1.0 s after for this step."
+   },
+   {
+    "commits": [
+     "bfe0d11469e459c81b5c83d4c34f5918b704c442"
+    ],
+    "reason": "Its own pull request (tooling#80), branched from main after the merges.",
+    "message": "test: count a failed pre-push in the plan without running the CLI\n\n## Intent\n\nAfter three merges in a row main was red: a test ran the CLI twice and took 5.1 s against the limit of 5 s.\n\n## Key changes\n\n- Counting a failed pre-push in the plan is its own function, which the test calls directly, in milliseconds. The timeout stays as it is.\n- The end-to-end test of the failing app still covers that a failed pre-push counts at all."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "a909557f31e41f983316a7fefc94453e20c9dd73"
+    ],
+    "reason": "The only apps commit of this round (apps#30).",
+    "message": "fix(test): read the plan path from the template although it holds a placeholder with a space\n\n## Intent\n\nmain of apps was red, and so was the check of every pull request there, including a listing pull request. The plan template now keeps the first plan at .vibe/plans/01-<short name>.md, and the test's pattern stopped at the space in the placeholder.\n\n## Key changes\n\n- The pattern reads up to the end of the path. Against the current template it finds .vibe/plans/01-first-version.md.\n\n## Dependencies and side effects\n\n- Unblocks open listing pull requests once their check runs again."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "a909557f31e41f983316a7fefc94453e20c9dd73",
+   "from": "i101",
+   "kind": "moved",
+   "why": "The fix of the failing test on main, which this intent's message allows to merge; it is not part of the guidance of tooling#75."
+  }
+ ]
+}

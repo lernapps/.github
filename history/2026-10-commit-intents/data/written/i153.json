@@ -1,0 +1,60 @@
+{
+ "id": "i153",
+ "conventionalCommit": "feat(nav): \"Darum!\" for the docs in the header, on every site",
+ "intent": "\"Konzepte\" was a dry name for the header entry of the docs; \"Darum!\" says why lernapps.net exists. The change should reach main and every site that uses the shared navigation, and all open pull requests should be merged.",
+ "keyDecisions": [
+  "\"Darum!\" (en \"That's why\") over \"Konzepte\"",
+  "merge the site frame first, then move every site that uses it (tooling, docs, apps) to the new commit",
+  "the docs start page takes the name in eyebrow, title and tile; its heading stays",
+  "merge each pull request after green CI"
+ ],
+ "trigger": "\"In der Navigation: „Darum!“ statt „Konzepte“. Bring das nach Main, dann aktualisiere alle repos und merge danach alles durch, alle repos\"",
+ "kind": "feature",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i150",
+   "note": "renames the header entry added there"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": [
+     "38fe83e37faeeb6255c4a9d15b0660c96b0f9b8b"
+    ],
+    "reason": "Kept apart from the entry it renames, which serves an earlier request.",
+    "message": "feat(nav): \"Darum!\" (en \"That's why\") instead of \"Konzepte\" for /docs/\n\n## Intent\n\nThe header entry of the docs should say why lernapps.net exists, not just name its concepts.\n\n## Key changes\n\n- The header entry for /docs/ reads \"Darum!\" (en \"That's why\").\n\n## Dependencies and side effects\n\n- The docs (365c9c5), tooling (41def31) and apps (4298713) move to this site frame."
+   }
+  ],
+  "docs": [
+   {
+    "commits": [
+     "365c9c58d9090f9dd0b9e5ac19b05e62639190d8"
+    ],
+    "reason": "The only docs commit of this request.",
+    "message": "chore(deps): site frame with \"Darum!\" in the header; the docs start page takes the name\n\n## Intent\n\nShow the renamed header entry on the docs site, and let the start page use the same name.\n\n## Key changes\n\n- The site frame moves to lernapps.github.io f462934: the header links /docs/ as \"Darum!\" (en \"That's why\").\n- The start page's eyebrow, title and tile follow the new name.\n\n## Dependencies and side effects\n\n- Same frame update in tooling (41def31) and apps (4298713); the rename is lernapps.github.io 38fe83e."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": [
+     "41def31f3ea387ca721119fff11383728b2830b1"
+    ],
+    "reason": "The only tooling commit of this request.",
+    "message": "chore(deps): site frame with \"Darum!\" (/docs/) in the header\n\n## Intent\n\nShow the renamed header entry on the tooling site.\n\n## Key changes\n\n- The site frame moves to lernapps.github.io f462934.\n\n## Dependencies and side effects\n\n- Same frame update in docs (365c9c5) and apps (4298713); the rename is lernapps.github.io 38fe83e."
+   }
+  ],
+  "apps": [
+   {
+    "commits": [
+     "42987139abaf7883008922c98c4a20f98418c70f"
+    ],
+    "reason": "The only apps commit of this request.",
+    "message": "chore(deps): site frame with Tooling and \"Darum!\" (/docs/) in the header\n\n## Intent\n\nShow the current header, with Tooling and the renamed docs entry, on the catalog.\n\n## Key changes\n\n- The site frame moves to lernapps.github.io f462934.\n\n## Dependencies and side effects\n\n- Same frame update in docs (365c9c5) and tooling (41def31); the rename is lernapps.github.io 38fe83e."
+   }
+  ]
+ },
+ "moved": []
+}

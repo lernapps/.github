@@ -1,0 +1,33 @@
+{
+ "id": "i243",
+ "conventionalCommit": "feat(home, find): drop the quick filters; the catalogue invites people to build what is missing",
+ "intent": "The quick filters by grade and subject under the example apps got in the way more than they helped; the catalogue has its own filter. Where the catalogue has nothing that fits, it should invite people to build the app themselves. The makers' section should end on why the foundation helps: ideas become quick and easy to build.",
+ "keyDecisions": [
+  "remove the quick filters from the home page, over keeping a second way into the catalogue's filter",
+  "the invitation to build sits under the catalogue's results and is always visible, so it also shows when nothing fits",
+  "merge in the order website, apps, docs"
+ ],
+ "trigger": "\"Der Block mit den Schnellfiltern unter den Apps auf der Homepage stört mehr als er bringt. Wir sollten aber im Apps-Katalog unten oder wenn wir nichts finden ein 'Nichts gefunden? Hilf Dir selbst und bau eine App. Mit unserem Tooling ist es ganz einfach' einfügen …\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i240", "note": "removes the links into the filtered catalogue added there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["459eff174aae604fba32c6c5a6e1f3d86d029c03"],
+    "reason": "The website side of this request.",
+    "message": "feat(home): drop the quick filters; the foundation makes ideas quick to build\n\n## Intent\n\nThe links by grade and subject under the example apps got in the way more than they helped; the catalogue has its own filter. The makers' section should end on why the foundation helps.\n\n## Key changes\n\n- The quick filters under the examples are gone.\n- \"Ein solides Fundament für Macher\" ends with \"So wird es einfach und schnell, eigene Ideen umzusetzen.\"\n\n## Dependencies and side effects\n\n- The catalogue now invites people who find nothing to build an app (apps 0a784a7)."
+   }
+  ],
+  "apps": [
+   {
+    "commits": ["0a784a7a2f029a70514ddcfd1ca696036ceff1fe"],
+    "reason": "The apps side of this request.",
+    "message": "feat(find): \"Nichts gefunden? Hilf dir selbst und bau eine App\"\n\n## Intent\n\nWhere the catalogue has nothing that fits, it should invite people to build the app themselves, since the tooling makes that easy. It takes the place of the quick filters that the home page dropped.\n\n## Key changes\n\n- Under the catalogue's results, always visible and so also when nothing fits: \"Nichts gefunden? Hilf dir selbst und bau eine App. Mit unserem Tooling ist es ganz einfach.\", with a button to /apps/build/.\n\n## Dependencies and side effects\n\n- The home page drops its quick filters in the same step (lernapps.github.io 459eff1)."
+   }
+  ]
+ },
+ "moved": []
+}

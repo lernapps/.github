@@ -1,0 +1,34 @@
+{
+ "id": "i105",
+ "conventionalCommit": "feat(explainer): number only distinct tasks, up to 67",
+ "intent": "Each task number a learner names must stand for a real, different task that the tutor file lists. Drawing from a fixed 20 seeds would repeat tasks after a few, and a million random seeds cannot all appear in a tutor file. Then the tutor support should reach new and updated apps.",
+ "keyDecisions": [
+  "number only distinct tasks, up to 67, over a fixed count of seeds (20 or 50)",
+  "an exercise with fewer distinct tasks is a note in the build output, not an error",
+  "a number above N wraps around into 1 to N",
+  "merge #26, #27 and #28 in order, each rebased on main"
+ ],
+ "trigger": "\"Vorher war es eine Milion? Wie?\" … \"Ja, zweiter Weg mit Obergrenze 67, dann mergen\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i104", "note": "replaces the task numbers 1 to 20 with distinct tasks"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["46b6b1d8a25f03c503634dacf8e0538cec8f7228"],
+    "reason": "The only app-templates commit of this request.",
+    "message": "feat(explainer): number only distinct tasks, up to 67\n\n## Intent\n\nEach task number a learner names should stand for a real, different task that the tutor file lists. With 20 fixed seeds, two numbers could show the same task.\n\n## Key changes\n\n- The build walks the seeds 1, 2, 3, … through an exercise's generator, for generated exercises and exercise components alike. It keeps each seed whose task differs from every earlier one, up to 67. These are \"Aufgabe Nr. 1\" to \"Aufgabe Nr. N\".\n- The number is the one identifier the learner, the tutor and the address share. ?seed=<n>#<id> carries the task number, and the page draws the task from a seed table the build ships with the exercise.\n- A number above N wraps around. \"Neue Aufgabe\" moves from n to n + 1, and from N back to 1.\n- The worked tasks without JavaScript are numbers 1 to 3.\n- An exercise with fewer than 67 distinct tasks is noted in the build output, not a problem.\n\n## Dependencies and side effects\n\n- The tooling pins this version with the tutor support in the next commit of this intent."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["839eb56b0fa21feeaed8c12c869aefaed33becb0"],
+    "reason": "The pin and the skill sentences, one commit.",
+    "message": "chore(deps): pin app-templates 3b20249, with tutor support\n\n## Intent\n\nNew and updated apps should get the tutor support, and the assistant should know what an exercise component must now provide.\n\n## Key changes\n\n- Apps get app-templates#26 to #28: numbered distinct tasks (at most 67) with the number in the address, exercise components with seed, describe and about, tutor files per page, tutor notes in llms.txt, a tutor prompt with a start-page entry, and von=tutor.\n- The explainer and exercise-pattern skills say what a component provides and where tutor rules and providers go.\n\n## Dependencies and side effects\n\n- Pins the commits of i104 and 46b6b1d of this intent.\n- The Elektrizität app adds seed, describe and about in its running increment."
+   }
+  ]
+ },
+ "moved": []
+}

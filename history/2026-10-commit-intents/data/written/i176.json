@@ -1,0 +1,26 @@
+{
+ "id": "i176",
+ "conventionalCommit": "feat(interactive): a slot in the heading line, an optional heading and a wider frame",
+ "intent": "On the app page of an interactive app, the app's name appears twice in a row: as the header link and as the h1. The heading line also has no place for a small control of the app. Apps like Textcheck work around this with their own heading line, a CSS rule that hides the runtime's h1, and an overridden frame width. The runtime should offer this cleanly (lernapps/tooling#111).",
+ "keyDecisions": [
+  "change the runtime in app-templates, where it lives, over the tooling repo the issue is filed in",
+  "a slot component passed to startInteractive, over a second mount point",
+  "an optional heading per language in app.yaml, over removing the repeated name automatically, since the issue asks for no change without slot or heading",
+  "the frame width as the CSS variable --interactive-max-width",
+  "push the branch without a pull request; describe how Textcheck would use the slot instead of changing it"
+ ],
+ "trigger": "\"Setze das GitHub-Issue lernapps/tooling#111 um ('Interactive app page: slot in the heading line, and no repeated app name (header link + h1)') …\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["476fda63ce7f710ef81f1724c4b73f9017403448"],
+    "reason": "The first state of the branch; the rework after it answers a new request, so they stay apart.",
+    "message": "feat(interactive): a slot in the heading line, an optional heading and a wider frame\n\n## Intent\n\nOn the app page of an interactive app, the app's name appeared twice in a row: as the header link and as the h1. The heading line had no place for a small control of the app. Apps worked around this with their own heading line, CSS that hides the runtime's h1, and an overridden frame width. The runtime should offer this cleanly (lernapps/tooling#111).\n\n## Key changes\n\n- The app page renders its heading line as one row: the h1 and a slot beside it. The slot stays hidden and empty unless the app passes a component as startInteractive(core, App, { title }); it gets the root component's props and input event.\n- app.yaml may give a heading per language for the h1 of the app page; without it the h1 is the title, as before. The start page, the page titles and the no-JavaScript note do not change.\n- Header, page and footer are as wide as --interactive-max-width (default 44rem).\n- The schema, the architecture of the template and the tests cover heading and slot."
+   }
+  ]
+ },
+ "moved": []
+}

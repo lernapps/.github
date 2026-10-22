@@ -1,0 +1,30 @@
+{
+ "id": "i022",
+ "conventionalCommit": "ci: preview the templates on every pull request",
+ "intent": "A change to the templates could only be checked by CI, not seen. Every pull request of app-templates should get a preview of the built quiz, explainer and interactive template, the way the apps already have one, so a change can be validated by looking at it.",
+ "keyDecisions": [
+  "take the finished but never merged workflow from feat/pr-preview, over writing a new one",
+  "publish with the app preview action of the tooling at lernapps.net/app-templates/pr-preview/pr-<number>/, like the apps",
+  "create gh-pages as an empty branch without history",
+  "the workflow joins the quiz pull request, so the preview runs for it at once",
+  "build the preview into preview/, since npm ci already builds the runtime into dist/"
+ ],
+ "trigger": "\"Ci grün, aber bei den Template gibt es kein Review environment mit deployment von Beispielen, wie es bei denjenigen Apps ist. So kann ich das nicht validieren\" … \"Price build failed\"",
+ "kind": "chore",
+ "relations": [
+  {"type": "continues", "intent": "i021", "note": "the preview makes the quiz change of that pull request visible"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["6a2d39baf0084140bc673963c5da251edb9759eb", "8f02e10c10f9d4a15525bfcc4fc55cf25ab004f4"],
+    "reason": "The workflow and the fix of its first failed build follow each other directly on the branch of the pull request.",
+    "message": "ci: preview the templates on every pull request\n\n## Intent\n\nMake a change to the templates visible, not only checked. Every pull request gets a preview of the built templates, the way the apps already have one.\n\n## Key changes\n\n- A preview workflow builds the quiz, the explainer and the interactive template as apps, with a page that links them.\n- The app preview action of lernapps/tooling publishes them on gh-pages at https://lernapps.net/app-templates/pr-preview/pr-<number>/ and links the preview in a comment on the pull request. Closing or merging removes it.\n- The preview is built into preview/, because npm ci already builds the runtime package into dist/.\n\n## Dependencies and side effects\n\n- Needs the branch gh-pages and GitHub Pages serving it from its root."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "6a2d39baf0084140bc673963c5da251edb9759eb", "from": "i021", "kind": "moved", "why": "Adds the preview environment asked for after the quiz change was done; it serves this request, not the question count."}
+ ]
+}

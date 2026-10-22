@@ -1,0 +1,33 @@
+{
+ "id": "i159",
+ "conventionalCommit": "feat(guidance): exercise patterns in Explore; evals: measure what the agents really did",
+ "intent": "The second eval run left open actions. Before the next run, the measures must be right: the score crashed on a dangling symlink, expected skills the scenario never reaches, and counted apps as created before the plan was confirmed when it only missed how the agent set the phase. The exercise patterns help to tell the archetypes apart, so the process should use them in Explore, before the archetype is chosen.",
+ "keyDecisions": [
+  "repair the measures first, then change the guidance",
+  "exercise patterns in Explore, where agents read them anyway, as the way to the archetype, over enforcing them more strictly in Plan",
+  "the commit and listing skills count only when the scenario gets there, over forcing them in the Commit phase",
+  "read the transcripts of run 2 before judging the early creates, over taking the number as a finding",
+  "a create in the turn that sets phase: code counts as after the confirmation, since the creator's message opens that turn"
+ ],
+ "trigger": "\"2. mach die Punkte aus 1 3. excercise patterns in explore verschieben, die patterns helfen bei der Klassifizierung des Archteyps. Das sollten wir sogar durch den Prozess promoten\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i157", "note": "acts on the findings of the second eval run"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": ["3184adcea77cb32f74588273444ca99866bd817b"],
+    "reason": "Moves the exercise patterns and repairs two measures; the next commit repairs a different measure, so the two stay apart.",
+    "message": "feat(guidance): exercise patterns in Explore, before the archetype; evals: no crash on a dangling symlink, commit and listing skills after the scenario's end\n\n## Intent\n\nThe exercise patterns show what kind of practice a subject needs, and that points to the archetype. Agents read them in Explore anyway, so the process should use them there, before the archetype is chosen. The second eval run also showed two flaws in the measure: the score crashed on a dangling symlink, and it expected the commit and listing skills, which come after the point where the simulated creator stops.\n\n## Key changes\n\n- The plan has the agent read the exercise patterns in Explore, after the goal and the learners; the kind of practice points to the archetype, and the template's README decides. Plan chooses a pattern per competency from them.\n- The skill says how the kind of practice leads to the archetype; lernapps-app points to it for the choice; the increment template loads it in Explore too. Its building block moves to the Explore skills.\n- The verifier skips an entry it cannot read, such as a dangling symlink, instead of crashing.\n- The fresh tasks expect the commit and listing skills only when the scenario reaches them.\n- The conclusions of run 2 mark both actions as done and drop the action to force the commit and listing skills."
+   },
+   {
+    "commits": ["ab6c203d1943c7219e32c6bb8d0f2c59617db3fe"],
+    "reason": "A separate measure; the next commit belongs to another request.",
+    "message": "fix(evals): see the phase a sed, a one-liner or a helper script sets; run 2's early creates read in the transcripts\n\n## Intent\n\nRun 2 counted many more apps as created before the creator confirmed the plan. The score took the first phase a command named, which in a sed is the old value, and did not see a helper script outside the plan folder at all. So the plan counted as unconfirmed and every create as early.\n\n## Key changes\n\n- The score takes the last phase a command or a write names, and the phase the template's grep prints.\n- A create in the turn that sets phase: code still counts as after the confirmation, because the creator's message opens that turn.\n- The conclusions of run 2 record what the transcripts show: 7 of 13 early creates were gaps in the measure, 6 were real, 5 of them after a yes to an early draft. A new open action: only the yes at the Plan checkpoint lets the agent run create."
+   }
+  ]
+ },
+ "moved": []
+}

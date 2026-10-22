@@ -1,0 +1,27 @@
+{
+ "id": "i210",
+ "conventionalCommit": "feat: publish the platform design (pdt42) on the docs site",
+ "intent": "The platform design should be readable live on the docs site, next to the vision and the business model, and its changes should be reviewable in pull requests.",
+ "keyDecisions": [
+  "@pdt42/cli pinned to 0.4.0 like biz42 and marked, over an unpinned version",
+  "relative asset paths, so no base path is needed under /docs/platform-design/",
+  "render the diff with `build --single-file --diff` when a base is set, skipped with a message while 0.4.0 has no --diff, so it starts working once the pin is raised",
+  "the built site as artifact site-preview in pull requests, with upload-artifact pinned to the SHA of v7.0.1"
+ ],
+ "trigger": "\"Das muss ich mir mal live anschauen. Ergänze die Web-Ansicht der Docs um ein gerendertes PDT 42. außerdem in Review-branches das Rendering des diffs (pdt42 Build —single-file —diff main)\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "406f5afe3f1303052c4d6b0b7ad5348c78f78d52"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat: publish the platform design (pdt42) on the docs site\n\n## Intent\n\nThe platform design should be readable live on the docs site, next to the vision and the business model, and its changes should be reviewable in pull requests.\n\n## Key changes\n\n- The build validates docs/pdt42 and renders it to /docs/platform-design/, with @pdt42/cli pinned to 0.4.0. Relative asset paths make it work under the sub-path.\n- With PDT42_DIFF_BASE set, the build also renders the changes against that base as a single page in platform-design-diff/. While the pinned version has no --diff, the step is skipped with a message.\n- In pull requests the Pages workflow fetches the full history, sets the diff base to origin/main and uploads the built site as the artifact site-preview.\n- The index page and the README link the new section.\n\n## Dependencies and side effects\n\n- Pull requests produce a downloadable site-preview artifact.\n- Main deploys /docs/platform-design/ with the next merge."
+   }
+  ]
+ },
+ "moved": []
+}

@@ -1,0 +1,25 @@
+{
+ "id": "i247",
+ "conventionalCommit": "feat(home): shorter role prompts; the details live in llms.txt",
+ "intent": "The role prompts still spelled out how apps are checked and whether externally hosted apps meet the same requirements. That is too much detail for a prompt to copy. Now that llms.txt answers it, the prompts should only ask what the platform is, what it offers the role and how it keeps things safe.",
+ "keyDecisions": [
+  "the prompt asks how the platform keeps things safe and leaves the answer to llms.txt, over naming the check and external hosting in the prompt"
+ ],
+ "trigger": "\"Erkläre mir auch, wie lernapps.net Apps prüft und ob für Apps, die nicht auf lernapps.net selbst liegen, sondern bei ihren Entwicklern, dieselben Anforderungen gelten. Das ist zu detailliert in den prompts.\"",
+ "kind": "feature",
+ "relations": [
+  {"type": "revises", "intent": "i244", "note": "shortens the prompts built there"},
+  {"type": "continues", "intent": "i246", "note": "the details moved into the llms.txt sections written there"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "lernapps.github.io": [
+   {
+    "commits": ["ade1bc91520939806f0a55abcd5889bf8f6b9534"],
+    "reason": "The only commit of this request; the commits before it on the branch serve other requests.",
+    "message": "feat(home): shorter role prompts; the details live in llms.txt\n\n## Intent\n\nThe role prompts spelled out how apps are checked and whether externally hosted apps meet the same requirements. That is too much for a prompt to copy, and llms.txt now answers it. The prompts should only ask what the platform is, what it offers the role and how it keeps things safe.\n\n## Key changes\n\n- The teacher, parent and learner prompts ask what lernapps.net is, what it offers them and how it keeps things safe, in German and English.\n- The maker's prompt asks what the platform offers makers and what they get back when someone uses their app.\n\n## Dependencies and side effects\n\n- The answer on safety now depends on the section \"Sicherheit\" of llms.txt (9fa66d8), which is live only after the merge."
+   }
+  ]
+ },
+ "moved": []
+}

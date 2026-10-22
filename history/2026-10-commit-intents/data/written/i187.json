@@ -1,0 +1,41 @@
+{
+ "id": "i187",
+ "conventionalCommit": "docs(pdt42): value chain of \"Getting apps into use\" as a Wardley Map (E5)",
+ "intent": "Map how value flows today in the focus arena, from the user needs down to commodities. The map is the base for the Platform Plays in E6, which decide which components the platform should move.",
+ "keyDecisions": [
+  "three user needs (students, parents, teachers) over one single need",
+  "set the evolution only where confirmed and leave the rest out at first, over guessing it",
+  "hosting and AI assistants as commodities, AI assistants not as distinct products",
+  "evolution of the other components as proposed: app custom, bringing it to students product, discoverability custom, signal of fitness for use genesis, devices and connectivity commodity"
+ ],
+ "trigger": "\"Was gehört denn zu e5?\" … \"Ich glaube, dass es mehrere Bedürfnisse gibt: - Schüler wollen den Stiff gut Verstehen … Hosting ist convenience, KI-Assistenten … werden aber derzeit zu einer Grundausstattung eines Haushalts\" … \"Passt.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i186",
+   "note": "next step of the platform exploration"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "37f7cd681e36addad669b1f0c96f0979a6e14423",
+     "fc7e37acb88006ebafd4a4bcbe617d0dbf74b295"
+    ],
+    "reason": "The sketch of the value chain and the evolution of its components, one after the other on feat/platform-design; only together does the map place every component.",
+    "message": "docs(pdt42): value chain of \"Getting apps into use\" as a Wardley Map (E5)\n\n## Intent\n\nMap how value flows today in the focus arena, from the user needs down to commodities. The map is the base for the Platform Plays in E6.\n\n## Key changes\n\n- A new E5 chapter starts from three user needs: students want to understand the subject for good grades, parents want the same with little time, and teachers want free time by keeping students busy.\n- The value chain below them: the app, bringing it to students, discoverability, a signal of fitness for use, hosting, AI assistants, devices and connectivity.\n- Every component has its evolution today, so the Wardley Map places it: hosting, AI assistants, devices and connectivity are commodities, bringing the app to students is a product, the app and discoverability are custom-built, and the signal of fitness for use is in genesis."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "fc7e37acb88006ebafd4a4bcbe617d0dbf74b295",
+   "from": "i188",
+   "kind": "moved",
+   "why": "Sets the evolution of the E5 components that this step left open; \"Passt\" confirms the proposal made at the end of i187."
+  }
+ ]
+}

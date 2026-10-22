@@ -1,0 +1,33 @@
+{
+ "id": "i046",
+ "conventionalCommit": "fix(check): npm run check builds nothing; the Pages job becomes `site`",
+ "intent": "In tooling, `npm run check` should check the code and nothing else: a build inside a check was unexpected. The Pages job that builds and checks the docs site should be named after what it does, apart from the code check.",
+ "keyDecisions": [
+  "check builds nothing; check:site runs the site check after the build",
+  "the Pages job check becomes site",
+  "the site actions get an input check-script with default check, so other sites stay unchanged",
+  "the workflows use the site actions from the checkout, so a pull request that changes an action exercises it"
+ ],
+ "trigger": "\"We shall rename the pages check. What does it actually do? Check running a build is unexpected. Keep this separate.\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i045",
+   "note": "step 1's check script"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "6e4b95acfa5c1af52caa32b93f18e9ffeb04163a"
+    ],
+    "reason": "One commit for one request.",
+    "message": "fix(check): npm run check builds nothing; the Pages job becomes `site`\n\n## Intent\n\nIn tooling, `npm run check` should check the code and nothing else: a build inside a check was unexpected. The Pages job that builds and checks the docs site should be named after what it does, apart from the code check.\n\n## Key changes\n\n- Scripts: check runs lernapps check; check:site runs lernapps-check on the built docs; build stays the docs build.\n- pages.yml: job check becomes site; deploy needs site.\n- site-check and site-preview take check-script (default check).\n- Tests: npm run check on a fresh clone leaves no _site/; build and check:site are green.\n\n## Dependencies and side effects\n\n- The required status check is now satisfied by check.yml only; the docs site job reports as site."
+   }
+  ]
+ },
+ "moved": []
+}

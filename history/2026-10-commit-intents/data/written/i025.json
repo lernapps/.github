@@ -1,0 +1,33 @@
+{
+ "id": "i025",
+ "conventionalCommit": "fix: .nojekyll for published apps; rules-review stays out of apps",
+ "intent": "Work off the open issues that are clear bugs. Pages did not serve files whose names start with an underscore, so components did not start (#107). And `npx skills add lernapps/tooling` installed the maintainers' skill rules-review into apps (#85).",
+ "keyDecisions": [
+  "one commit per issue",
+  "#107 and #85 now; the other issues stay open for later",
+  "leave the third-party skill arc42-language as it is, since a change would break its hash"
+ ],
+ "trigger": "\"Lass uns issues abarbeiten\" … \"Mach die beiden 107 und 85 , jeweils einzelne commits. Brauchen wir den Rest noch?\"",
+ "kind": "fix",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "a09dd3a86e0cf66d46e6d04dd59d4c66e2cc6d81"
+    ],
+    "reason": "One commit per issue, as asked.",
+    "message": "fix(publish): write .nojekyll into the bundle so Pages serves files starting with _\n\n## Intent\n\nPages ran published apps through Jekyll, which drops files whose names start with an underscore, so components did not start (#107).\n\n## Key changes\n\n- The publish step writes an empty .nojekyll into the bundle, next to the marker file.\n\n## Dependencies and side effects\n\n- Closes #107."
+   },
+   {
+    "commits": [
+     "003ab58d5397cd9aa3b06b0c7569528146b2515e"
+    ],
+    "reason": "One commit per issue, as asked.",
+    "message": "fix(skills): mark rules-review as internal so npx skills add skips it\n\n## Intent\n\n`npx skills add lernapps/tooling` installed the maintainers' skill rules-review into apps (#85).\n\n## Key changes\n\n- rules-review is marked `metadata.internal`; the skills CLI lists such skills only when INSTALL_INTERNAL_SKILLS is set.\n\n## Dependencies and side effects\n\n- Closes #85."
+   }
+  ]
+ },
+ "moved": []
+}

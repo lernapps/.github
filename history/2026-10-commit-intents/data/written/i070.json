@@ -1,0 +1,36 @@
+{
+ "id": "i070",
+ "conventionalCommit": "fix(quiz): the end-to-end tests of every quiz scroll instantly",
+ "intent": "In the first full run, the generic quiz test that answers every question timed out: the quiz scrolls smoothly after each answer, and every click waited for the scroll to settle, so any quiz with more than about 15 questions failed its check. Tests do not need smooth scrolling at all.",
+ "keyDecisions": [
+  "fix the template's tests, not cut the quiz to fewer questions, so the first run keeps its 25 questions",
+  "run the quiz tests with reduced motion, so every scroll is instant, over a longer timeout per question",
+  "keep it in app-templates, since the scrolling comes from the quiz's own CSS, not in the shared preset",
+  "a 64-question fixture bank in CI, failing first, guards against the timeout coming back"
+ ],
+ "trigger": "\"Check the [quiz session]. The agent is having issues with Mac timing\" … \"I merged the app templates PRs. In tests, we don't need to scroll smoothly at all, 1ms is fine\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i276", "note": "a finding of the first full run"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["7076a83bd06b7f4ec9fce3996d8db163d5d8e3ae", "3df7cbe19d44b197c7c72e82d3b03134278cffe2"],
+    "reason": "The failing test and its fix follow each other directly on the branch of app-templates#9.",
+    "message": "fix(quiz): the end-to-end tests of every quiz scroll instantly\n\n## Intent\n\nThe quiz scrolls smoothly unless the learner asks for less motion, and every click of the generic tests waited for that scroll to settle: about a second per question. The run through a whole quiz timed out from about 15 questions on, so a larger quiz failed its own check.\n\n## Key changes\n\n- quizTests() runs with reduced motion, so every scroll ends with the click. The default timeout stays, and every question is still answered.\n- A fixture bank with 64 questions of every type, and a CI job that checks the quiz template as an app with it. It failed before the fix; the full run now takes about 8.5 s.\n\n## Dependencies and side effects\n\n- The tooling moves its template pin to this fix (e5a30fa), so new apps get it."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["e5a30fa0b5e7ce99e5f037f6f50676fab5689710"],
+    "reason": "The pin move in tooling; one commit.",
+    "message": "chore(generator): new apps get app-templates a876fb9, whose quiz tests scroll instantly\n\n## Intent\n\nNewly generated apps should get the fix for the quiz test timeout.\n\n## Key changes\n\n- The template pin moves to the merge of app-templates#9.\n\n## Dependencies and side effects\n\n- The fix itself is in app-templates (7076a83, 3df7cbe)."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "e5a30fa0b5e7ce99e5f037f6f50676fab5689710", "from": "i071", "kind": "moved", "why": "Moves the template pin to the timeout fix of this intent."}
+ ]
+}

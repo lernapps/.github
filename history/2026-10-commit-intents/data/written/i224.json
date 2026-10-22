@@ -1,0 +1,27 @@
+{
+ "id": "i224",
+ "conventionalCommit": "feat: the entry format as a schema (Zod, published as JSON Schema)",
+ "intent": "The entry format of the app overview needs one source that defines it, checks every entry and is published for editors and agents. Nothing needs to stay compatible with the map, so the schemas move out of it.",
+ "keyDecisions": [
+  "one Zod source as in the map, but for the new entry format, over taking over the old map schema",
+  "the map publishes no schemas any more, over keeping /map/schemas/ for old references",
+  "the listing conditions live in the schema itself, so forbidden values cannot be written",
+  "CI fails when the generated JSON Schema does not match its source"
+ ],
+ "trigger": "\"Wir brauchen keine abwärtskompabilität. Zieh die Schemata um\"",
+ "kind": "feature",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": [
+     "e0a9eed05cb9764685e6b390d9a0a5322110b0d6"
+    ],
+    "reason": "One commit for one request.",
+    "message": "feat: the entry format as a schema (Zod, published as JSON Schema)\n\n## Intent\n\nThe entry format of the app overview needs one source that defines it, checks every entry and is published for editors and agents. Nothing needs to stay compatible with the map, so the schemas move out of it.\n\n## Key changes\n\n- schemas/entry.js is the only source of the entry format; the build checks every entry against it and replaces the hand-written checks, with readable messages.\n- npm run schema writes schemas/entry.v1.schema.json; the check fails when it is out of date.\n- The schema is published at /apps/schemas/; the Mathe-Karte entry and llms.txt point to it.\n\n## Dependencies and side effects\n\n- The redirect pull request of lernapps/map no longer publishes schemas; the schema of the competency nodes stays unpublished in the parked map."
+   }
+  ]
+ },
+ "moved": []
+}

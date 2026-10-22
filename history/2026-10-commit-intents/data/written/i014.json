@@ -1,0 +1,76 @@
+{
+ "id": "i014",
+ "conventionalCommit": "refactor: no compatibility paths, own styles for questions, one language table, smaller modules",
+ "intent": "Nothing of the runtime is published and the existing quiz and explainers may be adapted, so no old path needs to stay alive. Clean up the remaining smells for a clean architecture before the quiz feature is built on it.",
+ "keyDecisions": [
+  "no backward compatibility: remove the re-exports and old package paths",
+  "the quiz schema refers to the question schema, over a copy kept equal by a script",
+  "schema ids are urns, over the address of a site that does not exist; the schemas are not published",
+  "the question markup gets its own question-* classes and stylesheet, over quiz-* classes restyled by the explainer",
+  "one table of languages and locales types every text registry",
+  "split the large explainer modules along their seams, and the architecture test also fails on an import cycle",
+  "check the CSS change against screenshots before and after"
+ ],
+ "trigger": "\"Wir brauchen gar keine abwärtskompatibilität. Das Quiz, das schon publiziert ist (Naturwunder-quiz) und die explainer darfst Du hier anhängen und anpassen. Mach es vor allem sauber. Die Schemata publizieren wir nicht\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i013",
+   "note": "removes the compatibility paths and smells left after the shared library"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": [
+     "337d8464c44edf6548d81fbfeb3f19b7bbcfb5f2"
+    ],
+    "reason": "Kept apart: each of the four commits removes a different smell.",
+    "message": "refactor: no compatibility paths; the schemas refer to each other\n\n## Intent\n\nNothing of the runtime is published, so no old path needs to stay alive. The quiz's schema should not carry a copy of the question definitions.\n\n## Key changes\n\n- The quiz's re-exports of the questions and the package exports quiz/question and */messages/*.json are gone; the questions are imported from runtime/shared/questions.\n- The quiz's schema refers to the question schema, as the explainer's does. The sync script and its test are gone.\n- The schemas have urn ids (urn:lernapps:schema:<name>.v1) instead of the address of a site that does not exist. Error messages name the schema file in the app's node_modules; the READMEs link the files in the repo.\n- The question tests are renamed and import the shared questions."
+   },
+   {
+    "commits": [
+     "95167b5a83cf7f85d3f1c2ee7e5de22548285b1f"
+    ],
+    "reason": "Kept apart: own smell (styles of the questions).",
+    "message": "refactor: the questions have their own stylesheet and class names\n\n## Intent\n\nA question is not the quiz's, yet it rendered quiz-* classes, and the explainer restyled them in about 25 rules of its own.\n\n## Key changes\n\n- The question markup uses question, question-option, question-feedback and so on.\n- Its look is in runtime/shared/questions/questions.css, which the quiz and the explainer import. They set its colours as --question-* custom properties.\n- The quiz's stylesheet keeps only its page: languages, start form, progress, result, solutions and celebration.\n- The explainer's \"Neue Aufgabe\" button of a generated exercise has a class of its own.\n- Screenshots before and after (quiz and explainer, desktop and 360 px) are pixel-identical."
+   },
+   {
+    "commits": [
+     "51c498f96e3e3c8cecf2b45274423aab619487cf"
+    ],
+    "reason": "Kept apart: own smell (language lists).",
+    "message": "refactor: one table of the languages and their locales\n\n## Intent\n\nThe languages were listed four times, with three tables of locales and different fallbacks. Adding a language must be complete or not at all.\n\n## Key changes\n\n- shared/languages.ts holds LANGUAGES, Language, localeOf and textsIn.\n- The registries of the runtime's own texts (questions, quiz, explainer, interactive) are typed by it, and the validators take their list of languages from it."
+   },
+   {
+    "commits": [
+     "ccd7c675374bece70a835a5df61a2c7c49ad5811"
+    ],
+    "reason": "Kept apart: own smell (large modules).",
+    "message": "refactor: the large modules of the explainer split along their seams\n\n## Intent\n\nThree explainer modules of 800 to 1100 lines each mixed several concerns, which makes them hard to read and change.\n\n## Key changes\n\n- load.ts becomes the site's check, schema.ts (validators and the explainer's words for schema errors) and check-page.ts (what the schema cannot say about a page).\n- generated.ts becomes generated/: types, comparator, values, texts, question and soundness, each importing only what comes before it.\n- components.ts becomes components/: read, props and exercise. The checks of a component's code are shared and generic.\n- The architecture test also fails on a cycle of imports in the runtime. It found one between render.ts and tutor.ts; the shared type now lives in content.ts.\n- The architecture documents name the new paths; the component rules are a building block of the shared runtime."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "95167b5a83cf7f85d3f1c2ee7e5de22548285b1f",
+   "from": "i015",
+   "kind": "dropped",
+   "why": "Part of the clean-up asked for in this intent, planned before the question about interactive's CSS; i015 has no commits left."
+  },
+  {
+   "commit": "51c498f96e3e3c8cecf2b45274423aab619487cf",
+   "from": "i015",
+   "kind": "dropped",
+   "why": "Part of the same clean-up (smell 4 of the list); i015 has no commits left."
+  },
+  {
+   "commit": "ccd7c675374bece70a835a5df61a2c7c49ad5811",
+   "from": "i015",
+   "kind": "dropped",
+   "why": "Part of the same clean-up (smell 3 of the list); i015 has no commits left."
+  }
+ ]
+}

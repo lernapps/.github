@@ -1,0 +1,31 @@
+{
+ "id": "i037",
+ "conventionalCommit": "docs(arc42): listing targets and eval assistants",
+ "intent": "The listing scenario and the evals need concrete targets and named assistants.",
+ "keyDecisions": [
+  "half of the listing pull requests pass on the first run, 7 of 8 on the second after a comment with the deterministic check results",
+  "evals by hand with Claude Code, Codex and Gemini CLI on their latest models, over an automated eval pipeline"
+ ],
+ "trigger": "\"I’d say that half of PRs schools pass in the first run. Then, after a review comment writing the deterministic check results,, 7/8 should pass on second run. We want to evaluate Gemini, codex and Claude code (manually, as you suggested), wit the latest models.\"",
+ "kind": "docs",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i036",
+   "note": "targets for its scenarios"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "0c59705b9eeb34dc01e70712b1e3d12d0b040b18"
+    ],
+    "reason": "One commit for one request.",
+    "message": "docs(arc42): listing targets and eval assistants\n\n## Intent\n\nThe listing scenario and the evals need concrete targets and named assistants.\n\n## Key changes\n\n- qs-first-listings: half of the listing pull requests pass validation on the first run, 7 of 8 on the second after a comment with the check results.\n- The \"other assistant\" scenario requires Claude Code, Codex and Gemini CLI to pass, run by hand on their latest models.\n- The plan records the results comment (KD-10) and that there is no automated eval pipeline (KD-14)."
+   }
+  ]
+ },
+ "moved": []
+}

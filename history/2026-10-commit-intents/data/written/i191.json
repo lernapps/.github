@@ -1,0 +1,26 @@
+{
+ "id": "i191",
+ "conventionalCommit": "docs: Oliver Jägle is the sole platform owner",
+ "intent": "Ralf D. Müller wants to work only on the apps themselves (Mathe-Karte), not on the platform. The business model and the platform design still named both organisation owners as jointly accountable for the platform.",
+ "keyDecisions": [
+  "rename the biz42 owner owner-vorstand to owner-platform with Oliver Jägle alone, over keeping a board of two",
+  "Ralf appears as an app creator in the pdt42 model, not as an owner",
+  "leave GOVERNANCE.md in lernapps/.github out of this change and mark the old fact as superseded in the evidence table"
+ ],
+ "trigger": "\"Mach einen WIP commit. Ralf hat mir gesagt, dass er sich nur um die eigentlichen Apps (Mathe-Karte) kümmern wil. Das ganze Plattform-Gedöhns sei ihm nicht wichtig. Pass das mal überall an\"",
+ "kind": "docs",
+ "relations": [],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "cab0bba159426803fa963b9c093d25b261f633bf"
+    ],
+    "reason": "One commit for one change of ownership.",
+    "message": "docs: Oliver Jägle is the sole platform owner\n\n## Intent\n\nRalf D. Müller wants to work only on the apps themselves (Mathe-Karte), not on the platform. The business model and the platform design still named both organisation owners as jointly accountable for the platform.\n\n## Key changes\n\n- biz42 chapter 8 names Oliver Jägle as the only platform owner. Ralf stays the second owner of the GitHub organisation and focuses on the apps.\n- The owner id is owner-platform instead of owner-vorstand; all objectives and products refer to it.\n- The evidence table records the new fact and marks the old one (two owners with equal rights) as superseded and open.\n- In E2, E3 and E5 \"the owners' observations\" become the platform owner's. E2 lists Ralf among the app creators; E3 attributes biz42 and pdt42 to the platform owner and arc42 to docToolchain.\n- The development plan adds KD-09: the owner role in D1 holds only Oliver Jägle.\n\n## Dependencies and side effects\n\n- GOVERNANCE.md and ORGANIZATION.md in lernapps/.github still name two owners with equal rights."
+   }
+  ]
+ },
+ "moved": []
+}

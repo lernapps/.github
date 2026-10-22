@@ -1,0 +1,31 @@
+{
+ "id": "i259",
+ "conventionalCommit": "fix: the listing comment shows the result of the latest run",
+ "intent": "The first real update of a listed app (elektrizitaet, apps#68) passed its listing check on a re-run, but the comment on the pull request still showed the failure of the first run. A reviewer must see the result of the latest run.",
+ "keyDecisions": [
+  "pick the newest artifact of the run and download it by id, over downloading by name, which takes the first",
+  "link the same artifact as the full report",
+  "record in the plan that an update pull request can open before the creator's deploy has finished, over fixing that now"
+ ],
+ "trigger": "\"https://github.com/lernapps/apps/pull/68 beinhaltet kein Update, dass die Prüfung nun ok wäre, der Kommentar ist alt\"",
+ "kind": "fix",
+ "relations": [
+  {"type": "continues", "intent": "i257", "note": "the first update of a listed app through the new path showed the flaw"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "apps": [
+   {
+    "commits": ["d26d74361ae53be4845822f0e4c12507293192c5"],
+    "reason": "The one commit of apps#69.",
+    "message": "fix: the listing comment of a re-run shows the re-run's result\n\n## Intent\n\nA re-run of the listing check keeps the run's id and adds a second report. The comment took the first one, so after a passing re-run it still showed the old failure (apps#68). A reviewer must see the latest result.\n\n## Key changes\n\n- The comment workflow picks the newest report of the run and links that one as the full report.\n- The plan records what the first update showed: the update pull request opened while the creator's deploy was still running, so the first check saw the old app.\n\n## Dependencies and side effects\n\n- apps ea038f5 fixes where the downloaded report lands."
+   },
+   {
+    "commits": ["ea038f5b5063cde86cfc7e90667113d010677e7a"],
+    "reason": "A follow-up merged as its own pull request after apps#69.",
+    "message": "fix: the listing comment finds the report it downloaded by id\n\n## Intent\n\nAfter the previous fix, the comment found no report and said the check did not finish. A report downloaded by id lands in a subfolder named after it, unless the download merges it into the target folder.\n\n## Key changes\n\n- The download puts the report straight into the folder the comment reads.\n\n## Dependencies and side effects\n\n- Completes apps d26d743."
+   }
+  ]
+ },
+ "moved": []
+}

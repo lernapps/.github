@@ -1,0 +1,51 @@
+{
+ "id": "i051",
+ "conventionalCommit": "feat(quiz): a knowledge quiz whose runtime is a package in app-templates",
+ "intent": "Quizzes are mostly about things to know, so the example with fraction questions misses the point: every option needs compact background knowledge and every question further reading, and the schema must reflect this. The quiz UI should also be a package from the templates repo that apps depend on, so a new feature like a timer reaches every app by bumping a dependency, without regenerating it.",
+ "keyDecisions": [
+  "the root of app-templates becomes the package @lernapps/app-templates, installed from git at a commit, over one repo per archetype runtime or publishing to npm",
+  "the tooling stays a development dependency and never depends on the runtime",
+  "background knowledge (`info`) on every option replaces per-option feedback, which could contradict it",
+  "texts in own words with Wikipedia only as further-reading links, because copied text would bind the quiz to CC BY-SA",
+  "the schema stays v1, since it was never published",
+  "a natural-wonders example from German Wikipedia, every link and fact checked against its article"
+ ],
+ "trigger": "\"The example with math questions is really poor. Quizzes are usually about things to know with some compact background knowledge for each option and further reading links. The schema should reflect this. We might provide a quiz about natural wonders with source German Wikipedia\" … \"UIs for these deep scaffolded templates should scaffold in such a way, that the … components are referenced with package (in the template repository, not in tooling). This way, we can introduce new features like timers without re-generating the app, but only bumping a dependency\"",
+ "kind": "rework",
+ "relations": [
+  {"type": "revises", "intent": "i048b", "note": "reworks the quiz format and moves the engine of step 6 out of tooling"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "app-templates": [
+   {
+    "commits": ["bcaf5772c3e906e139ce00c44eeedc53c0c2e097", "3a83657b8d7c06ccb487351bb99af09f93d11140"],
+    "reason": "The two commits of the app-templates#4 branch follow each other directly; the second only corrects the schema's description that the first moved.",
+    "message": "feat(quiz): the quiz runtime as the package @lernapps/app-templates, a knowledge quiz\n\n## Intent\n\nApps should depend on their archetype's runtime as a package, so a new feature such as a timer reaches an app with a dependency bump. And quizzes are mostly about things to know: every option needs short background knowledge, every question further reading.\n\n## Key changes\n\n- The repo root is the package @lernapps/app-templates, installed from git at a commit, since npm cannot install a subfolder. It exports the quiz engine, the Vite build step, the stylesheet, the generic Playwright tests and the schema, which now names the runtime package.\n- @lernapps/tooling and Playwright are optional peer dependencies, so installing the runtime needs nothing else from GitHub.\n- The template uses the runtime of its own commit and composes it with the shared preset: `lernapps({ plugins: [quiz()] })`.\n- Options have `text`, `correct`, `info` and an optional `link`; questions have an `explanation` and at least one link; the quiz may list `sources`. Per-option feedback is gone.\n- After an answer, and in the answer key without JavaScript, the page shows every option's background with the right option and the learner's choice marked, then the explanation and the links.\n- The example bank \"Naturwunder der Welt\" has eight questions of all six types, written in own words from the German Wikipedia articles it links.\n- The unit tests of the scoring move here with the code.\n\n## Dependencies and side effects\n\n- The tooling removes its copy of the runtime and points the generator at this package (9e0982f and the commits after it on the branch of tooling#36).\n- The template has no lockfile; the app's first install writes it."
+   }
+  ],
+  "tooling": [
+   {
+    "commits": ["9e0982f735dccf23966a854a717bf5656ba4d413"],
+    "reason": "Follows a merge of main on the #36 branch; the commits after it are separate fixes, so it stays alone.",
+    "message": "refactor(quiz): the quiz runtime moves to @lernapps/app-templates, a knowledge quiz\n\n## Intent\n\nAn archetype's runtime should be a package the app depends on, in lernapps/app-templates, so a new feature reaches an app with a dependency bump; the tooling stays a development dependency. The quiz becomes a quiz about things to know.\n\n## Key changes\n\n- Engine, build step, stylesheet, generic tests, schema and scoring tests leave the tooling. The tooling never depends on the runtime.\n- The generator points the app's @lernapps/app-templates at the commit it copied the template from, and lists the archetypes it knows with the pin.\n- The schema keeps its URL on the tooling's docs site; the docs build takes it from app-templates at the pinned commit.\n- The skill lernapps-quiz describes the new bank with the natural-wonders example; new rules quiz-further-reading and quiz-own-words (both warnings).\n- The architecture records the decision dec-runtime-package.\n- The generator test checks background, marks, explanation and links after each answer and in the answer key.\n\n## Dependencies and side effects\n\n- Needs the runtime package in app-templates (bcaf577, 3a83657, app-templates#4); the pin moves to the head of that branch."
+   },
+   {
+    "commits": ["f5b46dd2a265d88de2ca3179648fe318607c489a"],
+    "reason": "A fix of the shared Playwright setup, unrelated to the move before it.",
+    "message": "fix(preset): Playwright serves the app on a free port\n\n## Intent\n\nTwo apps checked at the same time, as in the tooling's own parallel tests, both served on port 4317, and the second run failed.\n\n## Key changes\n\n- The shared Playwright configuration takes a free port when it loads and passes it to its workers; a port set from outside is used as it is."
+   },
+   {
+    "commits": ["2544384cef54947da42a3ca766175bebf15f60e9"],
+    "reason": "A test timeout for the longer knowledge quiz; separate from the port fix before it.",
+    "message": "test(quiz): browser tests of the generated quiz get a minute\n\n## Intent\n\nA full run of the eight questions took longer than the five-second default on a busy machine.\n\n## Key changes\n\n- One timeout of 60 s for the browser tests of the generated quiz."
+   },
+   {
+    "commits": ["81825389518d7c7be60c994021f4779c4ca0d10e"],
+    "reason": "The pin moves after app-templates#4 is merged, a step of its own.",
+    "message": "chore(templates): pin app-templates to the merge commit of #4\n\n## Intent\n\nThe generator must copy the template from a commit on main of app-templates, not from a branch head.\n\n## Key changes\n\n- The pin moves to the merge commit of app-templates#4; its files equal the branch head the tests ran against.\n\n## Dependencies and side effects\n\n- Points at the merge of bcaf577 and 3a83657 in app-templates."
+   }
+  ]
+ },
+ "moved": []
+}

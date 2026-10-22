@@ -1,0 +1,43 @@
+{
+ "id": "i226",
+ "conventionalCommit": "docs: new vision and business model from the platform design",
+ "intent": "The vision and the business model (biz42) still describe the edugo approach from before the platform design: competency map, registry, landing-page phase. Rewrite both from the platform design. biz42 describes the organisation and its tasks, the platform design describes the product; both link each other and can be read on the docs site. Having no server is not enough as a privacy promise (lernapps/docs#11).",
+ "keyDecisions": [
+  "replace biz42 as a whole, over patching chapters that all depended on the competency map and the registry",
+  "the vision as the short why; where vision and platform design differ, the platform design applies",
+  "biz42 for the organisation, pdt42 for the product, linked down to single elements",
+  "unsourced targets and dates marked OPEN in the evidence file",
+  "the fitness signal asks what an app sends to third parties, checked rather than declared"
+ ],
+ "trigger": "\"Das ist auf jeden Fall der richtige Weg. Biz42 wurde geschrieben bevor es das Plattform Design gab.\" … \"Biz42 dient der Illustration der Organization und deren Aufgaben, pdt42 dient der Beschreibung des Produkts.\" … \"Teilweise können wir da Querverweise einfügen. Beides sollte öffentlich als Teil der docsite lesbar sein\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i225b",
+   "note": "on the same clean-start branch (docs#12)"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "docs": [
+   {
+    "commits": [
+     "3425907b0f2ac15177c1a0531baa5d7a4ab7fed4",
+     "30a77388a4dc191fd9e94c34b00adc8c7137e3a1",
+     "e575768f0b1571d0d7b2e0de03a26d2a8f0be612"
+    ],
+    "reason": "Three commits directly one after the other: the privacy correction in pdt42, the new vision and biz42, and the missing prose for the pdt42 change. Together they close docs#11.",
+    "message": "docs: new vision and business model from the platform design\n\n## Intent\n\nThe vision and biz42 still described the edugo approach from before the platform design. Both should follow the platform design, and no document should claim that having no server is enough for privacy (lernapps/docs#11).\n\n## Key changes\n\n- The vision is the short why: good apps exist but do not arrive; what lernapps.net does for adults, creators and learners; its principles; what it is not; how it starts.\n- biz42 has the platform's roles, the risks of supply, thanks and reach, objectives and measures from the MVP's assumptions, and the products home page, app overview and guidance.\n- Unsourced targets and dates are marked OPEN in business-evidence.md.\n- In the platform design, the asset \"frontend-only\" no longer claims that no personal data leaves the device; the fitness signal asks whether an app sends anything to third parties, checked rather than declared, and the prose of D5 says why."
+   },
+   {
+    "commits": [
+     "90c89396ac4f90be274dfce9ffd2d62c40ea88d1"
+    ],
+    "reason": "The split between organisation and product, kept apart from the rewrite.",
+    "message": "docs: organisation (biz42) and product (pdt42), with cross-references\n\n## Intent\n\nbiz42 should describe lernapps.net as an organisation and the platform design the product. Both should say so, link each other and be readable on the docs site.\n\n## Key changes\n\n- Chapter 1 of biz42 and D1 of the platform design state the split and link each other.\n- Cross-references go down to single elements: owner, objectives, measures, MVP, experiences, learning engine, portraits.\n- The docs index, the README and the vision name the split; \"Geschäftsmodell\" becomes \"Organisation\".\n- The platform owner's prose no longer calls Ralf a second owner of the organisation."
+   }
+  ]
+ },
+ "moved": []
+}

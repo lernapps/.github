@@ -1,0 +1,52 @@
+{
+ "id": "i044",
+ "conventionalCommit": "docs(arc42): rework after the review of the whole architecture",
+ "intent": "Get the architecture ready for the Code phase. The tooling should first be built with the same strict setup it later gives apps. A review from chapter 1 down found gaps: app discovery and listing were missing as a goal, the rule catalog had no clear place or runtime, archetype details and building-block details sat in the wrong places, and checks must be the same in the git hook and in CI, with end-to-end tests run by the creator before push.",
+ "keyDecisions": [
+  "the tooling's own build as the first step of the Code phase",
+  "rules live in their artifacts with stable ids; the rule catalog is a concept, over a central catalog compiled into the artifacts",
+  "one command `lernapps check` with --pre-commit and --pre-push; hook and CI run the same checks",
+  "Playwright end-to-end tests before push, over no browser before push, so CI has less to do",
+  "a YAML report, over JSON",
+  "an environment for lernapps agents and the creator's agent harness as deployment units, over the owner's machine",
+  "cross-cutting concepts only for what spans blocks: plain language, terse output, logging",
+  "archetype details only in the plan"
+ ],
+ "trigger": "\"About Dec build order: the very first step should be the proper build itself\" … \"Architecture review, from chapter 1 down. We’re missing the goal to work towards app descovery. “Listing” is not part anywhere now. That’s a flaw. …\" … \"The ci and the pre-commit should actually be identical wrt checks.\" … \"we could provide the cli with a parameter that runs the heavy tests only pre push\"",
+ "kind": "rework",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i042",
+   "note": "rework after review"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "b13ca2d49efe4b159c3b8e8b398c188d3b64ab31"
+    ],
+    "reason": "The plan commit for the build order, kept apart from the architecture review it precedes.",
+    "message": "docs(plan): the tooling's own build comes first\n\n## Intent\n\nThe tooling should be built first with the same conventions it gives apps, before anything is built on it.\n\n## Key changes\n\n- The first step of the Code phase is the package @lernapps/tooling with strict TypeScript, vite-plus, git hooks, a check workflow in CI and the CLI lernapps as an empty shell.\n- The rest of the order stays proposed in the plan, not in the architecture."
+   },
+   {
+    "commits": [
+     "e592806b5ae9b213fa6c0b6ff9d06cd54fba341f",
+     "62d8922b85b07607032d999e9bdea7831926923d"
+    ],
+    "reason": "The rework and the plan commit that joins it by the plan rule, directly one after the other.",
+    "message": "docs(arc42): rework after the review of the whole architecture\n\n## Intent\n\nGet the architecture ready for the Code phase. The tooling should first be built with the same strict setup it later gives apps. A review from chapter 1 down found gaps: app discovery and listing were missing as a goal, the rule catalog had no clear place or runtime, archetype details and building-block details sat in the wrong places, and checks must be the same in the git hook and in CI, with end-to-end tests run by the creator before push.\n\n## Key changes\n\n- Discovery is a quality goal and listing a step of the strategy, which follows the creator's journey and no longer repeats the goals.\n- Rules live in their artifacts with stable ids; the rule catalog is a cross-cutting concept.\n- One check command with --pre-commit and --pre-push; hooks and CI identical; Playwright end-to-end tests before push; YAML report.\n- The environment for lernapps agents and the creator's agent harness are deployment units.\n- Cross-cutting concepts are plain language, terse output, logging and traceability, stable contracts.\n- Archetypes only as a variation point; the repo is called app-templates."
+   }
+  ]
+ },
+ "moved": [
+  {
+   "commit": "b13ca2d49efe4b159c3b8e8b398c188d3b64ab31",
+   "from": "i043",
+   "kind": "moved",
+   "why": "Plan commit for the build-order message that opens this intent; it does not join 53271cf, which stays in i043."
+  }
+ ]
+}

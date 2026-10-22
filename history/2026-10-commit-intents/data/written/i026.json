@@ -1,0 +1,31 @@
+{
+ "id": "i026",
+ "conventionalCommit": "test: the planted app's Playwright config launches the installed Chromium",
+ "intent": "The branch with the two issue fixes could not be pushed: the pre-push run failed in the sandbox, because one test's own Playwright config ignored the installed Chromium that lernapps check already falls back to. Fix the test instead of bypassing the hook.",
+ "keyDecisions": [
+  "fix the test in a third commit, over pushing with --no-verify",
+  "reuse the existing fallback (LERNAPPS_CHROMIUM) instead of installing a browser"
+ ],
+ "trigger": "\"Gibt es da nicht eine Notiz, wie man mit dem Test umgeht? Das hatten wir schon mal\" … \"Dritter commit\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "continues",
+   "intent": "i025",
+   "note": "gets the issue fixes through the pre-push run"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "0ef18cba4d7686bc8bb59e203ae187cec08f000f"
+    ],
+    "reason": "Its own commit, as asked.",
+    "message": "test: the planted app's Playwright config launches the installed Chromium of lernapps check\n\n## Intent\n\nWhere Playwright's own Chromium is missing, lernapps check starts an installed one and passes it in LERNAPPS_CHROMIUM. The plain Playwright config of the check-repo test ignored it and failed in a sandbox, which blocked the pre-push run.\n\n## Key changes\n\n- The test's config launches the browser from LERNAPPS_CHROMIUM when it is set."
+   }
+  ]
+ },
+ "moved": []
+}

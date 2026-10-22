@@ -1,0 +1,38 @@
+{
+ "id": "i161",
+ "conventionalCommit": "feat(evals): re-score runs 1 and 2 by the scenario's end",
+ "intent": "The new measure of the scenario's end is read from transcripts only, so both earlier runs can be scored again without new model calls. Only then do they have comparable numbers for \"Code done\", and the conclusions rest on them.",
+ "keyDecisions": [
+  "re-score from the existing transcripts, over a new Harbor run",
+  "push run 2's results only if nothing but the new numbers changes",
+  "re-score run 1 from the job folders still in this container, over asking its old session",
+  "count the persona's thanks to a done agent as a regular end too, and only the creator's last message after the plan",
+  "keep matching the persona's free sentences for now, over waiting for a structured end"
+ ],
+ "trigger": "\"ja, schick beides los\"",
+ "kind": "eval",
+ "relations": [
+  {"type": "continues", "intent": "i160", "note": "applies the new measure of the scenario's end to both earlier runs and corrects it on the way"}
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "4359cd2bb6292ed9576f2e13dc2e303ba7b60607",
+     "338c6b38590819e82d94a9fe10ccff9901f315ed",
+     "9efb6d4fc238d34f8b40c737f43d31f2435b5ab2",
+     "28f121463a44613290b87eb488fe7e3f20414f37",
+     "7385046f8ca8a2d26fa3569cbf5da7b21d15d67d",
+     "34e31a75266df42d4fd7408e5ec3b801b7728633",
+     "3c6a5de16ce925223699402b6e707eb7598b4194"
+    ],
+    "reason": "Each re-score showed a flaw in the rule for the scenario's end, fixed in the next commit; the steps follow each other directly on one branch and only their final state is a result.",
+    "message": "feat(evals): re-score runs 1 and 2 by the scenario's end\n\n## Intent\n\nThe new measure of the scenario's end is read from the transcripts only, so both earlier runs can be scored again without model calls. They need comparable numbers for \"Code done\", and their conclusions must rest on them.\n\n## Key changes\n\n- The transcript dimension is now scenario_end. Only the creator's last message after the plan's yes counts: the GitHub answer, the stop at publishing or the thanks to a done agent, worded freely. Only the persona's stuck line at the start of that message is the stuck end.\n- Run 1 is re-scored from its transcripts: \"Code done\" is 100 % in every cell. Haiku's explainer runs that stayed at phase: code ended regularly with a green check. The current phase detection moves one Haiku run to \"created before the plan\" and lowers the turns after the plan in three runs.\n- Run 2 is re-scored the same way: \"Code done\" is 3/3 in every cell except Haiku's interactive one (1/3). Creates before the plan drop to 3 runs, and skills in their phase rise to 76–95 % for Sonnet and Opus.\n- The conclusions of both runs follow the new numbers."
+   }
+  ]
+ },
+ "moved": [
+  {"commit": "3c6a5de16ce925223699402b6e707eb7598b4194", "from": "i162", "kind": "dropped", "why": "The final results of run 2's re-score complete this request; the idea in i162 led to the commit of i163, so i162 has no commits left."}
+ ]
+}

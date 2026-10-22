@@ -1,0 +1,31 @@
+{
+ "id": "i088",
+ "conventionalCommit": "fix(renovate): the building blocks wait for a three-hour window, not minutes",
+ "intent": "Give open pull requests that touch workflows time to merge: Renovate bumped every repo within minutes of each tooling merge and automerged, so they fell into conflict again and again.",
+ "keyDecisions": [
+  "a schedule window every three hours instead of the asked-for minimumReleaseAge of one hour: references without a release timestamp would be held back for good, a partial bump",
+  "minimumReleaseAge stays 0 so every pin moves; automerge stays on"
+ ],
+ "trigger": "\"can you explain why this happens so quickly? we might gie renovate an hour grace period\"",
+ "kind": "fix",
+ "relations": [
+  {
+   "type": "revises",
+   "intent": "i086",
+   "note": "the building-blocks group gets a schedule"
+  }
+ ],
+ "confidence": "evidenced",
+ "squash": {
+  "tooling": [
+   {
+    "commits": [
+     "f937d34f653fd25728fa049453e37d237a537a6b"
+    ],
+    "reason": "The only commit of tooling#65.",
+    "message": "fix(renovate): the building blocks wait for a three-hour window, not minutes\n\n## Intent\n\nThe group lernapps building blocks bumped every repo within minutes of each tooling merge and automerged, so open pull requests that touch workflows fell into conflict again and again. Give them a grace period of about an hour.\n\n## Key changes\n\n- The group opens its pull request only in the hours 0, 3, … 21; tooling commits merged in between arrive together, on average about an hour later.\n- Not minimumReleaseAge: only the actions have a release timestamp. The npm git pin and the plain-string pins have none, and Renovate would hold them back for good while the actions moved alone, a partial bump that turns CI red.\n- minimumReleaseAge stays 0 and automerge stays on; a test checks the setting."
+   }
+  ]
+ },
+ "moved": []
+}
