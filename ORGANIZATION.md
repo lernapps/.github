@@ -25,7 +25,7 @@ Oliver Jägle ([@mrsimpson](https://github.com/mrsimpson)) is the owner of the o
 All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look and behave the same:
 
 - **Look:** design tokens, header with the common navigation, and footer come from [`site-frame/`](https://github.com/lernapps/lernapps.github.io/tree/main/site-frame) in `lernapps.github.io`, used as the npm package `@lernapps/site` straight from git (not published).
-- **Build and deploy:** `npm ci`, `npm run build` into `_site/`, `npm run check` (`lernapps-check`); `main` is published to the repo's `gh-pages` branch, each pull request gets a preview under `pr-preview/pr-<n>/`. The steps are the site actions in [`tooling`](https://github.com/lernapps/tooling); the repos only call them.
+- **Build and deploy:** `npm ci`, `npm run build` into `_site/`, `npm run check` (`site-check` of the site frame); `main` is published to the repo's `gh-pages` branch, each pull request gets a preview under `pr-preview/pr-<n>/`. The steps are the site actions in [`tooling`](https://github.com/lernapps/tooling); the repos only call them.
 - **Updates:** every repo's `renovate.json` extends `github>lernapps/tooling`. Renovate bumps the site frame and the actions to the latest commit of their `main` and merges when green, so a change there reaches every site.
 
 ## How to reach us
@@ -47,7 +47,7 @@ All sites on lernapps.net (home, `/apps/`, `/docs/`, and apps that want to) look
 - A document about one repo lives in that repo. A document about how repos relate lives in `docs`.
 
 **Apps and the app overview**
-- An app connects to the platform in one way only: its entry in the app overview links to it. Nothing embeds an app, and apps share no code at runtime.
+- An app connects to the platform in one way only: its entry in the app overview. lernapps.net serves a copy of every listed app under `lernapps.net/apps/start/<id>/` and links that copy; the creator keeps the app, its repository and its own address. Nothing embeds an app, and apps share no code at runtime.
 - One entry per app: a YAML file in `apps/entries/`, checked against the entry schema. The owner decides whether an app is listed.
 - What an app contains, such as trainers, is the app's own business.
 - How the platform is meant to work is the [platform design](https://lernapps.net/docs/platform-design/) in `docs`.
